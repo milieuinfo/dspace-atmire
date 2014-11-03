@@ -34,6 +34,7 @@
         <!-- 'root.basedir' is the path to the root [dspace-src] dir. It must be redefined by each child POM,
              as it is used to reference the LICENSE_HEADER and *.properties file(s) in that directory. -->
         <root.basedir>${basedir}</root.basedir>
+        <datamodel.version.number>4.2-1.14.8-0</datamodel.version.number>
     </properties>
 
     <build>
@@ -1359,6 +1360,20 @@
             <id>sonatype-releases</id>
             <name>Sonatype Releases Repository</name>
             <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>atmire.com-releases</id>
+            <name>atmire.com-releases</name>
+            <url>https://atmire.com/artifactory/atmire.com-releases</url>
+            <releases>
+                <enabled>true</enabled>
+                <checksumPolicy>fail</checksumPolicy>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+                <updatePolicy>never</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
         </repository>
     </repositories>
 

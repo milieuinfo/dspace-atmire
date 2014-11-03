@@ -72,6 +72,12 @@
    Runtime and Compile Time dependencies for DSpace.
    -->
    <dependencies>
+       <dependency>
+           <groupId>com.atmire</groupId>
+           <artifactId>atmire-datamodel-api</artifactId>
+           <version>${datamodel.version.number}</version>
+       </dependency>
+
       <dependency>
          <groupId>org.dspace</groupId>
          <artifactId>dspace-api</artifactId>
