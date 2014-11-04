@@ -105,7 +105,7 @@ public class RelationshipTypeServiceTest {
         writeContext.complete();
         RelationshipType result = relationshipTypeService.findById(readContext, type.getId());
 
-        assertEquals("updated right label", result.getRightLabel());
+        compare(type, result);
     }
 
     @Test
@@ -120,29 +120,35 @@ public class RelationshipTypeServiceTest {
     @Test
     public void testCreate() throws Exception {
         RelationshipType type = firstTestSubject();
-        RelationshipType relationshipType = relationshipTypeService.create(writeContext, type);
-        relationshipTypeService.delete(writeContext, relationshipType);
+        RelationshipType result = relationshipTypeService.create(writeContext, type);
+        relationshipTypeService.delete(writeContext, result);
         writeContext.complete();
 
-        assertEquals("test type a", type.getLeftType());
-        assertEquals("type b", type.getRightType());
-        assertEquals("label a", type.getLeftLabel());
-        assertEquals("label b", type.getRightLabel());
-        assertEquals(new ImmutablePair<Integer, Integer>(1, 1), type.getLeftCardinality());
-        assertEquals(new ImmutablePair<Integer, Integer>(1, 5), type.getRightCardinality());
-        assertEquals("Rules I", type.getSemanticRuleset());
-
+        type.setId(result.getId()); // not comparing id
+        compare(type, result);
     }
 
     private void compareFirstSubject(RelationshipType type) {
-        assertEquals(Integer.MAX_VALUE - 2, type.getId());
-        assertEquals("test type a", type.getLeftType());
-        assertEquals("type b", type.getRightType());
-        assertEquals("label a", type.getLeftLabel());
-        assertEquals("label b", type.getRightLabel());
-        assertEquals(new ImmutablePair<Integer, Integer>(1, 1), type.getLeftCardinality());
-        assertEquals(new ImmutablePair<Integer, Integer>(1, 5), type.getRightCardinality());
-        assertEquals("Rules I", type.getSemanticRuleset());
+        compare(firstTestSubject(), type);
+//        assertEquals(Integer.MAX_VALUE - 2, type.getId());
+//        assertEquals("test type a", type.getLeftType());
+//        assertEquals("type b", type.getRightType());
+//        assertEquals("label a", type.getLeftLabel());
+//        assertEquals("label b", type.getRightLabel());
+//        assertEquals(new ImmutablePair<Integer, Integer>(1, 1), type.getLeftCardinality());
+//        assertEquals(new ImmutablePair<Integer, Integer>(1, 5), type.getRightCardinality());
+//        assertEquals("Rules I", type.getSemanticRuleset());
+    }
+
+    private void compare(RelationshipType expected, RelationshipType actual) {
+        assertEquals(expected.getId(), actual.getId());
+        assertEquals(expected.getLeftType(), actual.getLeftType());
+        assertEquals(expected.getRightType(), actual.getRightType());
+        assertEquals(expected.getLeftLabel(), actual.getLeftLabel());
+        assertEquals(expected.getRightLabel(), actual.getRightLabel());
+        assertEquals(expected.getLeftCardinality(), actual.getLeftCardinality());
+        assertEquals(expected.getRightCardinality(), actual.getRightCardinality());
+        assertEquals(expected.getSemanticRuleset(), actual.getSemanticRuleset());
     }
 
     private RelationshipType firstTestSubject() {
