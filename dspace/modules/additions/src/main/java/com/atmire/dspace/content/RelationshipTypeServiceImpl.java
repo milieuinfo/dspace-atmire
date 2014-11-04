@@ -1,5 +1,6 @@
 package com.atmire.dspace.content;
 
+import com.atmire.util.WhereConstruct;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
@@ -18,7 +19,7 @@ import java.util.*;
 public class RelationshipTypeServiceImpl implements RelationshipTypeService {
 
     private final String TYPE_TABLE = "Type";
-    private final List<String> TYPE_TABLE_COLUMNS = Arrays.asList("type_id", "left_item_type", "right_item_type", "left_item_label", "right_item_label", "left_item_min_cardinality", "left_item_max_cardinality", "right_item_min_cardinality", "right_item_max_cardinality", "semantic_ruleset");
+    private final List<String> TYPE_TABLE_COLUMNS = Arrays.asList("type_id", "left_type", "right_type", "left_label", "right_label", "left_min_cardinality", "left_max_cardinality", "right_min_cardinality", "right_max_cardinality", "semantic_ruleset");
 
     @Override
     public RelationshipType findById(Context context, int id) {
@@ -51,44 +52,35 @@ public class RelationshipTypeServiceImpl implements RelationshipTypeService {
         Collection<RelationshipType> results = new LinkedList<RelationshipType>();
 
         String myQuery = "SELECT * FROM " + TYPE_TABLE;
-        List<String> wheres = new LinkedList<String>();
+        WhereConstruct where = new WhereConstruct();
         if (relationshipType.getId() != 0) {
-            wheres.add("type_id='" + relationshipType.getId() + "'");
+            where.addEqualField("type_id", relationshipType.getId());
         }
         if (StringUtils.isNotBlank(relationshipType.getLeftLabel())) {
-            wheres.add("left_item_label='" + relationshipType.getLeftLabel() + "'");
+            where.addEqualField("left_label", relationshipType.getLeftLabel());
         }
         if (StringUtils.isNotBlank(relationshipType.getRightLabel())) {
-            wheres.add("right_item_label='" + relationshipType.getRightLabel() + "'");
+            where.addEqualField("right_label", relationshipType.getRightLabel());
         }
         if (StringUtils.isNotBlank(relationshipType.getLeftType())) {
-            wheres.add("left_item_type='" + relationshipType.getLeftType() + "'");
+            where.addEqualField("left_type", relationshipType.getLeftType());
         }
         if (StringUtils.isNotBlank(relationshipType.getRightType())) {
-            wheres.add("right_item_type='" + relationshipType.getRightType() + "'");
+            where.addEqualField("right_type", relationshipType.getRightType());
         }
         if (relationshipType.getLeftCardinality() != null) {
-            wheres.add("left_item_min_cardinality='" + relationshipType.getLeftCardinality().getLeft() + "'");
-            wheres.add("left_item_max_cardinality='" + relationshipType.getLeftCardinality().getRight() + "'");
+            where.addEqualField("left_min_cardinality", relationshipType.getLeftCardinality().getLeft());
+            where.addEqualField("left_max_cardinality", relationshipType.getLeftCardinality().getRight());
         }
         if (relationshipType.getRightCardinality() != null) {
-            wheres.add("right_item_min_cardinality='" + relationshipType.getRightCardinality().getLeft() + "'");
-            wheres.add("right_item_max_cardinality='" + relationshipType.getRightCardinality().getRight() + "'");
+            where.addEqualField("right_min_cardinality", relationshipType.getRightCardinality().getLeft());
+            where.addEqualField("right_max_cardinality", relationshipType.getRightCardinality().getRight());
         }
         if (StringUtils.isNotBlank(relationshipType.getSemanticRuleset())) {
-            wheres.add("semantic_ruleset='" + relationshipType.getSemanticRuleset() + "'");
+            where.addEqualField("semantic_ruleset", relationshipType.getSemanticRuleset());
         }
 
-        String whereClause = "";
-        if (!wheres.isEmpty()) {
-            for (String where : wheres) {
-                if (StringUtils.isNotBlank(whereClause)) {
-                    whereClause += " AND ";
-                }
-                whereClause += where.trim();
-            }
-            myQuery += " WHERE " + whereClause;
-        }
+        myQuery += " " + where;
 
         try {
             TableRowIterator rows = DatabaseManager.queryTable(context, TYPE_TABLE, myQuery);
@@ -112,13 +104,16 @@ public class RelationshipTypeServiceImpl implements RelationshipTypeService {
     }
 
     @Override
-    public void delete(Context context, RelationshipType relationshipType) {
+    public boolean delete(Context context, RelationshipType relationshipType) {
+        boolean deleted = false;
         TableRow row = makeTableRow(relationshipType);
         try {
-            DatabaseManager.delete(context, row);
+            int affectRows = DatabaseManager.delete(context, row);
+            deleted = affectRows > 0;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return deleted;
     }
 
     @Override
@@ -128,9 +123,7 @@ public class RelationshipTypeServiceImpl implements RelationshipTypeService {
         row = makeTableRow(relationshipType, row);
         row.setColumn("type_id", id);
         DatabaseManager.update(context, row);
-        RelationshipType relationshipTypeResult = makeRelationshipType(row);
-        relationshipTypeResult.setId(id);
-        return relationshipTypeResult;
+        return makeRelationshipType(row);
     }
 
     private RelationshipType makeRelationshipType(TableRow row) {
@@ -138,13 +131,13 @@ public class RelationshipTypeServiceImpl implements RelationshipTypeService {
         if (row != null) {
             relationshipType = new RelationshipType();
             relationshipType.setId(row.getIntColumn("type_id"));
-            relationshipType.setLeftType(row.getStringColumn("left_item_type"));
-            relationshipType.setRightType(row.getStringColumn("right_item_type"));
-            relationshipType.setLeftLabel(row.getStringColumn("left_item_label"));
-            relationshipType.setRightLabel(row.getStringColumn("right_item_label"));
-            Pair<Integer, Integer> leftCardinality = new ImmutablePair<Integer, Integer>(row.getIntColumn("left_item_min_cardinality"), row.getIntColumn("left_item_max_cardinality"));
+            relationshipType.setLeftType(row.getStringColumn("left_type"));
+            relationshipType.setRightType(row.getStringColumn("right_type"));
+            relationshipType.setLeftLabel(row.getStringColumn("left_label"));
+            relationshipType.setRightLabel(row.getStringColumn("right_label"));
+            Pair<Integer, Integer> leftCardinality = new ImmutablePair<Integer, Integer>(row.getIntColumn("left_min_cardinality"), row.getIntColumn("left_max_cardinality"));
             relationshipType.setLeftCardinality(leftCardinality);
-            Pair<Integer, Integer> rightCardinality = new ImmutablePair<Integer, Integer>(row.getIntColumn("right_item_min_cardinality"), row.getIntColumn("right_item_max_cardinality"));
+            Pair<Integer, Integer> rightCardinality = new ImmutablePair<Integer, Integer>(row.getIntColumn("right_min_cardinality"), row.getIntColumn("right_max_cardinality"));
             relationshipType.setRightCardinality(rightCardinality);
             relationshipType.setSemanticRuleset(row.getStringColumn("semantic_ruleset"));
         }
@@ -158,14 +151,14 @@ public class RelationshipTypeServiceImpl implements RelationshipTypeService {
 
     private TableRow makeTableRow(RelationshipType relationshipType, TableRow row) {
         row.setColumn("type_id", relationshipType.getId());
-        row.setColumn("left_item_type", relationshipType.getLeftType());
-        row.setColumn("right_item_type", relationshipType.getRightType());
-        row.setColumn("left_item_label", relationshipType.getLeftLabel());
-        row.setColumn("right_item_label", relationshipType.getRightLabel());
-        row.setColumn("left_item_min_cardinality", relationshipType.getLeftCardinality().getLeft());
-        row.setColumn("left_item_max_cardinality", relationshipType.getLeftCardinality().getRight());
-        row.setColumn("right_item_min_cardinality", relationshipType.getRightCardinality().getLeft());
-        row.setColumn("right_item_max_cardinality", relationshipType.getRightCardinality().getRight());
+        row.setColumn("left_type", relationshipType.getLeftType());
+        row.setColumn("right_type", relationshipType.getRightType());
+        row.setColumn("left_label", relationshipType.getLeftLabel());
+        row.setColumn("right_label", relationshipType.getRightLabel());
+        row.setColumn("left_min_cardinality", relationshipType.getLeftCardinality().getLeft());
+        row.setColumn("left_max_cardinality", relationshipType.getLeftCardinality().getRight());
+        row.setColumn("right_min_cardinality", relationshipType.getRightCardinality().getLeft());
+        row.setColumn("right_max_cardinality", relationshipType.getRightCardinality().getRight());
         row.setColumn("semantic_ruleset", relationshipType.getSemanticRuleset());
         return row;
     }

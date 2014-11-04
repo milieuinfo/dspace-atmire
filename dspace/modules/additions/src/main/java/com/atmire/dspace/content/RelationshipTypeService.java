@@ -19,7 +19,7 @@ public interface RelationshipTypeService {
 
     public void update(Context context, RelationshipType relationshipType) throws SQLException;
 
-    public void delete(Context context, RelationshipType relationshipType);
+    public boolean delete(Context context, RelationshipType relationshipType);
 
     public RelationshipType create(Context context, RelationshipType relationshipType) throws SQLException;
 

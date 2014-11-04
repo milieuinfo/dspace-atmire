@@ -20,9 +20,12 @@
     <context:annotation-config/>
     <!-- allows us to use spring annotations in beans -->
 
-    <bean id="relationshipTypeService" class="com.atmire.dspace.content.RelationshipTypeServiceImpl"/>
-
+    <!-- DatabaseLoader that creates LNE Entities during the ant update/install if they don't exist -->
     <bean id="addLNEEntities" class="com.atmire.dspace.database.AddLNEEntities"/>
+
+    <bean id="relationshipTypeService" class="com.atmire.dspace.content.RelationshipTypeServiceImpl"/>
+    <bean id="relationshipService" class="com.atmire.dspace.content.RelationshipServiceImpl"/>
+
 
 
 

@@ -47,7 +47,7 @@ public class RelationshipTypeServiceTest {
         writeContext = new Context();
 
         // load test data sql
-        String sql = FileUtils.readFileToString(new File(sqlFilesDir + "relationship-type.sql"), "UTF-8");
+        String sql = FileUtils.readFileToString(new File(sqlFilesDir + "load-relationship-test-data.sql"), "UTF-8");
         DatabaseManager.loadSql(sql);
 
         relationshipTypeService = new DSpace().getServiceManager().getServiceByName("relationshipTypeService", RelationshipTypeService.class);
@@ -63,7 +63,7 @@ public class RelationshipTypeServiceTest {
         }
 
         // unload test data sql
-        String sql = FileUtils.readFileToString(new File(sqlFilesDir + "relationship-type_unload.sql"), "UTF-8");
+        String sql = FileUtils.readFileToString(new File(sqlFilesDir + "unload-relationship-test-data.sql"), "UTF-8");
         DatabaseManager.loadSql(sql);
     }
 
@@ -72,7 +72,16 @@ public class RelationshipTypeServiceTest {
         int id = Integer.MAX_VALUE - 2;
         RelationshipType type = relationshipTypeService.findById(readContext, id);
 
-        compareFirstSubject(type);
+//        compareFirstSubject(type); // this would be redundant because it uses findById
+
+        assertEquals(Integer.MAX_VALUE - 2, type.getId());
+        assertEquals("test type a", type.getLeftType());
+        assertEquals("type b", type.getRightType());
+        assertEquals("label a", type.getLeftLabel());
+        assertEquals("label b", type.getRightLabel());
+        assertEquals(new ImmutablePair<Integer, Integer>(1, 1), type.getLeftCardinality());
+        assertEquals(new ImmutablePair<Integer, Integer>(1, 5), type.getRightCardinality());
+        assertEquals("Rules I", type.getSemanticRuleset());
     }
 
     @Test
@@ -96,7 +105,7 @@ public class RelationshipTypeServiceTest {
         }
     }
 
-    @Test(timeout = 20000)
+    @Test
     public void testUpdate() throws Exception {
         RelationshipType type = firstTestSubject();
         type.setRightLabel("updated right label");
@@ -121,7 +130,7 @@ public class RelationshipTypeServiceTest {
     public void testCreate() throws Exception {
         RelationshipType type = firstTestSubject();
         RelationshipType result = relationshipTypeService.create(writeContext, type);
-        relationshipTypeService.delete(writeContext, result);
+        relationshipTypeService.delete(writeContext, result); // cleaning up, but of course delete() needs to work
         writeContext.complete();
 
         type.setId(result.getId()); // not comparing id
@@ -130,25 +139,21 @@ public class RelationshipTypeServiceTest {
 
     private void compareFirstSubject(RelationshipType type) {
         compare(firstTestSubject(), type);
-//        assertEquals(Integer.MAX_VALUE - 2, type.getId());
-//        assertEquals("test type a", type.getLeftType());
-//        assertEquals("type b", type.getRightType());
-//        assertEquals("label a", type.getLeftLabel());
-//        assertEquals("label b", type.getRightLabel());
-//        assertEquals(new ImmutablePair<Integer, Integer>(1, 1), type.getLeftCardinality());
-//        assertEquals(new ImmutablePair<Integer, Integer>(1, 5), type.getRightCardinality());
-//        assertEquals("Rules I", type.getSemanticRuleset());
     }
 
     private void compare(RelationshipType expected, RelationshipType actual) {
-        assertEquals(expected.getId(), actual.getId());
-        assertEquals(expected.getLeftType(), actual.getLeftType());
-        assertEquals(expected.getRightType(), actual.getRightType());
-        assertEquals(expected.getLeftLabel(), actual.getLeftLabel());
-        assertEquals(expected.getRightLabel(), actual.getRightLabel());
-        assertEquals(expected.getLeftCardinality(), actual.getLeftCardinality());
-        assertEquals(expected.getRightCardinality(), actual.getRightCardinality());
-        assertEquals(expected.getSemanticRuleset(), actual.getSemanticRuleset());
+        if (expected == null) {
+            assertNull(actual);
+        } else {
+            assertEquals(expected.getId(), actual.getId());
+            assertEquals(expected.getLeftType(), actual.getLeftType());
+            assertEquals(expected.getRightType(), actual.getRightType());
+            assertEquals(expected.getLeftLabel(), actual.getLeftLabel());
+            assertEquals(expected.getRightLabel(), actual.getRightLabel());
+            assertEquals(expected.getLeftCardinality(), actual.getLeftCardinality());
+            assertEquals(expected.getRightCardinality(), actual.getRightCardinality());
+            assertEquals(expected.getSemanticRuleset(), actual.getSemanticRuleset());
+        }
     }
 
     private RelationshipType firstTestSubject() {
