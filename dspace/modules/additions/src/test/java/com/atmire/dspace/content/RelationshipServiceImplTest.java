@@ -36,7 +36,7 @@ public class RelationshipServiceImplTest {
         kernelImpl = DSpaceKernelInit.getKernel(null);
         if (!kernelImpl.isRunning()) {
             kernelImpl.start(ConfigurationManager.getProperty("dspace.dir"));
-            sqlFilesDir = ConfigurationManager.getProperty("dspace.dir") + File.separator + "etc" + File.separator + "postgres" + File.separator + "lne" + File.separator + "test_data" + File.separator;
+			sqlFilesDir = System.getProperty("root.basedir") + File.separator + "dspace"+ File.separator + "etc" + File.separator + "postgres" + File.separator + "lne" + File.separator + "test_data" + File.separator;
         }
     }
 
@@ -50,7 +50,7 @@ public class RelationshipServiceImplTest {
         String sql = FileUtils.readFileToString(new File(sqlFilesDir + "load-relationship-test-data.sql"), "UTF-8");
         DatabaseManager.loadSql(sql);
 
-        relationshipService = new DSpace().getServiceManager().getServiceByName("relationshipService", RelationshipService.class);
+        relationshipService = new DSpace().getServiceManager().getServicesByType(RelationshipService.class).get(0);
 
     }
 
@@ -72,7 +72,7 @@ public class RelationshipServiceImplTest {
 
     @Test
     public void testFindById() throws Exception {
-        int id = Integer.MAX_VALUE;
+        Integer id = Integer.MAX_VALUE;
         Relationship relationship = relationshipService.findById(readContext, id);
 
         assertEquals(id, relationship.getId());
@@ -145,7 +145,24 @@ public class RelationshipServiceImplTest {
 
     }
 
-    private void compareTestSubject(Relationship result) {
+	@Test
+	public void testCreateItemItem() throws Exception {
+		Relationship rt=testSubject();
+		rt.setLeft(Item.find(readContext,2147483644));
+		rt.setRight(Item.find(readContext,2147483646));
+		Relationship result = relationshipService.create(writeContext, rt);
+
+		writeContext.commit();
+
+		result=relationshipService.findById(readContext,result.getId());
+		rt.setId(result.getId()); // not comparing id
+		compare(rt,result);
+
+
+	}
+
+
+	private void compareTestSubject(Relationship result) {
         compare(testSubject(), result);
     }
 

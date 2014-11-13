@@ -1,7 +1,6 @@
 package com.atmire.dspace.content;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.dspace.storage.rdbms.TableRow;
 
 /**
  * Created by: Antoine Snyers (antoine at atmire dot com)
@@ -12,11 +11,33 @@ public class RelationshipType {
     private int id;
     private String leftType;
     private String rightType;
-    private String leftLabel;
+
+	public RelationshipType() {
+	}
+
+	private String leftLabel;
     private String rightLabel;
-    private Pair<Integer,Integer> leftCardinality;
+
+	public RelationshipType(String leftType, String rightType) {
+		this.leftType = leftType;
+		this.rightType = rightType;
+	}
+
+	private Pair<Integer,Integer> leftCardinality;
     private Pair<Integer,Integer> rightCardinality;
-    private String semanticRuleset;
+
+	public RelationshipType(int id, String leftType, String rightType, String leftLabel, String rightLabel, Pair<Integer, Integer> leftCardinality, Pair<Integer, Integer> rightCardinality, String semanticRuleset) {
+		this.id = id;
+		this.leftType = leftType;
+		this.rightType = rightType;
+		this.leftLabel = leftLabel;
+		this.rightLabel = rightLabel;
+		this.leftCardinality = leftCardinality;
+		this.rightCardinality = rightCardinality;
+		this.semanticRuleset = semanticRuleset;
+	}
+
+	private String semanticRuleset;
 
     public int getId() {
         return id;

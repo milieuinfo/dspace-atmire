@@ -1,6 +1,11 @@
 DELETE FROM relationship
-WHERE relationship_id = 2147483647
-      OR relationship_id = 2147483646;
+WHERE left_id in (2147483644
+      , 2147483645
+      , 2147483646
+      , 2147483647) or right_id in (2147483644
+      , 2147483645
+      , 2147483646
+      , 2147483647);
 
 DELETE FROM Type
 WHERE type_id = 2147483645

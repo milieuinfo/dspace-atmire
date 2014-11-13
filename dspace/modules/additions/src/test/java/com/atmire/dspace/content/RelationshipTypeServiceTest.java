@@ -14,6 +14,7 @@ import java.io.File;
 import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assume.assumeNotNull;
 
@@ -32,7 +33,7 @@ public class RelationshipTypeServiceTest {
         kernelImpl = DSpaceKernelInit.getKernel(null);
         if (!kernelImpl.isRunning()) {
             kernelImpl.start(ConfigurationManager.getProperty("dspace.dir"));
-            sqlFilesDir = ConfigurationManager.getProperty("dspace.dir") + File.separator + "etc" + File.separator + "postgres" + File.separator + "lne" + File.separator + "test_data" + File.separator;
+            sqlFilesDir = System.getProperty("root.basedir") + File.separator + "dspace"+ File.separator + "etc" + File.separator + "postgres" + File.separator + "lne" + File.separator + "test_data" + File.separator;
         }
     }
 
@@ -50,7 +51,7 @@ public class RelationshipTypeServiceTest {
         String sql = FileUtils.readFileToString(new File(sqlFilesDir + "load-relationship-test-data.sql"), "UTF-8");
         DatabaseManager.loadSql(sql);
 
-        relationshipTypeService = new DSpace().getServiceManager().getServiceByName("relationshipTypeService", RelationshipTypeService.class);
+        relationshipTypeService = new DSpace().getServiceManager().getServicesByType(RelationshipTypeService.class).get(0);
     }
 
     @After
@@ -71,7 +72,7 @@ public class RelationshipTypeServiceTest {
     public void testFindById() throws Exception {
         int id = Integer.MAX_VALUE - 2;
         RelationshipType type = relationshipTypeService.findById(readContext, id);
-
+		assertNotNull(type);
 //        compareFirstSubject(type); // this would be redundant because it uses findById
 
         assertEquals(Integer.MAX_VALUE - 2, type.getId());

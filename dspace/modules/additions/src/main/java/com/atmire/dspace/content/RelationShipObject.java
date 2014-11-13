@@ -1,55 +1,68 @@
 package com.atmire.dspace.content;
 
 import org.apache.log4j.Logger;
-import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.DSpaceObject;
-import org.dspace.core.Context;
+import org.dspace.content.Item;
 
-import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by: Antoine Snyers (antoine at atmire dot com)
  * Date: 04 Nov 2014
  */
-public class RelationShipObject extends DSpaceObject {
+public abstract class RelationShipObject extends DSpaceObject {
 
-    @Override
-    public int getType() {
-        return 0;
-    }
 
-    @Override
-    public int getID() {
-        return 0;
-    }
+	private final Relationship coreRelationship;
+	private final List<Relationship> incoming;
+	private final List<Relationship> outgoing;
 
-    @Override
-    public String getHandle() {
-        return null;
-    }
+	protected List<Relationship> getIncoming() {
+		return incoming;
+	}
 
-    @Override
-    public String getName() {
-        return null;
-    }
+	protected List<Relationship> getOutgoing() {
+		return outgoing;
+	}
 
-    @Override
-    protected Context getContext() {
-        return null;
-    }
+	protected Relationship getCoreRelationship(){
+		return coreRelationship;
+	}
 
-    @Override
-    protected Logger getLogger() {
-        return null;
-    }
+	@Override
+	public String getHandle() {
+		return getItem().getHandle();
+	}
 
-    @Override
-    public void update() throws SQLException, AuthorizeException {
+	@Override
+	public final int getID() {
+		return coreRelationship.getId();
+	}
 
-    }
+	protected RelationShipObject(Relationship coreRelationship,List<Relationship> incoming,List<Relationship> outgoing ,Item item) {
+		this.coreRelationship=coreRelationship;
+		this.item = item;
+		this.incoming = incoming;
+		this.outgoing = outgoing;
+	}
 
-    @Override
-    public void updateLastModified() {
 
-    }
+	public final Item getItem(){
+		return item;
+	}
+
+	/**
+	 * log4j logger
+	 */
+	private static Logger log = Logger.getLogger(RelationShipObject.class);
+
+	private Item item;
+
+
+
+
+	@Override
+	protected Logger getLogger() {
+		return log;
+	}
 }

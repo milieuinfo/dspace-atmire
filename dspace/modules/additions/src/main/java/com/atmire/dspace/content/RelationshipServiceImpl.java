@@ -6,7 +6,7 @@ import org.dspace.core.Context;
 import org.dspace.storage.rdbms.DatabaseManager;
 import org.dspace.storage.rdbms.TableRow;
 import org.dspace.storage.rdbms.TableRowIterator;
-import org.dspace.utils.DSpace;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -21,16 +21,18 @@ public class RelationshipServiceImpl implements RelationshipService {
     private final String RELATIONSHIP_TABLE = "Relationship";
     private final List<String> RELATIONSHIP_TABLE_COLUMNS = Arrays.asList("relationship_id","left_id", "type_id", "right_id");
 
-    private static RelationshipTypeService relationshipTypeService;
+    private RelationshipTypeService relationshipTypeService;
 
-    private RelationshipTypeService getRelationshipTypeService() {
-        if (relationshipTypeService == null) {
-            relationshipTypeService = new DSpace().getServiceManager().getServiceByName("relationshipTypeService", RelationshipTypeService.class);
-        }
-        return relationshipTypeService;
-    }
+	@Autowired
+	public void setRelationshipTypeService(RelationshipTypeService relationshipTypeService) {
+		this.relationshipTypeService = relationshipTypeService;
+	}
 
-    @Override
+	protected  RelationshipTypeService getRelationshipTypeService(){
+		return this.relationshipTypeService;
+	}
+
+	@Override
     public Relationship findById(Context context, int id) {
         Relationship relationship = null;
         try {
@@ -63,7 +65,7 @@ public class RelationshipServiceImpl implements RelationshipService {
         String myQuery = "SELECT * FROM " + RELATIONSHIP_TABLE;
         WhereConstruct where = new WhereConstruct();
 
-        if (example.getId() != 0) {
+        if (example.getId() != null) {
             where.addEqualField("relationship_id", example.getId());
         }
         if (example.getLeft() != null) {
@@ -122,7 +124,17 @@ public class RelationshipServiceImpl implements RelationshipService {
         return makeRelationship(context, row);
     }
 
-    private Relationship makeRelationship(Context context, TableRow row) throws SQLException {
+	@Override
+	public Relationship create(Context context, Item left, Item right, RelationshipType type) throws SQLException {
+		return create(context,new Relationship(null,left,right,type));
+	}
+
+	@Override
+	public Relationship findByItems(Context context, Item left, Item right, RelationshipType type) throws SQLException {
+		return findByExampleUnique(context,new Relationship(null,left,right,type));
+	}
+
+	private Relationship makeRelationship(Context context, TableRow row) throws SQLException {
         Relationship relationship = null;
         if (row != null) {
             relationship = new Relationship();
