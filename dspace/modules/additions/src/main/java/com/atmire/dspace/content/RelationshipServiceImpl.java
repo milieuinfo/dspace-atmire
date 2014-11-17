@@ -19,20 +19,20 @@ public class RelationshipServiceImpl implements RelationshipService {
 
 
     private final String RELATIONSHIP_TABLE = "Relationship";
-    private final List<String> RELATIONSHIP_TABLE_COLUMNS = Arrays.asList("relationship_id","left_id", "type_id", "right_id");
+    private final List<String> RELATIONSHIP_TABLE_COLUMNS = Arrays.asList("relationship_id", "left_id", "type_id", "right_id");
 
     private RelationshipTypeService relationshipTypeService;
 
-	@Autowired
-	public void setRelationshipTypeService(RelationshipTypeService relationshipTypeService) {
-		this.relationshipTypeService = relationshipTypeService;
-	}
+    @Autowired
+    public void setRelationshipTypeService(RelationshipTypeService relationshipTypeService) {
+        this.relationshipTypeService = relationshipTypeService;
+    }
 
-	protected  RelationshipTypeService getRelationshipTypeService(){
-		return this.relationshipTypeService;
-	}
+    protected RelationshipTypeService getRelationshipTypeService() {
+        return this.relationshipTypeService;
+    }
 
-	@Override
+    @Override
     public Relationship findById(Context context, int id) {
         Relationship relationship = null;
         try {
@@ -104,12 +104,14 @@ public class RelationshipServiceImpl implements RelationshipService {
     @Override
     public boolean delete(Context context, Relationship relationship) {
         boolean deleted = false;
-        TableRow row = makeTableRow(relationship);
-        try {
-            int affectRows = DatabaseManager.delete(context, row);
-            deleted = affectRows > 0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if (relationship != null) {
+            TableRow row = makeTableRow(relationship);
+            try {
+                int affectRows = DatabaseManager.delete(context, row);
+                deleted = affectRows > 0;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         return deleted;
     }
@@ -124,17 +126,17 @@ public class RelationshipServiceImpl implements RelationshipService {
         return makeRelationship(context, row);
     }
 
-	@Override
-	public Relationship create(Context context, Item left, Item right, RelationshipType type) throws SQLException {
-		return create(context,new Relationship(null,left,right,type));
-	}
+    @Override
+    public Relationship create(Context context, Item left, Item right, RelationshipType type) throws SQLException {
+        return create(context, new Relationship(null, left, right, type));
+    }
 
-	@Override
-	public Relationship findByItems(Context context, Item left, Item right, RelationshipType type) throws SQLException {
-		return findByExampleUnique(context,new Relationship(null,left,right,type));
-	}
+    @Override
+    public Relationship findByItems(Context context, Item left, Item right, RelationshipType type) {
+        return findByExampleUnique(context, new Relationship(null, left, right, type));
+    }
 
-	private Relationship makeRelationship(Context context, TableRow row) throws SQLException {
+    private Relationship makeRelationship(Context context, TableRow row) throws SQLException {
         Relationship relationship = null;
         if (row != null) {
             relationship = new Relationship();
@@ -163,7 +165,9 @@ public class RelationshipServiceImpl implements RelationshipService {
     }
 
     private TableRow makeTableRow(Relationship relationship, TableRow row) {
-        row.setColumn("relationship_id", relationship.getId());
+        if(relationship.getId()!=null) {
+            row.setColumn("relationship_id", relationship.getId());
+        }
         row.setColumn("left_id", relationship.getLeft().getID());
         row.setColumn("type_id", relationship.getType().getId());
         row.setColumn("right_id", relationship.getRight().getID());

@@ -155,10 +155,14 @@ public class RelationshipTypeServiceImpl implements RelationshipTypeService {
         row.setColumn("right_type", relationshipType.getRightType());
         row.setColumn("left_label", relationshipType.getLeftLabel());
         row.setColumn("right_label", relationshipType.getRightLabel());
-        row.setColumn("left_min_cardinality", relationshipType.getLeftCardinality().getLeft());
-        row.setColumn("left_max_cardinality", relationshipType.getLeftCardinality().getRight());
-        row.setColumn("right_min_cardinality", relationshipType.getRightCardinality().getLeft());
-        row.setColumn("right_max_cardinality", relationshipType.getRightCardinality().getRight());
+        if(relationshipType.getLeftCardinality()!=null) {
+            row.setColumn("left_min_cardinality", relationshipType.getLeftCardinality().getLeft());
+            row.setColumn("left_max_cardinality", relationshipType.getLeftCardinality().getRight());
+        }
+        if(relationshipType.getRightCardinality()!=null) {
+            row.setColumn("right_min_cardinality", relationshipType.getRightCardinality().getLeft());
+            row.setColumn("right_max_cardinality", relationshipType.getRightCardinality().getRight());
+        }
         row.setColumn("semantic_ruleset", relationshipType.getSemanticRuleset());
         return row;
     }

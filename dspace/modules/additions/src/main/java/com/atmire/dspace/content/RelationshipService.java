@@ -26,6 +26,6 @@ public interface RelationshipService {
 
 	public Relationship create(Context context, Item left, Item right, RelationshipType type) throws SQLException;
 
-	public Relationship findByItems(Context context, Item left, Item right, RelationshipType type) throws SQLException;
+	public Relationship findByItems(Context context, Item left, Item right, RelationshipType type);
 
 }
