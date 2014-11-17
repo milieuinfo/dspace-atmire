@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<relationships>
+    <!-- no id needed -->
+    <type>
+        <leftType>com.atmire.dspace.content.Dossier</leftType>
+        <rightType>com.atmire.dspace.content.Document</rightType>
+        <leftLabel></leftLabel>
+        <rightLabel></rightLabel>
+        <leftCardinality>
+            <min>0</min>
+            <!--<max></max>--><!--unbounded-->
+        </leftCardinality>
+        <rightCardinality>
+            <min>0</min>
+            <!--<max></max>-->
+        </rightCardinality>
+    </type>
+    <type>
+        <leftType>com.atmire.dspace.content.Dossier</leftType>
+        <rightType>com.atmire.dspace.content.Dossier</rightType>
+        <leftLabel></leftLabel>
+        <rightLabel></rightLabel>
+        <leftCardinality>
+            <min>1</min>
+            <max>1</max>
+        </leftCardinality>
+        <rightCardinality>
+            <min>1</min>
+            <max>1</max>
+        </rightCardinality>
+    </type>
+    <type>
+        <leftType>com.atmire.dspace.content.Document</leftType>
+        <rightType>com.atmire.dspace.content.Document</rightType>
+        <leftLabel></leftLabel>
+        <rightLabel></rightLabel>
+        <leftCardinality>
+            <min>1</min>
+            <max>1</max>
+        </leftCardinality>
+        <rightCardinality>
+            <min>1</min>
+            <max>1</max>
+        </rightCardinality>
+    </type>
+</relationships>

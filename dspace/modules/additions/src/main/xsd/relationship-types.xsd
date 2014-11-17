@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://atmire.com/lne"
+        xmlns:tns="http://atmire.com/lne"
+        elementFormDefault="qualified"
+        attributeFormDefault="unqualified">
+
+    <complexType name="RelationshipTypeXML">
+        <all>
+            <element name="id" type="int" maxOccurs="1" minOccurs="0"/>
+            <element name="leftLabel" type="string" maxOccurs="1" minOccurs="0"/>
+            <element name="rightLabel" type="string" maxOccurs="1" minOccurs="0"/>
+            <element name="leftType" type="string" maxOccurs="1" minOccurs="0"/>
+            <element name="rightType" type="string" maxOccurs="1" minOccurs="0"/>
+            <element name="leftCardinality" maxOccurs="1" minOccurs="0">
+                <complexType>
+                    <all>
+                        <element name="min" type="int" maxOccurs="1" minOccurs="0"/>
+                        <element name="max" type="int" maxOccurs="1" minOccurs="0"/>
+                    </all>
+                </complexType>
+            </element>
+            <element name="rightCardinality" maxOccurs="1" minOccurs="0">
+                <complexType>
+                    <all>
+                        <element name="min" type="int" maxOccurs="1" minOccurs="0"/>
+                        <element name="max" type="int" maxOccurs="1" minOccurs="0"/>
+                    </all>
+                </complexType>
+            </element>
+        </all>
+    </complexType>
+
+    <complexType name="RelationshipTypeContainerXML">
+            <sequence>
+                <element name="type" type="tns:RelationshipTypeXML" maxOccurs="unbounded" minOccurs="0" />
+            </sequence>
+        </complexType>
+
+    <element name="relationships" type="tns:RelationshipTypeContainerXML"/>
+
+</schema>
