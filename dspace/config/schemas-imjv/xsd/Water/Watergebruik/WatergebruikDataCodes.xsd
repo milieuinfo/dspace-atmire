@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://watergebruik.water.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://watergebruik.water.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="HerkomstEnumType">
+		<xs:annotation>
+			<xs:documentation>Mogelijke </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="grondwater"/>
+			<xs:enumeration value="hemelwater"/>
+			<xs:enumeration value="oppervlaktewater (waterlopen/kanalen)"/>
+			<xs:enumeration value="oppervlaktewater (vijvers)"/>
+			<xs:enumeration value="openbare distributie (drinkwater)"/>
+			<xs:enumeration value="openbare distributie (industriewater)"/>
+			<xs:enumeration value="Andere (extern afvalwater, grijswater, )"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BestemmingEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="In product"/>
+			<xs:enumeration value="Verdampt"/>
+			<xs:enumeration value="Afvalwater geloosd"/>
+			<xs:enumeration value="Afvalwater transfer"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

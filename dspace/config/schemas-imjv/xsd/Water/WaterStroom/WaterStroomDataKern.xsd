@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="AantalDagenPerJaarType">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="366"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AantalUrenPerJaarType">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="8784"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="pHType">
+		<xs:restriction base="xs:decimal">
+			<xs:minExclusive value="0"/>
+			<xs:maxExclusive value="14"/>
+			<xs:fractionDigits value="2"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TemperatuurType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="1"/>
+			<xs:minExclusive value="0"/>
+			<xs:maxExclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>Emissiegegevens</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="MeetfrequentieType">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>Abnormale lozingen</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="LozingsDuurType">
+		<xs:restriction base="xs:int">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="366"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OorzaakType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PositiefDecimaalType">
+		<xs:annotation>
+			<xs:documentation>Posief decimaal getal</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AndereVerontreinigendeStofType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>Extra gegevens</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="JaarLaatsteOverschrijding">
+		<xs:restriction base="xs:gYear"/>
+	</xs:simpleType>
+	<xs:simpleType name="RedenMeldingEnumType">
+		<xs:annotation>
+			<xs:documentation>Reden waarom de stof werd opgenomen in de lijst</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BronLaatsteOverschrijdingEnumType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

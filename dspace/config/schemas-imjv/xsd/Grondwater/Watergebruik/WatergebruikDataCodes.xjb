@@ -1,0 +1,39 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="WatergebruikDataCodes.xsd">
+
+        <jxb:bindings node="//xs:simpleType[@name='HerkomstEnumType']">
+            <jxb:typesafeEnumClass name="HerkomstEnumType">
+                <jxb:typesafeEnumMember name="GROND" value="Grondwater"/>
+                <jxb:typesafeEnumMember name="HEMEL" value="Hemelwater"/>
+                <jxb:typesafeEnumMember name="OPP_WAT_KAN" value="OppervlaktewaterWaterwegen"/>
+                <jxb:typesafeEnumMember name="OPP_VIJV" value="OppervlaktewaterVijvers"/>
+                <jxb:typesafeEnumMember name="DISTR_DRINK" value="Drinkwater"/>
+                <jxb:typesafeEnumMember name="DISTR_INDUS" value="Grijswater"/>
+                <jxb:typesafeEnumMember name="ANDER" value="Ander"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='BestemmingEnumType']">
+            <jxb:typesafeEnumClass name="BestemmingEnumType">
+                <jxb:typesafeEnumMember name="DRINKWATER" value="Drinkwater"/>
+                <jxb:typesafeEnumMember name="KOELWATER" value="Koelwater"/>
+                <jxb:typesafeEnumMember name="SANITAIR" value="Sanitair"/>
+                <jxb:typesafeEnumMember name="BEREGENING_OPENLUCHT" value="BeregeningOpenLucht"/>
+                <jxb:typesafeEnumMember name="BEREGENING_GLASTEELT" value="BeregeningGlasteelt"/>
+                <jxb:typesafeEnumMember name="DRINKWATER_VEE" value="DrinkwaterVee"/>
+                <jxb:typesafeEnumMember name="BODEMSANERING" value="Bodemsanering"/>
+                <jxb:typesafeEnumMember name="PROCESWATER" value="Proceswater"/>
+                <jxb:typesafeEnumMember name="SPOELWATER" value="Spoelwater"/>
+                <jxb:typesafeEnumMember name="STOOMPRODUCTIE" value="Stoomproductie"/>
+                <jxb:typesafeEnumMember name="ANDERE" value="Andere"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+        
+    </jxb:bindings>
+</jxb:bindings>
+

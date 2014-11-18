@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Steven De Bock (Ministeries van de Vlaamse Gemeenschap) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:activiteit="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be" xmlns:emissiepunt="http://emissiepunt.lucht.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:meetmethode="http://meetmethode.lucht.milieuverslag.schemas.milieuinfo.be" xmlns:processchema="http://processchema.milieuverslag.schemas.milieuinfo.be" xmlns:stof="http://stof.lucht.milieuverslag.schemas.milieuinfo.be" xmlns:milieudruk="http://milieudruk.lucht.milieuverslag.schemas.milieuinfo.be" xmlns="http://lucht.milieuverslag.schemas.milieuinfo.be" xmlns:aangiftegeneriek="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be" xmlns:verbetering="http://verbetering.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Type definitie voor de aangifte Lucht van het milieuverslag</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="Activiteit/Activiteit.xsd"/>
+	<xs:import namespace="http://processchema.milieuverslag.schemas.milieuinfo.be" schemaLocation="../ProcesSchema/ProcesSchema.xsd"/>
+	<xs:import namespace="http://emissiepunt.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="Emissiepunt/Emissiepunt.xsd"/>
+	<xs:import namespace="http://meetmethode.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="Meetmethode/Meetmethode.xsd"/>
+	<xs:import namespace="http://stof.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="Stof/Stof.xsd"/>
+	<xs:import namespace="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Aangiftegeneriek/Aangiftegeneriek.xsd"/>
+	<xs:import namespace="http://verbetering.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Verbetering/Verbetering.xsd"/>
+	<xs:import namespace="http://milieudruk.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="Milieudruk/Milieudruk.xsd"/>
+	<xs:complexType name="AangifteLuchtType">
+		<xs:annotation>
+			<xs:documentation>Het volledige luik Lucht van het IMJV formulier</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TechnischGedeelteLuchtType">
+				<xs:sequence>
+					<xs:element name="Aangiftegeneriek" type="aangiftegeneriek:Aangiftegeneriek"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BedrijvenAangifteLuchtType">
+		<xs:annotation>
+			<xs:documentation>Schema voor de bedrijven zonder de handtekening</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BedrijvenTechnischGedeelteLuchtType">
+				<xs:sequence>
+					<xs:element name="Aangiftegeneriek" type="aangiftegeneriek:BedrijvenAangiftegeneriek"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TechnischGedeelteLuchtType">
+		<xs:annotation>
+			<xs:documentation>Het technisch gedeelte luik Lucht van het IMJV formulier</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ProcesSchemas" type="processchema:ProcesSchemasType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 1</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyProcesSchemaID">
+					<xs:selector xpath="ProcesSchema"/>
+					<xs:field xpath="@procesSchemaID"/>
+				</xs:key>
+				<xs:unique name="UniqueProcesSchemaBestand">
+					<xs:selector xpath="ProcesSchema/Bestand"/>
+					<xs:field xpath="."/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Activiteiten" type="activiteit:InstallatiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 2: overzicht van de installaties en de apparaten</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeetMethoden" type="meetmethode:MeetmethodenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 5 (gebruikte meetmethodes en apparatuur voor het meten van de concentratie van een verontreinigde stof)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Stoffen" type="stof:StoffenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Lijst van alle stoffen in de inrichting</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissiePunten" type="emissiepunt:EmissiepuntenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 3 (bronnen en de bijhorende emissies)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyZuiveringsapparaatID">
+					<xs:selector xpath=".//Zuiveringsapparaat"/>
+					<xs:field xpath="@zuiveringsapparaatID"/>
+				</xs:key>
+				<xs:key name="KeyVerwijderingID">
+					<xs:selector xpath=".//Verwijdering"/>
+					<xs:field xpath="@verwijderingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Milieudruk" type="milieudruk:MilieudrukType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6 van het formulier Lucht</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyStofHoeveelheidID">
+					<xs:selector xpath=".//Grondstof  |  .//VerbruiksGegevens/Brandstof | .//Brandstoffen/Brandstof | .//Afvalproduct | .//Eindproduct | .//Doorzetgegevens/Doorzet"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:key>
+				<xs:key name="KeyEmissieID">
+					<xs:selector xpath=".//Emissie"/>
+					<xs:field xpath="@emissieID"/>
+				</xs:key>
+				<xs:key name="KeyEmissieHoeveelheidID">
+					<xs:selector xpath=".//EmissieHoeveelheid"/>
+					<xs:field xpath="@emissieHoeveelheidID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="GeplandeVerbeteringen" type="verbetering:GeplandeVerbeteringenLuchtType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 8</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyGeplandeVerbeteringID">
+					<xs:selector xpath=".//GeplandeVerbetering"/>
+					<xs:field xpath="@geplandeVerbeteringID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="IMJV" type="aangiftegeneriek:IsIMJVAangifte" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deprecated. Wordt niet meer gebruikt aangezien het alleen mogelijk is aangiftes in het kader van het IMJV op te geven. [True indien deze aangifte een IMJV aangifte is]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De refertes om het punt te idendificeren</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekEmissiepuntReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BedrijvenTechnischGedeelteLuchtType">
+		<xs:annotation>
+			<xs:documentation>Het technisch gedeelte luik Lucht van het IMJV formulier</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ProcesSchemas" type="processchema:BedrijvenProcesSchemasType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 1</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyProcesSchemaBedrijvenID">
+					<xs:selector xpath="ProcesSchema"/>
+					<xs:field xpath="@procesSchemaID"/>
+				</xs:key>
+				<xs:unique name="UniqueBedrijvenProcesSchemaBestand">
+					<xs:selector xpath="ProcesSchema/Bestand"/>
+					<xs:field xpath="."/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Activiteiten" type="activiteit:InstallatiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 2: overzicht van de installaties en de apparaten</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeetMethoden" type="meetmethode:MeetmethodenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 5 (gebruikte meetmethodes en apparatuur voor het meten van de concentratie van een verontreinigde stof)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Stoffen" type="stof:StoffenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Lijst van alle stoffen in de inrichting</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissiePunten" type="emissiepunt:EmissiepuntenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 3 (bronnen en de bijhorende emissies)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyZuiveringsapparaatBedrijvenID">
+					<xs:selector xpath=".//Zuiveringsapparaat"/>
+					<xs:field xpath="@zuiveringsapparaatID"/>
+				</xs:key>
+				<xs:key name="KeyVerwijderingBedrijvenID">
+					<xs:selector xpath=".//Verwijdering"/>
+					<xs:field xpath="@verwijderingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Milieudruk" type="milieudruk:MilieudrukType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6 van het formulier Lucht</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyStofHoeveelheidBedrijvenID">
+					<xs:selector xpath=".//Grondstof  |  .//VerbruiksGegevens/Brandstof | .//Brandstoffen/Brandstof | .//Afvalproduct | .//Eindproduct | .//Doorzetgegevens/Doorzet"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:key>
+				<xs:key name="KeyEmissieBedrijvenID">
+					<xs:selector xpath=".//Emissie"/>
+					<xs:field xpath="@emissieID"/>
+				</xs:key>
+				<xs:key name="KeyEmissieHoeveelheidBedrijvenID">
+					<xs:selector xpath=".//EmissieHoeveelheid"/>
+					<xs:field xpath="@emissieHoeveelheidID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="GeplandeVerbeteringen" type="verbetering:GeplandeVerbeteringenLuchtType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 8</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyGeplandeVerbeteringBedrijvenID">
+					<xs:selector xpath=".//GeplandeVerbetering"/>
+					<xs:field xpath="@geplandeVerbeteringID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="IMJV" type="aangiftegeneriek:IsIMJVAangifte" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deprecated. Wordt niet meer gebruikt aangezien het alleen mogelijk is aangiftes in het kader van het IMJV op te geven. [True indien deze aangifte een IMJV aangifte is]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De refertes om het punt te idendificeren</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekEmissiepuntBedrijvenReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

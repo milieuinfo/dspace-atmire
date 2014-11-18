@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be" xmlns:identificatie="http://identificatie.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:grondwaterput="http://grondwaterput.vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be" xmlns:debietmeter="http://debietmeter.vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://identificatie.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Identificatie/Identificatie.xsd"/>
+	<xs:import namespace="http://debietmeter.vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be" schemaLocation="debietmeter/VasteGegevensDebietmeter.xsd"/>
+	<xs:import namespace="http://grondwaterput.vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be" schemaLocation="Grondwaterput/VasteGegevensGrondwaterput.xsd"/>
+	<xs:complexType name="VasteGegevensAangifteGrondwaterType">
+		<xs:sequence>
+			<xs:element name="RapporteringsJaar" type="identificatie:RapporteringsJaarType">
+				<xs:annotation>
+					<xs:documentation>Jaar waarvoor deze gegevens als vaste gegevens aangeleverd worden</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CBBExploitatieNummer" type="generiek:CBBnummerType"/>
+			<xs:element name="Grondwaterputten" type="grondwaterput:GrondwaterputtenType">
+				<xs:key name="KeyGrondwaterputID">
+					<xs:selector xpath="Grondwaterput"/>
+					<xs:field xpath="@GrondwaterputID"/>
+				</xs:key>
+				<xs:key name="KeyPeilfilterID">
+					<xs:selector xpath="Grondwaterput/Peilfilters/Peilfilter"/>
+					<xs:field xpath="@peilfilterID"/>
+				</xs:key>
+				<xs:key name="KeyPompfilterID">
+					<xs:annotation>
+						<xs:documentation>Lijst met enkel de pompfilters</xs:documentation>
+					</xs:annotation>
+					<xs:selector xpath="Grondwaterput/Pompfilter"/>
+					<xs:field xpath="@pompfilterID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Debietmeters" type="debietmeter:DebietmetersType" minOccurs="0">
+				<xs:key name="KeyDebietmeterID">
+					<xs:selector xpath="Debietmeter"/>
+					<xs:field xpath="@debietmeterID"/>
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

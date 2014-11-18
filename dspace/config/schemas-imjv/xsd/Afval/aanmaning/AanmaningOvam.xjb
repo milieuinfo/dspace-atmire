@@ -1,0 +1,18 @@
+<jxb:bindings version="2.0" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" jxb:extensionBindingPrefixes="xjc">
+    <jxb:bindings schemaLocation="AanmaningOvam.xsd">
+        <jxb:bindings node="//xs:simpleType[@name='DeelformulierEnum']">
+            <jxb:typesafeEnumClass name="DeelformulierEnum">
+
+                <jxb:typesafeEnumMember name="IDEN" value="I. Identificatiegegevens"/>
+                <jxb:typesafeEnumMember name="LUEM" value="II. Luchtemissie"/>
+                <jxb:typesafeEnumMember name="ENER" value="III. Energiegegevens"/>
+                <jxb:typesafeEnumMember name="WAEM" value="IVA. Wateremissie"/>
+                <jxb:typesafeEnumMember name="GRWA" value="IVB. Grondwaterstatistiek"/>
+                <jxb:typesafeEnumMember name="AFPR" value="VA. Afval Producenten"/>
+                <jxb:typesafeEnumMember name="GRPR" value="VD. Grondstoffen Producent"/>
+                <jxb:typesafeEnumMember name="AFVW" value="VC. Afval Verwerker"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+    </jxb:bindings>
+</jxb:bindings>

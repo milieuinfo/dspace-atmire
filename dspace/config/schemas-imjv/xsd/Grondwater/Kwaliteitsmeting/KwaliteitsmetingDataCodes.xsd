@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://kwaliteitsmeting.grondwater.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://kwaliteitsmeting.grondwater.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="DetectieconditieEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="&lt;"/>
+			<xs:enumeration value="&gt;"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="°C"/>
+			<xs:enumeration value="µS/cm"/>
+			<xs:enumeration value="µS/cm bij 20°C"/>
+			<xs:enumeration value="mS/cm bij 20°C"/>
+			<xs:enumeration value="mS/cm bij 25°C"/>
+			<xs:enumeration value="Sörensen"/>
+			<xs:enumeration value="fH°"/>
+			<xs:enumeration value="°F"/>
+			<xs:enumeration value="dH°"/>
+			<xs:enumeration value="°D"/>
+			<xs:enumeration value="mg/l"/>
+			<xs:enumeration value="µg/l"/>
+			<xs:enumeration value="meq/l"/>
+			<xs:enumeration value="mmol/l"/>
+			<xs:enumeration value="ppm"/>
+			<xs:enumeration value="ppb"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ParameterEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="T"/>
+			<xs:enumeration value="EC"/>
+			<xs:enumeration value="pH"/>
+			<xs:enumeration value="O2"/>
+			<xs:enumeration value="H(tot)"/>
+			<xs:enumeration value="TAM"/>
+			<xs:enumeration value="TAP"/>
+			<xs:enumeration value="SO4"/>
+			<xs:enumeration value="NO2"/>
+			<xs:enumeration value="NO3"/>
+			<xs:enumeration value="CL"/>
+			<xs:enumeration value="PO4"/>
+			<xs:enumeration value="CO3"/>
+			<xs:enumeration value="HCO3"/>
+			<xs:enumeration value="OH"/>
+			<xs:enumeration value="F"/>
+			<xs:enumeration value="Ca"/>
+			<xs:enumeration value="K"/>
+			<xs:enumeration value="Na"/>
+			<xs:enumeration value="Mg"/>
+			<xs:enumeration value="NH4"/>
+			<xs:enumeration value="Mn"/>
+			<xs:enumeration value="Fe2+"/>
+			<xs:enumeration value="Fe3+"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AnalyseTypeEnumType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:enumeration value="Veldanalyse"/>
+			<xs:enumeration value="Laboanalyse"/>
+			<xs:enumeration value="Onbekend"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MonsternameTechniekEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Staalname door aftap via monsternamekraantje"/>
+			<xs:enumeration value="Staalname via pomp"/>
+			<xs:enumeration value="Staalname via schepmonster"/>
+			<xs:enumeration value="Staalmethode onbekend"/>
+			<xs:enumeration value="Opvang aan bron"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ReferentiepuntEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Het maaiveld (oppervlakte van de natuurlijke omgeving)"/>
+			<xs:enumeration value="De bovenkant van de peilbuis (buis, vaak in PVC, van enkele cm diameter waarin het peil gemeten wordt)"/>
+			<xs:enumeration value="De bovenkant van de beschermbuis (grote buis waarin o.a. de peilbuis is opgehangen)"/>
+			<xs:enumeration value="Het peil wordt opgemeten in mTAW"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

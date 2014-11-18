@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:type="http://www.milieuinfo.be/generiek/type"
+	targetNamespace="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="FunctieType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OpmerkingType">
+		<xs:annotation>
+			<xs:documentation>Opmerking van de milieucoördinator</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NaamType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="VoornaamType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CommentaarType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4095"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="CommentaarIdentificatieType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="NietVanToepassingType">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="DatumType">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="DatumTijdType">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="IsIMJVAangifte">
+		<xs:annotation>
+			<xs:documentation>Deprecated. Geeft aan of het om een aangifte in het kader van het IMJV gaat. Wordt niet meer gebruikt aangezien het alleen mogelijk is aangiftes in het kader van het IMJV op te geven.</xs:documentation>
+    </xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="RijksregisternummerType">
+		<xs:annotation>
+			<xs:documentation>Hash code Rijksregisternummer</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OpPapierType">
+		<xs:annotation>
+			<xs:documentation>Indien vermeld, aangifte op paper</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+</xs:schema>

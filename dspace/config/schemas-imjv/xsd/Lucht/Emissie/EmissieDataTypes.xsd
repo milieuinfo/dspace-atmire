@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:eenheid="http://www.milieuinfo.be/code/eenheid"
+	xmlns:verontreinigendestof="http://verontreinigendestof.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:activiteit="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns="http://emissie.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:emissiepunt="http://emissiepunt.lucht.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://emissie.lucht.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Deelschema met de types gebruikt voor het aanleveren van de emissies voor het luik lucht van het IMJV</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://verontreinigendestof.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../VerontreinigendeStof/VerontreinigendeStof.xsd"/>
+	<xs:import namespace="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Activiteit/Activiteit.xsd"/>
+	<xs:include schemaLocation="EmissieDataKern.xsd"/>
+	<xs:include schemaLocation="EmissieDataCodes.xsd"/>
+	<xs:import namespace="http://emissiepunt.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Emissiepunt/Emissiepunt.xsd"/>
+	<xs:complexType name="EmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" type="EmissieType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EmissieType">
+		<xs:sequence>
+			<xs:element name="SubtypeEmissie" type="SubtypeEmissieEnumType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Lekverlies, Opslagverlies, Overslagverlies of andere</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Periode" type="PeriodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vrij in te geven periode bv continue, 200 dagen per jaar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ritme" type="RitmeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vrij in te geven bv continue, 1x per dag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissieDuur" type="EmissieDuurType">
+				<xs:annotation>
+					<xs:documentation>Aantal uur per jaar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>Bijkomende gegevens afhankelijk van de aard van de emissie</xs:documentation>
+				</xs:annotation>
+				<xs:element name="GeleideEmissie">
+					<xs:annotation>
+						<xs:documentation>Indien het een geleide emissie betreft</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Temperatuur" type="TemperatuurType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>In °C</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="InDrogeToestandOpgegeven"
+								type="InDrogeToestandOpgegevenType">
+								<xs:annotation>
+									<xs:documentation>True indien de waarden (debiet en zuurstofgehalte) in droge toestand opgegeven worden, anders False</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="Debiet" type="DebietType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Debiet zonder verdunning van de afvalgassen in Nm3/uur</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:sequence minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Indien verbranding </xs:documentation>
+								</xs:annotation>
+								<xs:element name="WaterGehalte" type="WaterGehalteType"
+									minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Watergehalte uitgedrukt in procent</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="ZuurstofGehalte" type="ZuurstofGehalteType"
+									minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Reel zuurstof gehalte in procent</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="LuchtOverschot" type="LuchtOverschotType"
+									minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Procent luchtoverschot boven de stoechiometrische verhouding</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+							<xs:element name="EmissieHoeveelheden"
+								type="GeleideEmissieHoeveelhedenType">
+								<xs:annotation>
+									<xs:documentation>De effectieve emissiehoeveelheden</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="GekoppeldeStofStromen" type="StofStromenType">
+								<xs:annotation>
+									<xs:documentation>De koppeling naar de stoffen en de activiteiten. Voor de stoffen dient verwezen te worden naar de ID van een stofhoeveelheid. Voor de activiteiten moeten de ID's van de activiteiten opgegeven worden.</xs:documentation>
+								</xs:annotation>
+								<xs:unique name="UniqueGeleideEmissieStofstroom">
+									<xs:selector xpath="StofStroom"/>
+									<xs:field xpath="@stofHoeveelheidID"/>
+									<xs:field xpath="@activiteitID"/>
+								</xs:unique>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NietGeleideEmissie">
+					<xs:annotation>
+						<xs:documentation>Indien het een niet geleide emissie betreft</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Oorzaak" type="OorzaakType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Oorzaak van de emissie</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="EmissieHoeveelheden"
+								type="NietGeleideEmissieHoeveelhedenType">
+								<xs:annotation>
+									<xs:documentation>De hoeveelheden per verontreinigende stof</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:choice>
+								<xs:annotation>
+									<xs:documentation>Koppeling met stroom of activiteit</xs:documentation>
+								</xs:annotation>
+								<xs:element name="GekoppeldeStofStromen" type="StofStromenType">
+									<xs:annotation>
+										<xs:documentation>Indien de koppeling gemaakt wordt naar een stofhoeveelheid en naar een activiteit. Voor de stoffen dient verwezen te worden naar de ID van een stofhoeveelheid. Voor de activiteiten moeten de ID's van de activiteiten opgegeven worden.</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueNietGeleideEmissiestofstroom">
+										<xs:selector xpath="StofStroom"/>
+										<xs:field xpath="@stofHoeveelheidID"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+								<xs:element name="GekoppeldeActiviteiten"
+									type="activiteit:GekoppeldeActiviteitenType">
+									<xs:annotation>
+										<xs:documentation>Indien enkel een koppeling kan gemaakt worden met een activiteit</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueNietGeleideEmissiesActiviteitID">
+										<xs:selector xpath="Activiteit"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+							</xs:choice>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="AbnormaleEmissie">
+					<xs:annotation>
+						<xs:documentation>Indien het een abnormale emissie betreft</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Oorzaak" type="OorzaakType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Oorzaak van de emissie</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="EmissieHoeveelheden"
+								type="NietGeleideEmissieHoeveelhedenType">
+								<xs:annotation>
+									<xs:documentation>De hoeveelheden per verontreinigende stof</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="GekoppeldeActiviteiten"
+								type="activiteit:GekoppeldeActiviteitenType">
+								<xs:annotation>
+									<xs:documentation>Koppeling met de activiteiten</xs:documentation>
+								</xs:annotation>
+								<xs:unique name="UniqueAbnormaleEmissieActiviteitID">
+									<xs:selector xpath="Activiteit"/>
+									<xs:field xpath="@activiteitID"/>
+								</xs:unique>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="emissieID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Type voor de niet geleide emissies</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="NietGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" type="NietGeleideEmissieType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NietGeleideEmissieType">
+		<xs:sequence>
+			<xs:element name="Emissiepunt" type="emissiepunt:EmissiepuntIDType">
+				<xs:annotation>
+					<xs:documentation>Het unieke nummer van het emissiepunt waaraan deze emissie gekoppeld is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Periode" type="PeriodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vrij in te geven periode bv continue, 200 dagen per jaar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ritme" type="RitmeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vrij in te geven bv continue, 1x per dag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissieDuur" type="EmissieDuurType">
+				<xs:annotation>
+					<xs:documentation>Aantal uur per jaar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissieHoeveelheden" type="NietGeleideEmissieHoeveelhedenType">
+				<xs:annotation>
+					<xs:documentation>De hoeveelheden per verontreinigende stof</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="emissieID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Type voor de geleide emissies</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="GeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" type="GeleideEmissieType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GeleideEmissieType">
+		<xs:sequence>
+			<xs:element name="Emissiepunt" type="emissiepunt:EmissiepuntIDType">
+				<xs:annotation>
+					<xs:documentation>Het unieke nummer van het emissiepunt waaraan deze emissie gekoppeld is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Periode" type="PeriodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vrij in te geven periode bv continue, 200 dagen per jaar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ritme" type="RitmeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vrij in te geven bv continue, 1x per dag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissieDuur" type="EmissieDuurType">
+				<xs:annotation>
+					<xs:documentation>Aantal uur per jaar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Temperatuur" type="TemperatuurType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In °C</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InDrogeToestandOpgegeven" type="InDrogeToestandOpgegevenType">
+				<xs:annotation>
+					<xs:documentation>True indien de waarden (debiet en zuurstofgehalte) in droge toestand opgegeven worden, anders False</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Debiet" type="DebietType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Debiet zonder verdunning van de afvalgassen in Nm3/uur</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissieHoeveelheden" type="GeleideEmissieHoeveelhedenType">
+				<xs:annotation>
+					<xs:documentation>De effectieve emissiehoeveelheden</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="emissieID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een uniek nummer voor deze emissie in het XML bestand</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="VerbrandingGeleideEmissieType">
+		<xs:annotation>
+			<xs:documentation>Geleide emissie voor een verbrandingsproces (bij B en E)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Emissiepunt" type="emissiepunt:EmissiepuntIDType">
+				<xs:annotation>
+					<xs:documentation>Het unieke nummer van het emissiepunt waaraan deze emissie gekoppeld is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Periode" type="PeriodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vrij in te geven periode bv continue, 200 dagen per jaar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ritme" type="RitmeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vrij in te geven bv continue, 1x per dag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissieDuur" type="EmissieDuurType">
+				<xs:annotation>
+					<xs:documentation>Aantal uur per jaar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Temperatuur" type="TemperatuurType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In °C</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="InDrogeToestandOpgegeven" type="InDrogeToestandOpgegevenType">
+				<xs:annotation>
+					<xs:documentation>True indien de waarden (debiet en zuurstofgehalte) in droge toestand opgegeven worden, anders False</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Debiet" type="DebietType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Debiet zonder verdunning van de afvalgassen in Nm3/uur</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WaterGehalte" type="WaterGehalteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Watergehalte uitgedrukt in procent</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZuurstofGehalte" type="ZuurstofGehalteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Reel zuurstof gehalte in procent</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="LuchtOverschot" type="LuchtOverschotType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Procent luchtoverschot boven de stoechiometrische verhouding</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissieHoeveelheden" type="GeleideEmissieHoeveelhedenType">
+				<xs:annotation>
+					<xs:documentation>De effectieve emissiehoeveelheden</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="emissieID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een uniek nummer voor deze emissie in het XML bestand</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Emissies ten gevolge van abnormale omstandigheden</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AbnormaleEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" type="AbnormaleEmissieType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AbnormaleEmissieType">
+		<xs:sequence>
+			<xs:element name="Emissiepunt" type="emissiepunt:EmissiepuntIDType">
+				<xs:annotation>
+					<xs:documentation>Het unieke nummer van het emissiepunt waaraan deze emissie gekoppeld is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Periode" type="PeriodeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vrij in te geven periode bv continue, 200 dagen per jaar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ritme" type="RitmeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Vrij in te geven bv continue, 1x per dag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissieDuur" type="EmissieDuurType">
+				<xs:annotation>
+					<xs:documentation>Aantal uur per jaar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Oorzaak" type="OorzaakType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Oorzaak van de emissie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissieHoeveelheden" type="AbnormaleEmissieHoeveelhedenType">
+				<xs:annotation>
+					<xs:documentation>De hoeveelheden per verontreinigende stof</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="emissieID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Bijkomende gegevens bij geleide emissies</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="DebietType">
+		<xs:annotation>
+			<xs:documentation>Debiet zonder verdunning van de afvalgassen in Nm3/uur</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidEmissieDebietEnumType" use="optional"
+					default="normaal kubieke meter per uur"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="HoeveelheidType">
+		<xs:annotation>
+			<xs:documentation>Emissie hoeveelheid</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidEmissieEnumType" use="required"/>
+				<xs:attribute name="meetmethodeID" type="xs:int" use="optional"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="HoeveelheidZonderMeetmethodeType">
+		<xs:annotation>
+			<xs:documentation>Emissie hoeveelheid</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidEmissieEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="ConcentratieType">
+		<xs:annotation>
+			<xs:documentation>Gemiddelde concentratie eenheidsvolume ofwel in droge ofwel in natte toestand</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidEmissieConcentratieEnumType"
+					use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="MassastroomType">
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidEmissieMassastroomEnumType" use="required"
+				/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="MeetfrequentieType">
+		<xs:choice>
+			<xs:element name="MeetfrequentieDiscreet" type="MeetfrequentieDiscreetType"/>
+			<xs:element fixed="true" name="MeetfrequentieContinue" type="xs:boolean"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Definitie van een emissie hoeveelheid</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="GeleideEmissieHoeveelheidType">
+		<xs:sequence>
+			<xs:element name="VerontreinigendeStof"
+				type="verontreinigendestof:VerontreinigendeStofZonderTotalenLuchtEnumType">
+				<xs:annotation>
+					<xs:documentation>De naam van de verontreinigende stof (te kiezen uit een vaste lijst)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BepalingsMethode" type="BepalingsMethodeEnumType">
+				<xs:annotation>
+					<xs:documentation>De methode waarop de emissie bepaald werd, te kiezen uit een vaste lijst met mogelijke methodes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hoeveelheid" type="HoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>Emissie hoeveelheid op te geven in t/jr of mg TEQ/jr.  Optioneel kan ook de meetmethode opgegeven worden (door hier het ID van de meetmethode op te geven)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Standaardafwijking" type="StandaardafwijkingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Uitgedrukt in %</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ControleInstantie" type="ControleInstantieType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De naam van het labo die de meting uitgevoerd heeft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Meetfrequentie" type="MeetfrequentieType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Het aantal metingen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Massastroom" type="MassastroomType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>de uitgestoten massa van de stof</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Concentratie" type="ConcentratieType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Gemiddelde concentratie eenheidsvolume ofwel in droge ofwel in natte toestand</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="emissieHoeveelheidID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="NietGeleideEmissieHoeveelheidType">
+		<xs:sequence>
+			<xs:element name="VerontreinigendeStof"
+				type="verontreinigendestof:VerontreinigendeStofZonderTotalenLuchtEnumType">
+				<xs:annotation>
+					<xs:documentation>De naam van de verontreinigende stof (te kiezen uit een vaste lijst)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BepalingsMethode" type="BepalingsMethodeEnumType">
+				<xs:annotation>
+					<xs:documentation>De methode waarop de emissie bepaald werd, te kiezen uit een vaste lijst met mogelijke methodes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hoeveelheid" type="HoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>Emissie hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="emissieHoeveelheidID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="AbnormaleEmissieHoeveelheidType">
+		<xs:sequence>
+			<xs:element name="VerontreinigendeStof"
+				type="verontreinigendestof:VerontreinigendeStofZonderTotalenLuchtEnumType">
+				<xs:annotation>
+					<xs:documentation>De naam van de verontreinigende stof (te kiezen uit een vaste lijst)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BepalingsMethode" type="BepalingsmethodeEnumTypeNotMeasured">
+				<xs:annotation>
+					<xs:documentation>De methode waarop de emissie bepaald werd(non-measured one), te kiezen uit een vaste lijst met mogelijke methodes</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hoeveelheid" type="HoeveelheidZonderMeetmethodeType">
+				<xs:annotation>
+					<xs:documentation>Emissie hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="emissieHoeveelheidID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GeleideEmissieHoeveelhedenType">
+		<xs:sequence>
+			<xs:element name="EmissieHoeveelheid" type="GeleideEmissieHoeveelheidType"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NietGeleideEmissieHoeveelhedenType">
+		<xs:sequence>
+			<xs:element name="EmissieHoeveelheid" type="NietGeleideEmissieHoeveelheidType"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AbnormaleEmissieHoeveelhedenType">
+		<xs:sequence>
+			<xs:element name="EmissieHoeveelheid" type="AbnormaleEmissieHoeveelheidType"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Koppeling met de stroom (stofhoeveelheid gekoppeld aan een of meerdere activiteiten)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="StofStroomType">
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required"/>
+		<xs:attribute name="activiteitID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="StofStromenType">
+		<xs:sequence>
+			<xs:element name="StofStroom" type="StofStroomType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

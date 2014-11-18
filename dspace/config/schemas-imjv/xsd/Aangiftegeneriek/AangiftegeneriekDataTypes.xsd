@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:geografie="http://geografie.schemas.milieuinfo.be"
+	targetNamespace="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Dit subschema bevat het algemeen gedeelte van het IMJV formulier dat bij elk deel terugkomt-->
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://geografie.schemas.milieuinfo.be" />
+	<xs:include schemaLocation="AangiftegeneriekDataKern.xsd"/>
+	<xs:complexType name="OndertekeningType">
+		<xs:sequence>
+			<xs:element name="OndertekeningVerantwoordelijke"
+				type="OndertekeningVerantwoordelijkeType">
+				<xs:annotation>
+					<xs:documentation>Ondertekening door de verantwoordelijke</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OndertekeningMC" type="OndertekeningMCType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ondertekening door de milieucoördinator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OndertekeningMCType">
+		<xs:sequence>
+			<xs:element name="Datum" type="DatumTijdType"/>
+			<xs:element name="Gebruiker" type="generiek:PersoonType"/>
+			<xs:element name="Opmerking" type="OpmerkingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Opmerking van de milieucoördinator</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OndertekeningVerantwoordelijkeType">
+		<xs:sequence>
+			<xs:element name="Datum" type="DatumTijdType"/>
+			<xs:element name="Gebruiker" type="generiek:PersoonType"/>
+			<xs:element name="Functie" type="FunctieType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Specifiek voor het identificatiedeel</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AangiftegeneriekIdentificatie">
+		<xs:sequence>
+			<xs:element name="NietVanToepassing" type="NietVanToepassingType">
+				<xs:annotation>
+					<xs:documentation>True indien deze aangifte niet van toepassing is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Contactpersoon" type="ContactpersoonJaarverslagType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contactpersoon voor dit onderdeel van de aangifte </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Commentaar" type="CommentaarIdentificatieType" minOccurs="0"/>
+			<xs:element name="Ondertekening" type="OndertekeningType"/>
+			<xs:element name="OpPapier" type="OpPapierType">
+				<xs:annotation>
+					<xs:documentation>True indien aangifte op paper</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekAangifteGeneriekIdentificatieReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Bijlagen" type="generiek:BestandenLijstStringType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContactpersoonJaarverslagType">
+		<xs:annotation>
+			<xs:documentation>Contactpersoon voor het volledige jaarverslag</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Naam" type="NaamType"/>
+			<xs:element name="Voornaam" type="VoornaamType"/>
+			<xs:element name="Functie" type="FunctieType" minOccurs="0"/>
+			<xs:element name="Adres" type="geografie:AdresType" minOccurs="0"/>
+			<xs:element name="ContactGegevens" type="generiek:IMJVContactType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Voor de overige delen</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="Aangiftegeneriek">
+		<xs:sequence>
+			<xs:element name="NietVanToepassing" type="NietVanToepassingType">
+				<xs:annotation>
+					<xs:documentation>True indien deze aangifte niet van toepassing is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Contactpersoon" type="ContactpersoonAangifteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contactpersoon voor dit onderdeel van de aangifte </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Commentaar" type="CommentaarType" minOccurs="0"/>
+			<xs:element name="Ondertekening" type="OndertekeningType"/>
+			<xs:element name="OpPapier" type="OpPapierType">
+				<xs:annotation>
+					<xs:documentation>True indien aangifte op paper</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekIMJVDeelReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Bijlagen" type="generiek:BestandenLijstStringType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ContactpersoonAangifteType">
+		<xs:annotation>
+			<xs:documentation>Contactpersoon gebruikt bij de verschillende aangiftes (delen)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Naam" type="NaamType"/>
+			<xs:element name="Voornaam" type="VoornaamType"/>
+			<xs:element name="ContactGegevens" type="generiek:IMJVSimpelContactType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Aangiftegeneriek zonder de handtekening</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="BedrijvenAangiftegeneriek">
+		<xs:sequence>
+			<xs:element name="NietVanToepassing" type="NietVanToepassingType">
+				<xs:annotation>
+					<xs:documentation>True indien deze aangifte niet van toepassing is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Contactpersoon" type="ContactpersoonAangifteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contactpersoon voor dit onderdeel van de aangifte </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Commentaar" type="CommentaarType" minOccurs="0"/>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekAangifteGeneriekReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Bijlagen" type="generiek:BestandenLijstType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BedrijvenAangiftegeneriekIdentificatie">
+		<xs:sequence>
+			<xs:element name="Contactpersoon" type="ContactpersoonJaarverslagType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contactpersoon voor dit onderdeel van de aangifte </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Commentaar" type="CommentaarIdentificatieType" minOccurs="0"/>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekAangifteIdentificatieReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Bijlagen" type="generiek:BestandenLijstType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

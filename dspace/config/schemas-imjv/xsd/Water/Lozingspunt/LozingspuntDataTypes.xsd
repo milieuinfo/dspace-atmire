@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://lozingspunt.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:activiteit="http://activiteit.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:waterstroom="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://lozingspunt.water.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:include schemaLocation="LozingspuntDataKern.xsd"/>
+	<xs:include schemaLocation="LozingspuntDataCodes.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://activiteit.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Activiteit/Activiteit.xsd"/>
+	<xs:import namespace="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../WaterStroom/WaterStroom.xsd"/>
+	<xs:complexType name="LozingspuntType">
+		<xs:sequence>
+			<xs:element name="Naam" type="NaamType"/>
+			<xs:element name="BlijvendBuitenWerking" type="BlijvendBuitenWerkingType">
+				<xs:annotation>
+					<xs:documentation>True indien dit lozingspunt blijvend buiten werking werd gesteld</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Meetputnummer is meegegeven als een referte</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekLozingspuntReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="MeetputType" type="MeetputEnumType">
+				<xs:annotation>
+					<xs:documentation>Lozend, transfer of oppompend</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Lozingsplaats" type="LozingsplaatsEnumType">
+				<xs:annotation>
+					<xs:documentation>De plaats van lozing, te kiezen uit een lijst</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType"/>
+			<xs:element name="GeleideLozing" type="waterstroom:GeleideLozingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Geleide lozing of opgenomen water</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="lozingspuntID" type="xs:int" use="required"/>
+	</xs:complexType>
+    <xs:complexType name="BedrijvenLozingspuntType">
+		<xs:sequence>
+			<xs:element name="Naam" type="NaamType"/>
+			<xs:element name="BlijvendBuitenWerking" type="BlijvendBuitenWerkingType">
+				<xs:annotation>
+					<xs:documentation>True indien dit lozingspunt blijvend buiten werking werd gesteld</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Meetputnummer is meegegeven als een referte</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekLozingspuntBedrijvenReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="MeetputType" type="MeetputEnumType">
+				<xs:annotation>
+					<xs:documentation>Lozend, transfer of oppompend</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Lozingsplaats" type="LozingsplaatsEnumType">
+				<xs:annotation>
+					<xs:documentation>De plaats van lozing, te kiezen uit een lijst</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:BedrijvenGekoppeldeActiviteitenType"/>
+			<xs:element name="GeleideLozing" type="waterstroom:GeleideLozingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Geleide lozing of opgenomen water</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="lozingspuntID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="LozingspuntenType">
+		<xs:sequence>
+			<xs:element name="Lozingspunt" type="LozingspuntType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+    <xs:complexType name="BedrijvenLozingspuntenType">
+		<xs:sequence>
+			<xs:element name="Lozingspunt" type="BedrijvenLozingspuntType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

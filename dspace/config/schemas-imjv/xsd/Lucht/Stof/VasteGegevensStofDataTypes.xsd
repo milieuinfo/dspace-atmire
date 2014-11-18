@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://stof.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:stof="http://stof.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:activiteit="http://activiteit.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://stof.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Deelschema met de types voor het identificeren van de vaste gegevens van stoffen en hun hoeveelheden voor het luik lucht van het IMJV</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://stof.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Stof.xsd"/>
+	<xs:import namespace="http://activiteit.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Activiteit/VasteGegevensActiviteit.xsd"/>
+	<xs:complexType name="StoffenType">
+		<xs:sequence>
+			<xs:element name="Stof" type="StofType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StofType">
+		<xs:sequence>
+			<xs:element name="Benaming" type="stof:BenamingType">
+				<xs:annotation>
+					<xs:documentation>Bedrijfsinterne benaming van de stof</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType">
+				<xs:unique name="UniekStofReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Unieke identificatie van de stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BrandstofType">
+		<xs:annotation>
+			<xs:documentation>Bijkomende gegevens die moeten opgegeven worden ingeval het een brandstof betreft</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AsGehalte" type="stof:AsGehalteType">
+				<xs:annotation>
+					<xs:documentation>Gemiddeld asgehalte in %</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZwavelGehalte" type="stof:ZwavelGehalteType">
+				<xs:annotation>
+					<xs:documentation>Gemiddeld zwavelgehalte in %</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Type definitie om een lijst met hoeveelheden gekoppeld aan activiteiten bij te houden</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="StofHoeveelhedenType">
+		<xs:sequence>
+			<xs:element name="StofHoeveelheid" type="StofHoeveelheidType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StofHoeveelheidType">
+		<xs:sequence>
+			<xs:element name="StofFunctie" type="stof:StofFunctieEnumType">
+				<xs:annotation>
+					<xs:documentation>Grondstof, Brandstof, Afvalproduct, Eindproduct, Afgas</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Brandstof" type="BrandstofType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Bijkomende informatie indien de stof een brandstof is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyStofHoeveelheidGekoppeldeActiviteiten">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType">
+				<xs:unique name="UniekStofhoeveelheidReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een ID voor het uniek identificeren van deze hoeveelheid van een bepaalde stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="HoeveelheidType">
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="eenheid" type="stof:EenheidJaarVerbruikEnumType" use="required"
+				/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

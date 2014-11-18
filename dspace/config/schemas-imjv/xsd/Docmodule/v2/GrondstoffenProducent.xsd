@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+           targetNamespace="urn:be:milieuinfo:schemas:milieuverslag:documents:grondstoffen:v2"
+           xmlns:grondstoffen="urn:be:milieuinfo:schemas:milieuverslag:documents:grondstoffen:v2"
+           xmlns:documents="urn:be:milieuinfo:schemas:milieuverslag:documents:v2"
+           attributeFormDefault="unqualified">
+
+    <xs:import namespace="urn:be:milieuinfo:schemas:milieuverslag:documents:v2" schemaLocation="Docmodule.xsd"/>
+
+    <xs:element name="grondstoffen" type="grondstoffen:GrondstoffenProducent"/>
+    <xs:complexType name="GrondstoffenProducent">
+        <xs:sequence>
+            <xs:element name="grondstof" type="grondstoffen:Grondstof" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+        <xs:attribute name="nietVanToepassing" type="xs:string"/>
+    </xs:complexType>
+    <xs:complexType name="Grondstof">
+        <xs:sequence>
+            <xs:element name="materiaalCode" type="xs:string" minOccurs="0"/>
+            <xs:element name="gebruikelijkeNaam" type="xs:string" minOccurs="0"/>
+            <xs:element name="hoeveelheid_ton_voor_komma" type="xs:string" minOccurs="0"/>
+            <xs:element name="hoeveelheid_ton_na_komma" type="xs:string" minOccurs="0"/>
+            <xs:element name="hoeveelheid_kubiek_voor_komma" type="xs:string" minOccurs="0"/>
+            <xs:element name="hoeveelheid_kubiek_na_komma" type="xs:string" minOccurs="0"/>
+            <xs:element name="toepassingswijze" type="xs:string" minOccurs="0">
+                <xs:annotation>
+					<xs:documentation>
+                        '1' voor 'gebruik als brandstof'
+                        '2' voor 'ander gebruik in een ingedeelde inrichting'
+                        '3' voor 'dispers gebruik'
+                    </xs:documentation>
+				</xs:annotation>
+            </xs:element>
+            <xs:element name="ondernemingsnummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="identificatienummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="naam" type="xs:string" minOccurs="0"/>
+            <xs:element name="straat" type="xs:string" minOccurs="0"/>
+            <xs:element name="nummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="busnummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="aanvulling" type="xs:string" minOccurs="0"/>
+            <xs:element name="postnummer" type="xs:string" minOccurs="0"/>
+            <xs:element name="gemeente" type="xs:string" minOccurs="0"/>
+            <xs:element name="land" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

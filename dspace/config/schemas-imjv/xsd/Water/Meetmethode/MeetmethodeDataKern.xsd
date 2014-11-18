@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://meetmethode.water.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://meetmethode.water.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="CommentaarType">
+		<xs:annotation>
+			<xs:documentation>Beschrijving van de gebruikte meetmethode</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BlijvendBuitenWerkingType">
+		<xs:annotation>
+			<xs:documentation>True als de meetmethode blijvend buiten werking is</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+</xs:schema>

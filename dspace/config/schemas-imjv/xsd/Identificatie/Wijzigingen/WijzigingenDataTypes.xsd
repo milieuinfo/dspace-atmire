@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://wijzigingen.identificatie.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:geografie="http://geografie.schemas.milieuinfo.be" targetNamespace="http://wijzigingen.identificatie.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:include schemaLocation="WijzigingenDataCodes.xsd"/>
+	<xs:include schemaLocation="WijzigingenDatakern.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://geografie.schemas.milieuinfo.be" />
+	<xs:annotation>
+		<xs:documentation>Definities voor de wijzigingen aan identificatie aangiften voor het CBB</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AdresWijziging">
+		<xs:sequence>
+			<xs:element name="LandWijziging" type="LandWijziging">
+				<xs:annotation>
+					<xs:documentation>Gewijzigd Land</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GemeenteWijziging" type="GemeenteWijziging">
+				<xs:annotation>
+					<xs:documentation>Gewijzigde Gemeente</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="HuisnummerWijziging" type="HuisnummerWijziging">
+				<xs:annotation>
+					<xs:documentation>Gewijzigd Huisnummer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BusnummerWijziging" type="BusnummerWijziging">
+				<xs:annotation>
+					<xs:documentation>Gewijzigd Busnummer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="PostcodeWijziging" type="PostcodeWijziging">
+				<xs:annotation>
+					<xs:documentation>Gewijzigde Postcode</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StraatWijziging" type="StraatWijziging">
+				<xs:annotation>
+					<xs:documentation>Gewijzigde Straat</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AanvullingWijziging" type="AanvullingWijziging">
+				<xs:annotation>
+					<xs:documentation>Gewijzigde Aanvulling</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LandWijziging">
+		<xs:sequence>
+			<xs:element name="Land" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Gewijzigd land</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GemeenteWijziging">
+		<xs:sequence>
+			<xs:element name="Gemeente" type="geografie:GemeenteNaamType">
+				<xs:annotation>
+					<xs:documentation>Gewijzigde Gemeente</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="HuisnummerWijziging">
+		<xs:sequence>
+			<xs:element name="Huisnummer" type="geografie:HuisnummerType">
+				<xs:annotation>
+					<xs:documentation>Gewijzigde Huisnummer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="BusnummerWijziging">
+		<xs:sequence>
+			<xs:element name="Busnummer" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Gewijzigde Busnummer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="PostcodeWijziging">
+		<xs:sequence>
+			<xs:element name="Postcode" type="geografie:PostcodeType">
+				<xs:annotation>
+					<xs:documentation>Gewijzigde Postcode</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="StraatWijziging">
+		<xs:sequence>
+			<xs:element name="Straat" type="geografie:StraatType">
+				<xs:annotation>
+					<xs:documentation>Gewijzigde Straat</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="AanvullingWijziging">
+		<xs:sequence>
+			<xs:element name="Aanvulling" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Gewijzigde Aanvulling</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="WijzigingAlgemeen">
+		<xs:sequence>
+			<xs:element name="StopzettingDatumWijziging" type="StopZettingDatumWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Datum van de stopzetting</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StopzettingDeelWijziging" type="StopzettingDeelWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel dat wordt stopgezet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OvernameDatumWijziging" type="OvernameDatumWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Datum van de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OverlaterNaamWijziging" type="OverlaterNaamWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Naam van de overlater van de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OverlaterOndernemingsnummerWijziging" type="OverlaterOndernemingsnummerWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ondernemingsnummer van de overlater van de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OvernemerNaamWijziging" type="OvernemerNaamWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Naam van de overnemer van de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OvernemerOndernemingsnummerWijziging" type="OvernemerOndernemingsnummerWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ondernemingsnummer van de overnemer van de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OvernameDeelWijziging" type="OvernameDeelWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel van de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StopZettingDatumWijziging">
+		<xs:sequence>
+			<xs:element name="Datum" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Datum van de stopzetting</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="StopzettingDeelWijziging">
+		<xs:sequence>
+			<xs:element name="Deel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Deel dat wordt stopgezet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="OvernameDatumWijziging">
+		<xs:sequence>
+			<xs:element name="Datum" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Datum van de stopzetting</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="OverlaterNaamWijziging">
+		<xs:sequence>
+			<xs:element name="OverlaterNaam" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Naam van de overlater van de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="OverlaterOndernemingsnummerWijziging">
+		<xs:sequence>
+			<xs:element name="OverlaterOndernemingsnummer" type="generiek:OndernemingsNummerType">
+				<xs:annotation>
+					<xs:documentation>Ondernemingsnummer van de overlater van de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="OvernemerNaamWijziging">
+		<xs:sequence>
+			<xs:element name="OvernemerNaam" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Naam van de overnemer van de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="OvernemerOndernemingsnummerWijziging">
+		<xs:sequence>
+			<xs:element name="OvernemerOndernemingsnummer" type="generiek:OndernemingsNummerType">
+				<xs:annotation>
+					<xs:documentation>Ondernemingsnummer van de overnemer van de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="OvernameDeelWijziging">
+		<xs:sequence>
+			<xs:element name="Deel" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Deel van de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="WijzigingExploitatie">
+		<xs:sequence>
+			<xs:element name="ExploitatieNaamWijziging" type="ExploitatieNaamWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Naam van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VestigingsNummerWijziging" type="VestigingsNummerWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>VestigingsNummer van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AantalVteWerknemersWijziging" type="AantalVteWerknemersWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AantalVteWerknemers van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AantalVteAlleWerknemersWijziging" type="AantalVteAlleWerknemersWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>AantalVteAlleWerknemers van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContactGegevensWijziging" type="ContactGegevensWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contactgegevens: Telefoon, fax, mail van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NacebelCodeWijziging" type="NacebelCodeWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>NacebelCode van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdresWijziging" type="AdresWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adres van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExploitatieNaamWijziging">
+		<xs:sequence>
+			<xs:element name="ExploitatieNaam" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Naam van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="VestigingsNummerWijziging">
+		<xs:sequence>
+			<xs:element name="VestingsNummer" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>VestigingsNummer van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="AantalVteWerknemersWijziging">
+		<xs:sequence>
+			<xs:element name="AantalVteWerknemers" type="xs:float">
+				<xs:annotation>
+					<xs:documentation>AantalVteWerknemers van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="AantalVteAlleWerknemersWijziging">
+		<xs:sequence>
+			<xs:element name="AantalVteAlleWerknemers" type="xs:float">
+				<xs:annotation>
+					<xs:documentation>AantalVteAlleWerknemers van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ContactGegevensWijziging">
+		<xs:sequence>
+			<xs:element name="ContactGegevens" type="generiek:IMJVSimpelContactType">
+				<xs:annotation>
+					<xs:documentation>Contactgegevens: Telefoon, fax, mail</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="NacebelCodeWijziging">
+		<xs:sequence>
+			<xs:element name="NacebelCode" type="generiek:NacebelType">
+				<xs:annotation>
+					<xs:documentation>NacebelCode van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="WijzigingExploitant">
+		<xs:sequence>
+			<xs:element name="ExploitantNaamWijziging" type="ExploitantNaamWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Naam van de exploitant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AdresWijziging" type="AdresWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Adres van de exploitant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ContactGegevensWijziging" type="ContactGegevensWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contactgegevens: Telefoon, fax, mail van de exploitant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ExploitantOndernemingsnummerWijziging" type="ExploitantOndernemingsnummerWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ondernemingsnummer van de exploitant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="RechtsVormWijziging" type="RechtsVormWijziging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Rechtsvorm van de exploitant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ExploitantNaamWijziging">
+		<xs:sequence>
+			<xs:element name="Naam" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Naam van de exploitant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ExploitantOndernemingsnummerWijziging">
+		<xs:sequence>
+			<xs:element name="Ondernemingsnummer" type="generiek:OndernemingsNummerType">
+				<xs:annotation>
+					<xs:documentation>Ondernemingsnummer van de exploitant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="RechtsVormWijziging">
+		<xs:sequence>
+			<xs:element name="RechtsVorm" type="generiek:RechtsvormenType">
+				<xs:annotation>
+					<xs:documentation>Rechtsvorm van de exploitant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="crud" type="WijzigingenCrudEnumType" use="required"/>
+	</xs:complexType>
+</xs:schema>

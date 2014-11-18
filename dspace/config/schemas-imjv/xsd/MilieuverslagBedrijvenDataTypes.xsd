@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://bedrijven.milieuverslag.schemas.milieuinfo.be"
+           xmlns:identificatie="http://identificatie.milieuverslag.schemas.milieuinfo.be"
+           xmlns:afval="http://v2.afval.milieuverslag.schemas.milieuinfo.be"
+           xmlns:energie="http://energie.milieuverslag.schemas.milieuinfo.be"
+           xmlns:grondwater="http://grondwater.milieuverslag.schemas.milieuinfo.be"
+           xmlns:lucht="http://lucht.milieuverslag.schemas.milieuinfo.be"
+           xmlns:water="http://water.milieuverslag.schemas.milieuinfo.be"
+           targetNamespace="http://bedrijven.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+
+    <xs:import namespace="http://v2.afval.milieuverslag.schemas.milieuinfo.be"/>
+
+	<xs:import namespace="http://identificatie.milieuverslag.schemas.milieuinfo.be" schemaLocation="Identificatie/Identificatie.xsd"/>
+	<xs:import namespace="http://energie.milieuverslag.schemas.milieuinfo.be" schemaLocation="Energie/AangifteEnergie.xsd"/>
+	<xs:import namespace="http://grondwater.milieuverslag.schemas.milieuinfo.be" schemaLocation="Grondwater/AangifteGrondwater.xsd"/>
+	<xs:import namespace="http://lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="Lucht/AangifteLucht.xsd"/>
+	<xs:import namespace="http://water.milieuverslag.schemas.milieuinfo.be" schemaLocation="Water/AangifteWater.xsd"/>
+	<xs:complexType name="MilieuverslagBedrijvenType">
+		<xs:annotation>
+			<xs:documentation>Het volledige milieuverslag ter importeren</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element ref="identificatie:BedrijvenIdentificatie"/>
+			<xs:element ref="afval:BedrijvenAangifteAfval" minOccurs="0"/>
+			<xs:element ref="energie:BedrijvenAangifteEnergie" minOccurs="0"/>
+			<xs:element ref="grondwater:BedrijvenAangifteGrondwater" minOccurs="0"/>
+			<xs:element ref="water:BedrijvenAangifteWater" minOccurs="0"/>
+			<xs:element ref="lucht:BedrijvenAangifteLucht" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>

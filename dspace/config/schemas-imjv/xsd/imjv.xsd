@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.milieuinfo.be"
+           targetNamespace="http://schemas.milieuinfo.be" elementFormDefault="unqualified"
+           attributeFormDefault="unqualified" version="1.00">
+
+   <!-- Milieuverslag, Imjv and META data -->
+	<xs:import namespace="http://milieuverslag.schemas.milieuinfo.be" schemaLocation="Milieuverslag.xsd"/>
+	<xs:import namespace="http://documents.milieuverslag.schemas.milieuinfo.be" schemaLocation="Docmodule/Docmodule.xsd"/>
+    <xs:import namespace="urn:be:milieuinfo:schemas:milieuverslag:documents:lucht:v2" schemaLocation="Docmodule/v2/Lucht.xsd"/>
+	<xs:import namespace="http://archivering.milieuverslag.schemas.milieuinfo.be" schemaLocation="MilieuverslagArchivering.xsd"/>
+	<xs:import namespace="http://wijzigingen.identificatie.milieuverslag.schemas.milieuinfo.be" schemaLocation="Identificatie/Wijzigingen/Wijzigingen.xsd"/>
+	<!-- Milieuverslag, Imjv Vaste gegevens -->
+	<xs:import namespace="http://vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be" schemaLocation="Grondwater/VasteGegevensAangifteGrondwater.xsd"/>
+	<xs:import namespace="http://vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="Lucht/VasteGegevensAangifteLucht.xsd"/>
+	<xs:import namespace="http://vastegegevens.water.milieuverslag.schemas.milieuinfo.be" schemaLocation="Water/VasteGegevensAangifteWater.xsd"/>
+	<xs:import namespace="http://vastegegevens.milieuverslag.schemas.milieuinfo.be" schemaLocation="MilieuverslagVasteGegevens.xsd"/>
+	<!-- Milieuverslag, Imjv Bedrijven bedrijven -->
+	<xs:import namespace="http://bedrijven.milieuverslag.schemas.milieuinfo.be" schemaLocation="MilieuverslagBedrijven.xsd"/>
+	
+	<xs:import namespace="urn:be:milieuinfo:schemas:milieuverslag:documents:aanmaning:ovam" schemaLocation="Afval/aanmaning/AanmaningOvam.xsd"/>
+    
+</xs:schema>

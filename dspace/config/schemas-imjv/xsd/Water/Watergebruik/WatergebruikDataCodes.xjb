@@ -1,0 +1,28 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="WatergebruikDataCodes.xsd">
+        <jxb:bindings node="//xs:simpleType[@name='HerkomstEnumType']">
+            <jxb:typesafeEnumClass name="HerkomtEnumType">
+                <jxb:typesafeEnumMember name="GRONDWATER" value="grondwater"/>
+			<jxb:typesafeEnumMember name="HEMELWATER" value="hemelwater"/>
+			<jxb:typesafeEnumMember name="OPPERVLAKTEWATERWATERWEGEN" value="oppervlaktewater (waterlopen/kanalen)"/>
+			<jxb:typesafeEnumMember name="OPPERVLAKTEWATERVIJVERS" value="oppervlaktewater (vijvers)"/>
+			<jxb:typesafeEnumMember name="DRINKWATER" value="openbare distributie (drinkwater)"/>
+			<jxb:typesafeEnumMember name="INDUSTRIEWATER" value="openbare distributie (industriewater)"/>
+			<jxb:typesafeEnumMember name="ANDER" value="Andere (extern afvalwater, grijswater, )"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+         <jxb:bindings node="//xs:simpleType[@name='BestemmingEnumType']">
+            <jxb:typesafeEnumClass name="BestemmingEnumType">
+            <jxb:typesafeEnumMember name="IN_PRODUCT" value="In product"/>
+			<jxb:typesafeEnumMember name="VERDAMPT" value="Verdampt"/>
+			<jxb:typesafeEnumMember name="GELOOSD" value="Afvalwater geloosd"/>
+			<jxb:typesafeEnumMember name="TRANSFER" value="Afvalwater transfer"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+    </jxb:bindings>
+</jxb:bindings>

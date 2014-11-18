@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://peilmeting.grondwater.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://peilmeting.grondwater.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:include schemaLocation="PeilmetingDataKern.xsd"/>
+	<xs:include schemaLocation="PeilmetingDataCodes.xsd"/>
+	<xs:complexType name="PeilmetingenType">
+		<xs:sequence>
+			<xs:element name="Peilmeting" type="PeilmetingType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilmetingType">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="Referentiepunt" type="ReferentiepuntEnumType">
+					<xs:annotation>
+						<xs:documentation>Meting tov het maaiveld, de bovenkant van de peilbuis of de bovenkant van de beschermbuis, of in mTAW. Opgepast, indien het maaiveld wordt geselecteerd mag het veld AfstandMaaiveld niet opgegeven worden</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AnderReferentiepunt" type="AnderReferentiepuntType">
+					<xs:annotation>
+						<xs:documentation>Beschrijf het ander referentiepunt</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:choice>
+				<xs:element name="InstrumentPeilmeting" type="InstrumentPeilmetingEnumType">
+					<xs:annotation>
+						<xs:documentation>Peiillint of electronische meting</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AnderInstrumentPeilmeting" type="InstrumentPeilmetingType">
+					<xs:annotation>
+						<xs:documentation>Naam van het ander instrument</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="AfstandMaaiveld" type="AfstandMaaiveldType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>in meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="MetingenInRust">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="MetingInRust" type="MetingInRustType"
+									maxOccurs="unbounded"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+					<xs:element name="MetingenInWerking" type="MetingenInWerkingType" minOccurs="0"
+					/>
+				</xs:sequence>
+				<xs:element name="MetingenInWerking" type="MetingenInWerkingType"/>
+			</xs:choice>
+		</xs:sequence>
+		<xs:attribute name="peilmetingID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Interne complex types</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="MetingInRustType">
+		<xs:sequence>
+			<xs:element name="Datum" type="DatumType"/>
+			<xs:element name="Tijd" type="TijdType" minOccurs="0"/>
+			<xs:element name="GrondwaterDiepte" type="GrondwaterDiepteType">
+				<xs:annotation>
+					<xs:documentation>in meter onder het referentiepunt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TijdPompenStil" type="DuurType" minOccurs="0"/>
+			<xs:element name="GewonnenVolume" type="GewonnenVolumeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>in m3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="metingInRustID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MetingInWerkingType">
+		<xs:sequence>
+			<xs:element name="Datum" type="DatumType"/>
+			<xs:element name="Tijd" type="TijdType" minOccurs="0"/>
+			<xs:element name="GrondwaterDiepte">
+				<xs:annotation>
+					<xs:documentation>in meter onder het referentiepunt</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="GrondwaterDiepteType">
+						<xs:fractionDigits value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="GewonnenVolume" type="GewonnenVolumeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>in m3/uur</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="metingInWerkingID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MetingenInWerkingType">
+		<xs:sequence>
+			<xs:element name="MetingInWerking" type="MetingInWerkingType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

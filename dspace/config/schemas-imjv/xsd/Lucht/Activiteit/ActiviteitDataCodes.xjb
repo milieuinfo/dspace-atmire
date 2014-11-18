@@ -1,0 +1,58 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="ActiviteitDataCodes.xsd">
+        <jxb:bindings node="//xs:simpleType[@name='EenheidCapaciteitEnumType']">
+            <jxb:typesafeEnumClass name="EenheidCapaciteitEnum">
+                <jxb:typesafeEnumMember name="KUBIEKE_METER" value="kubieke meter"/>
+                <jxb:typesafeEnumMember name="LITER" value="liter"/>
+                <jxb:typesafeEnumMember name="TON" value="ton"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='EenheidVermogenAEnumType']">
+            <jxb:typesafeEnumClass name="EenheidVermogenAEnum">
+                <jxb:typesafeEnumMember name="MEGAWATT" value="Megawatt"/>
+                <jxb:typesafeEnumMember name="TON_PER_JAAR" value="ton per jaar"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+         <jxb:bindings node="//xs:simpleType[@name='EenheidVermogenBEnumType']">
+            <jxb:typesafeEnumClass name="EenheidVermogenBEnum">
+                <jxb:typesafeEnumMember name="MEGAWATT" value="Megawatt"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='EnergieEnumType']">
+            <jxb:typesafeEnumClass name="EnergieEnum">
+                <jxb:typesafeEnumMember name="WKK_INSTALLATIES" value="WKK-INSTALLATIES"/>
+                <jxb:typesafeEnumMember name="OPWEKKING_VAN_ENERGIE_IN_DE_VORM_VAN_WARMTE_ELEK_OF_DRUK" value="OPWEKKING VAN ENERGIE IN DE VORM VAN WARMTE, ELEKTR. OF DRUK"/>
+                <jxb:typesafeEnumMember name="OPWEKKING_VAN_STOOM" value="OPWEKKING VAN STOOM"/>
+                <jxb:typesafeEnumMember name="OPWEKKING_VAN_WARM_WATER" value="OPWEKKING VAN WARM WATER"/>
+                <jxb:typesafeEnumMember name="OPWEKKING_VAN_HETE_LUCHT" value="OPWEKKING VAN HETE LUCHT"/>
+                <jxb:typesafeEnumMember name="OPWEKKING_VAN_WARMTE" value="OPWEKKING VAN WARMTE"/>
+                <jxb:typesafeEnumMember name="OPWEKKING_VAN_ELEKTRICITEIT" value="OPWEKKING VAN ELEKTRICITEIT"/>
+                <jxb:typesafeEnumMember name="ZELFPRODUCENTEN_MET_WARMTEKRACHTKOPPELING_DMV_STOOMKETELS_OVENS_EN_ANDERE" value="ZELFPRODUCENTEN MET WARMTEKRACHTKOPPELING DMV STOOMTURBINES, GASTURBINES EN MOTOREN"/>
+                <jxb:typesafeEnumMember name="ZELFPRODUCENTEN_MET_WARMTEKRACHTKOPPELING_DMV_STOOMTURBINES_GASTURBINES_MOTOREN" value="ZELFPRODUCENTEN MET WARMTEKRACHTKOPPELING DMV STOOMTURBINES, GASTURBINES EN MOTOREN"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='WaterzuiveringEnumType']">
+            <jxb:typesafeEnumClass name="WaterzuiveringEnum">
+                <jxb:typesafeEnumMember name="AFVALWATERZUIVERING_IN_HET_ALGEMEEN" value="AFVALWATERZUIVERING IN HET ALGEMEEN"/>
+                <jxb:typesafeEnumMember name="AFVALWATERZUIVERING_ALLEEN_MECHANISCH" value="AFVALWATERZUIVERING, ALLEEN MECHANISCH"/>
+                <jxb:typesafeEnumMember name="AFVALWATERZUIVERING_ALLEEN_CHEMISCH" value="AFVALWATERZUIVERING, ALLEEN CHEMISCH"/>
+                <jxb:typesafeEnumMember name="AFVALWATERZUIVERING_MECHANISCH_EN_CHEMISCH" value="AFVALWATERZUIVERING, MECHANISCH EN CHEMISCH"/>
+                <jxb:typesafeEnumMember name="AFVALWATERZUIVERING_MECHANISCH_BIOLOGISCH" value="AFVALWATERZUIVERING, MECHANISCH EN BIOLOGISCH"/>
+                <jxb:typesafeEnumMember name="AFVALWATERZUIVERING_MECHANISH_CHEMISCH_BIOLOGISH" value="AFVALWATERZUIVERING, MECHANISCH, CHEMISCH EN BIOLOGISCH"/>
+                <jxb:typesafeEnumMember name="AFVALWATERZUIVERING_ALLEEN_BIOLOGISH" value="AFVALWATERZUIVERING, ALLEEN BIOLOGISCH"/>
+                <jxb:typesafeEnumMember name="ANDERE_AFVALWATERZUIVERING" value="ANDERE AFVALWATERZUIVERING"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+    </jxb:bindings>
+
+</jxb:bindings>

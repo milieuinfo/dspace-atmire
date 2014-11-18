@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://grondwater.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://grondwater.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Het luik grondwater van het IMJV-->
+	<xs:include schemaLocation="AangifteGrondwaterDataTypes.xsd"/>
+	<xs:element name="AangifteGrondwater" type="AangifteGrondwaterType">
+		<xs:annotation>
+			<xs:documentation>Aangifte Grondwater</xs:documentation>
+		</xs:annotation>
+		<xs:key name="KeyPeilfilterID">
+			<xs:annotation>
+				<xs:documentation>Lijst met enkel de peilfilters</xs:documentation>
+			</xs:annotation>
+			<xs:selector xpath="Grondwaterputten/Peilput/Peilfilters/Peilfilter"/>
+			<xs:field xpath="@peilfilterID"/>
+		</xs:key>
+		<xs:key name="KeyPeilmetingID">
+			<xs:selector xpath=".//Peilmeting"/>
+			<xs:field xpath="@peilmetingID"/>
+		</xs:key>
+		<xs:key name="KeyMetingInRustID">
+			<xs:selector xpath=".//MetingInRust"/>
+			<xs:field xpath="@metingInRustID"/>
+		</xs:key>
+		<xs:key name="KeyMetingInWerkingID">
+			<xs:selector xpath=".//MetingInWerking"/>
+			<xs:field xpath="@metingInWerkingID"/>
+		</xs:key>
+		<xs:key name="KeyPompfilterID">
+			<xs:annotation>
+				<xs:documentation>Lijst met enkel de pompfilters</xs:documentation>
+			</xs:annotation>
+			<xs:selector xpath="Grondwaterputten/Pompput/Pompfilter"/>
+			<xs:field xpath="@pompfilterID"/>
+		</xs:key>
+		<xs:keyref name="KeyrefDebietmeterPompfilterID" refer="KeyPompfilterID">
+			<xs:annotation>
+				<xs:documentation>Debietmeters kunnen enkel aan pompputten gekoppeld worden</xs:documentation>
+			</xs:annotation>
+			<xs:selector xpath="Debietmeters/Debietmeter/Pompfilters/Pompfilter"/>
+			<xs:field xpath="@pompfilterID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefKwaliteitsmetingPompfilterID" refer="KeyPompfilterID">
+			<xs:annotation>
+				<xs:documentation>Kwaliteitsmetingen gekoppeld aan pompfilters</xs:documentation>
+			</xs:annotation>
+			<xs:selector xpath="Kwaliteitsmetingen/Monstername/Pompfilters/Pompfilter"/>
+			<xs:field xpath="@pompfilterID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefKwaliteitsmetingenPeilfilterID" refer="KeyPeilfilterID">
+			<xs:annotation>
+				<xs:documentation>Kwaliteitsmetingen gekoppeld aan een peilfilter</xs:documentation>
+			</xs:annotation>
+			<xs:selector xpath="Kwaliteitsmetingen/Monstername/Peilfilter"/>
+			<xs:field xpath="@peilfilterID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="BedrijvenAangifteGrondwater" type="BedrijvenAangifteGrondwaterType">
+		<xs:annotation>
+			<xs:documentation>Aangifte Grondwater zonder de handtekening</xs:documentation>
+		</xs:annotation>
+		<xs:key name="KeyBedrijvenPeilfilterID">
+			<xs:annotation>
+				<xs:documentation>Lijst met enkel de peilfilters</xs:documentation>
+			</xs:annotation>
+			<xs:selector xpath="Grondwaterputten/Peilput/Peilfilters/Peilfilter"/>
+			<xs:field xpath="@peilfilterID"/>
+		</xs:key>
+		<xs:key name="KeyBedrijvenPeilmetingID">
+			<xs:selector xpath=".//Peilmeting"/>
+			<xs:field xpath="@peilmetingID"/>
+		</xs:key>
+		<xs:key name="KeyBedrijvenMetingInRustID">
+			<xs:selector xpath=".//MetingInRust"/>
+			<xs:field xpath="@metingInRustID"/>
+		</xs:key>
+		<xs:key name="KeyBedrijvenMetingInWerkingID">
+			<xs:selector xpath=".//MetingInWerking"/>
+			<xs:field xpath="@metingInWerkingID"/>
+		</xs:key>
+		<xs:key name="KeyBedrijvenPompfilterID">
+			<xs:annotation>
+				<xs:documentation>Lijst met enkel de pompfilters</xs:documentation>
+			</xs:annotation>
+			<xs:selector xpath="Grondwaterputten/Pompput/Pompfilter"/>
+			<xs:field xpath="@pompfilterID"/>
+		</xs:key>
+		<xs:keyref name="KeyrefBedrijvenDebietmeterPompfilterID" refer="KeyBedrijvenPompfilterID">
+			<xs:annotation>
+				<xs:documentation>Debietmeters kunnen enkel aan pompputten gekoppeld worden</xs:documentation>
+			</xs:annotation>
+			<xs:selector xpath="Debietmeters/Debietmeter/Pompfilters/Pompfilter"/>
+			<xs:field xpath="@pompfilterID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefBedrijvenKwaliteitsmetingPompfilterID" refer="KeyBedrijvenPompfilterID">
+			<xs:annotation>
+				<xs:documentation>Kwaliteitsmetingen gekoppeld aan pompfilters</xs:documentation>
+			</xs:annotation>
+			<xs:selector xpath="Kwaliteitsmetingen/Monstername/Pompfilters/Pompfilter"/>
+			<xs:field xpath="@pompfilterID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefBedrijvenKwaliteitsmetingenPeilfilterID" refer="KeyBedrijvenPeilfilterID">
+			<xs:annotation>
+				<xs:documentation>Kwaliteitsmetingen gekoppeld aan een peilfilter</xs:documentation>
+			</xs:annotation>
+			<xs:selector xpath="Kwaliteitsmetingen/Monstername/Peilfilter"/>
+			<xs:field xpath="@peilfilterID"/>
+		</xs:keyref>
+	</xs:element>
+</xs:schema>

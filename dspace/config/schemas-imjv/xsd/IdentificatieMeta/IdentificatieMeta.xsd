@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by  () -->
+<xs:schema xmlns="http://identificatiemeta.milieuverslag.schemas.milieuinfo.be" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://identificatiemeta.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Dit subschema bevat het luik identificatie van het IMJV formulier-->
+	<xs:include schemaLocation="IdentificatieMetaDataTypes.xsd"/>
+</xs:schema>
+

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://kwaliteitsmeting.grondwater.milieuverslag.schemas.milieuinfo.be"
+	xmlns:filter="http://filter.grondwater.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://kwaliteitsmeting.grondwater.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:include schemaLocation="KwaliteitsmetingDataKern.xsd"/>
+	<xs:include schemaLocation="KwaliteitsmetingDataCodes.xsd"/>
+	<xs:import namespace="http://filter.grondwater.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Filter/Filter.xsd"/>
+	<xs:complexType name="MonsternamesType">
+		<xs:sequence>
+			<xs:element name="Monstername" type="MonsternameType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MonsternameType">
+		<xs:sequence>
+			<xs:element name="Monsternummer" type="MonsternummerType" minOccurs="0"/>
+			<xs:element name="Uitvoerder" type="UitvoerderType">
+				<xs:annotation>
+					<xs:documentation>Naam erkend labo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Datum" type="DatumType"/>
+			<xs:element name="Tijd" type="TijdType" minOccurs="0"/>
+			<xs:element name="DatumLaboanalyse" type="DatumType" minOccurs="0"/>
+			<xs:element name="TijdLaboanalyse" type="TijdType" minOccurs="0"/>
+			<xs:element minOccurs="0" name="AfstandMaaiveld" type="AfstandmaaiveldType"/>
+			<xs:element name="Diepte" type="DiepteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>t.o.v. het referentiepunt (in meter). Opgepast, mag niet opgegeven worden wanneer er geen referentiepunt is opgegeven.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:choice minOccurs="0">
+				<xs:element name="Referentiepunt" type="ReferentiepuntEnumType">
+					<xs:annotation>
+						<xs:documentation>Meting tov het maaiveld, de bovenkant van de peilbuis of de bovenkant van de beschermbuis</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AnderReferentiepunt" type="AnderReferentiepuntType">
+					<xs:annotation>
+						<xs:documentation>Beschrijf het ander referentiepunt</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:choice minOccurs="0">
+				<xs:element name="MonsternameTechniek" type="MonsternameTechniekEnumType">
+					<xs:annotation>
+						<xs:documentation>Kies de monsternametechniek uit de lijst</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AndereMonsternameTechniek" type="MonsternameTechniekType">
+					<xs:annotation>
+						<xs:documentation>Of geef de naam op van de andere techniek die werd toegepast</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:choice>
+				<xs:element name="Pompfilters" type="filter:GekoppeldePompfiltersType">
+					<xs:annotation>
+						<xs:documentation>Filters die aan deze monstername gekoppeld zijn</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="Peilfilter" type="filter:PeilfilterIDType"/>
+			</xs:choice>
+			<xs:element name="Analyses" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Analyse" type="AnalyseType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:key name="KeyParameter">
+					<xs:selector xpath="Analyse"/>
+					<xs:field xpath="Parameter"/>
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="monsternameID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Internet type definities</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AnalyseType">
+		<xs:sequence>
+			<xs:element name="AnalyseType" type="AnalyseTypeEnumType"/>
+			<xs:element name="Parameter" type="ParameterEnumType"/>
+			<xs:element name="Meetwaarde" type="MeetwaardeType"/>
+			<xs:element name="Analysemethode" type="AnalysemethodeType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="analyseID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MeetwaardeType">
+		<xs:simpleContent>
+			<xs:extension base="MeetwaardeTypeType">
+				<xs:attribute name="detectieconditie" type="DetectieconditieEnumType"/>
+				<xs:attribute name="eenheid" type="EenheidEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+</xs:schema>

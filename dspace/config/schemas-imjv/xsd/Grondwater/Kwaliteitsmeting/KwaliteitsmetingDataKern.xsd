@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://kwaliteitsmeting.grondwater.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://kwaliteitsmeting.grondwater.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="AnalysemethodeType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DatumType">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="TijdType">
+		<xs:restriction base="xs:time"/>
+	</xs:simpleType>
+	<xs:simpleType name="MonsternummerType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AfstandmaaiveldType">
+		<xs:annotation>
+			<xs:documentation>Afstand tot het maaiveld</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+            <xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DiepteType">
+		<xs:annotation>
+			<xs:documentation>Diepte in meter</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="3"/>
+            <xs:totalDigits value="18"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="UitvoerderType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MonsternameTechniekType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MeetwaardeTypeType">
+		<xs:restriction base="xs:decimal">
+			<xs:fractionDigits value="4"/>
+            <xs:totalDigits value="19"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AnderReferentiepuntType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

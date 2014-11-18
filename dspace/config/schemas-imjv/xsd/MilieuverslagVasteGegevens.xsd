@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://vastegegevens.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://vastegegevens.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Het volledig schema van de vaste gegevens waarin alle delen gegroepeerd worden. Dit schema wordt op zich niet gebruikt maar is gemaakt teneinde de controle eenvoudiger te maken</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="MilieuverslagVasteGegevensDataTypes.xsd"/>
+	<xs:element name="MilieuverslagVasteGegevens" type="MilieuverslagVasteGegevensType">
+		<xs:annotation>
+			<xs:documentation>Element dat het volledige milieuverslag omvat</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

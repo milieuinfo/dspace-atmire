@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://stof.lucht.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://stof.lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="AsGehalteType">
+		<xs:annotation>
+			<xs:documentation>Gemiddeld asgehalte in %</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ZwavelGehalteType">
+		<xs:annotation>
+			<xs:documentation>Gemiddeld zwavelgehalte in %</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BenamingType">
+		<xs:annotation>
+			<xs:documentation>Bedrijfsinterne benaming van de stof</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AardType">
+		<xs:annotation>
+			<xs:documentation>Verduidelijking aard van de stof</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+            <xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

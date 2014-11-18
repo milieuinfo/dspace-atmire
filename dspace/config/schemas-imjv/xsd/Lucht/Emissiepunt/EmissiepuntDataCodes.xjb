@@ -1,0 +1,20 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="EmissiepuntDataCodes.xsd">
+        <jxb:bindings node="//xs:simpleType[@name='SoortEmissiePuntEnumType']">
+            <jxb:typesafeEnumClass name="SoortEmissiePuntEnum">
+                <jxb:typesafeEnumMember name="ONGEKEND" value="ONGEKEND"/>
+                <jxb:typesafeEnumMember name="SCHOORSTEEN_OF_PIJP_MET_VERTIKALE_UITSTROMING" value="SCHOORSTEEN OF PIJP MET VERTIKALE UITSTROMING"/>
+                <jxb:typesafeEnumMember name="SCHOORSTEEN_OF_PIJP_ZONDER_VERTIKALE_UITSTROMING" value="SCHOORSTEEN OF PIJP ZONDER VERTIKALE UITSTROMING"/>
+                <jxb:typesafeEnumMember name="INSTALLATIE_OF_APPARAAT" value="INSTALLATIE OF APPARAAT"/>
+                <jxb:typesafeEnumMember name="GEBOUW" value="GEBOUW"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+    </jxb:bindings>
+
+</jxb:bindings>

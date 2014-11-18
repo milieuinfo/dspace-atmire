@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://emissiepunt.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:emissiepunt="http://emissiepunt.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:zuiveringsApparaat="http://zuiveringsapparaat.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:emissie="http://emissie.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:activiteit="http://activiteit.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://emissiepunt.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00"
+	xmlns:geografie="http://geografie.schemas.milieuinfo.be">
+	<xs:annotation>
+		<xs:documentation>Deelschema met de types voor het aanleveren van de vaste gegevens van de emissiepunten (de bronnen) voor het luik lucht van het IMJV</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://emissiepunt.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Emissiepunt.xsd"/>
+	<xs:import
+		namespace="http://zuiveringsapparaat.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../ZuiveringsApparaat/VasteGegevensZuiveringsApparaat.xsd"/>
+	<xs:import namespace="http://emissie.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Emissie/VasteGegevensEmissie.xsd"/>
+	<xs:import namespace="http://activiteit.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Activiteit/VasteGegevensActiviteit.xsd"/>
+	<xs:import namespace="http://geografie.schemas.milieuinfo.be"/>
+	<xs:complexType name="EmissiepuntenType">
+		<xs:annotation>
+			<xs:documentation>Lijst van de luchtemissiepunten </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Emissiepunt" type="EmissiepuntType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EmissiepuntType">
+		<xs:annotation>
+			<xs:documentation>Gegevens betreffende een luchtemissiepunt</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Naam" type="emissiepunt:NaamType">
+				<xs:annotation>
+					<xs:documentation>De bedrijfsinterne benaming van het emissiepunt. Het kan hier gaan over geleide emissies (bv een schoorsteen) maar ook over niet-geleide zoals bv een tank</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De Lambertcoordinaat van het emissiepunt</xs:documentation>
+				</xs:annotation>
+				<xs:element name="XCoordinaat" type="geografie:VlaamsXLambertCoordinaatType">
+					<xs:annotation>
+						<xs:documentation>De X-coordinaat uitgedrukt in meter</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="YCoordinaat" type="geografie:VlaamsYLambertCoordinaatType">
+					<xs:annotation>
+						<xs:documentation>De Y-coordinaat uitgedrukt in meter</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+			<xs:element name="AantalPunten" type="emissiepunt:AantalPuntenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Aantal punten indien gegevens voor meerdere bronnen gegroepeerd zijn</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Soort" type="emissiepunt:SoortEmissiePuntEnumType">
+				<xs:annotation>
+					<xs:documentation>Onbekend, schoorsteen, installatie of apparaat, gebouw</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hoogte" type="emissiepunt:HoogteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Hoogte (in meter)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EquivalenteDiameter" type="emissiepunt:EquivalenteDiameterType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>diameter (in meter)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyEmissiePuntGekoppeldeActiviteiten">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Zuiveringsapparatuur"
+				type="zuiveringsApparaat:ZuiveringsapparatenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De gebruikte zuiveringsapparatuur voor dit emissiepunt (Deel 4)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType">
+				<xs:annotation>
+					<xs:documentation>De refertes om het punt te identificeren. Er dient minstens één referte opgegeven te worden die bij het aanleveren van de waarden gebruikt wordt om te koppelen met de vaste gegevens.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekEmissiepuntReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="emissiepuntID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="EmissiepuntGekoppeldeActiviteitenType">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" name="Activiteit">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="activiteit:ActiviteitIDType">
+							<xs:attribute name="emissiepuntID" type="xs:int" use="required"/>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

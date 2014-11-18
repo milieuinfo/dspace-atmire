@@ -1,0 +1,155 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="MeetmethodeDataCodes.xsd">
+        <jxb:bindings node="//xs:simpleType[@name='MeetmethodeEnumType']">
+            <jxb:typesafeEnumClass name="MeetmethodeEnumType">
+                <jxb:typesafeEnumMember name="Andere" value="Andere"/>
+                <jxb:typesafeEnumMember name="EN_1483_1997" value="EN 1483:1997"/>
+                <jxb:typesafeEnumMember name="EN_26595_1992" value="EN 26595/1992"/>
+                <jxb:typesafeEnumMember name="ISO_11423_1_1997" value="ISO 11423-1:1997"/>
+                <jxb:typesafeEnumMember name="ISO_11423_2_1997" value="ISO 11423-2:1997"/>
+                <jxb:typesafeEnumMember name="ISO_18857_1_2005" value="ISO 18857-1:2005"/>
+                <jxb:typesafeEnumMember name="ISO_22032_2006" value="ISO 22032:2006"/>
+                <jxb:typesafeEnumMember name="NEN_EN_12260_2003" value="NEN-EN 12260:2003"/>
+                <jxb:typesafeEnumMember name="NEN_EN_1233_1997" value="NEN-EN 1233:1997"/>
+                <jxb:typesafeEnumMember name="NEN_EN_12338_1998" value="NEN-EN 12338:1998"/>
+                <jxb:typesafeEnumMember name="NEN_EN_1484_1997" value="NEN-EN 1484:1997"/>
+                <jxb:typesafeEnumMember name="NEN_EN_I13506_2001" value="NEN-EN I13506:2001"/>
+                <jxb:typesafeEnumMember name="ISO_10301_1997" value="ISO 10301:1997"/>
+                <jxb:typesafeEnumMember name="ISO_10304_1_1995" value="ISO 10304-1:1995"/>
+                <jxb:typesafeEnumMember name="ISO_10304_2_1996" value="ISO 10304-2:1996"/>
+                <jxb:typesafeEnumMember name="ISO_10304_4_1999" value="ISO 10304-4:1999"/>
+                <jxb:typesafeEnumMember name="ISO_10695_2000" value="ISO 10695:2000"/>
+                <jxb:typesafeEnumMember name="ISO_11369_1997" value="ISO 11369:1997"/>
+                <jxb:typesafeEnumMember name="ISO_11885_1998" value="ISO 11885:1998"/>
+                <jxb:typesafeEnumMember name="ISO_11905_1_1998" value="ISO 11905-1:1998"/>
+                <jxb:typesafeEnumMember name="ISO_11969_1997" value="ISO 11969:1997"/>
+                <jxb:typesafeEnumMember name="ISO_14403_2002" value="ISO 14403:2002"/>
+                <jxb:typesafeEnumMember name="ISO_15680_2003" value="ISO 15680:2003"/>
+                <jxb:typesafeEnumMember name="ISO_15681_1_2005" value="ISO 15681-1:2005"/>
+                <jxb:typesafeEnumMember name="ISO_15681_2_2005" value="ISO 15681-2:2005"/>
+                <jxb:typesafeEnumMember name="ISO_15682_2001" value="ISO 15682:2001"/>
+                <jxb:typesafeEnumMember name="ISO_17353_2005" value="ISO 17353:2005"/>
+                <jxb:typesafeEnumMember name="ISO_1799_2004" value="ISO 17993:2004"/>
+                <jxb:typesafeEnumMember name="ISO_18856_2005" value="ISO 18856:2005"/>
+                <jxb:typesafeEnumMember name="ISO_5961_1995" value="ISO 5961:1995"/>
+                <jxb:typesafeEnumMember name="ISO_6468_1997" value="ISO 6468:1997"/>
+                <jxb:typesafeEnumMember name="ISO_6878_2004" value="ISO 6878:2004"/>
+                <jxb:typesafeEnumMember name="ISO_7981_1_2005" value="ISO 7981-1:2005"/>
+                <jxb:typesafeEnumMember name="ISO_7981_2_2005" value="ISO 7981-2:2005"/>
+                <jxb:typesafeEnumMember name="ISO_9562_2004" value="ISO 9562:2004"/>
+                <jxb:typesafeEnumMember name="ISO_11885_1998_DOUBLE" value="ISO 11885: 1998"/>
+                <jxb:typesafeEnumMember name="ISO_18073_2004" value="ISO 18073:2004"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_B_1" value="CMA/2/I/B.1"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_B_2" value="CMA/2/I/B.2"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_B_3" value="CMA/2/I/B.3"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_B_5" value="CMA/2/I/B.5"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_B_8" value="CMA/2/I/B.8"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_1_1" value="CMA/2/I/C.1.1"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_1_2" value="CMA/2/I/C.1.2"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_2_1" value="CMA/2/I/C.2.1"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_2_2" value="CMA/2/I/C.2.2"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_2_3" value="CMA/2/I/C.2.3"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_3" value="CMA/2/I/C.3"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_5" value="CMA/2/I/C.5"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_7" value="CMA/2/I/C.7"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_D_6" value="CMA/2/I/D.6"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_D_7" value="CMA/2/I/D.7"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_D_8" value="CMA/2/I/D.8"/>
+                <jxb:typesafeEnumMember name="CMA_3_B" value="CMA/3/B"/>
+                <jxb:typesafeEnumMember name="CMA_3_E" value="CMA/3/E"/>
+                <jxb:typesafeEnumMember name="CMA_3_H" value="CMA/3/H"/>
+                <jxb:typesafeEnumMember name="CMA_3_I" value="CMA/3/I"/>
+                <jxb:typesafeEnumMember name="CMA_3_K" value="CMA/3/K"/>
+                <jxb:typesafeEnumMember name="CMA_3_S" value="CMA/3/S"/>
+                <jxb:typesafeEnumMember name="ISO_10304_1_2007" value="ISO 10304-1:2007"/>
+                <jxb:typesafeEnumMember name="ISO_10359_1_1992" value="ISO 10359-1:1992"/>
+                <jxb:typesafeEnumMember name="ISO_10359_2_1994" value="ISO 10359-2:1994"/>
+                <jxb:typesafeEnumMember name="ISO_10530_1992" value="ISO 10530:1992"/>
+                <jxb:typesafeEnumMember name="ISO_11083_1994" value="ISO 11083:1994"/>
+                <jxb:typesafeEnumMember name="ISO_11885_2007" value="ISO 11885:2007"/>
+                <jxb:typesafeEnumMember name="ISO_11905_1_1997" value="ISO 11905-1:1997"/>
+                <jxb:typesafeEnumMember name="ISO_11923_1997" value="ISO 11923:1997"/>
+                <jxb:typesafeEnumMember name="ISO_11969_1996" value="ISO 11969:1996"/>
+                <jxb:typesafeEnumMember name="ISO_13358_1997" value="ISO 13358:1997"/>
+                <jxb:typesafeEnumMember name="ISO_13395_1996" value="ISO 13395:1996"/>
+                <jxb:typesafeEnumMember name="ISO_14402_1999" value="ISO 14402:1999"/>
+                <jxb:typesafeEnumMember name="ISO_15586_2003" value="ISO 15586:2003"/>
+                <jxb:typesafeEnumMember name="ISO_15681_1_2003" value="ISO 15681-1:2003"/>
+                <jxb:typesafeEnumMember name="ISO_15681_2_2003" value="ISO 15681-2:2003"/>
+                <jxb:typesafeEnumMember name="ISO_15682_2000" value="ISO 15682:2000"/>
+                <jxb:typesafeEnumMember name="ISO_15705_2002" value="ISO 15705:2002"/>
+                <jxb:typesafeEnumMember name="ISO_16590_2000" value="ISO 16590:2000"/>
+                <jxb:typesafeEnumMember name="ISO_17294_2_2003" value="ISO 17294-2:2003"/>
+                <jxb:typesafeEnumMember name="ISO_17353_2004" value="ISO 17353:2004"/>
+                <jxb:typesafeEnumMember name="ISO_17852_2006" value="ISO 17852:2006"/>
+                <jxb:typesafeEnumMember name="ISO_17858_2007" value="ISO 17858:2007"/>
+                <jxb:typesafeEnumMember name="ISO_17993_2002" value="ISO 17993:2002"/>
+                <jxb:typesafeEnumMember name="ISO_18412_2005" value="ISO 18412:2005"/>
+                <jxb:typesafeEnumMember name="ISO_18856_2004" value="ISO 18856:2004"/>
+                <jxb:typesafeEnumMember name="ISO_18857_2_2009" value="ISO 18857-2:2009"/>
+                <jxb:typesafeEnumMember name="ISO_23913_2006" value="ISO 23913:2006"/>
+                <jxb:typesafeEnumMember name="ISO_24293_2009" value="ISO 24293:2009"/>
+                <jxb:typesafeEnumMember name="ISO_5663_1984" value="ISO 5663:1984"/>
+                <jxb:typesafeEnumMember name="ISO_5666_1999" value="ISO 5666:1999"/>
+                <jxb:typesafeEnumMember name="ISO_5815_1_2003" value="ISO 5815-1:2003"/>
+                <jxb:typesafeEnumMember name="ISO_5815_2_2003" value="ISO 5815-2:2003"/>
+                <jxb:typesafeEnumMember name="ISO_5961_1994" value="ISO 5961:1994"/>
+                <jxb:typesafeEnumMember name="ISO_6060_1989" value="ISO 6060:1989"/>
+                <jxb:typesafeEnumMember name="ISO_6439_1990" value="ISO 6439:1990"/>
+                <jxb:typesafeEnumMember name="ISO_6468_1996" value="ISO 6468:1996"/>
+                <jxb:typesafeEnumMember name="ISO_6703_1_1984" value="ISO 6703:1:1984"/>
+                <jxb:typesafeEnumMember name="ISO_7393_1_1985" value="ISO 7393-1:1985"/>
+                <jxb:typesafeEnumMember name="ISO_7393_2_1985" value="ISO 7393-2:1985"/>
+                <jxb:typesafeEnumMember name="ISO_7393_3_1990" value="ISO 7393-3:1990"/>
+                <jxb:typesafeEnumMember name="ISO_8165_1_1992" value="ISO 8165-1:1992"/>
+                <jxb:typesafeEnumMember name="ISO_8165_2_1999" value="ISO 8165-2:1999"/>
+                <jxb:typesafeEnumMember name="ISO_8245_1999" value="ISO 8245:1999"/>
+                <jxb:typesafeEnumMember name="ISO_8288_1986" value="ISO 8288:1986"/>
+                <jxb:typesafeEnumMember name="ISO_9174_1998" value="ISO 9174:1998"/>
+                <jxb:typesafeEnumMember name="ISO_9297_1989" value="ISO 9297:1989"/>
+                <jxb:typesafeEnumMember name="ISO_9965_1993" value="ISO 9965:1993"/>
+                <jxb:typesafeEnumMember name="ISO_CD_12010" value="ISO/CD 12010"/>
+                <jxb:typesafeEnumMember name="ISO_CD_12846" value="ISO/CD 12846"/>
+                <jxb:typesafeEnumMember name="ISO_DIS_14403_1" value="ISO/DIS 14403-1"/>
+                <jxb:typesafeEnumMember name="ISO_DIS_14403_2" value="ISO/DIS 14403-2"/>
+                <jxb:typesafeEnumMember name="ISO_DIS_28540" value="ISO/DIS 28540"/>
+                <jxb:typesafeEnumMember name="ISO_DIS_29441" value="ISO/DIS 29441"/>
+                <jxb:typesafeEnumMember name="ISO_TR_11905_2_1997" value="ISO/TR 11905-2:1997"/>
+                <jxb:typesafeEnumMember name="WAC_III_B" value="WAC/III/B"/>
+                <jxb:typesafeEnumMember name="WAC_III_B_010" value="WAC/III/B/010"/>
+                <jxb:typesafeEnumMember name="WAC_III_B_012" value="WAC/III/B/012"/>
+                <jxb:typesafeEnumMember name="WAC_III_B_014" value="WAC/III/B/014"/>
+                <jxb:typesafeEnumMember name="WAC_III_C" value="WAC/III/C"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_001" value="WAC/III/C/001"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_020" value="WAC/III/C/020"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_022" value="WAC/III/C/022"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_030" value="WAC/III/C/030"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_040" value="WAC/III/C/040"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_041" value="WAC/III/C/041"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_050" value="WAC/III/C/050"/>
+                <jxb:typesafeEnumMember name="WAC_III_D" value="WAC/III/D"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_001" value="WAC/III/D/001"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_002" value="WAC/III/D/002"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_010" value="WAC/III/D/010"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_020" value="WAC/III/D/020"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_030" value="WAC/III/D/030"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_032" value="WAC/III/D/032"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_036" value="WAC/III/D/036"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_037" value="WAC/III/D/037"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_050" value="WAC/III/D/050"/>
+                <jxb:typesafeEnumMember name="WAC_IV_A_001" value="WAC/IV/A/001"/>
+                <jxb:typesafeEnumMember name="WAC_IV_A_002" value="WAC/IV/A/002"/>
+                <jxb:typesafeEnumMember name="WAC_IV_A_010" value="WAC/IV/A/010"/>
+                <jxb:typesafeEnumMember name="WAC_IV_A_015" value="WAC/IV/A/015"/>
+                <jxb:typesafeEnumMember name="WAC_IV_A_016" value="WAC/IV/A/016"/>
+                <jxb:typesafeEnumMember name="WAC_IV_B_011" value="WAC/IV/B/011"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+    </jxb:bindings>
+</jxb:bindings>
+

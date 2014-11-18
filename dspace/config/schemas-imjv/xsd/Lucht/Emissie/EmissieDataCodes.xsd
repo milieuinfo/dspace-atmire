@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://emissie.lucht.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://emissie.lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="EenheidEmissieConcentratieEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van concentratie</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="milligram per normaal kubieke meter"/>
+			<xs:enumeration value="picogram toxiciteit equiv. per normaal kub. meter"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidEmissieEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van emissie van een verontreinigende stof</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ton per jaar"/>
+			<xs:enumeration value="milligram toxiciteit equivalenten per jaar"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidEmissieMassastroomEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van massastroom</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="kilogram per uur"/>
+			<xs:enumeration value="microgram toxiciteit equivalenten per uur"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidEmissieDebietEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van debiet </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="normaal kubieke meter per uur"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SubtypeEmissieEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Lekverlies"/>
+			<xs:enumeration value="Opslagverlies"/>
+			<xs:enumeration value="Overslagverlies"/>
+			<xs:enumeration value="Andere niet geleide emissies"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BepalingsMethodeEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Concentratie kleiner dan de detectielimiet"/>
+			<xs:enumeration value="Internationaal aanvaarde meetnorm"/>
+			<xs:enumeration value="Meetmethode opgelegd in de exploitatievergunning"/>
+			<xs:enumeration value="Nationaal of regionaal wettelijk verplichte meetmethode"/>
+			<xs:enumeration value="Alternatieve meetmethode overeenkomstig bestaande CEN/ISO-meetnormen"/>
+			<xs:enumeration value="Gecertificeerde meetmethode goedgekeurd door de bevoegde instantie"/>
+			<xs:enumeration value="Overige meetmethode"/>
+			<xs:enumeration value="Schatting"/>
+			<xs:enumeration value="Internationaal aanvaarde berekeningsmethode voor verhandelbare emissierechten"/>
+			<xs:enumeration value="Internationaal aanvaarde berekeningsmethode volgens IPCC"/>
+			<xs:enumeration value="Internationaal aanvaarde berekeningsmethode volgens UNECE/EMEP"/>
+			<xs:enumeration value="Berekeningsmethode opgelegd in de exploitatievergunning"/>
+			<xs:enumeration value="Nationaal of regionaal wettelijk verplichte berekeningsmethode"/>
+			<xs:enumeration value="Massabalansmethode goedgekeurd door de bevoegde instantie"/>
+			<xs:enumeration value="Europese sectorspecifieke berekeningsmethode"/>
+			<xs:enumeration value="overige berekeningsmethode"/>
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="BepalingsmethodeEnumTypeNotMeasured">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Schatting"/>
+            <xs:enumeration value="Internationaal aanvaarde berekeningsmethode voor verhandelbare emissierechten"/>
+			<xs:enumeration value="Internationaal aanvaarde berekeningsmethode volgens IPCC"/>
+			<xs:enumeration value="Internationaal aanvaarde berekeningsmethode volgens UNECE/EMEP"/>
+			<xs:enumeration value="Berekeningsmethode opgelegd in de exploitatievergunning"/>
+			<xs:enumeration value="Nationaal of regionaal wettelijk verplichte berekeningsmethode"/>
+			<xs:enumeration value="Europese sectorspecifieke berekeningsmethode"/>
+            <xs:enumeration value="Massabalansmethode goedgekeurd door de bevoegde instantie"/>
+            <xs:enumeration value="overige berekeningsmethode"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

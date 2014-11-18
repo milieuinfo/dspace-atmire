@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:processchema="http://processchema.vastegegevens.milieuverslag.schemas.milieuinfo.be"
+	xmlns:activiteit="http://activiteit.vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:lozingspunt="http://lozingspunt.vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:apparatuur="http://apparatuur.vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:meetmethode="http://meetmethode.vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:waterstroom="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:identificatie="http://identificatie.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://processchema.vastegegevens.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../ProcesSchema/VasteGegevensProcesSchema.xsd"/>
+	<xs:import namespace="http://activiteit.vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Activiteit/VasteGegevensActiviteit.xsd"/>
+	<xs:import
+		namespace="http://lozingspunt.vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Lozingspunt/VasteGegevensLozingspunt.xsd"/>
+	<xs:import namespace="http://apparatuur.vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Apparaat/VasteGegevensApparaat.xsd"/>
+	<xs:import
+		namespace="http://meetmethode.vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Meetmethode/VasteGegevensMeetmethode.xsd"/>
+	<xs:import namespace="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="WaterStroom/WaterStroom.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://identificatie.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Identificatie/Identificatie.xsd"/>
+	<xs:complexType name="VasteGegevensAangifteWaterType">
+		<xs:annotation>
+			<xs:documentation>De vaste gegevens voor de aangifte water van het IMJV loket</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RapporteringsJaar" type="identificatie:RapporteringsJaarType">
+				<xs:annotation>
+					<xs:documentation>Jaar waarvoor deze gegevens als vaste gegevens aangeleverd worden</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CBBExploitatieNummer" type="generiek:CBBnummerType"/>
+			<xs:element name="Activiteiten" type="activiteit:ActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>Deel IA</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyActiviteitID">
+					<xs:selector xpath="Activiteit"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+				<xs:key name="KeyWaterGebruikID">
+					<xs:selector xpath=".//Watergebruik"/>
+					<xs:field xpath="@waterGebruikID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="ProcesSchemas" type="processchema:ProcesSchemasType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 1B</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyProcesSchemaID">
+					<xs:selector xpath="ProcesSchema"/>
+					<xs:field xpath="@procesSchemaID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Lozingspunten" type="lozingspunt:LozingspuntenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 3 aangevuld met 
+6B1 (geleide stromen)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyLozingspuntID">
+					<xs:selector xpath="Lozingspunt"/>
+					<xs:field xpath="@lozingspuntID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Apparaten" type="apparatuur:ApparatenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 4: Apparatuur waterbehandeling en waterzuivering</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyApparaatID">
+					<xs:selector xpath="Apparaat"/>
+					<xs:field xpath="@apparaatID"/>
+				</xs:key>
+				<xs:key name="KeyTechniekID">
+					<xs:selector xpath=".//Technieken/Techniek"/>
+					<xs:field xpath="@techniekID"/>
+				</xs:key>
+				<xs:key name="KeyVerwijderingID">
+					<xs:selector xpath=".//Verwijdering"/>
+					<xs:field xpath="@verwijderingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Meetmethoden" type="meetmethode:MeetmethodenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 5A</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyMeetmethodeID">
+					<xs:selector xpath="Meetmethode"/>
+					<xs:field xpath="@meetmethodeID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekIMJVDeelReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

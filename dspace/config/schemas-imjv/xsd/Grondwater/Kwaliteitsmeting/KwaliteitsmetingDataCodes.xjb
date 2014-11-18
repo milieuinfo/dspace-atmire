@@ -1,0 +1,95 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="KwaliteitsmetingDataCodes.xsd">
+
+        <jxb:bindings node="//xs:simpleType[@name='EenheidEnumType']">
+            <jxb:typesafeEnumClass name="EenheidEnumType">
+                <jxb:typesafeEnumMember name="EENHEID_0" value="°D"/>
+                <jxb:typesafeEnumMember name="EENHEID_1" value="°C"/>
+                <jxb:typesafeEnumMember name="EENHEID_2" value="°F"/>
+                <jxb:typesafeEnumMember name="EENHEID_3" value="dH°"/>
+                <jxb:typesafeEnumMember name="EENHEID_4" value="fH°"/>
+                <jxb:typesafeEnumMember name="EENHEID_5" value="meq/l"/>
+                <jxb:typesafeEnumMember name="EENHEID_6" value="mg/l"/>
+                <jxb:typesafeEnumMember name="EENHEID_7" value="mmol/l"/>
+                <jxb:typesafeEnumMember name="EENHEID_8" value="mS/cm bij 20°C"/>
+                <jxb:typesafeEnumMember name="EENHEID_9" value="mS/cm bij 25°C"/>
+                <jxb:typesafeEnumMember name="EENHEID_10" value="ppb"/>
+                <jxb:typesafeEnumMember name="EENHEID_11" value="ppm"/>
+                <jxb:typesafeEnumMember name="EENHEID_12" value="Sörensen"/>
+                <jxb:typesafeEnumMember name="EENHEID_13" value="µg/l"/>
+                <jxb:typesafeEnumMember name="EENHEID_14" value="µS/cm"/>
+                <jxb:typesafeEnumMember name="EENHEID_15" value="µS/cm bij 20°C"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='AnalyseTypeEnumType']">
+            <jxb:typesafeEnumClass name="AnalyseTypeEnumType">
+                <jxb:typesafeEnumMember name="VELD" value="Veldanalyse"/>
+                <jxb:typesafeEnumMember name="LABO" value="Laboanalyse"/>
+                <jxb:typesafeEnumMember name="ONBEKEND" value="Onbekend"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='DetectieconditieEnumType']">
+            <jxb:typesafeEnumClass name="DetectieconditieEnumType">
+                <jxb:typesafeEnumMember name="LESS" value="&lt;"/>
+                <jxb:typesafeEnumMember name="MORE" value="&gt;"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='ParameterEnumType']">
+            <jxb:typesafeEnumClass name="ParameterEnumType">
+                <jxb:typesafeEnumMember name="PARAMETER_0" value="T"/>
+                <jxb:typesafeEnumMember name="PARAMETER_1" value="EC"/>
+                <jxb:typesafeEnumMember name="PARAMETER_2" value="pH"/>
+                <jxb:typesafeEnumMember name="PARAMETER_4" value="O2"/>
+                <jxb:typesafeEnumMember name="PARAMETER_3" value="H(tot)"/>
+                <jxb:typesafeEnumMember name="PARAMETER_6" value="TAM"/>
+                <jxb:typesafeEnumMember name="PARAMETER_7" value="TAP"/>
+                <jxb:typesafeEnumMember name="PARAMETER_8" value="SO4"/>
+                <jxb:typesafeEnumMember name="PARAMETER_9" value="NO2"/>
+                <jxb:typesafeEnumMember name="PARAMETER_10" value="NO3"/>
+                <jxb:typesafeEnumMember name="PARAMETER_11" value="CL"/>
+                <jxb:typesafeEnumMember name="PARAMETER_12" value="PO4"/>
+                <jxb:typesafeEnumMember name="PARAMETER_13" value="CO3"/>
+                <jxb:typesafeEnumMember name="PARAMETER_14" value="HCO3"/>
+                <jxb:typesafeEnumMember name="PARAMETER_15" value="OH"/>
+                <jxb:typesafeEnumMember name="PARAMETER_16" value="F"/>
+                <jxb:typesafeEnumMember name="PARAMETER_17" value="Ca"/>
+                <jxb:typesafeEnumMember name="PARAMETER_18" value="K"/>
+                <jxb:typesafeEnumMember name="PARAMETER_19" value="Na"/>
+                <jxb:typesafeEnumMember name="PARAMETER_20" value="Mg"/>
+                <jxb:typesafeEnumMember name="PARAMETER_21" value="NH4"/>
+                <jxb:typesafeEnumMember name="PARAMETER_24" value="Mn"/>
+                <jxb:typesafeEnumMember name="PARAMETER_22" value="Fe2+"/>
+                <jxb:typesafeEnumMember name="PARAMETER_23" value="Fe3+"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+        
+        <jxb:bindings node="//xs:simpleType[@name='ReferentiepuntEnumType']">
+            <jxb:typesafeEnumClass name="ReferentiepuntEnumType">
+                <jxb:typesafeEnumMember name="MAAIVELD" value="Het maaiveld (oppervlakte van de natuurlijke omgeving)"/>
+                <jxb:typesafeEnumMember name="PEILBUIS_BOVEN" value="De bovenkant van de peilbuis (buis, vaak in PVC, van enkele cm diameter waarin het peil gemeten wordt)"/>
+                <jxb:typesafeEnumMember name="BESCHERMBUIS_BOVEN" value="De bovenkant van de beschermbuis (grote buis waarin o.a. de peilbuis is opgehangen)"/>
+                <jxb:typesafeEnumMember name="IN_MTAW" value="Het peil wordt opgemeten in mTAW"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+        
+        <jxb:bindings node="//xs:simpleType[@name='MonsternameTechniekEnumType']">
+            <jxb:typesafeEnumClass name="MonsternameTechniekEnumType">
+                <jxb:typesafeEnumMember name="AFTAP_MONSTERNAME" value="Staalname door aftap via monsternamekraantje"/>
+                <jxb:typesafeEnumMember name="POMP" value="Staalname via pomp"/>
+                <jxb:typesafeEnumMember name="SCHEPMONSTER" value="Staalname via schepmonster"/>
+                <jxb:typesafeEnumMember name="ONBEKEND" value="Staalmethode onbekend"/>
+                <jxb:typesafeEnumMember name="OPVANG_BRON" value="Opvang aan bron"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+    </jxb:bindings>
+</jxb:bindings>
+

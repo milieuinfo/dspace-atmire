@@ -1,0 +1,913 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="urn:be:milieuinfo:schemas:milieuverslag:documents:lucht:v2" xmlns:lucht="urn:be:milieuinfo:schemas:milieuverslag:documents:lucht:v2" xmlns:documents="urn:be:milieuinfo:schemas:milieuverslag:documents:v2" attributeFormDefault="unqualified">
+
+    <xs:import namespace="urn:be:milieuinfo:schemas:milieuverslag:documents:v2" schemaLocation="Docmodule.xsd"/>
+
+    <xs:element name="lucht" type="lucht:Lucht"/>
+    <xs:complexType name="Lucht">
+                <xs:sequence>
+                    <xs:element name="hoofdstuk1" type="lucht:Hoofdstuk1" minOccurs="0"/>
+                    <xs:element name="hoofdstuk2" type="lucht:Hoofdstuk2" minOccurs="0"/>
+                    <xs:element name="hoofdstuk3" type="lucht:Hoofdstuk3" minOccurs="0"/>
+                    <xs:element name="hoofdstuk4" type="lucht:Hoofdstuk4" minOccurs="0"/>
+                    <xs:element name="hoofdstuk5" type="lucht:Hoofdstuk5" minOccurs="0"/>
+                    <xs:element name="hoofdstuk6" type="lucht:Hoofdstuk6" minOccurs="0"/>
+                    <xs:element name="hoofdstuk7" type="lucht:Hoofdstuk7" minOccurs="0"/>
+                    <xs:element name="hoofdstuk8" type="lucht:Hoofdstuk8" minOccurs="0"/>
+                </xs:sequence>
+        <xs:attribute name="aantalBijlagen" type="xs:string"/>
+        <xs:attribute name="nietVanToepassing" type="xs:string"/>
+    </xs:complexType>
+    <xs:complexType name="Hoofdstuk1">
+        <xs:sequence>
+            <xs:element name="tabel1B" type="lucht:Tabel1B"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel1B">
+        <xs:sequence>
+            <xs:element name="rij" type="lucht:Apparaat" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Apparaat">
+        <xs:sequence>
+            <xs:element name="benaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Naam apparaat/installatie met aanduiding voor apparaat '(A)' of installatie '(I)'</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>* typeer installatie/apparaat als
+                    A productie-eenheid
+                    B productie van energie
+                    C opslag en overslag
+                    D fakkel
+                    E waterzuivering</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="geinstalleerdVermogen" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Hoeveelheid en eenheid</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="reeelVermogen" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Hoeveelheid en eenheid</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="geproduceerdeStof" type="xs:string" minOccurs="0"/>
+            <xs:element name="datumIngebruikname" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>dd/mm/jjjj</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Hoofdstuk2">
+        <xs:sequence minOccurs="0">
+            <xs:element name="tabel2A" type="lucht:Tabel2A" minOccurs="0"/>
+            <xs:element name="tabel2B" type="lucht:Tabel2B" minOccurs="0"/>
+            <xs:element name="tabel2C" type="lucht:Tabel2C" minOccurs="0"/>
+            <xs:element name="tabel2D" type="lucht:Tabel2D" minOccurs="0"/>
+            <xs:element name="tabel2E" type="lucht:Tabel2E" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel2A">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:ProductieEenheidApparaat"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ProductieEenheidApparaat">
+        <xs:sequence>
+            <xs:element name="installatieBenaming" type="xs:string" minOccurs="0"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0"/>
+            <xs:element name="beschrijving" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel2B">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:EnergieProductieApparaat"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="EnergieProductieApparaat">
+        <xs:sequence>
+            <xs:element name="benaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Naam apparaat/installatie met aanduiding voor apparaat '(A)' of installatie '(I)'</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="functie" type="xs:string" minOccurs="0"/>
+            <xs:element name="type" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel2C">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:OpslagOverslagApparaat"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpslagOverslagApparaat">
+        <xs:sequence>
+            <xs:element name="benaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Naam apparaat/installatie met aanduiding voor apparaat '(A)' of installatie '(I)'</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type" type="xs:string" minOccurs="0"/>
+            <xs:element name="capaciteit" type="xs:string" minOccurs="0"/>
+            <xs:element name="stof" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel2D">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:FakkelApparaat"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="FakkelApparaat">
+        <xs:sequence>
+            <xs:element name="benaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Naam apparaat/installatie met aanduiding voor apparaat '(A)' of installatie '(I)'</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="technischeKarakteristieken" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel2E">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:WaterzuiveringApparaat"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="WaterzuiveringApparaat">
+        <xs:sequence>
+            <xs:element name="benaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Naam apparaat/installatie met aanduiding voor apparaat '(A)' of installatie '(I)'</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="type" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Hoofdstuk3">
+        <xs:sequence>
+            <xs:element name="tabel3" type="lucht:Tabel3" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel3">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:LuchtEmissiePunt"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="LuchtEmissiePunt">
+        <xs:sequence>
+            <xs:element name="emissiePuntBenaming" type="xs:string" minOccurs="0"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="lambertX" type="xs:string" minOccurs="0"/>
+            <xs:element name="lambertY" type="xs:string" minOccurs="0"/>
+            <xs:element name="aantalEmissiepunten" type="xs:string" minOccurs="0"/>
+            <xs:element name="soort" type="xs:string" minOccurs="0"/>
+            <xs:element name="hoogte" type="xs:string" minOccurs="0"/>
+            <xs:element name="diameter" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Hoofdstuk4">
+        <xs:sequence>
+            <xs:element name="tabel4" type="lucht:Tabel4" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel4">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:ZuiveringsApparatuur"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="ZuiveringsApparatuur">
+        <xs:annotation>
+            <xs:documentation>Per combinatie zuiveringsapparatuur/verontreinigende stof dient 1 lijn opgevuld te worden in de tabel</xs:documentation>
+        </xs:annotation>
+        <xs:sequence>
+            <xs:element name="benamingEmissiepunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="benamingZuiveringsApparatuur" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="techniek" minOccurs="0" type="xs:string"/>
+            <xs:element name="datumIngebruikname" minOccurs="0" type="xs:string"/>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="verwijderingsRendement" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Hoofdstuk5">
+        <xs:sequence>
+            <xs:element name="tabel5" type="lucht:Tabel5"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel5">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:Meetmethode"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Meetmethode">
+        <xs:sequence>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="meetmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="meetnorm" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Hoofdstuk6">
+        <xs:sequence>
+            <xs:element name="deel6A" type="lucht:Deel6A" minOccurs="0"/>
+            <xs:element name="deel6B" type="lucht:Deel6B" minOccurs="0"/>
+            <xs:element name="deel6C" type="lucht:Deel6C" minOccurs="0"/>
+            <xs:element name="deel6D" type="lucht:Deel6D" minOccurs="0"/>
+            <xs:element name="deel6E" type="lucht:Deel6E" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Deel6A">
+        <xs:sequence>
+            <xs:element name="tabel6A1" type="lucht:Tabel6A1" minOccurs="0"/>
+            <xs:element name="tabel6A21aDeel1" type="lucht:Tabel6A21aDeel1" minOccurs="0"/>
+            <xs:element name="tabel6A21aDeel2" type="lucht:Tabel6A21aDeel2" minOccurs="0"/>
+            <xs:element name="tabel6A21b" type="lucht:Tabel6A21b" minOccurs="0"/>
+            <xs:element name="tabel6A221" type="lucht:Tabel6A221" minOccurs="0"/>
+            <xs:element name="tabel6A222" type="lucht:Tabel6A222" minOccurs="0"/>
+            <xs:element name="tabel6A223" type="lucht:Tabel6A23" minOccurs="0"/>
+            <xs:element name="tabel6A224" type="lucht:Tabel6A24" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6A1">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:VerbruiksGegevenA"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="VerbruiksGegevenA">
+        <xs:sequence>
+            <xs:element name="benamingStof" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="aard" minOccurs="0" type="xs:string"/>
+            <xs:element name="grondstof" minOccurs="0" type="xs:string"/>
+            <xs:element name="brandstofSgehalte" minOccurs="0" type="xs:string"/>
+            <xs:element name="brandstofAsgehalte" minOccurs="0" type="xs:string"/>
+            <xs:element name="eindProduct" minOccurs="0" type="xs:string"/>
+            <xs:element name="afvalProduct" minOccurs="0" type="xs:string"/>
+            <xs:element name="verbruik" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6A21aDeel1">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:GeleideEmissieDeel1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="GeleideEmissieDeel1">
+        <xs:sequence>
+            <xs:element name="emissiepunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stof" minOccurs="0" type="xs:string"/>
+            <xs:element name="natO2" minOccurs="0" type="xs:string"/>
+            <xs:element name="droogO2" minOccurs="0" type="xs:string"/>
+            <xs:element name="H2O" minOccurs="0" type="xs:string"/>
+            <xs:element name="luchtOverschot" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6A21aDeel2">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:GeleideEmissieDeel2"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="GeleideEmissieDeel2">
+        <xs:sequence>
+            <xs:element name="emissiepunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stof" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieRitme" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissiePeriode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieDuur" minOccurs="0" type="xs:string"/>
+            <xs:element name="temperatuur" minOccurs="0" type="xs:string"/>
+            <xs:element name="natDebiet" minOccurs="0" type="xs:string"/>
+            <xs:element name="droogDebiet" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6A21b">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:Contaminatie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Contaminatie">
+        <xs:sequence>
+            <xs:element name="emissiepunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stof" minOccurs="0" type="xs:string"/>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="controleInstantie" minOccurs="0" type="xs:string"/>
+            <xs:element name="meetfrequentie" minOccurs="0" type="xs:string"/>
+            <xs:element name="concentratieNat" minOccurs="0" type="xs:string"/>
+            <xs:element name="concentratieDroog" minOccurs="0" type="xs:string"/>
+            <xs:element name="standaardAfwijking" minOccurs="0" type="xs:string"/>
+            <xs:element name="massastroom" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="bepalingsmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="meetmethode" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6A221">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:LekVerlies"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="LekVerlies">
+        <xs:sequence>
+            <xs:element name="emissiepunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="emissieRitme" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissiePeriode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieDuur" minOccurs="0" type="xs:string"/>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="bepalingsmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="meetmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissie" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6A222">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:AndereNietGeleideEmissie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AndereNietGeleideEmissie">
+        <xs:sequence>
+            <xs:element name="emissiepunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="emissieRitme" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissiePeriode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieDuur" minOccurs="0" type="xs:string"/>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="bepalingsmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="meetmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="oorzaak" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6A23">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:AbnormaleEmissie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AbnormaleEmissie">
+        <xs:sequence>
+            <xs:element name="emissiepunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="emissieRitme" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissiePeriode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieDuur" minOccurs="0" type="xs:string"/>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="bepalingsmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="oorzaak" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6A24">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:OverzichtEmissiesFull"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OverzichtEmissiesFull">
+        <xs:sequence>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="geleideEmissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="nietGeleideEmissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="abnormaleEmissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="totaleEmissie" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Deel6B">
+        <xs:sequence>
+            <xs:element name="tabel6B1" minOccurs="0" type="lucht:Tabel6B1"/>
+            <xs:element name="tabel6B21aDeel1" minOccurs="0" type="lucht:Tabel6B21aDeel1"/>
+            <xs:element name="tabel6B21aDeel2" minOccurs="0" type="lucht:Tabel6B21aDeel2"/>
+            <xs:element name="tabel6B21b" minOccurs="0" type="lucht:Tabel6B21b"/>
+            <xs:element name="tabel6B22" minOccurs="0" type="lucht:Tabel6B22"/>
+            <xs:element name="tabel6B23" minOccurs="0" type="lucht:Tabel6B23"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6B1">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:VerbruiksGegevenB"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="VerbruiksGegevenB">
+        <xs:sequence>
+            <xs:element name="brandstof" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="aard" minOccurs="0" type="xs:string"/>
+            <xs:element name="sGehalte" minOccurs="0" type="xs:string"/>
+            <xs:element name="asGehalte" minOccurs="0" type="xs:string"/>
+            <xs:element name="verbruik" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6B21aDeel1">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:GeleideEmissieDeel1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6B21aDeel2">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:GeleideEmissieDeel2"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6B21b">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:Contaminatie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6B22">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:AbnormaleEmissie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6B23">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:OverzichtEmissiesB"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OverzichtEmissiesB">
+        <xs:sequence>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="geleideEmissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="abnormaleEmissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="totaleEmissie" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Deel6C">
+        <xs:sequence>
+            <xs:element name="tabel6C11" minOccurs="0" type="lucht:Tabel6C11"/>
+            <xs:element name="tabel6C121a" minOccurs="0" type="lucht:Tabel6C121a"/>
+            <xs:element name="tabel6C121b" minOccurs="0" type="lucht:Tabel6C121b"/>
+            <xs:element name="tabel6C122" minOccurs="0" type="lucht:Tabel6C122"/>
+            <xs:element name="tabel6C13" minOccurs="0" type="lucht:Tabel6C123"/>
+            <xs:element name="tabel6C21" minOccurs="0" type="lucht:Tabel6C21"/>
+            <xs:element name="tabel6C221a" minOccurs="0" type="lucht:Tabel6C221a"/>
+            <xs:element name="tabel6C221b" minOccurs="0" type="lucht:Tabel6C221b"/>
+            <xs:element name="tabel6C222" minOccurs="0" type="lucht:Tabel6C222"/>
+            <xs:element name="tabel6C223" minOccurs="0" type="lucht:Tabel6C223"/>
+            <xs:element name="tabel6C3" minOccurs="0" type="lucht:Tabel6C3"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6C11">
+        <xs:sequence>
+            <xs:element name="doorzetGegevens" minOccurs="0" maxOccurs="unbounded" type="lucht:DoorzetGegeven"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="DoorzetGegeven">
+        <xs:sequence>
+            <xs:element name="stof" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="aard" minOccurs="0" type="xs:string"/>
+            <xs:element name="doorzet" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6C121a">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:GeleideEmissieDeel2"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6C121b">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:Contaminatie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6C122">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:NietGeleideEmissieC"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="NietGeleideEmissieC">
+        <xs:sequence>
+            <xs:element name="emissiepunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stof" minOccurs="0" type="xs:string"/>
+            <xs:element name="aard" minOccurs="0" type="xs:string"/>
+            <xs:element name="doorzet" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieRitme" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissiePeriode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieDuur" minOccurs="0" type="xs:string"/>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="bepalingsmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="meetmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissie" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6C123">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:AbnormaleEmissieC"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AbnormaleEmissieC">
+        <xs:sequence>
+            <xs:element name="emissiepunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stof" minOccurs="0" type="xs:string"/>
+            <xs:element name="aard" minOccurs="0" type="xs:string"/>
+            <xs:element name="doorzet" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieRitme" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissiePeriode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieDuur" minOccurs="0" type="xs:string"/>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="bepalingsmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="oorzaak" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6C21">
+        <xs:sequence>
+            <xs:element name="doorzetGegevens" minOccurs="0" maxOccurs="unbounded" type="lucht:DoorzetGegeven"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6C221a">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:GeleideEmissieDeel2"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6C221b">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:Contaminatie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6C222">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:NietGeleideEmissieC"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6C223">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:AbnormaleEmissieC"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6C3">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:OverzichtEmissiesFull"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Deel6D">
+        <xs:sequence>
+            <xs:element name="tabel6D1" minOccurs="0" type="lucht:Tabel6D1"/>
+            <xs:element name="tabel6D2" minOccurs="0" type="lucht:Tabel6D2"/>
+            <xs:element name="tabel6D3" minOccurs="0" type="lucht:Tabel6D3"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6D1">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:NietGeleideEmissieD"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="NietGeleideEmissieD">
+        <xs:sequence>
+            <xs:element name="benamingFakkelEmissiePunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="afgas" minOccurs="0" type="xs:string"/>
+            <xs:element name="samenstellingAfgas" minOccurs="0" type="xs:string"/>
+            <xs:element name="jaardebietAfgas" minOccurs="0" type="xs:string"/>
+            <xs:element name="brandstof" minOccurs="0" type="xs:string"/>
+            <xs:element name="samenstelling" minOccurs="0" type="xs:string"/>
+            <xs:element name="verbruik" minOccurs="0" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Verbuik + eenheid</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="emissieRitme" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissiePeriode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieDuur" minOccurs="0" type="xs:string"/>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="emissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="bepalingsmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="meetmethode" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6D2">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:AbnormaleEmissieD"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="AbnormaleEmissieD">
+        <xs:sequence>
+            <xs:element name="benamingFakkelEmissiePunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="afgas" minOccurs="0" type="xs:string"/>
+            <xs:element name="samenstellingAfgas" minOccurs="0" type="xs:string"/>
+            <xs:element name="jaardebietAfgas" minOccurs="0" type="xs:string"/>
+            <xs:element name="brandstof" minOccurs="0" type="xs:string"/>
+            <xs:element name="samenstelling" minOccurs="0" type="xs:string"/>
+            <xs:element name="verbruik" minOccurs="0" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>Verbuik + eenheid</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="emissieRitme" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissiePeriode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieDuur" minOccurs="0" type="xs:string"/>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="emissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="bepalingsmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="oorzaak" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6D3">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:OverzichtEmissiesD"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OverzichtEmissiesD">
+        <xs:sequence>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="nietGeleideEmissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="abnormaleEmissie" minOccurs="0" type="xs:string"/>
+            <xs:element name="totaleEmissie" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Deel6E">
+        <xs:sequence>
+            <xs:element name="Tabel6E1" minOccurs="0" type="lucht:Tabel6E1"/>
+            <xs:element name="Tabel6E21aDeel1" minOccurs="0" type="lucht:Tabel6E21aDeel1"/>
+            <xs:element name="Tabel6E21aDeel2" minOccurs="0" type="lucht:Tabel6E21aDeel2"/>
+            <xs:element name="Tabel6E21b" minOccurs="0" type="lucht:Tabel6E21b"/>
+            <xs:element name="Tabel6E22" minOccurs="0" type="lucht:Tabel6E22"/>
+            <xs:element name="Tabel6E23" minOccurs="0" type="lucht:Tabel6E23"/>
+            <xs:element name="Tabel6E24" minOccurs="0" type="lucht:Tabel6E24"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6E1">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:VerbruiksGegevenE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="VerbruiksGegevenE">
+        <xs:sequence>
+            <xs:element name="benamingStof" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="grondstof" minOccurs="0" type="xs:string"/>
+            <xs:element name="brandstofSgehalte" minOccurs="0" type="xs:string"/>
+            <xs:element name="brandstofAsgehalte" minOccurs="0" type="xs:string"/>
+            <xs:element name="eindProduct" minOccurs="0" type="xs:string"/>
+            <xs:element name="afvalProduct" minOccurs="0" type="xs:string"/>
+            <xs:element name="verbruik" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6E21aDeel1">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:GeleideEmissieDeel1"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6E21aDeel2">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:GeleideEmissieDeel2"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6E21b">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:Contaminatie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6E22">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:NietGeleideEmissieE"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="NietGeleideEmissieE">
+        <xs:sequence>
+            <xs:element name="emissiepunt" minOccurs="0" type="xs:string"/>
+            <xs:element name="apparaatBenaming" type="xs:string" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Eén string met comma seperated alle apparaat/installatie benamingen verbonden aan dit emissiepunt</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="emissieRitme" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissiePeriode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissieDuur" minOccurs="0" type="xs:string"/>
+            <xs:element name="verontreinigendeStoffen" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="bepalingsmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="meetmethode" minOccurs="0" type="xs:string"/>
+            <xs:element name="emissie" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6E23">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:AbnormaleEmissie"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Tabel6E24">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:OverzichtEmissiesFull"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Hoofdstuk7">
+        <xs:sequence>
+            <xs:element name="deel1" type="lucht:RijLucht"  minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="NMVOS" type="lucht:RijLucht"  minOccurs="0" maxOccurs="unbounded"/>   
+            <xs:element name="OzonafbrekendeStoffen" type="lucht:RijLucht"  minOccurs="0" maxOccurs="unbounded"/> 
+            <xs:element name="semivluchtigeOrganischeStoffen" type="lucht:RijLucht"  minOccurs="0" maxOccurs="unbounded"/> 
+            <xs:element name="PBB" type="lucht:RijLucht"  minOccurs="0" maxOccurs="unbounded"/> 
+            <xs:element name="OCP" type="lucht:RijLucht"  minOccurs="0" maxOccurs="unbounded"/> 
+            <xs:element name="phtalaten" type="lucht:RijLucht"  minOccurs="0" maxOccurs="unbounded"/> 
+            <xs:element name="zwareMetalen" type="lucht:RijLucht"  minOccurs="0" maxOccurs="unbounded"/> 
+            <xs:element name="Stof" type="lucht:RijLucht"  minOccurs="0" maxOccurs="unbounded"/> 
+            <xs:element name="PCDDF" type="lucht:RijLuchtZonderDrempelwaarde"  minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="RijLucht">
+        <xs:sequence>
+            <xs:element name="Verontreinigendestof" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="geleideEmissies" type="xs:string" minOccurs="0"/>
+            <xs:element name="nietGeleideEmissies" type="xs:string" minOccurs="0"/>
+            <xs:element name="abnormaleEmissies" type="xs:string" minOccurs="0"/>
+            <xs:element name="totaleEmissies" type="xs:string" minOccurs="0"/>
+            <xs:element name="drempelwaarde" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="RijLuchtZonderDrempelwaarde">
+        <xs:sequence>
+            <xs:element name="Verontreinigendestof" minOccurs="0" type="lucht:verontreinigendestofType"/>
+            <xs:element name="geleideEmissies" type="xs:string" minOccurs="0"/>
+            <xs:element name="nietGeleideEmissies" type="xs:string" minOccurs="0"/>
+            <xs:element name="abnormaleEmissies" type="xs:string" minOccurs="0"/>
+            <xs:element name="totaleEmissies" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Hoofdstuk8">
+        <xs:sequence>
+            <xs:element name="rij" minOccurs="0" maxOccurs="unbounded" type="lucht:GeplandeVerbetering"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="GeplandeVerbetering">
+        <xs:sequence>
+            <xs:element name="geplandeVerbetering" minOccurs="0" type="xs:string"/>
+            <xs:element name="jaarIngebruikname" minOccurs="0" type="xs:string"/>
+            <xs:element name="kostprijs" minOccurs="0" type="xs:string"/>
+            <xs:element name="reductiepotentieel" minOccurs="0" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="verontreinigendestofType">
+        <xs:annotation>
+            <xs:documentation>
+                Enumeratie type verontreinigendestof. Gezien het feit dat sommige verontreinigendestofnamen
+                starten met een numeriek teken dient deze nog omgezet te worden. (JAXB via xjb-binding file)
+            </xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="koolstofmonoxide"/>
+            <xs:enumeration value="zwaveloxiden (uitgedrukt als zwaveldioxide)"/>
+            <xs:enumeration value="stikstofoxiden (uitgedrukt als stikstofdioxide)"/>
+            <xs:enumeration value="F-verbindingen (uitgedrukt als F-)"/>
+            <xs:enumeration value="Cl-verbindingen (uitgedrukt als Cl-)"/>
+            <xs:enumeration value="chloor"/>
+            <xs:enumeration value="(di)waterstofsulfide"/>
+            <xs:enumeration value="ammoniak"/>
+            <xs:enumeration value="koolstofdioxide"/>
+            <xs:enumeration value="distikstofmonoxide"/>
+            <xs:enumeration value="waterstofcyanide"/>
+            <xs:enumeration value="zwavelkoolstof"/>
+            <xs:enumeration value="methaan"/>
+            <xs:enumeration value="acrylonitrile"/>
+            <xs:enumeration value="ethyleenoxide"/>
+            <xs:enumeration value="benzeen"/>
+            <xs:enumeration value="1,2-dichloorethaan"/>
+            <xs:enumeration value="dichloormethaan"/>
+            <xs:enumeration value="fenol"/>
+            <xs:enumeration value="formaldehyde"/>
+            <xs:enumeration value="styreen"/>
+            <xs:enumeration value="tetrachloormethaan"/>
+            <xs:enumeration value="trichlooretheen"/>
+            <xs:enumeration value="tolueen"/>
+            <xs:enumeration value="mono-vinylchloride"/>
+            <xs:enumeration value="xyleen-isomeren"/>
+            <xs:enumeration value="tetrachlooretheen"/>
+            <xs:enumeration value="pentachloorfenol"/>
+            <xs:enumeration value="hexachloorbenzeen"/>
+            <xs:enumeration value="trichloorbenzeen"/>
+            <xs:enumeration value="trichloorethaan"/>
+            <xs:enumeration value="trichloormethaan"/>
+            <xs:enumeration value="1,1,2,2-tetrachloroethaan"/>
+            <xs:enumeration value="niet eerder genoemde gehalogeneerde NMVOS"/>
+            <xs:enumeration value="niet eerder genoemde aromatische NMVOS"/>
+            <xs:enumeration value="niet eerder genoemde NMVOS"/>
+            <xs:enumeration value="totaal gehalogeneerde NMVOS"/>
+            <xs:enumeration value="totaal aromatische NMVOS"/>
+            <xs:enumeration value="totaal NMVOS"/>
+            <xs:enumeration value="CFK's (chloorfluorkoolstoffen) (1)"/>
+            <xs:enumeration value="HCFK's (chloorfluorkoolwaterstoffen) (2)"/>
+            <xs:enumeration value="HFK's (fluorkoolwaterstoffen) (3)"/>
+            <xs:enumeration value="PFK's (perfluorkoolwaterstoffen) (4)"/>
+            <xs:enumeration value="zwavelhexafluoride"/>
+            <xs:enumeration value="halonen (5)"/>
+            <xs:enumeration value="niet eerder genoemde ozonafbrekende stoffen en F- gassen"/>
+            <xs:enumeration value="totaal ozonafbrekende stoffen en F-gassen"/>
+            <xs:enumeration value="polycyclische aromatische KWS (PAK's)"/>
+            <xs:enumeration value="naftaleen"/>
+            <xs:enumeration value="phenanthreen"/>
+            <xs:enumeration value="anthraceen"/>
+            <xs:enumeration value="fluorantheen"/>
+            <xs:enumeration value="chryseen"/>
+            <xs:enumeration value="benzo(a)anthraceen"/>
+            <xs:enumeration value="benzo(a)pyreen"/>
+            <xs:enumeration value="benzo(k)fluorantheen"/>
+            <xs:enumeration value="indeno(1,2,3-cd)pyreen"/>
+            <xs:enumeration value="benzo(g,h,i)peryleen"/>
+            <xs:enumeration value="benzo(e)pyreen"/>
+            <xs:enumeration value="benzo(j)fluorantheen"/>
+            <xs:enumeration value="benzo(b)fluorantheen"/>
+            <xs:enumeration value="dibenzo(a,h)anthraceen"/>
+            <xs:enumeration value="PCB's (polychloorbiphenyls)"/>
+            <xs:enumeration value="hexabroombiphenyl"/>
+            <xs:enumeration value="aldrin"/>
+            <xs:enumeration value="chlordaan"/>
+            <xs:enumeration value="chlordecon"/>
+            <xs:enumeration value="DDT"/>
+            <xs:enumeration value="dieldrin"/>
+            <xs:enumeration value="endrin"/>
+            <xs:enumeration value="heptachloor"/>
+            <xs:enumeration value="lindaan"/>
+            <xs:enumeration value="mirex"/>
+            <xs:enumeration value="pentachloorbenzeen"/>
+            <xs:enumeration value="toxapheen"/>
+            <xs:enumeration value="di-(2-ethyl hexyl) phthalaat (DEHP)"/>
+            <xs:enumeration value="antimoon"/>
+            <xs:enumeration value="arseen"/>
+            <xs:enumeration value="asbest"/>
+            <xs:enumeration value="beryllium"/>
+            <xs:enumeration value="cadmium"/>
+            <xs:enumeration value="chroom"/>
+            <xs:enumeration value="kobalt"/>
+            <xs:enumeration value="kwik"/>
+            <xs:enumeration value="lood"/>
+            <xs:enumeration value="koper"/>
+            <xs:enumeration value="mangaan"/>
+            <xs:enumeration value="nikkel"/>
+            <xs:enumeration value="seleen"/>
+            <xs:enumeration value="thallium"/>
+            <xs:enumeration value="vanadium"/>
+            <xs:enumeration value="zink"/>
+            <xs:enumeration value="PM2.5"/>
+            <xs:enumeration value="PM10"/>
+            <xs:enumeration value="totaal stof"/>
+            <xs:enumeration value="PCDD/F"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

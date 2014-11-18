@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by  () -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://generiekmeta.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" targetNamespace="http://generiekmeta.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:include schemaLocation="GeneriekMetaDataKern.xsd"/>
+	<xs:complexType name="FeitenType">
+		<xs:annotation>
+			<xs:documentation>Feiten gegevens</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Feit" type="FeitType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FeitType">
+		<xs:annotation>
+			<xs:documentation>Feit gegevens</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Actie" type="ActieType">
+				<xs:annotation>
+					<xs:documentation>De actie van het feit</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tijdstip" type="DatumType">
+				<xs:annotation>
+					<xs:documentation>De actie van het feit</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Gebruiker" type="generiek:PersoonType">
+				<xs:annotation>
+					<xs:documentation>De gebruiker die het feit heeft veroorzaakt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

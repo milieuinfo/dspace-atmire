@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://debietmeter.grondwater.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://debietmeter.grondwater.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="MeterstandType">
+		<xs:restriction base="xs:decimal"/>
+	</xs:simpleType>
+	<xs:simpleType name="DatumType">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="HoeveelheidType">
+		<xs:restriction base="xs:decimal"/>
+	</xs:simpleType>
+	<xs:simpleType name="MerkType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="SerienummerType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://lozingspunt.water.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://lozingspunt.water.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="MeetputEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Oppompend"/>
+			<xs:enumeration value="Transfer"/>
+			<xs:enumeration value="Lozend"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LozingsplaatsEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Riool"/>
+			<xs:enumeration value="Oppervlaktewater"/>
+			<xs:enumeration value="Collector"/>
+			<xs:enumeration value="Kunstmatige afvoer hemelwater"/>
+			<xs:enumeration value="Grondwater"/>
+			<xs:enumeration value="Opgenomen oppervlaktewater"/>
+			<xs:enumeration value="Influent RWZI"/>
+			<xs:enumeration value="Interne stroom"/>
+			<xs:enumeration value="Afvoer naar andere exploitatie/industriële WZI"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

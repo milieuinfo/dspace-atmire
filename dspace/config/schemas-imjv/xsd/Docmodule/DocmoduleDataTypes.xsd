@@ -1,0 +1,2383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://documents.milieuverslag.schemas.milieuinfo.be"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:lucht="urn:be:milieuinfo:schemas:milieuverslag:documents:lucht:v2"
+	xmlns:grondstoffen="urn:be:milieuinfo:schemas:milieuverslag:documents:grondstoffen:v2"
+	targetNamespace="http://documents.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" jxb:version="2.0"
+	xmlns:geografie="http://geografie.schemas.milieuinfo.be">
+	<xs:include schemaLocation="DocmoduleDataCodes.xsd"/>
+	<xs:include schemaLocation="DocmoduleDataKern.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:annotation>
+		<xs:documentation>Het IMJV formulier</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://geografie.schemas.milieuinfo.be"/>
+	<xs:import namespace="urn:be:milieuinfo:schemas:milieuverslag:documents:lucht:v2"
+		schemaLocation="v2/Lucht.xsd"/>
+	<xs:import namespace="urn:be:milieuinfo:schemas:milieuverslag:documents:grondstoffen:v2"
+		schemaLocation="v2/GrondstoffenProducent.xsd"/>
+	<xs:complexType name="internType">
+		<xs:sequence>
+			<xs:element name="cbbnr" type="xs:string"/>
+			<xs:element name="jaar" type="xs:string"/>
+			<xs:element name="desactivate" type="xs:string" minOccurs="0"/>
+			<xs:element name="barcode_schrijven" type="xs:string"/>
+			<xs:element name="barcodeIdentificatie" type="xs:string"/>
+			<xs:element name="barcodeLucht" type="xs:string"/>
+			<xs:element name="barcodeEnergie" type="xs:string"/>
+			<xs:element name="barcodeWater" type="xs:string"/>
+			<xs:element name="barcodeGrondwater" type="xs:string"/>
+			<xs:element name="barcodeAfvalproducent" type="xs:string"/>
+			<xs:element name="barcodeAfvalverwerker" type="xs:string"/>
+			<xs:element name="barcodeGrondstoffenProducent" type="xs:string"/>
+			<xs:element name="subforms">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="schrijven" type="TypeBegeleidendSchrijvenType"
+							minOccurs="0"/>
+						<xs:element name="identificatie" type="xs:string" minOccurs="0"/>
+						<xs:element name="lucht" type="xs:string" minOccurs="0"/>
+						<xs:element name="water" type="xs:string" minOccurs="0"/>
+						<xs:element name="energie" type="xs:string" minOccurs="0"/>
+						<xs:element name="afvalproducent" type="xs:string" minOccurs="0"/>
+						<xs:element name="afvalverwerker" type="xs:string" minOccurs="0"/>
+						<xs:element name="grondstoffenProducent" type="xs:string" minOccurs="0"/>
+						<xs:element name="bijlageIdentificatie" type="xs:string" minOccurs="0"/>
+						<xs:element name="bijlageLucht" type="xs:string" minOccurs="0"/>
+						<xs:element name="bijlageWater" type="xs:string" minOccurs="0"/>
+						<xs:element name="bijlageAfvalproducent" type="xs:string" minOccurs="0"/>
+						<xs:element name="bijlageAfvalverwerker" type="xs:string" minOccurs="0"/>
+						<xs:element name="bijlageGrondstoffenProducent" type="xs:string" minOccurs="0"/>
+						<xs:element name="bijlageAfvalstoffencodes" type="xs:string" minOccurs="0"/>
+						<xs:element name="bijlageGrondwater" type="xs:string" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="exploitantWijzigingType">
+		<xs:sequence>
+            <xs:element name="typeOnderneming" type="xs:string" minOccurs="0"/>
+			<xs:element name="rechtsvorm" type="xs:string" minOccurs="0"/>
+			<xs:element name="naam" type="xs:string"/>
+			<xs:element name="straat" type="xs:string"/>
+			<xs:element name="nr" type="xs:string"/>
+			<xs:element name="bus" type="xs:string"/>
+			<xs:element name="adresaanvulling" type="xs:string"/>
+			<xs:element name="postcode" type="xs:string"/>
+			<xs:element name="gemeente" type="xs:string"/>
+			<xs:element name="land" type="xs:string"/>
+			<xs:element name="telefoonnummer" type="xs:string"/>
+			<xs:element name="fax" type="xs:string"/>
+			<xs:element name="email" type="xs:string"/>
+			<xs:element name="KBOnummer" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="exploitatieWijzigingType">
+		<xs:sequence>
+			<xs:element name="naam" type="xs:string"/>
+			<xs:element name="straat" type="xs:string"/>
+			<xs:element name="nr" type="xs:string"/>
+			<xs:element name="bus" type="xs:string"/>
+			<xs:element name="adresaanvulling" type="xs:string"/>
+			<xs:element name="postcode" type="xs:string"/>
+			<xs:element name="gemeente" type="xs:string"/>
+			<xs:element name="land" type="xs:string"/>
+			<xs:element name="telefoonnummer" type="xs:string"/>
+			<xs:element name="fax" type="xs:string"/>
+			<xs:element name="email" type="xs:string"/>
+			<xs:element name="vestigingsnummer" type="xs:string"/>
+			<xs:element name="werknemers" type="xs:decimal"/>
+			<xs:element name="werknemers_met_uitzendkrachten" type="xs:decimal"/>
+			<xs:element name="bedrijfssector_code" type="xs:string"/>
+			<xs:element name="bedrijfssector_omschrijving" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="begeleidendType">
+		<xs:sequence>
+			<xs:element name="naam" type="xs:string"/>
+			<xs:element name="adres" type="xs:string"/>
+			<xs:element name="adres_aanvulling" type="xs:string"/>
+			<xs:element name="gemeente" type="xs:string"/>
+			<xs:element name="land" type="xs:string"/>
+			<xs:element name="login" type="xs:string"/>
+			<xs:element name="paswoord" type="xs:string"/>
+			<xs:element name="datum" type="xs:string"/>
+			<xs:element name="imjvJaar" type="xs:string"/>
+			<xs:element name="exploitatie">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="naam" type="xs:string"/>
+						<xs:element name="adres" type="xs:string"/>
+						<xs:element name="adres_aanvulling" type="xs:string"/>
+						<xs:element name="gemeente" type="xs:string"/>
+						<xs:element name="land" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="adresType">
+		<xs:sequence>
+			<xs:element name="naam" type="xs:string"/>
+			<xs:element name="straat" type="xs:string"/>
+			<xs:element name="aanvulling" type="xs:string" minOccurs="0"/>
+			<xs:element name="postcode" type="xs:string"/>
+			<xs:element name="gemeente" type="xs:string"/>
+			<xs:element name="land" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="verzendingType">
+		<xs:sequence>
+			<xs:element name="versturen_naar">
+				<xs:annotation>
+					<xs:documentation>
+                        0=versturen naar exploitant;
+                        1=versturen naar exploitatie;
+                        2=versturen naar verzendadres
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="verzendadres" type="adresType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- bedrijf blokken -->
+	<xs:complexType name="imjvType">
+		<xs:sequence>
+			<xs:element name="plichtige" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="intern" type="internType" minOccurs="0"/>
+						<xs:element name="verzending" type="verzendingType" minOccurs="0"/>
+						<xs:element name="meldingsjaar" type="xs:short" minOccurs="0"/>
+						<xs:element name="cbbnummer" type="xs:string" minOccurs="0"/>
+						<xs:element name="cbbnummerExploitatie" type="xs:string" minOccurs="0"/>
+						<xs:element name="cbbnummerExploitant" type="xs:string" minOccurs="0"/>
+						<xs:element name="begeleidend" type="begeleidendType" minOccurs="0"/>
+						<xs:element name="identificatie" type="identificatieType" minOccurs="0"/>
+						<xs:element name="Energie" type="energieType" minOccurs="0"/>
+						<xs:element name="Water" type="WaterType" minOccurs="0"/>
+                        <xs:element name="Lucht" type="lucht:Lucht" minOccurs="0"/>
+						<xs:element name="afvalproducent" type="afvalproducentType" minOccurs="0"/>
+						<xs:element name="afvalverwerker" type="afvalverwerkerType" minOccurs="0"/>
+						<xs:element name="grondwater" type="grondwaterType" minOccurs="0" maxOccurs="unbounded"/>
+                        <xs:element name="GrondstoffenProducent" type="grondstoffen:GrondstoffenProducent" minOccurs="0"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="intern" type="internType" minOccurs="0"/>
+			<xs:element name="verzending" type="verzendingType" minOccurs="0"/>
+			<xs:element name="meldingsjaar" type="xs:short" minOccurs="0"/>
+			<xs:element name="cbbnummer" type="xs:string" minOccurs="0"/>
+			<xs:element name="begeleidend" type="begeleidendType" minOccurs="0"/>
+			<xs:element name="identificatie" type="identificatieType" minOccurs="0"/>
+			<xs:element name="Energie" type="energieType" minOccurs="0"/>
+			<xs:element name="Water" type="WaterType" minOccurs="0"/>
+			<xs:element name="afvalproducent" type="afvalproducentType" minOccurs="0"/>
+			<xs:element name="afvalverwerker" type="afvalverwerkerType" minOccurs="0"/>
+			<xs:element name="grondwater" type="GrondwaterDocumentType" minOccurs="0"/>
+			<!-- xs:element name="grondwater" type="grondwaterType" minOccurs="0" maxOccurs="unbounded"/ -->
+			<xs:element name="aanmaning" type="aanmaningMilieuVerslagType" minOccurs="0"/>
+			<xs:element name="aanmaningGroep" type="aanmaningMilieuVerslagGroepType" minOccurs="0"/>
+			<xs:element name="Lucht" type="lucht:Lucht" minOccurs="0"/>
+			<xs:element name="GrondstoffenProducent" type="grondstoffen:GrondstoffenProducent" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="identificatieType">
+		<xs:sequence>
+			<!-- interne blokken -->
+			<xs:element name="maatschappelijke_zetel_wijziging" type="exploitantWijzigingType"
+				minOccurs="0"/>
+			<xs:element name="exploitatie_zetel_wijziging" type="exploitatieWijzigingType"
+				minOccurs="0"/>
+			<!-- einde interne  blokken -->
+			<xs:element name="aantal_bijlagen" type="xs:int" minOccurs="0"/>
+			<xs:element name="maatschappelijke_zetel" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>1.2.1. Maatschappelijke zetel</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all minOccurs="0">
+                        <xs:element name="typeOnderneming" type="xs:string" minOccurs="0"/>
+                        <xs:element name="rechtsvorm" type="xs:string" minOccurs="0"/>
+						<xs:element name="naam" type="xs:string"/>
+						<xs:element name="straat" type="xs:string"/>
+						<xs:element name="nr" type="xs:string"/>
+						<xs:element name="bus" type="xs:string"/>
+						<xs:element name="adresaanvulling" type="xs:string"/>
+						<xs:element name="postcode" type="xs:string"/>
+						<xs:element name="gemeente" type="xs:string"/>
+						<xs:element name="land" type="xs:string"/>
+						<xs:element name="telefoonnummer" type="xs:string"/>
+						<xs:element name="fax" type="xs:string"/>
+						<xs:element name="email" type="xs:string"/>
+						<xs:element name="KBOnummer" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="exploitatie_zetel" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>1.2.2. Exploitatiezetel</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all minOccurs="0">
+						<xs:element name="cbbnr" type="xs:string"/>
+						<xs:element name="naam" type="xs:string"/>
+						<xs:element name="straat" type="xs:string"/>
+						<xs:element name="nr" type="xs:string"/>
+						<xs:element name="bus" type="xs:string"/>
+						<xs:element name="adresaanvulling" type="xs:string"/>
+						<xs:element name="postcode" type="xs:string"/>
+						<xs:element name="gemeente" type="xs:string"/>
+						<xs:element name="land" type="xs:string"/>
+						<xs:element name="telefoonnummer" type="xs:string"/>
+						<xs:element name="fax" type="xs:string"/>
+						<xs:element name="email" type="xs:string"/>
+						<xs:element name="vestigingsnummer" type="xs:string"/>
+						<xs:element name="werknemers" type="xs:decimal" minOccurs="0"/>
+						<xs:element name="werknemers_met_uitzendkrachten" type="xs:decimal"
+							minOccurs="0"/>
+						<xs:element name="bedrijfssector_code" type="xs:string" minOccurs="0"/>
+						<xs:element name="bedrijfssector_omschrijving" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contactpersoon_imjv" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>1.3. Contactpersoon voor het integraal milieujaarverslag</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all minOccurs="0">
+						<xs:element name="naam" type="xs:string"/>
+						<xs:element name="functie" type="xs:string"/>
+						<xs:element name="straat" type="xs:string"/>
+						<xs:element name="nr" type="xs:string"/>
+						<xs:element name="bus" type="xs:string"/>
+						<xs:element name="postcode" type="xs:string"/>
+						<xs:element name="gemeente" type="xs:string"/>
+						<xs:element name="land" type="xs:string"/>
+						<xs:element name="aanvulling" type="xs:string"/>
+						<xs:element name="telefoonnummer" type="xs:string"/>
+						<xs:element name="fax" type="xs:string"/>
+						<xs:element name="email" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contactpersoon_luchtemissie" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>1.4. Contactpersoon voor het onderdeel luchtemissie (indien van toepassing en
+                        verschillend van 1.3)
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all minOccurs="0">
+						<xs:element name="naam" type="xs:string"/>
+						<xs:element name="telefoonnummer" type="xs:string"/>
+						<xs:element name="email" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contactpersoon_energiegegevens" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>1.5. Contactpersoon voor het onderdeel energiegegevens (indien van toepassing en
+                        verschillend van 1.3)
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all minOccurs="0">
+						<xs:element name="naam" type="xs:string"/>
+						<xs:element name="telefoonnummer" type="xs:string"/>
+						<xs:element name="email" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contactpersoon_wateremissie" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>1.6. Contactpersoon voor het onderdeel wateremissie (indien van toepassing en
+                        verschillend van 1.3)
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all minOccurs="0">
+						<xs:element name="naam" type="xs:string"/>
+						<xs:element name="telefoonnummer" type="xs:string"/>
+						<xs:element name="email" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+            <xs:element name="contactpersoon_grondwaterstatistiek" minOccurs="0"><xs:annotation>
+                <xs:documentation>1.7. Contactpersoon voor het onderdeel grondwaterstatistiek (indien van
+                    toepassing en verschillend van 1.3)
+                </xs:documentation>
+            </xs:annotation>
+                <xs:complexType>
+                    <xs:all minOccurs="0">
+                        <xs:element name="naam" type="xs:string"/>
+                        <xs:element name="telefoonnummer" type="xs:string"/>
+                        <xs:element name="email" type="xs:string"/>
+                    </xs:all>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="contactpersoon_afval_producent" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>1.8. Contactpersoon voor het onderdeel afval producent (indien van toepassing en
+                        verschillend van 1.3)
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:all minOccurs="0">
+                        <xs:element name="naam" type="xs:string"/>
+                        <xs:element name="telefoonnummer" type="xs:string"/>
+                        <xs:element name="email" type="xs:string"/>
+                    </xs:all>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="contactpersoon_afval_verwerker" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>1.9. Contactpersoon voor het onderdeel afval verwerker (indien van toepassing en
+                        verschillend van 1.3)
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:all minOccurs="0">
+                        <xs:element name="naam" type="xs:string"/>
+						<xs:element name="telefoonnummer" type="xs:string"/>
+						<xs:element name="email" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contactpersoon_grondstoffen_producent" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>1.10. Contactpersoon voor het onderdeel grondstoffen producent (indien van toepassing en
+                        verschillend van 1.3)
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all minOccurs="0">
+						<xs:element name="naam" type="xs:string"/>
+						<xs:element name="telefoonnummer" type="xs:string"/>
+                        <xs:element name="email" type="xs:string"/>
+                    </xs:all>
+                </xs:complexType>
+            </xs:element>
+			<xs:element name="wijziging_stopzetting" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>1.11. Wijzigingen: stopzetting, overname of andere</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all minOccurs="0">
+						<xs:element name="datum" type="datumType" minOccurs="0"/>
+						<xs:element name="geheel">
+							<xs:annotation>
+								<xs:documentation>1 als volledige stozetting, anders 0</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="gedeeltelijk" type="xs:string"/>
+						<xs:element name="overgenomen" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="wijziging_overname" minOccurs="0">
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="datum" type="datumType" minOccurs="0"/>
+						<xs:element name="geheel">
+							<xs:annotation>
+								<xs:documentation>1 als volledige overname, anders 0</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="gedeeltelijk" type="xs:string"/>
+						<xs:element name="overgenomen" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="vlarem" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>0= nee, anders 1</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="andere" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>0= nee, anders 1</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="wijziging_andere" type="xs:string" minOccurs="0"/>
+			<xs:element name="opmerkingen_milieucoordinator" type="xs:string" minOccurs="0"/>
+			<xs:element name="bedrijfsleider_datum_handtekening" type="datumType" minOccurs="0"/>
+			<xs:element name="bedrijfsleider_naam" type="xs:string" minOccurs="0"/>
+			<xs:element name="bedrijfsleider_functie" type="xs:string" minOccurs="0"/>
+			<xs:element name="milieucoordinator_datum_handtekening" type="datumType" minOccurs="0"/>
+			<xs:element name="milieucoordinator_naam" type="xs:string" minOccurs="0"/>
+			<xs:element name="electronisch" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ja als elektronisch, anders neen</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>
+            Energiegegevens
+        </xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="energieType">
+		<xs:sequence>
+			<xs:element name="niet_van_toepassing">
+				<xs:annotation>
+					<xs:documentation>0=van toepassing; 1=niet van toepassing</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="electriciteitsverbruik_hoeveelheid" type="xs:decimal"/>
+			<xs:element name="stoomproductie_hoeveelheid" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="electriciteitsproductie_hoeveelheid" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="branstoffen" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="brandstof" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="brandstof" type="xs:string"/>
+									<xs:element name="hoeveelheid" type="xs:decimal"/>
+									<xs:element name="eenheid" type="xs:string"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="totale_hoeveelheid" type="xs:decimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>IB en IIA: Vaste gegevens en emissiegegevens naar water</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="WaterType">
+		<xs:sequence>
+			<xs:element name="aantal_bijlagen" type="xs:string" minOccurs="0"/>
+			<xs:element name="niet_van_toepassing" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>0=van toepassing, 1=niet van toepassing</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="overzicht_activiteiten_water" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>1. Overzicht activiteiten en processchema / 1.A. Overzicht activiteiten met
+                        emissies naar water
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="activiteitWater" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+									<xs:annotation>
+										<xs:documentation>imjv_id en vmm_id zijn interne velden toegekend door het
+                                            systeem
+                                        </xs:documentation>
+									</xs:annotation>
+									<xs:element name="imjv_id" type="xs:int" minOccurs="0"/>
+									<xs:element name="vmm_id" type="xs:int" minOccurs="0"/>
+									<xs:element name="volgnummer" type="xs:short" minOccurs="0"/>
+									<xs:element name="naam" type="xs:string" minOccurs="0"/>
+									<xs:element name="nosePCode" type="nosePCodeType"/>
+									<xs:element name="noseOmschrijving" type="xs:string"
+										minOccurs="0"/>
+									<xs:element name="niet_van_toepassing" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>0=van toepassing; 1=niet van toepassing
+                                            </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:byte">
+												<xs:enumeration value="0"/>
+												<xs:enumeration value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="watergebruiken" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>2. Watergebruik (van de gehele exploitatie)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="watergebruik">
+							<xs:complexType>
+								<xs:all minOccurs="0">
+									<xs:element name="grondwater" type="herkomstWatergebruikType"
+										minOccurs="0"/>
+									<xs:element name="hemelwater" type="herkomstWatergebruikType"
+										minOccurs="0"/>
+									<xs:element name="oppervlaktewater_waterlopen"
+										type="herkomstWatergebruikType" minOccurs="0"/>
+									<xs:element name="oppervlaktewater_vijvers"
+										type="herkomstWatergebruikType" minOccurs="0"/>
+									<xs:element name="distributie_drinkwater"
+										type="herkomstWatergebruikType" minOccurs="0"/>
+									<xs:element name="distributie_industrieel"
+										type="herkomstWatergebruikType" minOccurs="0"/>
+									<xs:element name="ander" type="herkomstWatergebruikType"
+										minOccurs="0"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="lozingspunten" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>3. Lozingspunten</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="lozingspunt" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="benaming" type="xs:string"/>
+									<xs:element name="meetputnummer" type="xs:int" minOccurs="0"/>
+									<xs:element name="meetputtype" type="meetputType"/>
+									<xs:element name="lozingsplaats" type="xs:string"/>
+									<xs:element name="nosep" type="xs:string"/>
+									<xs:element name="niet_van_toepassing" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>0=van toepassing; 1=niet van toepassing
+                                            </xs:documentation>
+										</xs:annotation>
+										<xs:simpleType>
+											<xs:restriction base="xs:byte">
+												<xs:enumeration value="0"/>
+												<xs:enumeration value="1"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="behandelingssapparatuur_water" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>4. Apparatuur waterbehandeling en waterzuivering (tabel 1)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="apparaat" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all minOccurs="0">
+									<xs:element name="naam" type="xs:string"/>
+									<xs:element name="vmm_id" type="xs:int" minOccurs="0"/>
+									<xs:element name="nosep" type="xs:string"/>
+									<xs:element name="techniekcode" type="techniekCodeType"/>
+									<xs:element name="datum_ingebruikname" type="jaarType"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="zuiveringsapparatuur_water" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>4. Apparatuur waterbehandeling en waterzuivering (tabel 2)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="apparaat" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="naam" type="xs:string"/>
+									<xs:element name="stoffen" type="stofType"/>
+									<xs:element name="verwijderingsrendement" type="xs:double"
+										minOccurs="0"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="meetmethoden_waterverontreiniging" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>5. Meetmethoden / 5.A. Waterverontreininging</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="methode" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="verontreinigendestof" type="stofType"/>
+									<xs:element name="methode" type="meetnormType"/>
+									<xs:element name="commentaar" type="xs:string"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="watergebruik_tabel2" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>6.A. Watergebruik</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="bestemming" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="herkomst" type="herkomstType"/>
+									<xs:element name="nosep" type="nosePCodeType"/>
+									<xs:element name="watergebruik" type="xs:decimal"/>
+									<xs:element name="product" type="xs:decimal"/>
+									<xs:element name="verdampt" type="xs:decimal"/>
+									<xs:element name="geloosd" type="xs:decimal"/>
+									<xs:element name="transfer" type="xs:decimal"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="waterstromen" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>6.B. Waterstromen</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="geleide_lozingen" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="tabel1" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>6.B.1. Geleide lozingen en opgenomen oppervlaktewater
+                                                (tabel 1)
+                                            </xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="lozing" maxOccurs="unbounded">
+												<xs:complexType>
+												<xs:all>
+												<xs:element name="meetputnummer" type="xs:int"/>
+												<xs:element name="meetputtype" type="meetputType"/>
+												<xs:element name="naam_meetpunt" type="xs:string"/>
+												<xs:element name="debiet" type="xs:decimal"/>
+												<xs:element name="aantal_dagen" type="xs:short"/>
+												<xs:element name="aantal_uren" type="xs:short"/>
+												<xs:element name="ph" type="xs:decimal"/>
+												<xs:element name="temperatuur" type="xs:decimal"/>
+												</xs:all>
+												</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+									<xs:element name="tabel2" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>6.B.1. Geleide lozingen en opgenomen oppervlaktewater
+                                                (tabel 2)
+                                            </xs:documentation>
+										</xs:annotation>
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="lozing" maxOccurs="unbounded">
+												<xs:complexType>
+												<xs:all>
+												<xs:element name="meetputnummer" type="xs:string"/>
+												<xs:element name="meetputtype" type="meetputType"/>
+												<xs:element name="verontreinigendestof"
+												type="stofType"/>
+												<xs:element name="meetfrequentie"
+												type="xs:decimal"/>
+												<xs:element name="standaard_afwijking"
+												type="xs:decimal"/>
+												<xs:element name="concentratie" type="xs:decimal"
+												minOccurs="0"/>
+												<xs:element name="totale_vracht" type="xs:decimal"/>
+												<xs:element name="bepalingsmethode"
+												type="bepalingsmethodeLozingType"/>
+												</xs:all>
+												</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="abnormale_lozingen" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>6.B.2. Lozingen als gevolg van abnormale omstandigheden
+                                </xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="lozing" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:all>
+												<xs:element name="verontreinigendestof"
+												type="stofType"/>
+												<xs:element name="lozingsduur" type="xs:short"/>
+												<xs:element name="vracht" type="xs:decimal"/>
+												<xs:element name="oorzaak" type="xs:string"/>
+											</xs:all>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="overzichtWater" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>7. Overzicht Water</xs:documentation>
+				</xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="stoffen">
+                            <xs:complexType>
+                                <xs:all minOccurs="0">
+                            <xs:element name="anorg_totaal_stikstof" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="anorg_totaal_fosfor" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="anorg_fluorverbindingen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="anorg_cyaniden" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="anorg_sulfiden" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="anorg_asbest" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="anorg_chlorides" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_zwevende_stof" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_bod" type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_cod" type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_aox" type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_vox" type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_benzeen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_ethylbenzeen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_isopropylbenzeen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_tolueen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_xyleen-isomeren" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_totaal_pak" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_fenolen_totaal" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_broomdiphenylether" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_dichlooranilines" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_chloorbenzeen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_1-2-dichloorbenzeen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_1-2-4-trichloorbenzeen"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_4-chloor-3-methylfenol"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_2-chloorfenol" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_3-chloorfenol" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_4-chloorfenol" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_2-4-dichloorfenol" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_trichloorfenolen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_tetrachloormethaan" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_dichloormethaan" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_trichloormethaan" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_1-2-dichloorethaan" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_1-1-2-trichloorethaan"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_tetrachlooretheen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_trichlooretheen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_chlooretheen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_benzylchloride" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_chlooralkanen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_2-chloortolueen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_4-chloortolueen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_organochloorpesticiden"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_aldrin" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_chloordaan" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_DDT" type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_dieldrin" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_endosulfan" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_endrin" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_hexachloorbenzeen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_hexachloorbutadieen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <!--Moet weg uit xsd, bestaat niet meer-->
+                            <xs:element name="org_hexachloorcyclohexaanisomeren"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_pentachloorfenol" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_trichloorbenzeen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_isodrin" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_organostikstofpesticiden"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_simazine" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_trifluralin" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_atrazine" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_organofosforpesticiden"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_organotinverbindingen"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_alachloor" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_chloordecon" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_chloorfenvinfos" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_chloorpyrifos" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_diurion" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_lindaan" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_mirex" type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_PCDD-PCDF" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_pentachloorbenzeen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_polychloorbifenylen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_toxafeen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_antraceen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_nonylfenol" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_ethyleenoxide" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_isoproturon" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_naftaleen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_di-2-ethylhexyl-ftalaat"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_tributyltinverbindingen"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_trifenyltinverbindingen"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_TOC" type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_octylfenolen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_fluorantheen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_hexabroombifenyl" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="org_benzo-g-h-i-peryleen"
+                                type="overzichtWaterEmissiesType" minOccurs="0"/>
+                            <xs:element name="org_heptachloor" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_antimoon" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_arseen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_barium" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_beryllium" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_boor" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_cadmium" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_chroom_totaal" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_kobalt" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_koper" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_kwik" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_lood" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_molybdeen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_nikkel" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_seleen" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_tellurium" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_thallium" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_tin" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_titaan" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_uranium" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_vanadium" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_zilver" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                            <xs:element name="metalen_zink" type="overzichtWaterEmissiesType"
+                                minOccurs="0"/>
+                        </xs:all>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="andere_stoffen" minOccurs="0" maxOccurs="unbounded" type="overzichtWaterAndereStof"/>
+                    </xs:sequence>
+                </xs:complexType>
+			</xs:element>
+			<xs:element name="commentaar_ontwikkeling" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>8. Commentaar en evaluatie / 8.A. Ontwikkeling van de emissies naar water
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="water" type="xs:string"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="verbeteringen_water" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>8.B. Geplande verbeteringen</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="verbetering" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:all>
+									<xs:element name="waarschijnlijkheid" type="xs:string"/>
+									<xs:element name="verwacht_jaar" type="xs:short"/>
+									<xs:element name="kostprijs" type="xs:decimal"/>
+									<xs:element name="reductiepotentieel" type="xs:string"/>
+								</xs:all>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="overzichtWaterEmissiesType">
+		<xs:sequence>
+			<xs:element name="geleide_lozing" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="abnormale_lozing" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="totaal_bruto" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="totaal_netto" type="xs:decimal" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="overzichtWaterAndereStof">
+		<xs:sequence>
+			<xs:element name="naam" type="xs:string"/>
+			<xs:element name="geleide_lozing" type="xs:decimal"/>
+			<xs:element name="abnormale_lozing" type="xs:decimal"/>
+			<xs:element name="totaal_bruto" type="xs:decimal"/>
+			<xs:element name="totaal_netto" type="xs:decimal"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="herkomstWatergebruikType">
+		<xs:sequence>
+			<xs:element name="activiteit" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="nosep" type="xs:string"/>
+						<xs:element name="vmm_id" type="xs:int" minOccurs="0"/>
+						<xs:element name="niet_van_toepassing" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>0=van toepassing; 1=niet van toepassing</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="afvalproducentType">
+		<xs:sequence>
+			<xs:element name="afvalstoffen" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>IIB Afvalstoffen</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="is_inzameling" minOccurs="0">
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="niet_van_toepassing" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>0=van toepassing, 1=niet van toepassing</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="is_groepsmelding" minOccurs="0">
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="afvalcode" type="xs:string" minOccurs="0"/>
+						<xs:element name="afvalnaam" type="xs:string" minOccurs="0"/>
+						<xs:element name="hoeveelheid_ton_voor_komma" type="xs:string" minOccurs="0"/>
+						<xs:element name="hoeveelheid_ton_na_komma" type="xs:string" minOccurs="0"/>
+						<xs:element name="hoeveelheid_kubiek_voor_komma" type="xs:string"
+							minOccurs="0"/>
+						<xs:element name="hoeveelheid_kubiek_na_komma" type="xs:string"
+							minOccurs="0"/>
+						<xs:element name="IHM_ondernemingsnummer" type="xs:string" minOccurs="0"/>
+						<xs:element name="IHM_naam" type="xs:string" minOccurs="0"/>
+						<xs:element name="IHM_identificatienr" type="xs:string"
+							minOccurs="0"/>
+						<xs:element name="IHM_straat" type="xs:string" minOccurs="0"/>
+						<xs:element name="IHM_nummer" type="xs:string" minOccurs="0"/>
+						<xs:element name="IHM_bus" type="xs:string" minOccurs="0"/>
+						<xs:element name="IHM_adresaanvulling" type="xs:string"
+							minOccurs="0"/>
+						<xs:element name="IHM_postcode" type="xs:string" minOccurs="0"/>
+						<xs:element name="IHM_gemeente" type="xs:string" minOccurs="0"/>
+						<xs:element name="IHM_land" type="xs:string" minOccurs="0"/>
+						<xs:element name="vervoer" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>5. Vervoer (0=wegvervoer, 1=spoorweg, 2=waterweg, 3=andere)
+                                </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+									<xs:enumeration value="2"/>
+									<xs:enumeration value="3"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="verwerker_ondernemingsnummer" type="xs:string" minOccurs="0"/>
+						<xs:element name="verwerker_identificatienr" type="xs:string" minOccurs="0"/>
+						<xs:element name="verwerker_naam" type="xs:string" minOccurs="0"/>
+						<xs:element name="verwerker_straat" type="xs:string" minOccurs="0"/>
+						<xs:element name="verwerker_nummer" type="xs:string" minOccurs="0"/>
+						<xs:element name="verwerker_bus" type="xs:string" minOccurs="0"/>
+						<xs:element name="verwerker_adresaanvulling" type="xs:string" minOccurs="0"/>
+						<xs:element name="verwerker_postcode" type="xs:string" minOccurs="0"/>
+						<xs:element name="verwerker_gemeente" type="xs:string" minOccurs="0"/>
+						<xs:element name="verwerker_land" type="xs:string" minOccurs="0"/>
+						<xs:element name="verwerking_binnenbedrijf" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>0=nee, 1=ja</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="verwerkingswijze" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>0=sorteren, 1=recyclage, 2=hergebruik, 3=composteren, 4=andere
+                                    voorbehandeling, 5=verbranden (nuttige toepassing), 6= verbranden (verwijdering), 7=storten
+                                </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+									<xs:enumeration value="2"/>
+									<xs:enumeration value="3"/>
+									<xs:enumeration value="4"/>
+									<xs:enumeration value="5"/>
+									<xs:enumeration value="6"/>
+									<xs:enumeration value="7"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="groepsmelding" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Groepsmelding</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="melding" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:all>
+												<xs:element name="naam" type="xs:string"/>
+												<xs:element name="nummer" type="xs:string"/>
+												<xs:element name="nacebel" type="xs:string"/>
+												<xs:element name="werknemers" type="xs:decimal"/>
+											</xs:all>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="afvalverwerkerType">
+		<xs:sequence>
+			<xs:element name="afvalstoffen" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>IHM van de afvalstof</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:all>
+						<xs:element name="niet_van_toepassing" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>0=van toepassing, 1=niet van toepassing</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="afvalcode" type="xs:string" minOccurs="0"/>
+						<xs:element name="afvalnaam" type="xs:string" minOccurs="0"/>
+						<xs:element name="hoeveelheid_ton_voor_komma" type="xs:string" minOccurs="0"/>
+						<xs:element name="hoeveelheid_ton_na_komma" type="xs:string" minOccurs="0"/>
+						<xs:element name="hoeveelheid_kubiek_voor_komma" type="xs:string"
+							minOccurs="0"/>
+						<xs:element name="hoeveelheid_kubiek_na_komma" type="xs:string"
+							minOccurs="0"/>
+						<xs:element name="gewest" type="xs:string" minOccurs="0"/>
+						<xs:element name="land" type="xs:string" minOccurs="0"/>
+						<xs:element name="land_herkomst" type="xs:string" minOccurs="0"/>
+						<xs:element name="verwerkingswijze" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>0=sorteren, 1=recyclage, 2=hergebruik, 3=composteren, 4=andere
+                                    voorbehandeling, 5=verbranden (nuttige toepassing), 6= verbranden (verwijdering), 7=storten
+                                </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+									<xs:enumeration value="2"/>
+									<xs:enumeration value="3"/>
+									<xs:enumeration value="4"/>
+									<xs:enumeration value="5"/>
+									<xs:enumeration value="6"/>
+									<xs:enumeration value="7"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="landType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ALBANIË"/>
+			<xs:enumeration value="ALGERIJE"/>
+			<xs:enumeration value="ANDORRA"/>
+			<xs:enumeration value="ANGOLA"/>
+			<xs:enumeration value="ANTIGUA EN BARBADOS"/>
+			<xs:enumeration value="ARGENTINIË"/>
+			<xs:enumeration value="ARMENIË"/>
+			<xs:enumeration value="ARUBA"/>
+			<xs:enumeration value="AUSTRALIË"/>
+			<xs:enumeration value="BAHAMAS"/>
+			<xs:enumeration value="BAHREIN"/>
+			<xs:enumeration value="BANGLADESH"/>
+			<xs:enumeration value="BARBADOS"/>
+			<xs:enumeration value="BELARUS"/>
+			<xs:enumeration value="BELIZE"/>
+			<xs:enumeration value="BENIN"/>
+			<xs:enumeration value="BOLIVIË"/>
+			<xs:enumeration value="BOTSWANA"/>
+			<xs:enumeration value="BRAZILIE"/>
+			<xs:enumeration value="BRUSSELS HOOFDSTEDELIJK GEWEST"/>
+			<xs:enumeration value="BULGARIJE"/>
+			<xs:enumeration value="BURKINA FASO"/>
+			<xs:enumeration value="BURUNDI"/>
+			<xs:enumeration value="CAMEROUN"/>
+			<xs:enumeration value="CANADA"/>
+			<xs:enumeration value="CAPE VERDE"/>
+			<xs:enumeration value="CENTRAAL AFRIKAANSE REPUBLIEK"/>
+			<xs:enumeration value="CHILI"/>
+			<xs:enumeration value="CHINA"/>
+			<xs:enumeration value="COLOMBIA"/>
+			<xs:enumeration value="COMOROS"/>
+			<xs:enumeration value="CONGO BRAZZAVILLE"/>
+			<xs:enumeration value="CONGO"/>
+			<xs:enumeration value="COSTA RICA"/>
+			<xs:enumeration value="CUBA"/>
+			<xs:enumeration value="CYPRUS"/>
+			<xs:enumeration value="DENEMARKEN"/>
+			<xs:enumeration value="DJIBOUTI"/>
+			<xs:enumeration value="DOMINICA"/>
+			<xs:enumeration value="DOMINIKAANSE REPUBLIEK"/>
+			<xs:enumeration value="DUITSLAND"/>
+			<xs:enumeration value="ECUADOR"/>
+			<xs:enumeration value="EGYPTE"/>
+			<xs:enumeration value="EL SALVADOR"/>
+			<xs:enumeration value="EQUATORIAAL GUINEA"/>
+			<xs:enumeration value="ERITREA"/>
+			<xs:enumeration value="ESTLAND"/>
+			<xs:enumeration value="ETHIOPIË"/>
+			<xs:enumeration value="FIJI EILANDEN"/>
+			<xs:enumeration value="FILIPPIJNEN"/>
+			<xs:enumeration value="FINLAND"/>
+			<xs:enumeration value="FRANKRIJK"/>
+			<xs:enumeration value="GABON"/>
+			<xs:enumeration value="GAMBIA"/>
+			<xs:enumeration value="GEORGIË"/>
+			<xs:enumeration value="GHANA"/>
+			<xs:enumeration value="GRENADA"/>
+			<xs:enumeration value="GRIEKENLAND"/>
+			<xs:enumeration value="GUATEMALA"/>
+			<xs:enumeration value="GUINEA"/>
+			<xs:enumeration value="GUINEE BISSAU"/>
+			<xs:enumeration value="GUYANA"/>
+			<xs:enumeration value="HAITI"/>
+			<xs:enumeration value="HONDURAS"/>
+			<xs:enumeration value="HONG KONG"/>
+			<xs:enumeration value="HONGARIJE"/>
+			<xs:enumeration value="IERLAND"/>
+			<xs:enumeration value="IJSLAND"/>
+			<xs:enumeration value="INDIE"/>
+			<xs:enumeration value="INDONESIË"/>
+			<xs:enumeration value="IRAN"/>
+			<xs:enumeration value="ISRAEL"/>
+			<xs:enumeration value="ITALIË"/>
+			<xs:enumeration value="IVOORKUST"/>
+			<xs:enumeration value="JAMAICA"/>
+			<xs:enumeration value="JAPAN"/>
+			<xs:enumeration value="JORDANIË"/>
+			<xs:enumeration value="KENIA"/>
+			<xs:enumeration value="KIRGHIZISTAN"/>
+			<xs:enumeration value="KIRIBATI"/>
+			<xs:enumeration value="KOEWEIT"/>
+			<xs:enumeration value="KOREA"/>
+			<xs:enumeration value="KROATIË"/>
+			<xs:enumeration value="LESOTHO"/>
+			<xs:enumeration value="LETLAND"/>
+			<xs:enumeration value="LIBANON"/>
+			<xs:enumeration value="LIBERIA"/>
+			<xs:enumeration value="LIBIË"/>
+			<xs:enumeration value="LIECHTENSTEIN"/>
+			<xs:enumeration value="LITOUWEN"/>
+			<xs:enumeration value="LUXEMBURG (GROOTHERTOGDOM)"/>
+			<xs:enumeration value="MACEDONIË"/>
+			<xs:enumeration value="MADAGASCAR"/>
+			<xs:enumeration value="MALAWI"/>
+			<xs:enumeration value="MALEDIVEN"/>
+			<xs:enumeration value="MALEISIË"/>
+			<xs:enumeration value="MALI"/>
+			<xs:enumeration value="MALTA"/>
+			<xs:enumeration value="MAROKKO"/>
+			<xs:enumeration value="MAURETANIË"/>
+			<xs:enumeration value="MAURITIUS"/>
+			<xs:enumeration value="MEXICO"/>
+			<xs:enumeration value="MICRONESIË"/>
+			<xs:enumeration value="MOLDAVIË"/>
+			<xs:enumeration value="MONACO"/>
+			<xs:enumeration value="MONGOLIA"/>
+			<xs:enumeration value="MOZAMBIQUE"/>
+			<xs:enumeration value="NAMIBIE"/>
+			<xs:enumeration value="NEDERLAND"/>
+			<xs:enumeration value="NEPAL"/>
+			<xs:enumeration value="NICARAGUA"/>
+			<xs:enumeration value="NIEUW ZEELAND"/>
+			<xs:enumeration value="NIGER"/>
+			<xs:enumeration value="NIGERIA"/>
+			<xs:enumeration value="NOORWEGEN"/>
+			<xs:enumeration value="OEKRAINE"/>
+			<xs:enumeration value="OMAN"/>
+			<xs:enumeration value="OOSTENRIJK"/>
+			<xs:enumeration value="PAKISTAN"/>
+			<xs:enumeration value="PANAMA"/>
+			<xs:enumeration value="PAPUA NIEUW GUINEA"/>
+			<xs:enumeration value="PARAGUAY"/>
+			<xs:enumeration value="PERU"/>
+			<xs:enumeration value="POLEN"/>
+			<xs:enumeration value="PORTUGAL"/>
+			<xs:enumeration value="QATAR"/>
+			<xs:enumeration value="ROEMENIË"/>
+			<xs:enumeration value="RUSLAND"/>
+			<xs:enumeration value="RWANDA"/>
+			<xs:enumeration value="SAINT KITTS EN NEVIS"/>
+			<xs:enumeration value="SAINT VINCENT EN GRENADINES"/>
+			<xs:enumeration value="SAN MARINO"/>
+			<xs:enumeration value="SAO TOME EN PRINCIPE"/>
+			<xs:enumeration value="SAOEDI ARABIË"/>
+			<xs:enumeration value="SENEGAL"/>
+			<xs:enumeration value="SEYCHELLEN"/>
+			<xs:enumeration value="SIERA LEONE"/>
+			<xs:enumeration value="SINGAPORE"/>
+			<xs:enumeration value="SLOVENIA"/>
+			<xs:enumeration value="SLOWAKIJE"/>
+			<xs:enumeration value="SOEDAN"/>
+			<xs:enumeration value="SOLOMON EILANDEN"/>
+			<xs:enumeration value="SOMALIË"/>
+			<xs:enumeration value="SPANJE"/>
+			<xs:enumeration value="SRI LANKA"/>
+			<xs:enumeration value="ST LUCIA"/>
+			<xs:enumeration value="SURINAME"/>
+			<xs:enumeration value="SWAZILAND"/>
+			<xs:enumeration value="SYRIË"/>
+			<xs:enumeration value="TAIWAN"/>
+			<xs:enumeration value="TANZANIA"/>
+			<xs:enumeration value="THAILAND"/>
+			<xs:enumeration value="TOGO"/>
+			<xs:enumeration value="TONGA"/>
+			<xs:enumeration value="TRINIDAD EN TOBAGO"/>
+			<xs:enumeration value="TSJAAD"/>
+			<xs:enumeration value="TSJECHIË"/>
+			<xs:enumeration value="TUNESIË"/>
+			<xs:enumeration value="TURKIJE"/>
+			<xs:enumeration value="TURKMENISTAN"/>
+			<xs:enumeration value="TUVALU"/>
+			<xs:enumeration value="UGANDA"/>
+			<xs:enumeration value="URUGUAY"/>
+			<xs:enumeration value="UZBEKISTAN"/>
+			<xs:enumeration value="VANUATU"/>
+			<xs:enumeration value="VENEZUELA"/>
+			<xs:enumeration value="VERENIGD KONINKRIJK"/>
+			<xs:enumeration value="VERENIGDE ARABISCHE EMIRATEN"/>
+			<xs:enumeration value="VERENIGDE STATEN"/>
+			<xs:enumeration value="VIËTNAM"/>
+			<xs:enumeration value="WAALS GEWEST"/>
+			<xs:enumeration value="WEST SAMOA"/>
+			<xs:enumeration value="YEMEN"/>
+			<xs:enumeration value="ZAMBIA"/>
+			<xs:enumeration value="ZUID AFRIKA"/>
+			<xs:enumeration value="ZWEDEN"/>
+			<xs:enumeration value="ZWITSERLAND"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- BEGIN NEW Grondwater -->
+	<xs:complexType name="GrondwaterDocumentType">
+		<xs:sequence>
+			<xs:element name="niet_van_toepassing">
+				<xs:annotation>
+					<xs:documentation>0=van toepassing, 1=niet van toepassing</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="aantal_bijlagen" type="xs:int"/>
+			<xs:element name="pompputten" type="PompputtenType"/>
+			<xs:element name="peilputten" type="PeilputtenType"/>
+			<xs:element name="debietmeters" type="DebietmetersType" minOccurs="0"/>
+			<xs:element name="waterbalans" type="WaterBalansType">
+				<xs:annotation>
+					<xs:documentation>Watergebruik en verbruik binnen de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="kwaliteitsmetingen" type="MonsternamesType"/>
+			<xs:element name="parameters" type="ParametersEenhedenType">
+				<xs:annotation>
+					<xs:documentation>Tabel met mogelijke eenheden per parameter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="peilmetingen" type="PeilmetingenTransformedType" minOccurs="0"/>
+			<xs:element name="opmerkingen" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PompputtenType">
+		<xs:sequence>
+			<xs:element name="pompput" type="PompputType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PompputType">
+		<xs:sequence>
+			<xs:element name="Putnummer" type="PutnummerType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Van de exploitant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Diepte" type="DiepteType" minOccurs="0"/>
+			<xs:element name="LambertcoordinaatX" type="geografie:VlaamsXLambertCoordinaatType"
+				minOccurs="0"/>
+			<xs:element name="LambertcoordinaatY" type="geografie:VlaamsYLambertCoordinaatType"
+				minOccurs="0"/>
+			<xs:element name="Filter" type="PompfilterType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PompfilterType">
+		<xs:sequence>
+			<xs:element name="Filternummer" type="FilternummerType" minOccurs="0"/>
+			<xs:element name="WatervoerendeLaag" type="WatervoerendeLaagType" minOccurs="0"/>
+			<xs:element name="DieptePomp" type="DieptePompType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiepteOnderkant" type="DiepteOnderkantType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Lengte" type="LengteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Peilmetingen" type="PeilmetingenType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WatervoerendeLaagType">
+		<xs:sequence>
+			<xs:element name="code" type="DocumentStringType"/>
+			<xs:element name="omschrijving" type="DocumentStringType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilputtenType">
+		<xs:sequence>
+			<xs:element name="peilput" type="PeilputType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilputType">
+		<xs:sequence>
+			<xs:element name="Putnummer" type="PutnummerType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Van de exploitant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Diepte" type="DiepteType" minOccurs="0"/>
+			<xs:element name="LambertcoordinaatX" type="geografie:VlaamsXLambertCoordinaatType"
+				minOccurs="0"/>
+			<xs:element name="LambertcoordinaatY" type="geografie:VlaamsYLambertCoordinaatType"
+				minOccurs="0"/>
+			<xs:element name="Filters" type="PeilfiltersType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilfiltersType">
+		<xs:sequence>
+			<xs:element name="peilfilter" type="PeilfilterType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilfilterType">
+		<xs:sequence>
+			<xs:element name="Filternummer" type="FilternummerType" minOccurs="0"/>
+			<xs:element name="WatervoerendeLaag" type="WatervoerendeLaagType" minOccurs="0"/>
+			<xs:element name="DiepteOnderkant" type="DiepteOnderkantType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Lengte" type="LengteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Peilmetingen" type="PeilmetingenType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DebietmetersType">
+		<xs:sequence>
+			<xs:element name="debietmeter" type="DebietmeterType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DebietmeterType">
+		<xs:sequence>
+			<xs:element name="Merk" type="MerkType"/>
+			<xs:element name="Serienummer" type="SerienummerType"/>
+			<xs:element name="DatumLaatsteIjking" type="DatumType" minOccurs="0"/>
+			<xs:element name="DatumWegname" type="DatumType" minOccurs="0"/>
+			<xs:element name="PompputNummers" type="PutNummersType" minOccurs="0"/>
+			<xs:element name="Ontrekkingen" type="OnttrekkingenType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MonsternamePuttenType">
+		<xs:choice>
+			<xs:element name="pompputten" type="MonsternamePutType" maxOccurs="unbounded"/>
+			<xs:element name="peilput" type="MonsternamePutType"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="MonsternamePutType">
+		<xs:sequence>
+			<xs:element name="putnummer" type="PutnummerType"/>
+			<xs:element name="filternummer" type="FilternummerType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PutNummersType">
+		<xs:sequence>
+			<xs:element name="putnummers" type="PutNummerType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PutNummerType">
+		<xs:sequence>
+			<xs:element name="putnummer" type="PutnummerType"/>
+			<xs:element name="filter" type="FilternummerType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FilternummersType">
+		<xs:sequence>
+			<xs:element name="filter" type="FilternummerType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MonsternamesType">
+		<xs:sequence>
+			<xs:element name="monstername" type="MonsternameType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MonsternameType">
+		<xs:sequence>
+			<xs:element name="Putten" type="MonsternamePuttenType" minOccurs="0"/>
+			<xs:element name="Monsternummer" type="MonsternummerType" minOccurs="0"/>
+			<xs:element name="Uitvoerder" type="UitvoerderType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Naam erkend labo</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Datum" type="DatumType" minOccurs="0"/>
+			<xs:element name="Tijd" type="TijdType" minOccurs="0"/>
+			<xs:element name="DatumLaboanalyse" type="DatumType" minOccurs="0"/>
+			<xs:element name="TijdLaboanalyse" type="TijdType" minOccurs="0"/>
+			<xs:element name="Diepte" type="MonsternameDiepteType" minOccurs="0"/>
+			<xs:element name="Referentiepunt" type="ReferentiepuntType" minOccurs="0"/>
+			<xs:element name="AfstandMaaiveld" type="AfstandMaaiveldType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>in meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ParameterCategorieen" type="ParameterCategorieenType"/>
+			<xs:element name="MonsternameTechnieken" type="MonsternameTechniekenType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParameterCategorieenType">
+		<xs:sequence>
+			<xs:element name="parameterCategorie" type="ParameterCategorieType"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MonsternameDiepteType">
+		<xs:sequence>
+			<xs:element name="Diepte" type="DiepteType">
+				<xs:annotation>
+					<xs:documentation>t.o.v. het referentiepunt (in meter) </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiepteEenheid" type="GrondwaterDiepteEnumType">
+				<xs:annotation>
+					<xs:documentation>m of mTAW</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParameterCategorieType">
+		<xs:sequence>
+			<xs:element name="naam" type="DocumentStringType"/>
+			<xs:element name="parameters" type="ParametersType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParametersType">
+		<xs:sequence>
+			<xs:element name="parameter" type="ParameterType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MonsternameTechniekenType">
+		<xs:sequence>
+			<xs:element name="monsternameTechnieken" type="MonsternameTechniekType"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MonsternameTechniekType">
+		<xs:sequence>
+			<xs:element name="monsternameTechniek" type="DocumentStringType"/>
+			<xs:element name="geselecteerd" type="CheckboxType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AnalyseType">
+		<xs:sequence>
+			<xs:element name="AnalyseType" type="DocumentStringType"/>
+			<xs:element name="Meetwaarde" type="MeetwaardeType"/>
+			<xs:element name="Analysemethode" type="DocumentStringType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParameterType">
+		<xs:sequence>
+			<xs:element name="naam" type="DocumentStringType"/>
+			<xs:element name="analyse" type="AnalyseType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MeetwaardeType">
+		<xs:sequence>
+			<xs:element name="detectieconditie" type="DocumentStringType" minOccurs="0"/>
+			<xs:element name="eenheid" type="DocumentStringType"/>
+			<xs:element name="waarde" type="MeetwaardeTypeType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParametersEenhedenType">
+		<xs:sequence>
+			<xs:element name="parameterEenheden" type="ParameterEenhedenType" maxOccurs="unbounded"
+			/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParameterEenhedenType">
+		<xs:sequence>
+			<xs:element name="parameter" type="DocumentStringType"/>
+			<xs:element name="eenheden" type="EenhedenType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EenhedenType">
+		<xs:sequence>
+			<xs:element name="eenheid" type="EenheidType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EenheidType">
+		<xs:sequence>
+			<xs:element name="eenheid" type="DocumentStringType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilmetingenTransformedType">
+		<xs:sequence>
+			<xs:element name="Peilmeting" type="PeilmetingTransformedType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilmetingenType">
+		<xs:sequence>
+			<xs:element name="Peilmeting" type="PeilmetingType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilmetingTransformedType">
+		<xs:sequence>
+			<xs:element name="putnummer" minOccurs="0"/>
+			<xs:element name="filternummer" minOccurs="0"/>
+			<xs:element name="type" minOccurs="0"/>
+			<xs:element name="LijstReferentiePunten" type="PeilmetingReferentiePuntenLijstType"/>
+			<xs:element name="LijstInstrumenten" type="PeilmetingInstrumentenLijstType">
+				<xs:annotation>
+					<xs:documentation>Uit codelijst of de tekst indien ander</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AfstandMaaiveld" type="AfstandMaaiveldType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>in meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MetingenInRust" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MetingInRust" type="MetingInRustType"
+							maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MetingenInWerking" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MetingInWerking" type="MetingInWerkingType"
+							maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilmetingType">
+		<xs:sequence>
+			<xs:element name="LijstReferentiePunten" type="PeilmetingReferentiePuntenLijstType"/>
+			<xs:element name="LijstInstrumenten" type="PeilmetingInstrumentenLijstType">
+				<xs:annotation>
+					<xs:documentation>Uit codelijst of de tekst indien ander</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AfstandMaaiveld" type="AfstandMaaiveldType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>in meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MetingenInRust" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MetingInRust" type="MetingInRustType"
+							maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MetingenInWerking" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="MetingInWerking" type="MetingInWerkingType"
+							maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Interne complex types</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="MetingInRustType">
+		<xs:sequence>
+			<xs:element name="Datum" type="DatumType"/>
+			<xs:element name="Tijd" type="TijdType" minOccurs="0"/>
+			<xs:element name="GrondwaterDiepte" type="GrondwaterDiepteType">
+				<xs:annotation>
+					<xs:documentation>in meter onder het referentiepunt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GrondwaterDiepteEenheid" type="GrondwaterDiepteEnumType">
+				<xs:annotation>
+					<xs:documentation>m of mTAW</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="TijdPompenStil" type="DuurType" minOccurs="0"/>
+			<xs:element name="GewonnenVolume" type="GewonnenVolumeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>in m3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MetingInWerkingType">
+		<xs:sequence>
+			<xs:element name="Datum" type="DatumType"/>
+			<xs:element name="Tijd" type="TijdType" minOccurs="0"/>
+			<xs:element name="GrondwaterDiepte" type="GrondwaterDiepteType">
+				<xs:annotation>
+					<xs:documentation>in meter onder het referentiepunt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GrondwaterDiepteEenheid" type="GrondwaterDiepteEnumType">
+				<xs:annotation>
+					<xs:documentation>m of mTAW</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GewonnenVolume" type="GewonnenVolumeType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>in m3/uur</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilmetingReferentiePuntenLijstType">
+		<xs:sequence>
+			<xs:element name="referentiePunten" type="PeilmetingReferentiePuntLijstType"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilmetingReferentiePuntLijstType">
+		<xs:sequence>
+			<xs:element name="referentiePunt" type="DocumentStringType">
+				<xs:annotation>
+					<xs:documentation>Uit codelijst, wanneer ander is geselecteerd zal het 'ander' veld ingevuld zijn</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="geselecteerd" type="CheckboxType">
+				<xs:annotation>
+					<xs:documentation>Geeft aan of dit referentiepunt is geselecteerd</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ander" type="DocumentStringType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Enkel invullen wanneer het referentiepunt de waarde andere heeft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilmetingInstrumentenLijstType">
+		<xs:sequence>
+			<xs:element name="instrumenten" type="PeilmetingInstrumentLijstType"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilmetingInstrumentLijstType">
+		<xs:sequence>
+			<xs:element name="instrument" type="DocumentStringType">
+				<xs:annotation>
+					<xs:documentation>Uit codelijst, wanneer ander is geselecteerd zal het 'ander' veld ingevuld zijn</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="geselecteerd" type="CheckboxType">
+				<xs:annotation>
+					<xs:documentation>Geeft aan of dit referentiepunt is geselecteerd</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ander" type="DocumentStringType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Enkel invullen wanneer het instrument de waarde andere heeft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OnttrekkingenType">
+		<xs:sequence>
+			<xs:element name="Onttrekking" type="OnttrekkingType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OnttrekkingType">
+		<xs:sequence>
+			<xs:element name="Ontrekking" type="HoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>in m3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartDatum" type="DatumType" minOccurs="0"/>
+			<xs:element name="StartMeterstand" type="MeterstandType" minOccurs="0"/>
+			<xs:element name="EindDatum" type="DatumType" minOccurs="0"/>
+			<xs:element name="EindMeterstand" type="MeterstandType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WaterBalansType">
+		<xs:sequence>
+			<xs:element name="Watergebruik" type="WaterGebruikType" maxOccurs="unbounded"/>
+			<xs:element name="Legende" type="LegendeType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LegendeType">
+		<xs:sequence>
+			<xs:element name="LegendeItem" type="LegendeItemType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BestemmingType">
+		<xs:sequence>
+			<xs:element name="Bestemming" type="DocumentStringType">
+				<xs:annotation>
+					<xs:documentation>Drinkwater, Koelwater, ...</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Procent" type="ProcentType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WaterBestemmingType">
+		<xs:sequence>
+			<xs:element name="WaterBestemming" type="BestemmingType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WaterGebruikType">
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="HoeveelheidType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>in m3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Herkomst" type="DocumentStringType">
+				<xs:annotation>
+					<xs:documentation>Grondwater, Hemelwater, ...</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Bestemming" type="WaterBestemmingType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LegendeItemType">
+		<xs:sequence>
+			<xs:element name="Volgnummer" type="xs:int"/>
+			<xs:element name="Bestemming" type="DocumentStringType">
+				<xs:annotation>
+					<xs:documentation>Drinkwater, Koelwater, ...</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- END NEW Grondwater -->
+	<xs:complexType name="grondwaterType">
+		<xs:sequence>
+			<xs:element name="niet_van_toepassing" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>0=van toepassing, 1=niet van toepassing</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="aantal_bijlagen" type="xs:int" minOccurs="0"/>
+			<xs:element name="vergunning" minOccurs="0">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>alle gegevens op het eerste blad van deelformulier IV</xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<!-- id van de vergunning vmm grondwater -->
+						<xs:element name="referte" type="referteType" minOccurs="0"/>
+						<!-- id van de exploitant vmm grondwater -->
+						<xs:element name="id_exploitant_aminal" type="referteType" minOccurs="0"/>
+						<xs:element name="watnr" type="xs:string"/>
+						<xs:element name="looptijd_van" type="datumType" minOccurs="0"/>
+						<xs:element name="looptijd_tot" type="datumType" minOccurs="0"/>
+						<xs:element name="klasse" type="xs:string"/>
+						<xs:element name="rubriek" type="xs:string"/>
+						<xs:element name="grondwaterwinning_te" type="xs:string"/>
+						<xs:element name="lokatie" type="xs:string"/>
+						<xs:element name="ligging" type="xs:string" minOccurs="0"/>
+						<xs:element name="installatienummer" type="xs:string"/>
+						<xs:element name="aantal_putten" type="xs:int"/>
+						<xs:element name="aquifer_code" type="xs:string"/>
+						<xs:element name="vergund_volume_dag" type="xs:decimal" minOccurs="0"/>
+						<xs:element name="vergund_volume_jaar" type="xs:decimal" minOccurs="0"/>
+						<xs:element name="volume_gewonnen" type="xs:decimal"/>
+						<xs:element name="aquifer_omschrijving" type="xs:string"/>
+						<xs:element name="opmerkingen" type="xs:string" minOccurs="0"/>
+						<xs:element name="putten" minOccurs="0">
+							<xs:complexType>
+								<xs:annotation>
+									<xs:documentation>algemene gegevens van de put</xs:documentation>
+								</xs:annotation>
+								<xs:sequence>
+									<xs:element name="put" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="putnummer" type="xs:string"/>
+												<xs:element name="diepte" type="xs:decimal"
+												minOccurs="0"/>
+												<xs:element name="opgepompte_hoeveelheid"
+												type="xs:decimal" minOccurs="0"/>
+												<xs:element name="meterstand_vorig_jaar"
+												type="xs:decimal" minOccurs="0"/>
+												<xs:element name="meterstand_huidig_jaar"
+												type="xs:decimal" minOccurs="0"/>
+												<xs:element name="datum_ijking" type="datumType"
+												minOccurs="0"/>
+												<xs:element name="datum_wegname" type="datumType"
+												minOccurs="0"/>
+												<xs:element name="opmerkingen" type="xs:string"/>
+												<!-- toegevoegd -->
+												<xs:element name="type" type="putType"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="waterverbruik" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="grondwater" type="waterverbruikGegevensType"
+										minOccurs="0"/>
+									<xs:element name="hemelwater" type="waterverbruikGegevensType"
+										minOccurs="0"/>
+									<xs:element name="oppervlaktewater_waterlopen"
+										type="waterverbruikGegevensType" minOccurs="0"/>
+									<xs:element name="oppervlaktewater_vijvers"
+										type="waterverbruikGegevensType" minOccurs="0"/>
+									<xs:element name="distributie_drinkwater"
+										type="waterverbruikGegevensType" minOccurs="0"/>
+									<xs:element name="distributie_industrieel"
+										type="waterverbruikGegevensType" minOccurs="0"/>
+									<xs:element name="ander" type="waterverbruikGegevensType"
+										minOccurs="0"/>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="grondwateranalyse" type="grondwateranalyseType"
+							minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="put" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:annotation>
+						<xs:documentation>detailgegevens van de put met de peilmetingen (bladzijde 2 van het formulier)
+                            en de grondwateranalyse resultaten (bladzijde 3 en 4 van het formulier)
+                        </xs:documentation>
+					</xs:annotation>
+					<xs:sequence>
+						<xs:element name="referte" type="referteType" minOccurs="0"/>
+						<xs:element name="id_filter_aminal" type="xs:string" minOccurs="0"/>
+						<xs:element name="putnummer_exploitant" type="xs:string" minOccurs="0"/>
+						<xs:element name="putnaam" type="xs:string"/>
+						<xs:element name="puttype" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>0=peilput, 1=pompput</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="diepte_put" type="xs:decimal" minOccurs="0"/>
+						<xs:element name="diepte_onderkant_filter" type="xs:decimal" minOccurs="0"/>
+						<xs:element name="lengte_filter" type="xs:decimal" minOccurs="0"/>
+						<xs:element name="nivellering" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>0=Ja,1=nee</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="referentie_meting" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>0=maaiveld,1= bovenkant peilbuis, 2=bovenkant beschermbuis, 3=ander
+                                    referentiepunt
+                                </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+									<xs:enumeration value="2"/>
+									<xs:enumeration value="3"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="referentie_meting_ander" type="xs:string" minOccurs="0"/>
+						<xs:element name="methode_peilmeting" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>0=peillint,1=elektronische meting,2=ander instrument
+                                </xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:byte">
+									<xs:enumeration value="0"/>
+									<xs:enumeration value="1"/>
+									<xs:enumeration value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="methode_peilmeting_ander" type="xs:string" minOccurs="0"/>
+						<xs:element name="peilmetingen" minOccurs="0">
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="peilmeting" maxOccurs="unbounded">
+										<xs:complexType>
+											<xs:sequence>
+												<xs:element name="datum" type="datumType"/>
+												<xs:element name="tijd" type="tijdType"
+												minOccurs="0"/>
+												<xs:element name="rust_diepte_grondwater"
+												type="xs:decimal" minOccurs="0"/>
+												<xs:element name="rust_tijd_pompenstil"
+												type="xs:string" minOccurs="0"/>
+												<xs:element name="werking_diepte" type="xs:decimal"
+												minOccurs="0"/>
+												<xs:element name="werking_debiet" type="xs:decimal"
+												minOccurs="0"/>
+												<xs:element name="tellerstand_debietmeter"
+												type="xs:decimal" minOccurs="0"/>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<!-- complexType geworden -->
+						<xs:element name="grondwateranalyse" type="grondwateranalyseType"
+							minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="waterverbruikGegevensType">
+		<xs:annotation>
+			<xs:documentation>deelformulier IV: gegevens betreffende het waterverbruik (blz 1)</xs:documentation>
+		</xs:annotation>
+		<xs:all minOccurs="0">
+			<xs:element name="hoeveelheid" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="drinkwater" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="proceswater" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="koelwater" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="spoelwater" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="sanitair" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="stoomproductie" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="landbouw_beregening" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="landbouw_hydrocultuur" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="landbouw_drinkwatervee" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="bodemsanering" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="andere" type="xs:decimal" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+	<xs:complexType name="analyseResultatenType">
+		<xs:annotation>
+			<xs:documentation>deelformulier IV: grondwateranalyseresultaten (blz 4)</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="meetwaarde" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="detectiecondities" type="xs:string"/>
+			<xs:element name="methode" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="grondwateranalyseType">
+		<xs:sequence>
+			<xs:element name="putnaam" type="xs:string"/>
+			<xs:element name="puttype">
+				<xs:annotation>
+					<xs:documentation>0=peilput;1=pompput;2=installatie, 3=deelinstallatie</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="monsternummer" type="xs:string"/>
+			<xs:element name="monstername_door" type="xs:string"/>
+			<xs:element name="datum_monstername" type="datumType" minOccurs="0"/>
+			<xs:element name="tijdstip_monstername" type="tijdType" minOccurs="0"/>
+			<xs:element name="veldanalyse" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>0=Ja;1=Nee</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="datum_veldanalyse" type="datumType" minOccurs="0"/>
+			<xs:element name="tijdstip_veldanalyse" type="tijdType" minOccurs="0"/>
+			<xs:element name="datum_laboanalyse" type="datumType" minOccurs="0"/>
+			<xs:element name="tijdstip_laboanalyse" type="tijdType" minOccurs="0"/>
+			<xs:element name="monstername_diepte" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="referentie" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        0=maaiveld;1=bovenkant peilbuis;2=bovenkant beschermbuis;3=ander
+                    </xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="referentie_ander" type="xs:string"/>
+			<xs:element name="type_pomp" type="xs:string"/>
+			<xs:element name="type_slangen" type="xs:string"/>
+			<xs:element name="techniek" type="xs:string"/>
+			<xs:element name="aanzuring">
+				<xs:annotation>
+					<xs:documentation>0=Ja; 1=nee</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:byte">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="temperatuur" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="statisch_grondwaterpeil" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="dynamisch_grondwaterpeil" type="xs:decimal" minOccurs="0"/>
+			<xs:element name="condities" type="xs:string"/>
+			<xs:element name="beschrijving_tappunt" type="xs:string"/>
+			<xs:element name="opmerkingen" type="xs:string"/>
+			<xs:element name="monsteranalyses" minOccurs="0">
+				<xs:complexType>
+					<xs:group ref="monsteranalyseGroup"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="datumType">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[0-3][0-9][/][0-1][0-9][/][0-2][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tijdType">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[0-2][0-9][:][0-5][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="jaarType">
+		<xs:restriction base="xs:token">
+			<xs:pattern value="[1-9][0-9][0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="referteType">
+		<xs:simpleContent>
+			<xs:extension base="xs:string">
+				<xs:attribute name="owner" type="ownerType"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:group name="monsteranalyseGroup">
+		<xs:all>
+			<xs:element name="fysico_temperatuur" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="fysico_geleidbaarheid" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="fysico_zuurtegraad" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="fysico_hardheid" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="fysico_zuurstof" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="fysico_tam" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="fysico_tap" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="anion_sulfaat" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="anion_nitriet" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="anion_nitraat" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="anion_chloride" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="anion_fosfaat" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="anion_carbonaat" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="anion_bicarbonaat" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="anion_hydroxide" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="anion_fluoride" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="kation_calcium" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="kation_kalium" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="kation_natrium" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="kation_magnesium" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="kation_ammonium" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="kation_mangaan" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="kation_ijzer_II" type="analyseResultatenType" minOccurs="0"/>
+			<xs:element name="kation_ijzer_III" type="analyseResultatenType" minOccurs="0"/>
+		</xs:all>
+	</xs:group>
+	<xs:complexType name="aanmaningMilieuVerslagType">
+		<xs:sequence>
+			<xs:element name="begeleidend" type="begeleidendAanmaningType"/>
+			<xs:element name="verstuurd" type="aangiftenAanmaningType"/>
+			<xs:element name="niet_ontvangen" type="aangiftenAanmaningType"/>
+			<xs:element name="ander_formaat" type="aangiftenAanmaningType"/>
+			<xs:element name="milieuverslagadres" type="adresType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="aanmaningMilieuVerslagGroepType">
+		<xs:sequence>
+			<xs:element name="begeleidend" type="begeleidendAanmaningType"/>
+			<xs:element name="milieuVerslagen" type="milieuVerslagenAanmaningType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="begeleidendAanmaningType">
+		<xs:sequence>
+			<xs:element name="verzendadres" type="adresType"/>
+			<xs:element name="login" type="xs:string"/>
+			<xs:element name="paswoord" type="xs:string"/>
+			<xs:element name="barcode" type="xs:string" minOccurs="0"/>
+			<xs:element name="chkanderformaat" type="xs:string" minOccurs="0"/>
+			<xs:element name="chkniettijdig" type="xs:string"/>
+			<xs:element name="chknietontvangen" type="xs:string"/>
+            <xs:element name="imjvJaar" type="xs:string"/>
+        </xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="aangiftenAanmaningType">
+		<xs:sequence>
+			<xs:element name="I" type="xs:string"/>
+			<xs:element name="II" type="xs:string"/>
+			<xs:element name="III" type="xs:string"/>
+			<xs:element name="IVA" type="xs:string"/>
+			<xs:element name="IVB" type="xs:string"/>
+			<xs:element name="VA" type="xs:string"/>
+			<xs:element name="VD" type="xs:string"/>
+			<xs:element name="VC" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="milieuVerslagenAanmaningType">
+		<xs:sequence>
+			<xs:element name="milieuVerslag" type="milieuVerslagAanmaningType" maxOccurs="unbounded"
+			/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="milieuVerslagAanmaningType">
+		<xs:sequence>
+			<xs:element name="cbbNummer" type="xs:string"/>
+			<xs:element name="samenstelling" type="xs:string"/>
+			<xs:element name="nietTijdigOntvangen" type="xs:string"/>
+			<xs:element name="nietOntvangen" type="xs:string"/>
+			<xs:element name="organisatieadres" type="adresType"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

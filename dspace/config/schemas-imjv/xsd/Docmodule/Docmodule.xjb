@@ -1,0 +1,1142 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="DocmoduleDataCodes.xsd">
+        <jxb:bindings node="//xs:simpleType[@name='doorzetEenheid']">
+            <jxb:typesafeEnumClass name="doorzetEenheid">
+                <jxb:typesafeEnumMember name="L" value="L"/>
+                <jxb:typesafeEnumMember name="M3" value="m3"/>
+                <jxb:typesafeEnumMember name="TON" value="ton"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:simpleType[@name='meetnormType']">
+            <jxb:typesafeEnumClass name="meetnormType">
+                <jxb:typesafeEnumMember name="ANDERE" value="Andere"/>
+                <jxb:typesafeEnumMember name="EN_1483_1997" value="EN 1483:1997"/>
+                <jxb:typesafeEnumMember name="EN_26595_1992" value="EN 26595/1992"/>
+                <jxb:typesafeEnumMember name="ISO_11423_1_1997" value="ISO 11423-1:1997"/>
+                <jxb:typesafeEnumMember name="ISO_11423_2_1997" value="ISO 11423-2:1997"/>
+                <jxb:typesafeEnumMember name="ISO_18857_1_2005" value="ISO 18857-1:2005"/>
+                <jxb:typesafeEnumMember name="ISO_22032_2006" value="ISO 22032:2006"/>
+                <jxb:typesafeEnumMember name="NEN_EN_12260_2003" value="NEN-EN 12260:2003"/>
+                <jxb:typesafeEnumMember name="NEN_EN_1233_1997" value="NEN-EN 1233:1997"/>
+                <jxb:typesafeEnumMember name="NEN_EN_12338_1998" value="NEN-EN 12338:1998"/>
+                <jxb:typesafeEnumMember name="NEN_EN_1484_1997" value="NEN-EN 1484:1997"/>
+                <jxb:typesafeEnumMember name="NEN_EN_I_13506_2001" value="NEN-EN I13506:2001"/>
+                <jxb:typesafeEnumMember name="ISO_10301_1997" value="ISO 10301:1997"/>
+                <jxb:typesafeEnumMember name="ISO_10304_1_1995" value="ISO 10304-1:1995"/>
+                <jxb:typesafeEnumMember name="ISO_10304_2_1996" value="ISO 10304-2:1996"/>
+                <jxb:typesafeEnumMember name="ISO_10304_4_1999" value="ISO 10304-4:1999"/>
+                <jxb:typesafeEnumMember name="ISO_10695_2000" value="ISO 10695:2000"/>
+                <jxb:typesafeEnumMember name="ISO_11369_1997" value="ISO 11369:1997"/>
+                <jxb:typesafeEnumMember name="ISO_11885_1998" value="ISO 11885:1998"/>
+                <jxb:typesafeEnumMember name="ISO_11885_1998S" value="ISO 11885: 1998"/>
+                <jxb:typesafeEnumMember name="ISO_11905_1_1998" value="ISO 11905-1:1998"/>
+                <jxb:typesafeEnumMember name="ISO_11969_1997" value="ISO 11969:1997"/>
+                <jxb:typesafeEnumMember name="ISO_14403_2002" value="ISO 14403:2002"/>
+                <jxb:typesafeEnumMember name="ISO_15680_2003" value="ISO 15680:2003"/>
+                <jxb:typesafeEnumMember name="ISO_15681_1_2005" value="ISO 15681-1:2005"/>
+                <jxb:typesafeEnumMember name="ISO_15681_2_2005" value="ISO 15681-2:2005"/>
+                <jxb:typesafeEnumMember name="ISO_15682_2001" value="ISO 15682:2001"/>
+                <jxb:typesafeEnumMember name="ISO_17353_2005" value="ISO 17353:2005"/>
+                <jxb:typesafeEnumMember name="ISO_17993_2004" value="ISO 17993:2004"/>
+                <jxb:typesafeEnumMember name="ISO_18856_2005" value="ISO 18856:2005"/>
+                <jxb:typesafeEnumMember name="ISO_5961_1995" value="ISO 5961:1995"/>
+                <jxb:typesafeEnumMember name="ISO_6468_1997" value="ISO 6468:1997"/>
+                <jxb:typesafeEnumMember name="ISO_6878_2004" value="ISO 6878:2004"/>
+                <jxb:typesafeEnumMember name="ISO_7981_1_2005" value="ISO 7981-1:2005"/>
+                <jxb:typesafeEnumMember name="ISO_7981_2_2005" value="ISO 7981-2:2005"/>
+                <jxb:typesafeEnumMember name="ISO_9562_2004" value="ISO 9562:2004"/>
+                <jxb:typesafeEnumMember name="ISO_18073_2004" value="ISO 18073:2004"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_B_1" value="CMA/2/I/B.1"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_B_2" value="CMA/2/I/B.2"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_B_3" value="CMA/2/I/B.3"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_B_5" value="CMA/2/I/B.5"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_B_8" value="CMA/2/I/B.8"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_1_1" value="CMA/2/I/C.1.1"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_1_2" value="CMA/2/I/C.1.2"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_2_1" value="CMA/2/I/C.2.1"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_2_2" value="CMA/2/I/C.2.2"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_2_3" value="CMA/2/I/C.2.3"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_3" value="CMA/2/I/C.3"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_5" value="CMA/2/I/C.5"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_C_7" value="CMA/2/I/C.7"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_D_6" value="CMA/2/I/D.6"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_D_7" value="CMA/2/I/D.7"/>
+                <jxb:typesafeEnumMember name="CMA_2_I_D_8" value="CMA/2/I/D.8"/>
+                <jxb:typesafeEnumMember name="CMA_3_B" value="CMA/3/B"/>
+                <jxb:typesafeEnumMember name="CMA_3_E" value="CMA/3/E"/>
+                <jxb:typesafeEnumMember name="CMA_3_H" value="CMA/3/H"/>
+                <jxb:typesafeEnumMember name="CMA_3_I" value="CMA/3/I"/>
+                <jxb:typesafeEnumMember name="CMA_3_K" value="CMA/3/K"/>
+                <jxb:typesafeEnumMember name="CMA_3_S" value="CMA/3/S"/>
+                <jxb:typesafeEnumMember name="ISO_10304_1_2007" value="ISO 10304-1:2007"/>
+                <jxb:typesafeEnumMember name="ISO_10359_1_1992" value="ISO 10359-1:1992"/>
+                <jxb:typesafeEnumMember name="ISO_10359_2_1994" value="ISO 10359-2:1994"/>
+                <jxb:typesafeEnumMember name="ISO_10530_1992" value="ISO 10530:1992"/>
+                <jxb:typesafeEnumMember name="ISO_11083_1994" value="ISO 11083:1994"/>
+                <jxb:typesafeEnumMember name="ISO_11885_2007" value="ISO 11885:2007"/>
+                <jxb:typesafeEnumMember name="ISO_11905_1_1997" value="ISO 11905-1:1997"/>
+                <jxb:typesafeEnumMember name="ISO_11923_1997" value="ISO 11923:1997"/>
+                <jxb:typesafeEnumMember name="ISO_11969_1996" value="ISO 11969:1996"/>
+                <jxb:typesafeEnumMember name="ISO_13358_1997" value="ISO 13358:1997"/>
+                <jxb:typesafeEnumMember name="ISO_13395_1996" value="ISO 13395:1996"/>
+                <jxb:typesafeEnumMember name="ISO_14402_1999" value="ISO 14402:1999"/>
+                <jxb:typesafeEnumMember name="ISO_15586_2003" value="ISO 15586:2003"/>
+                <jxb:typesafeEnumMember name="ISO_15681_1_2003" value="ISO 15681-1:2003"/>
+                <jxb:typesafeEnumMember name="ISO_15681_2_2003" value="ISO 15681-2:2003"/>
+                <jxb:typesafeEnumMember name="ISO_15682_2000" value="ISO 15682:2000"/>
+                <jxb:typesafeEnumMember name="ISO_15705_2002" value="ISO 15705:2002"/>
+                <jxb:typesafeEnumMember name="ISO_16590_2000" value="ISO 16590:2000"/>
+                <jxb:typesafeEnumMember name="ISO_17294_2_2003" value="ISO 17294-2:2003"/>
+                <jxb:typesafeEnumMember name="ISO_17353_2004" value="ISO 17353:2004"/>
+                <jxb:typesafeEnumMember name="ISO_17852_2006" value="ISO 17852:2006"/>
+                <jxb:typesafeEnumMember name="ISO_17858_2007" value="ISO 17858:2007"/>
+                <jxb:typesafeEnumMember name="ISO_17993_2002" value="ISO 17993:2002"/>
+                <jxb:typesafeEnumMember name="ISO_18412_2005" value="ISO 18412:2005"/>
+                <jxb:typesafeEnumMember name="ISO_18856_2004" value="ISO 18856:2004"/>
+                <jxb:typesafeEnumMember name="ISO_18857_2_2009" value="ISO 18857-2:2009"/>
+                <jxb:typesafeEnumMember name="ISO_23913_2006" value="ISO 23913:2006"/>
+                <jxb:typesafeEnumMember name="ISO_24293_2009" value="ISO 24293:2009"/>
+                <jxb:typesafeEnumMember name="ISO_5663_1984" value="ISO 5663:1984"/>
+                <jxb:typesafeEnumMember name="ISO_5666_1999" value="ISO 5666:1999"/>
+                <jxb:typesafeEnumMember name="ISO_5815_1_2003" value="ISO 5815-1:2003"/>
+                <jxb:typesafeEnumMember name="ISO_5815_2_2003" value="ISO 5815-2:2003"/>
+                <jxb:typesafeEnumMember name="ISO_5961_1994" value="ISO 5961:1994"/>
+                <jxb:typesafeEnumMember name="ISO_6060_1989" value="ISO 6060:1989"/>
+                <jxb:typesafeEnumMember name="ISO_6439_1990" value="ISO 6439:1990"/>
+                <jxb:typesafeEnumMember name="ISO_6468_1996" value="ISO 6468:1996"/>
+                <jxb:typesafeEnumMember name="ISO_6703_1_1984" value="ISO 6703:1:1984"/>
+                <jxb:typesafeEnumMember name="ISO_7393_1_1985" value="ISO 7393-1:1985"/>
+                <jxb:typesafeEnumMember name="ISO_7393_2_1985" value="ISO 7393-2:1985"/>
+                <jxb:typesafeEnumMember name="ISO_7393_3_1990" value="ISO 7393-3:1990"/>
+                <jxb:typesafeEnumMember name="ISO_8165_1_1992" value="ISO 8165-1:1992"/>
+                <jxb:typesafeEnumMember name="ISO_8165_2_1999" value="ISO 8165-2:1999"/>
+                <jxb:typesafeEnumMember name="ISO_8245_1999" value="ISO 8245:1999"/>
+                <jxb:typesafeEnumMember name="ISO_8288_1986" value="ISO 8288:1986"/>
+                <jxb:typesafeEnumMember name="ISO_9174_1998" value="ISO 9174:1998"/>
+                <jxb:typesafeEnumMember name="ISO_9297_1989" value="ISO 9297:1989"/>
+                <jxb:typesafeEnumMember name="ISO_9965_1993" value="ISO 9965:1993"/>
+                <jxb:typesafeEnumMember name="ISO_CD_12010" value="ISO/CD 12010"/>
+                <jxb:typesafeEnumMember name="ISO_CD_12846" value="ISO/CD 12846"/>
+                <jxb:typesafeEnumMember name="ISO_DIS_14403_1" value="ISO/DIS 14403-1"/>
+                <jxb:typesafeEnumMember name="ISO_DIS_14403_2" value="ISO/DIS 14403-2"/>
+                <jxb:typesafeEnumMember name="ISO_DIS_28540" value="ISO/DIS 28540"/>
+                <jxb:typesafeEnumMember name="ISO_DIS_29441" value="ISO/DIS 29441"/>
+                <jxb:typesafeEnumMember name="ISO_TR_11905_2_1997" value="ISO/TR 11905-2:1997"/>
+                <jxb:typesafeEnumMember name="WAC_III_B" value="WAC/III/B"/>
+                <jxb:typesafeEnumMember name="WAC_III_B_010" value="WAC/III/B/010"/>
+                <jxb:typesafeEnumMember name="WAC_III_B_012" value="WAC/III/B/012"/>
+                <jxb:typesafeEnumMember name="WAC_III_B_014" value="WAC/III/B/014"/>
+                <jxb:typesafeEnumMember name="WAC_III_C" value="WAC/III/C"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_001" value="WAC/III/C/001"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_020" value="WAC/III/C/020"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_022" value="WAC/III/C/022"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_030" value="WAC/III/C/030"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_040" value="WAC/III/C/040"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_041" value="WAC/III/C/041"/>
+                <jxb:typesafeEnumMember name="WAC_III_C_050" value="WAC/III/C/050"/>
+                <jxb:typesafeEnumMember name="WAC_III_D" value="WAC/III/D"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_001" value="WAC/III/D/001"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_002" value="WAC/III/D/002"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_010" value="WAC/III/D/010"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_020" value="WAC/III/D/020"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_030" value="WAC/III/D/030"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_032" value="WAC/III/D/032"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_036" value="WAC/III/D/036"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_037" value="WAC/III/D/037"/>
+                <jxb:typesafeEnumMember name="WAC_III_D_050" value="WAC/III/D/050"/>
+                <jxb:typesafeEnumMember name="WAC_IV_A_001" value="WAC/IV/A/001"/>
+                <jxb:typesafeEnumMember name="WAC_IV_A_002" value="WAC/IV/A/002"/>
+                <jxb:typesafeEnumMember name="WAC_IV_A_010" value="WAC/IV/A/010"/>
+                <jxb:typesafeEnumMember name="WAC_IV_A_015" value="WAC/IV/A/015"/>
+                <jxb:typesafeEnumMember name="WAC_IV_A_016" value="WAC/IV/A/016"/>
+                <jxb:typesafeEnumMember name="WAC_IV_B_011" value="WAC/IV/B/011"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:simpleType[@name='nosePCodeType']">
+            <jxb:typesafeEnumClass name="nosePCodeType">
+                <jxb:typesafeEnumMember name="NOSE_101_" value="101."/>
+                <jxb:typesafeEnumMember name="NOSE_101_01" value="101.01"/>
+                <jxb:typesafeEnumMember name="NOSE_101_02" value="101.02"/>
+                <jxb:typesafeEnumMember name="NOSE_101_03" value="101.03"/>
+                <jxb:typesafeEnumMember name="NOSE_101_04" value="101.04"/>
+                <jxb:typesafeEnumMember name="NOSE_101_05" value="101.05"/>
+                <jxb:typesafeEnumMember name="NOSE_101_07" value="101.07"/>
+                <jxb:typesafeEnumMember name="NOSE_104_" value="104."/>
+                <jxb:typesafeEnumMember name="NOSE_104_01" value="104.01"/>
+                <jxb:typesafeEnumMember name="NOSE_104_01_01" value="104.01.01"/>
+                <jxb:typesafeEnumMember name="NOSE_104_01_02" value="104.01.02"/>
+                <jxb:typesafeEnumMember name="NOSE_104_01_03" value="104.01.03"/>
+                <jxb:typesafeEnumMember name="NOSE_104_04" value="104.04"/>
+                <jxb:typesafeEnumMember name="NOSE_104_05" value="104.05"/>
+                <jxb:typesafeEnumMember name="NOSE_104_06" value="104.06"/>
+                <jxb:typesafeEnumMember name="NOSE_104_07" value="104.07"/>
+                <jxb:typesafeEnumMember name="NOSE_104_07_01" value="104.07.01"/>
+                <jxb:typesafeEnumMember name="NOSE_104_08" value="104.08"/>
+                <jxb:typesafeEnumMember name="NOSE_104_08_01" value="104.08.01"/>
+                <jxb:typesafeEnumMember name="NOSE_104_08_02" value="104.08.02"/>
+                <jxb:typesafeEnumMember name="NOSE_104_08_03" value="104.08.03"/>
+                <jxb:typesafeEnumMember name="NOSE_104_08_04" value="104.08.04"/>
+                <jxb:typesafeEnumMember name="NOSE_104_08_05" value="104.08.05"/>
+                <jxb:typesafeEnumMember name="NOSE_104_08_06" value="104.08.06"/>
+                <jxb:typesafeEnumMember name="NOSE_104_09" value="104.09"/>
+                <jxb:typesafeEnumMember name="NOSE_104_09_01" value="104.09.01"/>
+                <jxb:typesafeEnumMember name="NOSE_104_10" value="104.10"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11" value="104.11"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11_01" value="104.11.01"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11_02" value="104.11.02"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11_04" value="104.11.04"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11_05" value="104.11.05"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11_06" value="104.11.06"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11_07" value="104.11.07"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11_08" value="104.11.08"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11_09" value="104.11.09"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11_10" value="104.11.10"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11_11" value="104.11.11"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12" value="104.12"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_01" value="104.12.01"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_02" value="104.12.02"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_03" value="104.12.03"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_04" value="104.12.04"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_05" value="104.12.05"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_06" value="104.12.06"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_07" value="104.12.07"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_08" value="104.12.08"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_09" value="104.12.09"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_10" value="104.12.10"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_11" value="104.12.11"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_12" value="104.12.12"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_13" value="104.12.13"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_14" value="104.12.14"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_15" value="104.12.15"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_16" value="104.12.16"/>
+                <jxb:typesafeEnumMember name="NOSE_104_12_17" value="104.12.17"/>
+                <jxb:typesafeEnumMember name="NOSE_104_13" value="104.13"/>
+                <jxb:typesafeEnumMember name="NOSE_104_14" value="104.14"/>
+                <jxb:typesafeEnumMember name="NOSE_104_15" value="104.15"/>
+                <jxb:typesafeEnumMember name="NOSE_104_16" value="104.16"/>
+                <jxb:typesafeEnumMember name="NOSE_105_" value="105."/>
+                <jxb:typesafeEnumMember name="NOSE_105_01" value="105.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_01" value="105.01.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_02" value="105.01.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_03" value="105.01.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_04" value="105.01.04"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_05" value="105.01.05"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_06" value="105.01.06"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_07" value="105.01.07"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_08" value="105.01.08"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_20" value="105.01.20"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_21" value="105.01.21"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_22" value="105.01.22"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_31" value="105.01.31"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_42" value="105.01.42"/>
+                <jxb:typesafeEnumMember name="NOSE_105_02" value="105.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_02_01" value="105.02.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_02_02" value="105.02.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_02_03" value="105.02.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_02_04" value="105.02.04"/>
+                <jxb:typesafeEnumMember name="NOSE_105_02_05" value="105.02.05"/>
+                <jxb:typesafeEnumMember name="NOSE_105_02_06" value="105.02.06"/>
+                <jxb:typesafeEnumMember name="NOSE_105_02_07" value="105.02.07"/>
+                <jxb:typesafeEnumMember name="NOSE_105_02_08" value="105.02.08"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03" value="105.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_01" value="105.03.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_02" value="105.03.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_03" value="105.03.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_04" value="105.03.04"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_05" value="105.03.05"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_06" value="105.03.06"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_10" value="105.03.10"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_11" value="105.03.11"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_12" value="105.03.12"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_13" value="105.03.13"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_14" value="105.03.14"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_15" value="105.03.15"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_21" value="105.03.21"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_22" value="105.03.22"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_23" value="105.03.23"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_24" value="105.03.24"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_31" value="105.03.31"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_33" value="105.03.33"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_34" value="105.03.34"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_35" value="105.03.35"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_39" value="105.03.39"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_41" value="105.03.41"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_42" value="105.03.42"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_43" value="105.03.43"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_44" value="105.03.44"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_45" value="105.03.45"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_46" value="105.03.46"/>
+                <jxb:typesafeEnumMember name="NOSE_105_03_51" value="105.03.51"/>
+                <jxb:typesafeEnumMember name="NOSE_105_04" value="105.04"/>
+                <jxb:typesafeEnumMember name="NOSE_105_04_01" value="105.04.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_04_02" value="105.04.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_04_03" value="105.04.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_04_04" value="105.04.04"/>
+                <jxb:typesafeEnumMember name="NOSE_105_04_05" value="105.04.05"/>
+                <jxb:typesafeEnumMember name="NOSE_105_04_06" value="105.04.06"/>
+                <jxb:typesafeEnumMember name="NOSE_105_04_07" value="105.04.07"/>
+                <jxb:typesafeEnumMember name="NOSE_105_04_08" value="105.04.08"/>
+                <jxb:typesafeEnumMember name="NOSE_105_04_09" value="105.04.09"/>
+                <jxb:typesafeEnumMember name="NOSE_105_05" value="105.05"/>
+                <jxb:typesafeEnumMember name="NOSE_105_05_01" value="105.05.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_05_02" value="105.05.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_05_03" value="105.05.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_05_05" value="105.05.05"/>
+                <jxb:typesafeEnumMember name="NOSE_105_05_08" value="105.05.08"/>
+                <jxb:typesafeEnumMember name="NOSE_105_05_09" value="105.05.09"/>
+                <jxb:typesafeEnumMember name="NOSE_105_06" value="105.06"/>
+                <jxb:typesafeEnumMember name="NOSE_105_06_01" value="105.06.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_06_02" value="105.06.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_06_03" value="105.06.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_06_04" value="105.06.04"/>
+                <jxb:typesafeEnumMember name="NOSE_105_06_05" value="105.06.05"/>
+                <jxb:typesafeEnumMember name="NOSE_105_06_09" value="105.06.09"/>
+                <jxb:typesafeEnumMember name="NOSE_105_07" value="105.07"/>
+                <jxb:typesafeEnumMember name="NOSE_105_07_01" value="105.07.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_07_02" value="105.07.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_07_03" value="105.07.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_07_07" value="105.07.07"/>
+                <jxb:typesafeEnumMember name="NOSE_105_07_08" value="105.07.08"/>
+                <jxb:typesafeEnumMember name="NOSE_105_07_11" value="105.07.11"/>
+                <jxb:typesafeEnumMember name="NOSE_105_07_12" value="105.07.12"/>
+                <jxb:typesafeEnumMember name="NOSE_105_07_21" value="105.07.21"/>
+                <jxb:typesafeEnumMember name="NOSE_105_08" value="105.08"/>
+                <jxb:typesafeEnumMember name="NOSE_105_08_01" value="105.08.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_08_02" value="105.08.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_08_03" value="105.08.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_08_04" value="105.08.04"/>
+                <jxb:typesafeEnumMember name="NOSE_105_08_05" value="105.08.05"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09" value="105.09"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_01" value="105.09.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_02" value="105.09.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_03" value="105.09.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_04" value="105.09.04"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_05" value="105.09.05"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_06" value="105.09.06"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_09" value="105.09.09"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_10" value="105.09.10"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_11" value="105.09.11"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_12" value="105.09.12"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_13" value="105.09.13"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_15" value="105.09.15"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_16" value="105.09.16"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_17" value="105.09.17"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_19" value="105.09.19"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_21" value="105.09.21"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_22" value="105.09.22"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_23" value="105.09.23"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_24" value="105.09.24"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_25" value="105.09.25"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_26" value="105.09.26"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_27" value="105.09.27"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_29" value="105.09.29"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_31" value="105.09.31"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_32" value="105.09.32"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_33" value="105.09.33"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_35" value="105.09.35"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_36" value="105.09.36"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_39" value="105.09.39"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_41" value="105.09.41"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_42" value="105.09.42"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_43" value="105.09.43"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_44" value="105.09.44"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_45" value="105.09.45"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_47" value="105.09.47"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_48" value="105.09.48"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_49" value="105.09.49"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_50" value="105.09.50"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_51" value="105.09.51"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_52" value="105.09.52"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_53" value="105.09.53"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_54" value="105.09.54"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_55" value="105.09.55"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_56" value="105.09.56"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_57" value="105.09.57"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_58" value="105.09.58"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_59" value="105.09.59"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_60" value="105.09.60"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_61" value="105.09.61"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_62" value="105.09.62"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_63" value="105.09.63"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_64" value="105.09.64"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_65" value="105.09.65"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_66" value="105.09.66"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_67" value="105.09.67"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_68" value="105.09.68"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_69" value="105.09.69"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_70" value="105.09.70"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_71" value="105.09.71"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_72" value="105.09.72"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_73" value="105.09.73"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_74" value="105.09.74"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_75" value="105.09.75"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_76" value="105.09.76"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_77" value="105.09.77"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_79" value="105.09.79"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_80" value="105.09.80"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_81" value="105.09.81"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_82" value="105.09.82"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_83" value="105.09.83"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_84" value="105.09.84"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_85" value="105.09.85"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_86" value="105.09.86"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_87" value="105.09.87"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_88" value="105.09.88"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_89" value="105.09.89"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_90" value="105.09.90"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_91" value="105.09.91"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_92" value="105.09.92"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_93" value="105.09.93"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_94" value="105.09.94"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_95" value="105.09.95"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_96" value="105.09.96"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_97" value="105.09.97"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_98" value="105.09.98"/>
+                <jxb:typesafeEnumMember name="NOSE_105_09_99" value="105.09.99"/>
+                <jxb:typesafeEnumMember name="NOSE_105_10" value="105.10"/>
+                <jxb:typesafeEnumMember name="NOSE_105_10_01" value="105.10.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_10_11" value="105.10.11"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11" value="105.11"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_21" value="105.11.21"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_22" value="105.11.22"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_23" value="105.11.23"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_25" value="105.11.25"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_26" value="105.11.26"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_31" value="105.11.31"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_32" value="105.11.32"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_35" value="105.11.35"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_36" value="105.11.36"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_41" value="105.11.41"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_51" value="105.11.51"/>
+                <jxb:typesafeEnumMember name="NOSE_105_11_61" value="105.11.61"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12" value="105.12"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_01" value="105.12.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_02" value="105.12.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_03" value="105.12.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_04" value="105.12.04"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_05" value="105.12.05"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_06" value="105.12.06"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_07" value="105.12.07"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_08" value="105.12.08"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_09" value="105.12.09"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_11" value="105.12.11"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_12" value="105.12.12"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_13" value="105.12.13"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_18" value="105.12.18"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_19" value="105.12.19"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_21" value="105.12.21"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_22" value="105.12.22"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_23" value="105.12.23"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_24" value="105.12.24"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_25" value="105.12.25"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_26" value="105.12.26"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_27" value="105.12.27"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_28" value="105.12.28"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_41" value="105.12.41"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_42" value="105.12.42"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_45" value="105.12.45"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_51" value="105.12.51"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_59" value="105.12.59"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_61" value="105.12.61"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_71" value="105.12.71"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_75" value="105.12.75"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_76" value="105.12.76"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_81" value="105.12.81"/>
+                <jxb:typesafeEnumMember name="NOSE_105_12_91" value="105.12.91"/>
+                <jxb:typesafeEnumMember name="NOSE_105_13" value="105.13"/>
+                <jxb:typesafeEnumMember name="NOSE_105_13_01" value="105.13.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_13_05" value="105.13.05"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14" value="105.14"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_01" value="105.14.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_11" value="105.14.11"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_12" value="105.14.12"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_13" value="105.14.13"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_14" value="105.14.14"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_15" value="105.14.15"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_16" value="105.14.16"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_17" value="105.14.17"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_21" value="105.14.21"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_25" value="105.14.25"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_26" value="105.14.26"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_27" value="105.14.27"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_28" value="105.14.28"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_31" value="105.14.31"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_41" value="105.14.41"/>
+                <jxb:typesafeEnumMember name="NOSE_105_14_51" value="105.14.51"/>
+                <jxb:typesafeEnumMember name="NOSE_105_15" value="105.15"/>
+                <jxb:typesafeEnumMember name="NOSE_105_15_01" value="105.15.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_15_02" value="105.15.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_15_11" value="105.15.11"/>
+                <jxb:typesafeEnumMember name="NOSE_105_15_21" value="105.15.21"/>
+                <jxb:typesafeEnumMember name="NOSE_105_15_22" value="105.15.22"/>
+                <jxb:typesafeEnumMember name="NOSE_105_16" value="105.16"/>
+                <jxb:typesafeEnumMember name="NOSE_105_16_01" value="105.16.01"/>
+                <jxb:typesafeEnumMember name="NOSE_105_16_02" value="105.16.02"/>
+                <jxb:typesafeEnumMember name="NOSE_105_16_03" value="105.16.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_16_11" value="105.16.11"/>
+                <jxb:typesafeEnumMember name="NOSE_105_16_12" value="105.16.12"/>
+                <jxb:typesafeEnumMember name="NOSE_105_16_13" value="105.16.13"/>
+                <jxb:typesafeEnumMember name="NOSE_105_16_17" value="105.16.17"/>
+                <jxb:typesafeEnumMember name="NOSE_105_16_21" value="105.16.21"/>
+                <jxb:typesafeEnumMember name="NOSE_105_16_31" value="105.16.31"/>
+                <jxb:typesafeEnumMember name="NOSE_106_" value="106."/>
+                <jxb:typesafeEnumMember name="NOSE_106_01" value="106.01"/>
+                <jxb:typesafeEnumMember name="NOSE_106_01_01" value="106.01.01"/>
+                <jxb:typesafeEnumMember name="NOSE_106_01_02" value="106.01.02"/>
+                <jxb:typesafeEnumMember name="NOSE_106_01_03" value="106.01.03"/>
+                <jxb:typesafeEnumMember name="NOSE_106_01_04" value="106.01.04"/>
+                <jxb:typesafeEnumMember name="NOSE_106_01_05" value="106.01.05"/>
+                <jxb:typesafeEnumMember name="NOSE_106_01_06" value="106.01.06"/>
+                <jxb:typesafeEnumMember name="NOSE_106_01_07" value="106.01.07"/>
+                <jxb:typesafeEnumMember name="NOSE_106_01_08" value="106.01.08"/>
+                <jxb:typesafeEnumMember name="NOSE_106_02" value="106.02"/>
+                <jxb:typesafeEnumMember name="NOSE_106_02_01" value="106.02.01"/>
+                <jxb:typesafeEnumMember name="NOSE_106_02_02" value="106.02.02"/>
+                <jxb:typesafeEnumMember name="NOSE_106_02_03" value="106.02.03"/>
+                <jxb:typesafeEnumMember name="NOSE_106_03" value="106.03"/>
+                <jxb:typesafeEnumMember name="NOSE_106_03_01" value="106.03.01"/>
+                <jxb:typesafeEnumMember name="NOSE_106_03_02" value="106.03.02"/>
+                <jxb:typesafeEnumMember name="NOSE_106_03_03" value="106.03.03"/>
+                <jxb:typesafeEnumMember name="NOSE_106_03_04" value="106.03.04"/>
+                <jxb:typesafeEnumMember name="NOSE_106_03_05" value="106.03.05"/>
+                <jxb:typesafeEnumMember name="NOSE_106_03_06" value="106.03.06"/>
+                <jxb:typesafeEnumMember name="NOSE_106_04" value="106.04"/>
+                <jxb:typesafeEnumMember name="NOSE_106_04_01" value="106.04.01"/>
+                <jxb:typesafeEnumMember name="NOSE_106_04_02" value="106.04.02"/>
+                <jxb:typesafeEnumMember name="NOSE_106_05" value="106.05"/>
+                <jxb:typesafeEnumMember name="NOSE_106_05_01" value="106.05.01"/>
+                <jxb:typesafeEnumMember name="NOSE_106_05_02" value="106.05.02"/>
+                <jxb:typesafeEnumMember name="NOSE_106_05_03" value="106.05.03"/>
+                <jxb:typesafeEnumMember name="NOSE_106_06" value="106.06"/>
+                <jxb:typesafeEnumMember name="NOSE_106_06_01" value="106.06.01"/>
+                <jxb:typesafeEnumMember name="NOSE_106_06_02" value="106.06.02"/>
+                <jxb:typesafeEnumMember name="NOSE_106_07" value="106.07"/>
+                <jxb:typesafeEnumMember name="NOSE_107_" value="107."/>
+                <jxb:typesafeEnumMember name="NOSE_107_01" value="107.01"/>
+                <jxb:typesafeEnumMember name="NOSE_107_01_01" value="107.01.01"/>
+                <jxb:typesafeEnumMember name="NOSE_107_01_02" value="107.01.02"/>
+                <jxb:typesafeEnumMember name="NOSE_107_01_03" value="107.01.03"/>
+                <jxb:typesafeEnumMember name="NOSE_107_01_04" value="107.01.04"/>
+                <jxb:typesafeEnumMember name="NOSE_107_01_05" value="107.01.05"/>
+                <jxb:typesafeEnumMember name="NOSE_107_01_06" value="107.01.06"/>
+                <jxb:typesafeEnumMember name="NOSE_107_01_07" value="107.01.07"/>
+                <jxb:typesafeEnumMember name="NOSE_107_01_08" value="107.01.08"/>
+                <jxb:typesafeEnumMember name="NOSE_107_01_09" value="107.01.09"/>
+                <jxb:typesafeEnumMember name="NOSE_107_02" value="107.02"/>
+                <jxb:typesafeEnumMember name="NOSE_107_02_01" value="107.02.01"/>
+                <jxb:typesafeEnumMember name="NOSE_107_02_02" value="107.02.02"/>
+                <jxb:typesafeEnumMember name="NOSE_107_02_03" value="107.02.03"/>
+                <jxb:typesafeEnumMember name="NOSE_107_02_04" value="107.02.04"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03" value="107.03"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_01" value="107.03.01"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_02" value="107.03.02"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_03" value="107.03.03"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_04" value="107.03.04"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_05" value="107.03.05"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_06" value="107.03.06"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_07" value="107.03.07"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_08" value="107.03.08"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_09" value="107.03.09"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_10" value="107.03.10"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_11" value="107.03.11"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_13" value="107.03.13"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_14" value="107.03.14"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_15" value="107.03.15"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_19" value="107.03.19"/>
+                <jxb:typesafeEnumMember name="NOSE_107_03_16" value="107.03.16"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04" value="107.04"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_01" value="107.04.01"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_02" value="107.04.02"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_03" value="107.04.03"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_04" value="107.04.04"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_05" value="107.04.05"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_06" value="107.04.06"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_07" value="107.04.07"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_08" value="107.04.08"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_09" value="107.04.09"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_11" value="107.04.11"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_12" value="107.04.12"/>
+                <jxb:typesafeEnumMember name="NOSE_107_04_13" value="107.04.13"/>
+                <jxb:typesafeEnumMember name="NOSE_107_05" value="107.05"/>
+                <jxb:typesafeEnumMember name="NOSE_107_05_01" value="107.05.01"/>
+                <jxb:typesafeEnumMember name="NOSE_107_05_02" value="107.05.02"/>
+                <jxb:typesafeEnumMember name="NOSE_107_05_03" value="107.05.03"/>
+                <jxb:typesafeEnumMember name="NOSE_107_05_04" value="107.05.04"/>
+                <jxb:typesafeEnumMember name="NOSE_107_05_05" value="107.05.05"/>
+                <jxb:typesafeEnumMember name="NOSE_107_05_06" value="107.05.06"/>
+                <jxb:typesafeEnumMember name="NOSE_107_05_07" value="107.05.07"/>
+                <jxb:typesafeEnumMember name="NOSE_107_05_08" value="107.05.08"/>
+                <jxb:typesafeEnumMember name="NOSE_107_05_09" value="107.05.09"/>
+                <jxb:typesafeEnumMember name="NOSE_107_06" value="107.06"/>
+                <jxb:typesafeEnumMember name="NOSE_108_" value="108."/>
+                <jxb:typesafeEnumMember name="NOSE_108_01" value="108.01"/>
+                <jxb:typesafeEnumMember name="NOSE_108_02" value="108.02"/>
+                <jxb:typesafeEnumMember name="NOSE_108_03" value="108.03"/>
+                <jxb:typesafeEnumMember name="NOSE_108_04" value="108.04"/>
+                <jxb:typesafeEnumMember name="NOSE_108_05" value="108.05"/>
+                <jxb:typesafeEnumMember name="NOSE_108_06" value="108.06"/>
+                <jxb:typesafeEnumMember name="NOSE_108_07" value="108.07"/>
+                <jxb:typesafeEnumMember name="NOSE_109_" value="109."/>
+                <jxb:typesafeEnumMember name="NOSE_109_01" value="109.01"/>
+                <jxb:typesafeEnumMember name="NOSE_109_01_01" value="109.01.01"/>
+                <jxb:typesafeEnumMember name="NOSE_109_01_02" value="109.01.02"/>
+                <jxb:typesafeEnumMember name="NOSE_109_01_03" value="109.01.03"/>
+                <jxb:typesafeEnumMember name="NOSE_109_01_11" value="109.01.11"/>
+                <jxb:typesafeEnumMember name="NOSE_109_01_12" value="109.01.12"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02" value="109.02"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_01" value="109.02.01"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_02" value="109.02.02"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_03" value="109.02.03"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_04" value="109.02.04"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_09" value="109.02.09"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_10" value="109.02.10"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_19" value="109.02.19"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_20" value="109.02.20"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_29" value="109.02.29"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_30" value="109.02.30"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_31" value="109.02.31"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_32" value="109.02.32"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_41" value="109.02.41"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_42" value="109.02.42"/>
+                <jxb:typesafeEnumMember name="NOSE_109_02_43" value="109.02.43"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03" value="109.03"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03_01" value="109.03.01"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03_02" value="109.03.02"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03_03" value="109.03.03"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03_04" value="109.03.04"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03_05" value="109.03.05"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03_06" value="109.03.06"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03_11" value="109.03.11"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03_12" value="109.03.12"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03_13" value="109.03.13"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03_14" value="109.03.14"/>
+                <jxb:typesafeEnumMember name="NOSE_109_03_21" value="109.03.21"/>
+                <jxb:typesafeEnumMember name="NOSE_109_04" value="109.04"/>
+                <jxb:typesafeEnumMember name="NOSE_109_05" value="109.05"/>
+                <jxb:typesafeEnumMember name="NOSE_109_05_01" value="109.05.01"/>
+                <jxb:typesafeEnumMember name="NOSE_109_05_02" value="109.05.02"/>
+                <jxb:typesafeEnumMember name="NOSE_109_06" value="109.06"/>
+                <jxb:typesafeEnumMember name="NOSE_109_06_11" value="109.06.11"/>
+                <jxb:typesafeEnumMember name="NOSE_109_06_12" value="109.06.12"/>
+                <jxb:typesafeEnumMember name="NOSE_109_06_15" value="109.06.15"/>
+                <jxb:typesafeEnumMember name="NOSE_109_06_19" value="109.06.19"/>
+                <jxb:typesafeEnumMember name="NOSE_109_07" value="109.07"/>
+                <jxb:typesafeEnumMember name="NOSE_109_07_01" value="109.07.01"/>
+                <jxb:typesafeEnumMember name="NOSE_109_07_02" value="109.07.02"/>
+                <jxb:typesafeEnumMember name="NOSE_109_07_03" value="109.07.03"/>
+                <jxb:typesafeEnumMember name="NOSE_109_07_04" value="109.07.04"/>
+                <jxb:typesafeEnumMember name="NOSE_109_07_21" value="109.07.21"/>
+                <jxb:typesafeEnumMember name="NOSE_109_07_22" value="109.07.22"/>
+                <jxb:typesafeEnumMember name="NOSE_109_07_23" value="109.07.23"/>
+                <jxb:typesafeEnumMember name="NOSE_109_07_24" value="109.07.24"/>
+                <jxb:typesafeEnumMember name="NOSE_109_07_31" value="109.07.31"/>
+                <jxb:typesafeEnumMember name="NOSE_110_" value="110."/>
+                <jxb:typesafeEnumMember name="NOSE_110_01" value="110.01"/>
+                <jxb:typesafeEnumMember name="NOSE_110_01_01" value="110.01.01"/>
+                <jxb:typesafeEnumMember name="NOSE_110_01_02" value="110.01.02"/>
+                <jxb:typesafeEnumMember name="NOSE_110_01_03" value="110.01.03"/>
+                <jxb:typesafeEnumMember name="NOSE_110_01_04" value="110.01.04"/>
+                <jxb:typesafeEnumMember name="NOSE_110_01_05" value="110.01.05"/>
+                <jxb:typesafeEnumMember name="NOSE_110_01_06" value="110.01.06"/>
+                <jxb:typesafeEnumMember name="NOSE_110_02" value="110.02"/>
+                <jxb:typesafeEnumMember name="NOSE_110_02_01" value="110.02.01"/>
+                <jxb:typesafeEnumMember name="NOSE_110_02_02" value="110.02.02"/>
+                <jxb:typesafeEnumMember name="NOSE_110_02_03" value="110.02.03"/>
+                <jxb:typesafeEnumMember name="NOSE_110_02_04" value="110.02.04"/>
+                <jxb:typesafeEnumMember name="NOSE_110_02_05" value="110.02.05"/>
+                <jxb:typesafeEnumMember name="NOSE_110_02_06" value="110.02.06"/>
+                <jxb:typesafeEnumMember name="NOSE_110_03" value="110.03"/>
+                <jxb:typesafeEnumMember name="NOSE_110_03_01" value="110.03.01"/>
+                <jxb:typesafeEnumMember name="NOSE_110_03_02" value="110.03.02"/>
+                <jxb:typesafeEnumMember name="NOSE_110_03_03" value="110.03.03"/>
+                <jxb:typesafeEnumMember name="NOSE_110_03_04" value="110.03.04"/>
+                <jxb:typesafeEnumMember name="NOSE_110_03_05" value="110.03.05"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04" value="110.04"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_01" value="110.04.01"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_02" value="110.04.02"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_03" value="110.04.03"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_04" value="110.04.04"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_05" value="110.04.05"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_06" value="110.04.06"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_07" value="110.04.07"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_08" value="110.04.08"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_09" value="110.04.09"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_10" value="110.04.10"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_11" value="110.04.11"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_12" value="110.04.12"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_13" value="110.04.13"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_14" value="110.04.14"/>
+                <jxb:typesafeEnumMember name="NOSE_110_04_15" value="110.04.15"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05" value="110.05"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_01" value="110.05.01"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_02" value="110.05.02"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_03" value="110.05.03"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_04" value="110.05.04"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_05" value="110.05.05"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_06" value="110.05.06"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_07" value="110.05.07"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_08" value="110.05.08"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_09" value="110.05.09"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_10" value="110.05.10"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_11" value="110.05.11"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_12" value="110.05.12"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_13" value="110.05.13"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_14" value="110.05.14"/>
+                <jxb:typesafeEnumMember name="NOSE_110_05_15" value="110.05.15"/>
+                <jxb:typesafeEnumMember name="NOSE_110_06" value="110.06"/>
+                <jxb:typesafeEnumMember name="NOSE_110_06_01" value="110.06.01"/>
+                <jxb:typesafeEnumMember name="NOSE_110_06_02" value="110.06.02"/>
+                <jxb:typesafeEnumMember name="NOSE_110_06_03" value="110.06.03"/>
+                <jxb:typesafeEnumMember name="NOSE_110_06_04" value="110.06.04"/>
+                <jxb:typesafeEnumMember name="NOSE_110_09" value="110.09"/>
+                <jxb:typesafeEnumMember name="NOSE_110_09_01" value="110.09.01"/>
+                <jxb:typesafeEnumMember name="NOSE_110_09_02" value="110.09.02"/>
+                <jxb:typesafeEnumMember name="NOSE_110_09_03" value="110.09.03"/>
+                <jxb:typesafeEnumMember name="NOSE_110_09_04" value="110.09.04"/>
+                <jxb:typesafeEnumMember name="NOSE_110_15" value="110.15"/>
+                <jxb:typesafeEnumMember name="NOSE_110_15_01" value="110.15.01"/>
+                <jxb:typesafeEnumMember name="NOSE_110_15_02" value="110.15.02"/>
+                <jxb:typesafeEnumMember name="NOSE_110_15_03" value="110.15.03"/>
+                <jxb:typesafeEnumMember name="NOSE_110_16" value="110.16"/>
+                <jxb:typesafeEnumMember name="NOSE_111_" value="111."/>
+                <jxb:typesafeEnumMember name="NOSE_111_01" value="111.01"/>
+                <jxb:typesafeEnumMember name="NOSE_111_02" value="111.02"/>
+                <jxb:typesafeEnumMember name="NOSE_111_02_01" value="111.02.01"/>
+                <jxb:typesafeEnumMember name="NOSE_111_02_02" value="111.02.02"/>
+                <jxb:typesafeEnumMember name="NOSE_111_02_03" value="111.02.03"/>
+                <jxb:typesafeEnumMember name="NOSE_111_02_04" value="111.02.04"/>
+                <jxb:typesafeEnumMember name="NOSE_111_03" value="111.03"/>
+                <jxb:typesafeEnumMember name="NOSE_111_03_01" value="111.03.01"/>
+                <jxb:typesafeEnumMember name="NOSE_111_03_02" value="111.03.02"/>
+                <jxb:typesafeEnumMember name="NOSE_111_03_03" value="111.03.03"/>
+                <jxb:typesafeEnumMember name="NOSE_111_04" value="111.04"/>
+                <jxb:typesafeEnumMember name="NOSE_111_04_01" value="111.04.01"/>
+                <jxb:typesafeEnumMember name="NOSE_111_04_02" value="111.04.02"/>
+                <jxb:typesafeEnumMember name="NOSE_111_04_10" value="111.04.10"/>
+                <jxb:typesafeEnumMember name="NOSE_112_" value="112."/>
+                <jxb:typesafeEnumMember name="NOSE_112_01" value="112.01"/>
+                <jxb:typesafeEnumMember name="NOSE_112_01_01" value="112.01.01"/>
+                <jxb:typesafeEnumMember name="NOSE_112_01_02" value="112.01.02"/>
+                <jxb:typesafeEnumMember name="NOSE_112_01_03" value="112.01.03"/>
+                <jxb:typesafeEnumMember name="NOSE_112_01_11" value="112.01.11"/>
+                <jxb:typesafeEnumMember name="NOSE_112_01_12" value="112.01.12"/>
+                <jxb:typesafeEnumMember name="NOSE_112_01_21" value="112.01.21"/>
+                <jxb:typesafeEnumMember name="NOSE_112_02" value="112.02"/>
+                <jxb:typesafeEnumMember name="NOSE_112_02_01" value="112.02.01"/>
+                <jxb:typesafeEnumMember name="NOSE_112_02_02" value="112.02.02"/>
+                <jxb:typesafeEnumMember name="NOSE_112_02_03" value="112.02.03"/>
+                <jxb:typesafeEnumMember name="NOSE_112_02_04" value="112.02.04"/>
+                <jxb:typesafeEnumMember name="NOSE_112_02_05" value="112.02.05"/>
+                <jxb:typesafeEnumMember name="NOSE_112_02_09" value="112.02.09"/>
+                <jxb:typesafeEnumMember name="NOSE_112_02_11" value="112.02.11"/>
+                <jxb:typesafeEnumMember name="NOSE_112_02_21" value="112.02.21"/>
+                <jxb:typesafeEnumMember name="NOSE_112_03" value="112.03"/>
+                <jxb:typesafeEnumMember name="NOSE_112_03_01" value="112.03.01"/>
+                <jxb:typesafeEnumMember name="NOSE_112_03_02" value="112.03.02"/>
+                <jxb:typesafeEnumMember name="NOSE_112_03_03" value="112.03.03"/>
+                <jxb:typesafeEnumMember name="NOSE_112_03_05" value="112.03.05"/>
+                <jxb:typesafeEnumMember name="NOSE_112_08" value="112.08"/>
+                <jxb:typesafeEnumMember name="NOSE_112_08_01" value="112.08.01"/>
+                <jxb:typesafeEnumMember name="NOSE_112_08_11" value="112.08.11"/>
+                <jxb:typesafeEnumMember name="NOSE_112_08_12" value="112.08.12"/>
+                <jxb:typesafeEnumMember name="NOSE_112_09" value="112.09"/>
+                <jxb:typesafeEnumMember name="NOSE_112_09_01" value="112.09.01"/>
+                <jxb:typesafeEnumMember name="NOSE_112_09_02" value="112.09.02"/>
+                <jxb:typesafeEnumMember name="NOSE_112_09_11" value="112.09.11"/>
+                <jxb:typesafeEnumMember name="NOSE_112_09_12" value="112.09.12"/>
+                <jxb:typesafeEnumMember name="NOSE_112_09_13" value="112.09.13"/>
+                <jxb:typesafeEnumMember name="NOSE_112_09_14" value="112.09.14"/>
+                <jxb:typesafeEnumMember name="NOSE_112_09_15" value="112.09.15"/>
+                <jxb:typesafeEnumMember name="NOSE_112_09_16" value="112.09.16"/>
+                <jxb:typesafeEnumMember name="NOSE_112_09_21" value="112.09.21"/>
+                <jxb:typesafeEnumMember name="NOSE_113_" value="113."/>
+                <jxb:typesafeEnumMember name="NOSE_113_01" value="113.01"/>
+                <jxb:typesafeEnumMember name="NOSE_113_02" value="113.02"/>
+                <jxb:typesafeEnumMember name="NOSE_201_" value="201."/>
+                <jxb:typesafeEnumMember name="NOSE_201_01" value="201.01"/>
+                <jxb:typesafeEnumMember name="NOSE_201_01_01" value="201.01.01"/>
+                <jxb:typesafeEnumMember name="NOSE_201_01_02" value="201.01.02"/>
+                <jxb:typesafeEnumMember name="NOSE_201_01_03" value="201.01.03"/>
+                <jxb:typesafeEnumMember name="NOSE_201_02" value="201.02"/>
+                <jxb:typesafeEnumMember name="NOSE_201_02_01" value="201.02.01"/>
+                <jxb:typesafeEnumMember name="NOSE_201_02_02" value="201.02.02"/>
+                <jxb:typesafeEnumMember name="NOSE_201_02_03" value="201.02.03"/>
+                <jxb:typesafeEnumMember name="NOSE_201_03" value="201.03"/>
+                <jxb:typesafeEnumMember name="NOSE_201_03_01" value="201.03.01"/>
+                <jxb:typesafeEnumMember name="NOSE_201_03_02" value="201.03.02"/>
+                <jxb:typesafeEnumMember name="NOSE_201_03_03" value="201.03.03"/>
+                <jxb:typesafeEnumMember name="NOSE_201_04" value="201.04"/>
+                <jxb:typesafeEnumMember name="NOSE_201_05" value="201.05"/>
+                <jxb:typesafeEnumMember name="NOSE_201_05_01" value="201.05.01"/>
+                <jxb:typesafeEnumMember name="NOSE_201_05_02" value="201.05.02"/>
+                <jxb:typesafeEnumMember name="NOSE_201_05_03" value="201.05.03"/>
+                <jxb:typesafeEnumMember name="NOSE_201_06" value="201.06"/>
+                <jxb:typesafeEnumMember name="NOSE_201_07" value="201.07"/>
+                <jxb:typesafeEnumMember name="NOSE_202_" value="202."/>
+                <jxb:typesafeEnumMember name="NOSE_202_01" value="202.01"/>
+                <jxb:typesafeEnumMember name="NOSE_202_02" value="202.02"/>
+                <jxb:typesafeEnumMember name="NOSE_202_02_01" value="202.02.01"/>
+                <jxb:typesafeEnumMember name="NOSE_202_02_02" value="202.02.02"/>
+                <jxb:typesafeEnumMember name="NOSE_202_02_03" value="202.02.03"/>
+                <jxb:typesafeEnumMember name="NOSE_202_03" value="202.03"/>
+                <jxb:typesafeEnumMember name="NOSE_202_03_01" value="202.03.01"/>
+                <jxb:typesafeEnumMember name="NOSE_202_03_02" value="202.03.02"/>
+                <jxb:typesafeEnumMember name="NOSE_202_03_03" value="202.03.03"/>
+                <jxb:typesafeEnumMember name="NOSE_202_03_04" value="202.03.04"/>
+                <jxb:typesafeEnumMember name="NOSE_202_04" value="202.04"/>
+                <jxb:typesafeEnumMember name="NOSE_202_04_01" value="202.04.01"/>
+                <jxb:typesafeEnumMember name="NOSE_202_04_02" value="202.04.02"/>
+                <jxb:typesafeEnumMember name="NOSE_202_04_03" value="202.04.03"/>
+                <jxb:typesafeEnumMember name="NOSE_202_05" value="202.05"/>
+                <jxb:typesafeEnumMember name="NOSE_202_05_01" value="202.05.01"/>
+                <jxb:typesafeEnumMember name="NOSE_202_05_02" value="202.05.02"/>
+                <jxb:typesafeEnumMember name="NOSE_202_05_03" value="202.05.03"/>
+                <jxb:typesafeEnumMember name="NOSE_202_05_04" value="202.05.04"/>
+                <jxb:typesafeEnumMember name="NOSE_202_06" value="202.06"/>
+                <jxb:typesafeEnumMember name="NOSE_202_07" value="202.07"/>
+                <jxb:typesafeEnumMember name="NOSE_202_08" value="202.08"/>
+                <jxb:typesafeEnumMember name="NOSE_202_09" value="202.09"/>
+                <jxb:typesafeEnumMember name="NOSE_202_10" value="202.10"/>
+                <jxb:typesafeEnumMember name="NOSE_301_" value="301."/>
+                <jxb:typesafeEnumMember name="NOSE_301_01" value="301.01"/>
+                <jxb:typesafeEnumMember name="NOSE_301_01_06" value="301.01.06"/>
+                <jxb:typesafeEnumMember name="NOSE_301_01_07" value="301.01.07"/>
+                <jxb:typesafeEnumMember name="NOSE_301_01_08" value="301.01.08"/>
+                <jxb:typesafeEnumMember name="NOSE_301_01_09" value="301.01.09"/>
+                <jxb:typesafeEnumMember name="NOSE_301_01_10" value="301.01.10"/>
+                <jxb:typesafeEnumMember name="NOSE_301_01_11" value="301.01.11"/>
+                <jxb:typesafeEnumMember name="NOSE_301_01_15" value="301.01.15"/>
+                <jxb:typesafeEnumMember name="NOSE_301_01_16" value="301.01.16"/>
+                <jxb:typesafeEnumMember name="NOSE_301_01_17" value="301.01.17"/>
+                <jxb:typesafeEnumMember name="NOSE_301_01_04" value="301.01.04"/>
+                <jxb:typesafeEnumMember name="NOSE_301_01_05" value="301.01.05"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02" value="301.02"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02_04" value="301.02.04"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02_05" value="301.02.05"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02_06" value="301.02.06"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02_07" value="301.02.07"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02_08" value="301.02.08"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02_09" value="301.02.09"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02_10" value="301.02.10"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02_11" value="301.02.11"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02_12" value="301.02.12"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02_15" value="301.02.15"/>
+                <jxb:typesafeEnumMember name="NOSE_301_02_16" value="301.02.16"/>
+                <jxb:typesafeEnumMember name="NOSE_301_03" value="301.03"/>
+                <jxb:typesafeEnumMember name="NOSE_301_03_01" value="301.03.01"/>
+                <jxb:typesafeEnumMember name="NOSE_301_03_02" value="301.03.02"/>
+                <jxb:typesafeEnumMember name="NOSE_301_04" value="301.04"/>
+                <jxb:typesafeEnumMember name="NOSE_301_04_01" value="301.04.01"/>
+                <jxb:typesafeEnumMember name="NOSE_301_04_02" value="301.04.02"/>
+                <jxb:typesafeEnumMember name="NOSE_301_04_03" value="301.04.03"/>
+                <jxb:typesafeEnumMember name="NOSE_301_04_04" value="301.04.04"/>
+                <jxb:typesafeEnumMember name="NOSE_301_04_05" value="301.04.05"/>
+                <jxb:typesafeEnumMember name="NOSE_301_05" value="301.05"/>
+                <jxb:typesafeEnumMember name="NOSE_301_05_04" value="301.05.04"/>
+                <jxb:typesafeEnumMember name="NOSE_301_05_05" value="301.05.05"/>
+                <jxb:typesafeEnumMember name="NOSE_301_05_06" value="301.05.06"/>
+                <jxb:typesafeEnumMember name="NOSE_301_05_01" value="301.05.01"/>
+                <jxb:typesafeEnumMember name="NOSE_301_05_02" value="301.05.02"/>
+                <jxb:typesafeEnumMember name="NOSE_301_05_03" value="301.05.03"/>
+                <jxb:typesafeEnumMember name="NOSE_301_06" value="301.06"/>
+                <jxb:typesafeEnumMember name="NOSE_301_06_01" value="301.06.01"/>
+                <jxb:typesafeEnumMember name="NOSE_301_06_02" value="301.06.02"/>
+                <jxb:typesafeEnumMember name="NOSE_301_06_03" value="301.06.03"/>
+                <jxb:typesafeEnumMember name="NOSE_301_06_04" value="301.06.04"/>
+                <jxb:typesafeEnumMember name="NOSE_301_06_05" value="301.06.05"/>
+                <jxb:typesafeEnumMember name="NOSE_301_06_06" value="301.06.06"/>
+                <jxb:typesafeEnumMember name="NOSE_301_06_07" value="301.06.07"/>
+                <jxb:typesafeEnumMember name="NOSE_301_07" value="301.07"/>
+                <jxb:typesafeEnumMember name="NOSE_301_07_01" value="301.07.01"/>
+                <jxb:typesafeEnumMember name="NOSE_301_07_02" value="301.07.02"/>
+                <jxb:typesafeEnumMember name="NOSE_301_07_03" value="301.07.03"/>
+                <jxb:typesafeEnumMember name="NOSE_301_08" value="301.08"/>
+                <jxb:typesafeEnumMember name="NOSE_301_09" value="301.09"/>
+                <jxb:typesafeEnumMember name="NOSE_301_10" value="301.10"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11" value="301.11"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11_04" value="301.11.04"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11_05" value="301.11.05"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11_06" value="301.11.06"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11_07" value="301.11.07"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11_08" value="301.11.08"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11_09" value="301.11.09"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11_10" value="301.11.10"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11_11" value="301.11.11"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11_15" value="301.11.15"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11_16" value="301.11.16"/>
+                <jxb:typesafeEnumMember name="NOSE_301_11_17" value="301.11.17"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12" value="301.12"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12_04" value="301.12.04"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12_05" value="301.12.05"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12_06" value="301.12.06"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12_07" value="301.12.07"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12_08" value="301.12.08"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12_09" value="301.12.09"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12_10" value="301.12.10"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12_11" value="301.12.11"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12_12" value="301.12.12"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12_15" value="301.12.15"/>
+                <jxb:typesafeEnumMember name="NOSE_301_12_16" value="301.12.16"/>
+                <jxb:typesafeEnumMember name="NOSE_301_21" value="301.21"/>
+                <jxb:typesafeEnumMember name="NOSE_301_21_01" value="301.21.01"/>
+                <jxb:typesafeEnumMember name="NOSE_301_21_02" value="301.21.02"/>
+                <jxb:typesafeEnumMember name="NOSE_301_21_03" value="301.21.03"/>
+                <jxb:typesafeEnumMember name="NOSE_301_21_04" value="301.21.04"/>
+                <jxb:typesafeEnumMember name="NOSE_301_21_05" value="301.21.05"/>
+                <jxb:typesafeEnumMember name="NOSE_301_22" value="301.22"/>
+                <jxb:typesafeEnumMember name="NOSE_301_22_01" value="301.22.01"/>
+                <jxb:typesafeEnumMember name="NOSE_301_22_02" value="301.22.02"/>
+                <jxb:typesafeEnumMember name="NOSE_301_22_03" value="301.22.03"/>
+                <jxb:typesafeEnumMember name="NOSE_301_22_04" value="301.22.04"/>
+                <jxb:typesafeEnumMember name="NOSE_301_22_05" value="301.22.05"/>
+                <jxb:typesafeEnumMember name="NOSE_301_23" value="301.23"/>
+                <jxb:typesafeEnumMember name="NOSE_301_23_01" value="301.23.01"/>
+                <jxb:typesafeEnumMember name="NOSE_301_23_02" value="301.23.02"/>
+                <jxb:typesafeEnumMember name="NOSE_301_23_03" value="301.23.03"/>
+                <jxb:typesafeEnumMember name="NOSE_301_23_04" value="301.23.04"/>
+                <jxb:typesafeEnumMember name="NOSE_301_23_05" value="301.23.05"/>
+                <jxb:typesafeEnumMember name="NOSE_301_24" value="301.24"/>
+                <jxb:typesafeEnumMember name="NOSE_301_25" value="301.25"/>
+                <jxb:typesafeEnumMember name="NOSE_101_06" value="101.06"/>
+                <jxb:typesafeEnumMember name="NOSE_104_11_03" value="104.11.03"/>
+                <jxb:typesafeEnumMember name="NOSE_105_01_12" value="105.01.12"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:simpleType[@name='techniekCodeType']">
+            <jxb:typesafeEnumClass name="techniekCodeType">
+                <jxb:typesafeEnumMember name="TECHNIEK_0" value="0"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_0_0" value="0.0"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_0_0_0" value="0.0.0"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_0_0_0_0" value="0.0.0.0"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1" value="1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1" value="1.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_1" value="1.1.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_1_1" value="1.1.1.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_1_2" value="1.1.1.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_1_3" value="1.1.1.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_2" value="1.1.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_2_1" value="1.1.2.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_2_2" value="1.1.2.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_2_3" value="1.1.2.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_2_4" value="1.1.2.4"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_3" value="1.1.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_3_1" value="1.1.3.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_3_2" value="1.1.3.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_3_3" value="1.1.3.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_3_4" value="1.1.3.4"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_4" value="1.1.4"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_4_1" value="1.1.4.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_4_2" value="1.1.4.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_5" value="1.1.5"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_5_1" value="1.1.5.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_6" value="1.1.6"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_6_1" value="1.1.6.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_1_6_2" value="1.1.6.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_2" value="1.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_2_1" value="1.2.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_2_1_1" value="1.2.1.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_2_1_2" value="1.2.1.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_99" value="1.99"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_1_99_99" value="1.99.99"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2" value="2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_1" value="2.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_1_1" value="2.1.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_1_2" value="2.1.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_2" value="2.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_2_1" value="2.2.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_2_1_1" value="2.2.1.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_2_1_2" value="2.2.1.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_3" value="2.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_3_1" value="2.3.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_4" value="2.4"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_4_1" value="2.4.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_4_2" value="2.4.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_5" value="2.5"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_5_1" value="2.5.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_6" value="2.6"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_6_1" value="2.6.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_7" value="2.7"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_7_1" value="2.7.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_99" value="2.99"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_2_99_99" value="2.99.99"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3" value="3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_1" value="3.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_1_1" value="3.1.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_10" value="3.10"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_10_1" value="3.10.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_10_2" value="3.10.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_10_3" value="3.10.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_11" value="3.11"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_11_1" value="3.11.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_11_2" value="3.11.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_12" value="3.12"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_12_1" value="3.12.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_2" value="3.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_2_1" value="3.2.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_2_2" value="3.2.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_3" value="3.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_3_1" value="3.3.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_3_1_1" value="3.3.1.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_3_2" value="3.3.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_3_2_1" value="3.3.2.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_3_3" value="3.3.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_3_3_1" value="3.3.3.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_3_4" value="3.3.4"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_3_4_1" value="3.3.4.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_4" value="3.4"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_4_1" value="3.4.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_5" value="3.5"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_5_1" value="3.5.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_6" value="3.6"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_6_1" value="3.6.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_7" value="3.7"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_7_1" value="3.7.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_7_2" value="3.7.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_7_3" value="3.7.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_8" value="3.8"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_8_1" value="3.8.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_8_2" value="3.8.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_8_3" value="3.8.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_8_4" value="3.8.4"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_9" value="3.9"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_9_1" value="3.9.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_9_2" value="3.9.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_9_3" value="3.9.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_99" value="3.99"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_3_99_99" value="3.99.99"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_4" value="4"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_4_1" value="4.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_4_1_1" value="4.1.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_4_2" value="4.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_4_2_1" value="4.2.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_4_2_2" value="4.2.2"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_4_3" value="4.3"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_4_3_1" value="4.3.1"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_4_99" value="4.99"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_4_99_99" value="4.99.99"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_5" value="5"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_5_99" value="5.99"/>
+                <jxb:typesafeEnumMember name="TECHNIEK_5_99_99" value="5.99.99"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:simpleType[@name='stofType']">
+            <jxb:typesafeEnumClass name="stofType">
+                <jxb:typesafeEnumMember name="ASBEST" value="Asbest"/>
+                <jxb:typesafeEnumMember name="CHLORIDES" value="Chlorides (als Cl)"/>
+                <jxb:typesafeEnumMember name="CYANIDEN_TOTAAL" value="Cyaniden totaal"/>
+                <jxb:typesafeEnumMember name="FOSFOR_TOTAAL" value="Fosfor totaal (P)"/>
+                <jxb:typesafeEnumMember name="FLUORIDES" value="Fluorides (als F)"/>
+                <jxb:typesafeEnumMember name="STIKSTOF_TOTAAL" value="Stikstof totaal (N)"/>
+                <jxb:typesafeEnumMember name="SULFIDEN" value="Sulfiden"/>
+                <jxb:typesafeEnumMember name="AOX" value="AOX"/>
+                <jxb:typesafeEnumMember name="VOX" value="VOX"/>
+                <jxb:typesafeEnumMember name="BIOCHEMISCH_ZUURSTOFVERBRUIK" value="Biochemisch zuurstofverbruik"/>
+                <jxb:typesafeEnumMember name="CHEMISCH_ZUURSTOFVERBRUIK" value="Chemisch zuurstofverbruik"/>
+                <jxb:typesafeEnumMember name="TOTAAL_ORGANISCHE_KOOLSTOF" value="Totaal organische koolstof (TOC, als C)"/>
+                <jxb:typesafeEnumMember name="ZWEVENDE_STOF" value="Zwevende stof"/>
+                <jxb:typesafeEnumMember name="BENZEEN" value="Benzeen"/>
+                <jxb:typesafeEnumMember name="ETHYLBENZEEN" value="Ethylbenzeen"/>
+                <jxb:typesafeEnumMember name="ISOPROPYLBENZEEN" value="Isopropylbenzeen"/>
+                <jxb:typesafeEnumMember name="TOLUEEN" value="Tolueen"/>
+                <jxb:typesafeEnumMember name="XYLEEN_ISOMEREN" value="Xyleen-isomeren"/>
+                <jxb:typesafeEnumMember name="PAK_16" value="PAK 16"/>
+                <jxb:typesafeEnumMember name="ANTHRACEEN" value="Anthraceen"/>
+                <jxb:typesafeEnumMember name="BENZO_G_H_I_PERYLEEN" value="Benzo(g,h,i)peryleen"/>
+                <jxb:typesafeEnumMember name="FLUORANTHEEN" value="Fluorantheen"/>
+                <jxb:typesafeEnumMember name="NAFTALEEN" value="Naftaleen"/>
+                <jxb:typesafeEnumMember name="TOTALE_FENOLEN" value="Totale fenolen"/>
+                <jxb:typesafeEnumMember name="DICHLOORFENOL_2_4" value="2,4-Dichloorfenol"/>
+                <jxb:typesafeEnumMember name="O_CHLOORFENOL" value="2-Chloorfenol"/>
+                <jxb:typesafeEnumMember name="M_CHLOORFENOL" value="3-Chloorfenol"/>
+                <jxb:typesafeEnumMember name="CHLOROMETHYLFENOL" value="4-Chloor-3-methylfenol"/>
+                <jxb:typesafeEnumMember name="P_CHLOORFENOL" value="4-Chloorfenol"/>
+                <jxb:typesafeEnumMember name="NONYLFENOL_NONYLFENOLETHOXYLATEN" value="Nonylfenol en nonylfenolethoxylaten (NP/NPE's)"/>
+                <jxb:typesafeEnumMember name="OCTYLFENOLEN_OCTYLFENOLETHOXYLATEN" value="Octylfenolen en octylfenolethoxylaten"/>
+                <jxb:typesafeEnumMember name="TRICHLOORFENOLEN" value="Trichloorfenolen"/>
+                <jxb:typesafeEnumMember name="TOTAAL_ORGANOCHLOORPESTICIDEN" value="Totaal organochloorpesticiden waarvan indiv. drempelwaarde = 0,1 kg/j"/>
+                <jxb:typesafeEnumMember name="ALACHLOOR" value="Alachloor"/>
+                <jxb:typesafeEnumMember name="ALDRIN" value="Aldrin"/>
+                <jxb:typesafeEnumMember name="CHLOORDAAN" value="Chloordaan"/>
+                <jxb:typesafeEnumMember name="CHLOORDECON" value="Chloordecon"/>
+                <jxb:typesafeEnumMember name="CHLOORFENVINFOS" value="Chloorfenvinfos"/>
+                <jxb:typesafeEnumMember name="CHLOORPYRIFOS" value="Chloorpyrifos"/>
+                <jxb:typesafeEnumMember name="DDT" value="DDT"/>
+                <jxb:typesafeEnumMember name="DIELDRIN" value="Dieldrin"/>
+                <jxb:typesafeEnumMember name="ENDOSULFAN" value="Endosulfan"/>
+                <jxb:typesafeEnumMember name="ENDRIN" value="Endrin"/>
+                <jxb:typesafeEnumMember name="HEXACHLOORBENZEEN" value="Hexachloorbenzeen"/>
+                <jxb:typesafeEnumMember name="HEXACHLOORBUTADIEEN" value="Hexachloorbutadieen"/>
+                <!--Moet weg uit xsd, bestaat niet meer-->
+                <jxb:typesafeEnumMember name="HEXACHLOORCYCLOHEXAAN_ISOMEREN" value="Hexachloorcyclohexaan-isomeren"/>
+                <jxb:typesafeEnumMember name="HEPTACHLOOR" value="Heptachloor"/>
+                <jxb:typesafeEnumMember name="ISODRIN" value="Isodrin"/>
+                <jxb:typesafeEnumMember name="LINDAAN" value="Lindaan"/>
+                <jxb:typesafeEnumMember name="MIREX" value="Mirex"/>
+                <jxb:typesafeEnumMember name="PENTACHLOORFENOL" value="Pentachloorfenol"/>
+                <jxb:typesafeEnumMember name="TOXAFEEN" value="Toxafeen"/>
+                <jxb:typesafeEnumMember name="TRICHLOORBENZEEN" value="Trichloorbenzeen (technisch)"/>
+                <jxb:typesafeEnumMember name="VINYL_TRICHLORIDE" value="1,1,2-Trichloorethaan"/>
+                <jxb:typesafeEnumMember name="TRICHLOORBENZEEN_1_2_4" value="1,2,4-Trichloorbenzeen"/>
+                <jxb:typesafeEnumMember name="O_DICHLOORBENZEEN" value="1,2-Dichloorbenzeen"/>
+                <jxb:typesafeEnumMember name="ETHYLEEN_DICHLORIDE" value="1,2-Dichloorethaan"/>
+                <jxb:typesafeEnumMember name="O_CHLOORTOLUEEN" value="2-Chloortolueen"/>
+                <jxb:typesafeEnumMember name="P_CHLOORTOLUEEN" value="4-Chloortolueen"/>
+                <jxb:typesafeEnumMember name="A_CHLOORTOLUEEN" value="a-Chloortolueen (benzylchloride)"/>
+                <jxb:typesafeEnumMember name="CHLOORALKANEN" value="Chlooralkanen (C10 -C13)"/>
+                <jxb:typesafeEnumMember name="CHLOORBENZEEN" value="Chloorbenzeen"/>
+                <jxb:typesafeEnumMember name="CHLOORETHEEN_VINYLCHLORIDE" value="Chlooretheen (vinylchloride)"/>
+                <jxb:typesafeEnumMember name="DICHLOORMETHAAN" value="Dichloormethaan"/>
+                <jxb:typesafeEnumMember name="PENTACHLOORBENZEEN" value="Pentachloorbenzeen"/>
+                <jxb:typesafeEnumMember name="TETRACHLOORETHEEN" value="Tetrachlooretheen"/>
+                <jxb:typesafeEnumMember name="TETRACHLOORMETHAAN" value="Tetrachloormethaan"/>
+                <jxb:typesafeEnumMember name="TRICHLOORETHEEN" value="Trichlooretheen"/>
+                <jxb:typesafeEnumMember name="TRICHLOORMETHAAN" value="Trichloormethaan"/>
+                <jxb:typesafeEnumMember name="TOTAAL_ORGANOSTIKSTOFPESTICIDEN" value="Totaal organostikstofpesticiden"/>
+                <jxb:typesafeEnumMember name="ATRAZINE" value="Atrazine"/>
+                <jxb:typesafeEnumMember name="DIURON" value="Diuron"/>
+                <jxb:typesafeEnumMember name="ISOPROTURON" value="Isoproturon"/>
+                <jxb:typesafeEnumMember name="SIMAZINE" value="Simazine"/>
+                <jxb:typesafeEnumMember name="TRIFLURALIN" value="Trifluralin"/>
+                <jxb:typesafeEnumMember name="TOTAAL_ORGANOFOSFORPESTICIDEN" value="Totaal organofosforpesticiden"/>
+                <jxb:typesafeEnumMember name="TOTAAL_ORGANOTINVERBINDINGEN" value="Totaal organotinverbindingen"/>
+                <jxb:typesafeEnumMember name="TRIBUTYLTIN_EN_ZIJN_VERBINDINGEN" value="Tributyltin en zijn verbindingen"/>
+                <jxb:typesafeEnumMember name="TRIFENYLTIN_EN_ZIJN_VERBINDINGEN" value="Trifenyltin en zijn verbindingen"/>
+                <jxb:typesafeEnumMember name="BROOMDIFENYLETHERS" value="Broomdifenylethers"/>
+                <jxb:typesafeEnumMember name="DEHP" value="Di(2-ethylhexyl)ftalaat (DEHP)"/>
+                <jxb:typesafeEnumMember name="DICHLOORANILINES" value="Dichlooranilines"/>
+                <jxb:typesafeEnumMember name="ETHYLEENOXIDE" value="Ethyleenoxide"/>
+                <jxb:typesafeEnumMember name="HEXABROOMBIFENYL" value="Hexabroombifenyl"/>
+                <jxb:typesafeEnumMember name="PCDD_PCDF" value="PCDD+PCDF (dioxinen+furanen) (als Teq)"/>
+                <jxb:typesafeEnumMember name="PCBS" value="Polychloorbifenylen (PCB's)"/>
+                <jxb:typesafeEnumMember name="ANTIMOON" value="Antimoon"/>
+                <jxb:typesafeEnumMember name="ARSEEN" value="Arseen"/>
+                <jxb:typesafeEnumMember name="BARIUM" value="Barium"/>
+                <jxb:typesafeEnumMember name="BERYLIUM" value="Berylium"/>
+                <jxb:typesafeEnumMember name="BOOR" value="Boor"/>
+                <jxb:typesafeEnumMember name="CADMIUM" value="Cadmium"/>
+                <jxb:typesafeEnumMember name="CHROOM" value="Chroom"/>
+                <jxb:typesafeEnumMember name="KOBALT" value="Kobalt"/>
+                <jxb:typesafeEnumMember name="KOPER" value="Koper"/>
+                <jxb:typesafeEnumMember name="KWIK" value="Kwik"/>
+                <jxb:typesafeEnumMember name="LOOD" value="Lood"/>
+                <jxb:typesafeEnumMember name="MOLYBDEEN" value="Molybdeen"/>
+                <jxb:typesafeEnumMember name="NIKKEL" value="Nikkel"/>
+                <jxb:typesafeEnumMember name="SELEEN" value="Seleen"/>
+                <jxb:typesafeEnumMember name="TELLURIUM" value="Tellurium"/>
+                <jxb:typesafeEnumMember name="THALLIUM" value="Thallium"/>
+                <jxb:typesafeEnumMember name="TIN" value="Tin"/>
+                <jxb:typesafeEnumMember name="TITAAN" value="Titaan"/>
+                <jxb:typesafeEnumMember name="URANIUM" value="Uranium"/>
+                <jxb:typesafeEnumMember name="VANADIUM" value="Vanadium"/>
+                <jxb:typesafeEnumMember name="ZILVER" value="Zilver"/>
+                <jxb:typesafeEnumMember name="ZINK" value="Zink"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+    </jxb:bindings>
+</jxb:bindings>
+

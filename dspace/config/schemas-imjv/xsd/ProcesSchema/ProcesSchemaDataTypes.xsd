@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns="http://processchema.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://processchema.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:complexType name="ProcesSchemasType">
+		<xs:sequence>
+			<xs:element name="ProcesSchema" type="ProcesSchemaType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BedrijvenProcesSchemasType">
+		<xs:sequence>
+			<xs:element name="ProcesSchema" type="BedrijvenProcesSchemaType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ProcesSchemaType">
+		<xs:sequence>
+			<xs:element name="Bestand" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>De naam van het bestand, relatief op te geven tov het path van het XML bestand zelf</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Bijkomende refertes (identificatie nummers) van dit processchema</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekProcesSchemaReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="procesSchemaID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een uniek nummer voor dit processchema</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BedrijvenProcesSchemaType">
+		<xs:sequence>
+			<xs:element name="Bestand" type="generiek:BestandType">
+				<xs:annotation>
+					<xs:documentation>De naam van het bestand, relatief op te geven tov het path van het XML bestand zelf</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Bijkomende refertes (identificatie nummers) van dit processchema</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekBedrijvenProcesSchemaReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="procesSchemaID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een uniek nummer voor dit processchema</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

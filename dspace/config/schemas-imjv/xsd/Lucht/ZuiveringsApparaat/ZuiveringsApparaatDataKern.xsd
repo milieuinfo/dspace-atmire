@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://zuiveringsapparaat.lucht.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://zuiveringsapparaat.lucht.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="DatumIngebruiknameType">
+		<xs:restriction base="xs:date"/>
+	</xs:simpleType>
+	<xs:simpleType name="RendementType">
+		<xs:annotation>
+			<xs:documentation>Verwijderingsrendement in %</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TechniekType">
+		<xs:annotation>
+			<xs:documentation>Beschrijving van de toegepaste techniek</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BlijvendBuitenWerkingType">
+		<xs:annotation>
+			<xs:documentation>True als het zuiveringsapparaat definitief buiten werking is</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="NaamType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

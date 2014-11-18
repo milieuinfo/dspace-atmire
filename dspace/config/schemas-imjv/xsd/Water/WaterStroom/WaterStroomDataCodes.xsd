@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+
+    <xs:simpleType name="EenheidConcentratieEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="mg/l"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="EenheidVrachtEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="kg/jr"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="BepalingsMethodeEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="meetgegevens"/>
+			<xs:enumeration value="rekengegevens"/>
+			<xs:enumeration value="geschatte gegevens"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+    <xs:simpleType name="EenheidDebietEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van debiet</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="m3/jr"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

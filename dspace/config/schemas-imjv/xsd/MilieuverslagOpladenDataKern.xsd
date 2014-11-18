@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="opladen.milieuverslag.schemas.milieuinfo.be"
+    targetNamespace="opladen.milieuverslag.schemas.milieuinfo.be">
+    <xs:simpleType name="OpladenNaamType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="60"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

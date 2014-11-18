@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Het luik grondwater van het IMJV-->
+	<xs:include schemaLocation="VasteGegevensAangifteGrondwaterDataTypes.xsd"/>
+	<xs:element name="VasteGegevensAangifteGrondwater" type="VasteGegevensAangifteGrondwaterType">
+		<xs:keyref name="KeyrefDebietmeterPompfilterID" refer="KeyPompfilterID">
+			<xs:annotation>
+				<xs:documentation>Debietmeters kunnen enkel aan pompputten gekoppeld worden</xs:documentation>
+			</xs:annotation>
+			<xs:selector xpath="Debietmeters/Debietmeter/Pompfilters/Pompfilter"/>
+			<xs:field xpath="@pompfilterID"/>
+		</xs:keyref>
+	</xs:element>
+</xs:schema>

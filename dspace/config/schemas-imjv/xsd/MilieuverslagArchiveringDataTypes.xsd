@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by  () -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://archivering.milieuverslag.schemas.milieuinfo.be" xmlns:identificatiemeta="http://identificatiemeta.milieuverslag.schemas.milieuinfo.be" xmlns:milieuverslagmeta="http://milieuverslagmeta.milieuverslag.schemas.milieuinfo.be" xmlns:aangiftemeta="http://aangiftemeta.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://archivering.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://milieuverslagmeta.milieuverslag.schemas.milieuinfo.be" schemaLocation="MilieuVerslagMeta/MilieuVerslagMeta.xsd"/>
+	<xs:import namespace="http://aangiftemeta.milieuverslag.schemas.milieuinfo.be" schemaLocation="AangifteMeta/AangifteMeta.xsd"/>
+	<xs:import namespace="http://identificatiemeta.milieuverslag.schemas.milieuinfo.be" schemaLocation="IdentificatieMeta/IdentificatieMeta.xsd"/>
+	<xs:element name="Milieuverslag">
+		<xs:annotation>
+			<xs:documentation>Milieuverslag archivering schema</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="IdentificatieMetaData" type="identificatiemeta:IdentificatieMetaType">
+					<xs:annotation>
+						<xs:documentation>Het identificatieluik van het milieuverslag</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="MilieuVerslagMetaData" type="milieuverslagmeta:MilieuVerslagType">
+					<xs:annotation>
+						<xs:documentation>De metadata aangaande het milieuverslag</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="AangiftenMetaData" type="aangiftemeta:AangiftenType">
+					<xs:annotation>
+						<xs:documentation>De metadata aangaande de aangiften</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

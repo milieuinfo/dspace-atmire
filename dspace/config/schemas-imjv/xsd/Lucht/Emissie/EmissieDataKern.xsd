@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://emissie.lucht.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://emissie.lucht.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="RitmeType">
+		<xs:annotation>
+			<xs:documentation>Vrij in te geven bv continue, 1x per dag</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="PeriodeType">
+		<xs:annotation>
+			<xs:documentation>Vrij in te geven periode bv continue, 200 dagen per jaar</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EmissieDuurType">
+		<xs:annotation>
+			<xs:documentation>Aantal uur per jaar</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:int"/>
+	</xs:simpleType>
+	<xs:simpleType name="TemperatuurType">
+		<xs:annotation>
+			<xs:documentation>In °C</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="MeetfrequentieDiscreetType">
+		<xs:annotation>
+			<xs:documentation>Het aantal metingen</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="StandaardafwijkingType">
+		<xs:annotation>
+			<xs:documentation>Uitgedrukt in %</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ControleInstantieType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InDrogeToestandOpgegevenType">
+		<xs:annotation>
+			<xs:documentation>True indien gegevens in droge toestand opgegeven worden</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:simpleType name="EmissieFactorenType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ZuurstofGehalteType">
+		<xs:annotation>
+			<xs:documentation>Reel zuurstof gehalte in procent</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WaterGehalteType">
+		<xs:annotation>
+			<xs:documentation>Watergehalte uitgedrukt in procent</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LuchtOverschotType">
+		<xs:annotation>
+			<xs:documentation>Procent luchtoverschot boven de stoechiometrische verhouding</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="OorzaakType">
+		<xs:annotation>
+			<xs:documentation>Omschrijving van de oorzaak</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

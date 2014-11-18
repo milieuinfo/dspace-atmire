@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 (http://www.altova.com) by Kris Peirelinck (ACD) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://activiteit.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:activiteit="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://activiteit.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="Activiteit.xsd"/>
+	<xs:annotation>
+		<xs:documentation>De lijst van de installaties met eventueel de bijhorende apparaten</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="InstallatiesType">
+		<xs:sequence>
+			<xs:element name="Installatie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="InstallatieType">
+							<xs:sequence minOccurs="0">
+								<xs:element name="Apparaten" type="ApparatenType"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="InstallatieType">
+		<xs:choice>
+			<xs:element name="ProductieEenheid" type="ProductieEenheidType">
+				<xs:annotation>
+					<xs:documentation>Deatils van de activiteit indien het een productie-eenheid betreft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EnergieActiviteit" type="EnergieActiviteitType">
+				<xs:annotation>
+					<xs:documentation>Details indien de activiteit de productie en/of distributie van energie betreft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OpslagEnOverslag" type="OpslagEnOverslagType">
+				<xs:annotation>
+					<xs:documentation>Details indien de activiteit opslag en overslag betreft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fakkel" type="FakkelType">
+				<xs:annotation>
+					<xs:documentation>Details indien de activiteit een fakkel betreft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Waterzuivering" type="WaterzuiveringType">
+				<xs:annotation>
+					<xs:documentation>Details indien de activiteit een waterzuivering betreft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Definitie van een activiteit, die kan zowel een installatie zijn als een activiteit</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="ActiviteitType">
+		<xs:annotation>
+			<xs:documentation>Bevat de gemeenschappelijke gegevens van een activiteit, (dit wordt gebruikt bij de installaties en de apparaten</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Naam" type="activiteit:NaamType">
+				<xs:annotation>
+					<xs:documentation>De bedrijfsinterne naam van de activiteit</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatumIngebruikname" type="activiteit:DatumIngebruiknameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Exacte datum, maand en jaartal of enkel een jaartal</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType">
+				<xs:annotation>
+					<xs:documentation>Er dient minstens één referte opgegeven te worden. Dit is nodig om bij het aanleveren van de gewijzigde gegevens de relatie te maken met de origineel aangeleverde gegevens.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekActiviteitReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="activiteitID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Unieke identificatie voor deze activiteit, wordt verder gebruikt om de relatie te leggen met de andere gegevens in het imjv</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Structuur Installaties met apparaten</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="ApparatenType">
+		<xs:sequence>
+			<xs:element name="Apparaat" type="ApparaatType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ApparaatType">
+		<xs:annotation>
+			<xs:documentation>Een apparaat dient altijd gekoppeld aan een installatie</xs:documentation>
+		</xs:annotation>
+		<xs:choice>
+			<xs:element name="ProductieEenheid" type="ProductieEenheidType">
+				<xs:annotation>
+					<xs:documentation>Deatils van de activiteit indien het een productie-eenheid betreft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EnergieActiviteit" type="EnergieActiviteitType">
+				<xs:annotation>
+					<xs:documentation>Details indien de activiteit de productie en/of distributie van energie betreft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OpslagEnOverslag" type="OpslagEnOverslagType">
+				<xs:annotation>
+					<xs:documentation>Details indien de activiteit opslag en overslag betreft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Fakkel" type="FakkelType">
+				<xs:annotation>
+					<xs:documentation>Details indien de activiteit een fakkel betreft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Waterzuivering" type="WaterzuiveringType">
+				<xs:annotation>
+					<xs:documentation>Details indien de activiteit een waterzuivering betreft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Details van een productie-eenheid (type 2A)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="ProductieEenheidType">
+		<xs:annotation>
+			<xs:documentation>Type A activiteit: productie eenheid</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ActiviteitType">
+				<xs:sequence>
+					<xs:element name="Beschrijving" type="activiteit:BeschrijvingType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Een vrij tekst veld voor het beschrijven van de activiteit. Geef de voornaamste productiestappen op en een gedetailleerde procesbeschrijving</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:choice minOccurs="0">
+						<xs:element name="GeproduceerdeStof" type="GeproduceerdeStofType" minOccurs="1">
+							<xs:annotation>
+								<xs:documentation>De naam of een omschrijving van de geproduceerde stof in deze productie-eenheid</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:sequence minOccurs="0" maxOccurs="1">
+							<xs:element name="GeinstalleerdVermogen" type="activiteit:VermogenAMegawattType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Geeft de geïnstalleerde capaciteit op van de geproduceerde of verwerkte stof die opgegeven is bij "Geproduceerde stof"</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+							<xs:element name="ReelVermogen" type="activiteit:VermogenAMegawattType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>Geeft de reeel geproduceerde of verwerkte  hoeveelheid op van de stof opgegeven als "Geproduceerde stof"</xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+					</xs:choice>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Details van een activiteit type productie en of distributie van energie (type 2B)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="EnergieActiviteitType">
+		<xs:annotation>
+			<xs:documentation>Type B activiteit: productie en/of distributie van energie</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ActiviteitType">
+				<xs:sequence>
+					<xs:element name="Functie" type="activiteit:EnergieEnumType">
+						<xs:annotation>
+							<xs:documentation>Soort eneregieproductie, te kiezen uit een lijst met mogelijke codes.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="TypeEnergieActiviteit" type="activiteit:TypeEnergieActiviteitType" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Vrij in te vullen type activiteit (bv waterpijpketel, gasmotor,...)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:sequence minOccurs="0">
+						<xs:element name="GeinstalleerdVermogen" type="VermogenBType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Het geïnsatlleerde thermisch vermogen van de installatie</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ReelVermogen" type="VermogenBType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Het reël thermisch vermogen van de installatie</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VermogenBType">
+		<xs:annotation>
+			<xs:documentation>Thermisch vermogen van de activiteit</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="activiteit:EenheidVermogenBEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Details van een activiteit type opslag en overslag (type 2C)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="OpslagEnOverslagType">
+		<xs:annotation>
+			<xs:documentation>Type C: opslag en overslag</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ActiviteitType">
+				<xs:sequence>
+					<xs:element name="TypeOpslagEnOverslag" type="activiteit:TypeOpslagEnOverslagType">
+						<xs:annotation>
+							<xs:documentation>Identificatie van het soort opslag en overslag (bv tank met vlottend dak,...)</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:sequence minOccurs="0">
+						<xs:element name="Capaciteit" type="CapaciteitType" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>De opslagcapaciteit</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="FunctieOpslagEnOverslag" type="activiteit:FunctieOpslagEnOverslagType">
+							<xs:annotation>
+								<xs:documentation>De stoffen die opgeslagen of overgeslagen worden</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="CapaciteitType">
+		<xs:annotation>
+			<xs:documentation>De opslagcapaciteit van de installatie</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="activiteit:EenheidCapaciteitEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Details van een activiteit type Fakkel (type 2D)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="FakkelType">
+		<xs:annotation>
+			<xs:documentation>Type D: fakkels</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ActiviteitType">
+				<xs:sequence>
+					<xs:element name="TechnischeKarakteristieken" type="activiteit:BeschrijvingFakkelType">
+						<xs:annotation>
+							<xs:documentation>Beschrijving van de fakkel</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Details van een activitiet type waterzuivering (type 2E)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="WaterzuiveringType">
+		<xs:annotation>
+			<xs:documentation>Type E: waterzuivering</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="ActiviteitType">
+				<xs:sequence>
+					<xs:element name="TypeWaterzuivering" type="activiteit:WaterzuiveringEnumType">
+						<xs:annotation>
+							<xs:documentation>Type waterzuivering te kiezen uit een lijst met mogelijke waarden.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Lijst van activiteit ID's gebruikt om de relatie te maken met de activiteiten </xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="GekoppeldeActiviteitenType">
+		<xs:annotation>
+			<xs:documentation>Element dat doorheen de verschillende deelschema's gebruikt wordt om een koppeling te maken met activiteiten</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Activiteit" type="ActiviteitIDType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ActiviteitIDType">
+		<xs:annotation>
+			<xs:documentation>ID van een activiteit</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="activiteitID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GeproduceerdeStofType">
+		<xs:sequence>
+			<xs:element name="Naam" type="activiteit:GeproduceerdeStofNaamType">
+				<xs:annotation>
+					<xs:documentation>De naam of een omschrijving van de geproduceerde stof in deze productie-eenheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:sequence minOccurs="0">
+				<xs:element name="GeinstalleerdVermogen" type="activiteit:VermogenATonPerJaarType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Geeft de geïnsatlleerde capaciteit op van de geproduceerde of verwerkte stof die opgegeven is bij "Geproduceerde stof"</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+				<xs:element name="ReelVermogen" type="activiteit:VermogenATonPerJaarType" minOccurs="0">
+					<xs:annotation>
+						<xs:documentation>Geeft de reeel geproduceerde of verwerkte  hoeveelheid op van de stof opgegeven als "Geproduceerde stof"</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

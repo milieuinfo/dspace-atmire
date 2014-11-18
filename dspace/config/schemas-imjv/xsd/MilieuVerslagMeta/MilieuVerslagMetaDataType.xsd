@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by  () -->
+<xs:schema xmlns="http://milieuverslagmeta.milieuverslag.schemas.milieuinfo.be"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:geografie="http://geografie.schemas.milieuinfo.be"
+	xmlns:imjvdeel="http://www.milieuinfo.be/imjv/imjvdeel"
+	xmlns:generiekmeta="http://generiekmeta.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	targetNamespace="http://milieuverslagmeta.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Dit subschema bevat de info gebonden aan een milieuVerslag-->
+	<xs:include schemaLocation="MilieuVerslagMetaDataKern.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"
+		/>
+	<xs:import namespace="http://generiekmeta.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../GeneriekMeta/GeneriekMeta.xsd"/>
+	<xs:import namespace="http://geografie.schemas.milieuinfo.be"
+		/>
+	<xs:complexType name="MilieuVerslagType">
+		<xs:annotation>
+			<xs:documentation>MilieuVerslag gegevens</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Cbbnummer" type="generiek:CBBnummerType">
+				<xs:annotation>
+					<xs:documentation>Het CBBNummer van het milieuverslag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="Milieuverslagnummer" type="Milieuverslagnummer">
+                <xs:annotation>
+                    <xs:documentation>Het nummer van dit milieuverslag</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="Actief" type="generiekmeta:ActiefType">
+				<xs:annotation>
+					<xs:documentation>Milieuverslag is actief</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Status" type="MilieuVerslagStatusType">
+				<xs:annotation>
+					<xs:documentation>Status van het Milieuverslag (Onbesteld, Nog te versturen, ...)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Gelinkt_CBBnummer" type="generiek:CBBnummerType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Het gelinkte CbbNummer</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Electronisch_gewenst" type="ElectronischGewenstType">
+				<xs:annotation>
+					<xs:documentation>Milieuverslag is electionisch gewenst</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Begeleidend_schrijven_versturen" type="BegeleidendSchrijvenType">
+				<xs:annotation>
+					<xs:documentation>Een begeleidend schrijven voor het milieuverslag is gewenst</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Nieuw" type="NieuwType">
+				<xs:annotation>
+					<xs:documentation>Milieuverslag is nieuw</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Milieutechnischeeenheid" type="MTEType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Link naar een MTE</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VerzendAdres" type="VerzendAdresType">
+				<xs:annotation>
+					<xs:documentation>Het verzendadres van een milieuverslag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Milieuverslaggroep" type="GroepType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De groep gegevens van het milieuverslag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Feiten" type="generiekmeta:FeitenType">
+				<xs:annotation>
+					<xs:documentation>De feiten van het milieuverslag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VerzendAdresType">
+		<xs:sequence>
+			<xs:element name="Adres" type="geografie:AdresType">
+				<xs:annotation>
+					<xs:documentation>Het adres</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Naam" type="generiek:NaamType">
+				<xs:annotation>
+					<xs:documentation>De naam</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tav" type="TavType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Het 'ter attentie van' veld</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Tijdelijk" type="generiekmeta:TijdelijkType">
+				<xs:annotation>
+					<xs:documentation>Het adres is slechts een tijdelijk adres</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GroepType">
+		<xs:sequence>
+			<xs:element name="Actief" type="generiekmeta:ActiefType">
+				<xs:annotation>
+					<xs:documentation>De groep is actief</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Naam" type="generiek:NaamType">
+				<xs:annotation>
+					<xs:documentation>De naam van de groep</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Cbbnummer" type="generiek:CBBnummerType">
+				<xs:annotation>
+					<xs:documentation>Het cbb nummer van de groep</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VerzendAdres" type="VerzendAdresType">
+				<xs:annotation>
+					<xs:documentation>Het verzendadres van de groep</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MTEType">
+		<xs:sequence>
+			<xs:element name="CBBnummer" type="generiek:CBBnummerType" minOccurs="2"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by  () -->
+<xs:schema xmlns="http://aangiftemeta.milieuverslag.schemas.milieuinfo.be" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://aangiftemeta.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Dit subschema bevat aangifte gegevens-->
+	<xs:include schemaLocation="AangifteMetaDataType.xsd"/>
+</xs:schema>
+

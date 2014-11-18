@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://milieudruk.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://milieudruk.lucht.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Gebruikte eenheden</xs:documentation>
+	</xs:annotation>
+    <xs:simpleType name="EenheidJaarVerbruikAEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van verbruik type A</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="meter"/>
+            <xs:enumeration value="kubieke meter"/>
+            <xs:enumeration value="liter"/>
+            <xs:enumeration value="gigajoule"/>
+            <xs:enumeration value="vierkante meter"/>
+            <xs:enumeration value="ton"/>
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="EenheidJaarVerbruikBEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van verbruik type B</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+            <xs:enumeration value="kubieke meter"/>
+            <xs:enumeration value="liter"/>
+            <xs:enumeration value="gigajoule"/>
+            <xs:enumeration value="ton"/>
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="EenheidJaarVerbruikCEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van verbruik type C</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+            <xs:enumeration value="kubieke meter"/>
+            <xs:enumeration value="liter"/>
+            <xs:enumeration value="ton"/>
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="EenheidJaarVerbruikDEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van verbruik type D</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+            <xs:enumeration value="kubieke meter"/>
+            <xs:enumeration value="gigajoule"/>
+            <xs:enumeration value="ton"/>
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="EenheidJaarVerbruikEEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van verbruik type E</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+            <xs:enumeration value="kubieke meter"/>
+            <xs:enumeration value="gigajoule"/>
+            <xs:enumeration value="ton"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>Enumeraties voor de verschillende stoffuncties</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="StofFunctieEnumType">
+		<xs:annotation>
+			<xs:documentation>Functie van de stof bij de activiteit</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Grondstof"/>
+			<xs:enumeration value="Brandstof"/>
+			<xs:enumeration value="Eindproduct"/>
+			<xs:enumeration value="Afvalproduct"/>
+			<xs:enumeration value="Afgas"/>
+			<xs:enumeration value="Doorzet"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidJaarDebietEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van verbruik</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ton"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

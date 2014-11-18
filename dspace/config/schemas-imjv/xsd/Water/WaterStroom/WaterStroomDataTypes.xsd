@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:verontreinigendestof="http://verontreinigendestof.water.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:include schemaLocation="WaterStroomDataKern.xsd"/>
+	<xs:include schemaLocation="WaterStroomDataCodes.xsd"/>
+	<xs:import namespace="http://verontreinigendestof.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../VerontreinigendeStof/VerontreinigendeStof.xsd"/>
+	<xs:complexType name="GeleideLozingType">
+		<xs:sequence>
+			<xs:element name="Debiet" type="DebietType"/>
+			<xs:element name="AantalDagenPerJaar" type="AantalDagenPerJaarType"/>
+			<xs:element name="AantalUrenPerJaar" type="AantalUrenPerJaarType"/>
+			<xs:element name="pH" type="pHType" minOccurs="0"/>
+			<xs:element name="Temperatuur" type="TemperatuurType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>in °C</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="WaterEmissies" type="WaterEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>6B1 (tabel 2)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="geleideLozingID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="DebietType">
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidDebietEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Emissies (tabel 2)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="WaterEmissieType">
+		<xs:sequence>
+			<xs:element name="VerontreinigendeStof"
+				type="verontreinigendestof:VerontreinigendeStofWaterEnumType"/>
+			<xs:element name="Meetfrequentie" type="generiek:NonNegativeDecimalType">
+				<xs:annotation>
+					<xs:documentation>Aantal metingen dit jaar</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StandaardAfwijking" type="generiek:NonNegativeDecimalType"/>
+			<xs:element name="GemiddeldeConcentratie" type="GemiddeldeConcentratieType"/>
+			<xs:element name="Vracht" type="VrachtType">
+				<xs:annotation>
+					<xs:documentation>Totale jaarvracht</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BepalingsMethode" type="BepalingsMethodeEnumType"/>
+		</xs:sequence>
+		<xs:attribute name="waterEmissieID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="GemiddeldeConcentratieType">
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidConcentratieEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="VrachtType">
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidVrachtEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="AbnormaleVrachtType">
+        <xs:simpleContent>
+			<xs:extension base="PositiveDecimalType">
+				<xs:attribute name="eenheid" type="EenheidVrachtEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="WaterEmissiesType">
+		<xs:sequence>
+			<xs:element name="WaterEmissie" type="WaterEmissieType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Abnormale lozingen</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AbnormaleLozingType">
+		<xs:sequence>
+			<xs:element name="VerontreinigendeStof"
+				type="verontreinigendestof:VerontreinigendeStofWaterEnumType"/>
+			<xs:element name="LozingsDuur" type="LozingsDuurType">
+				<xs:annotation>
+					<xs:documentation>Aantal dagen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbnormaleVracht" type="AbnormaleVrachtType"/>
+			<xs:element name="Oorzaak" type="OorzaakType"/>
+		</xs:sequence>
+		<xs:attribute name="abnormaleLozingID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="AbnormaleLozingenType">
+		<xs:sequence>
+			<xs:element name="AbnormaleLozing" type="AbnormaleLozingType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Lozingen van andere stoffen dan de standaard lijst</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="AndereLozingType">
+		<xs:sequence>
+			<xs:element name="AndereVerontreinigendeStof" type="AndereVerontreinigendeStofType">
+				<xs:annotation>
+					<xs:documentation>Benaming van de verontreinigende stof die niet voorkomt op de standaardlijst</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeleideLozing" type="VrachtType"/>
+			<xs:element name="AbnormaleLozing" type="VrachtType"/>
+			<xs:element name="TotaleBrutoLozing" type="VrachtType"/>
+			<xs:element name="TotaleNettoLozing" type="VrachtType"/>
+		</xs:sequence>
+		<xs:attribute name="andereLozingID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="AndereLozingenType">
+		<xs:sequence>
+			<xs:element name="AndereLozing" type="AndereLozingType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Lijst met gemelde verontreinigende stoffen</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="BedrijfseigenStofType">
+		<xs:annotation>
+			<xs:documentation>Gegevens over een verontreinigende stof waarvoor een melding verwacht wordt van het bedrijf </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="VerontreinigendeStof"
+				type="verontreinigendestof:VerontreinigendeStofWaterEnumType"/>
+			<xs:element name="RedenMelding" type="RedenMeldingEnumType" minOccurs="0"/>
+			<xs:element name="VrachtVorigJaar" type="VrachtType" minOccurs="0"/>
+			<xs:element name="VrachtLaatsteOverschrijding" type="VrachtType" minOccurs="0"/>
+			<xs:element name="JaarLaatsteOverschrijding" type="JaarLaatsteOverschrijding"
+				minOccurs="0"/>
+			<xs:element name="BronLaatsteOverschrijding" type="BronLaatsteOverschrijdingEnumType"
+				minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="bedrijfseigenStofID" type="xs:int" use="required"/>
+	</xs:complexType>
+    <xs:simpleType name="PositiveDecimalType">
+		<xs:annotation>
+			<xs:documentation>Strict positief decimaal getal</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:decimal">
+			<xs:minExclusive value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

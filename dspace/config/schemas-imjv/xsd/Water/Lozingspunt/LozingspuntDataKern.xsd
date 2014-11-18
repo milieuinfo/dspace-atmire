@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://lozingspunt.water.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://lozingspunt.water.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="NaamType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="150"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BlijvendBuitenWerkingType">
+		<xs:annotation>
+			<xs:documentation>True als het element definitief buiten werking werd gesteld</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+</xs:schema>

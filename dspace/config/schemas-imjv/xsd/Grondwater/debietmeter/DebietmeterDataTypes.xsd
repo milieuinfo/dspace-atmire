@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://debietmeter.grondwater.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:filter="http://filter.grondwater.milieuverslag.schemas.milieuinfo.be" xmlns:onttrekking="http://onttrekking.grondwater.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://debietmeter.grondwater.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:include schemaLocation="DebietmeterDataKern.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://filter.grondwater.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Filter/Filter.xsd"/>
+	<xs:import namespace="http://onttrekking.grondwater.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Onttrekking/Onttrekking.xsd"/>
+	<xs:complexType name="DebietmetersType">
+		<xs:sequence>
+			<xs:element name="Debietmeter" type="DebietmeterType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DebietmeterType">
+		<xs:sequence>
+			<xs:element name="Merk" type="MerkType"/>
+			<xs:element name="Serienummer" type="SerienummerType"/>
+			<xs:element name="DatumLaatsteIjking" type="DatumType" minOccurs="0"/>
+			<xs:element name="DatumWegname" type="DatumType" minOccurs="0"/>
+			<xs:element name="Ontrekkingen" type="onttrekking:OnttrekkingenType"/>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekActiviteitReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Pompfilters" type="filter:GekoppeldePompfiltersType">
+				<xs:annotation>
+					<xs:documentation>Filters gekoppeld aan deze debietmeter</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniqueDebietmeterPompfilter">
+					<xs:selector xpath="Pompfilter"/>
+					<xs:field xpath="@pompfilterID"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="debietmeterID" type="xs:int" use="required"/>
+	</xs:complexType>
+</xs:schema>

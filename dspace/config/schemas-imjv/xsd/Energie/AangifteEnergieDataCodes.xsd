@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://energie.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://energie.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="EenheidElektriciteitsVerbruikEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MWhsec"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidElektriciteitsProductieEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MWhsec"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidWarmteOfStoomProductieEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="GJ"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidEnergieVerbruikEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="MWhsec"/>
+			<xs:enumeration value="MWhovw"/>
+			<xs:enumeration value="l"/>
+			<xs:enumeration value="kg"/>
+			<xs:enumeration value="ton "/>
+			<xs:enumeration value="GJsec"/>
+			<xs:enumeration value="GJprim"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidTotaalEnergieVerbruikEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PJ"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

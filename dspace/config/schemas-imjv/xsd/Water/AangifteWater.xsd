@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://water.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://water.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Deelschema voor de aangifte water van het IMJV</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="AangifteWaterDataTypes.xsd"/>
+	<xs:element name="AangifteWater" type="AangifteWaterType">
+		<xs:annotation>
+			<xs:documentation>Aangifte water</xs:documentation>
+		</xs:annotation>
+		<xs:key name="KeyActiviteitID">
+			<xs:selector xpath=".//Activiteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyMeetmethodeID">
+			<xs:selector xpath=".//Meetmethoden/Meetmethode"/>
+			<xs:field xpath="@meetmethodeID"/>
+		</xs:key>
+		<xs:keyref name="KeyrefWaterActiviteitID" refer="KeyActiviteitID">
+			<xs:selector xpath=".//GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="BedrijvenAangifteWater" type="BedrijvenAangifteWaterType">
+		<xs:annotation>
+			<xs:documentation>Aangifte water zonder de handtekening</xs:documentation>
+		</xs:annotation>
+		<xs:key name="KeyBedrijvenActiviteitID">
+			<xs:selector xpath=".//Activiteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyBedrijvenMeetmethodeID">
+			<xs:selector xpath=".//Meetmethoden/Meetmethode"/>
+			<xs:field xpath="@meetmethodeID"/>
+		</xs:key>
+		<xs:keyref name="KeyrefBedrijvenWaterActiviteitID" refer="KeyBedrijvenActiviteitID">
+			<xs:selector xpath=".//GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+	</xs:element>
+</xs:schema>

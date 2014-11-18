@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:verontreinigendestof="http://verontreinigendestof.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:activiteit="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns="http://zuiveringsapparaat.lucht.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://zuiveringsapparaat.lucht.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Definities voor het opgeven van de zuiveringsapparaten</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="ZuiveringsApparaatDataKern.xsd"/>
+	<xs:import namespace="http://verontreinigendestof.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../VerontreinigendeStof/VerontreinigendeStof.xsd"/>
+	<xs:import namespace="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Activiteit/Activiteit.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"
+		/>
+	<xs:complexType name="ZuiveringsapparatenType">
+		<xs:annotation>
+			<xs:documentation>Lijst van de zuiveringsapparaten</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Zuiveringsapparaat" type="ZuiveringsapparaatType"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ZuiveringsapparaatType">
+		<xs:annotation>
+			<xs:documentation>Gegevens betreffende een luchtemissiepunt</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Naam" type="NaamType">
+				<xs:annotation>
+					<xs:documentation>De bedrijfsinterne benaming van het zuiveringsapparaat</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Techniek" type="TechniekType">
+				<xs:annotation>
+					<xs:documentation>Beschrijving van de toegepaste techniek (bv vernturiwasser,...)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DatumIngebruikname" type="DatumIngebruiknameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Exacte datum van de ingebruikname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>De lijst van de activiteiten die gekoppeld zijn aan dit zuiveringsapparaat</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekZuiveringsApparaatGekoppeldeActkiviteiten">
+					<xs:selector xpath=".//Activiteit"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Zuivering" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De bekomen zuiveringsrendementen per stof voor deze zuiveringsapparatuur</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Verwijdering" type="VerwijderingType"
+							maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:unique name="UniekVerontreinigendeStof">
+					<xs:selector xpath=".//Verwijdering"/>
+					<xs:field xpath="VerontreinigendeStof"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="BlijvendBuitenWerking" type="BlijvendBuitenWerkingType">
+				<xs:annotation>
+					<xs:documentation>Zet deze tag op true indien het zuiveringsapparaat niet langer in gebruik is. Volgend jaar zal het emissiepunt niet langer voorkomenin de vaste gegevens.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="zuiveringsapparaatID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een uniek nummer voor dit zuiveringsapparaat binnen het XML bestand</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="VerwijderingType">
+		<xs:annotation>
+			<xs:documentation>Gegevens over het verwijderingspercentage </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="VerontreinigendeStof"
+				type="verontreinigendestof:VerontreinigendeStofLuchtEnumType">
+				<xs:annotation>
+					<xs:documentation>De naam van de verontreinigende stof. Er is een vaste lijst voorzien met mogelijke waarden</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Rendement" type="RendementType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Verwijderingsrendement in %</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="verwijderingID" type="xs:int" use="required"/>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://onttrekking.grondwater.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" targetNamespace="http://onttrekking.grondwater.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:include schemaLocation="OnttrekkingDataKern.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:complexType name="OnttrekkingenType">
+		<xs:sequence>
+			<xs:element name="Onttrekking" type="OnttrekkingType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OnttrekkingType">
+		<xs:sequence>
+			<xs:element name="Ontrekking" type="HoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>in m3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="StartDatum" type="DatumType" minOccurs="0"/>
+			<xs:element name="StartMeterstand" type="MeterstandType" minOccurs="0"/>
+			<xs:element name="EindDatum" type="DatumType" minOccurs="0"/>
+			<xs:element name="EindMeterstand" type="MeterstandType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="onttrekkingID" type="xs:int" use="required"/>
+	</xs:complexType>
+</xs:schema>
