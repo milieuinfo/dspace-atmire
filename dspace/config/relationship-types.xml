@@ -4,8 +4,8 @@
     <type>
         <leftType>com.atmire.dspace.content.Dossier</leftType>
         <rightType>com.atmire.dspace.content.Document</rightType>
-        <leftLabel></leftLabel>
-        <rightLabel></rightLabel>
+        <leftLabel>Dossier</leftLabel>
+        <rightLabel>Document</rightLabel>
         <leftCardinality>
             <min>0</min>
             <!--<max></max>--><!--unbounded-->
@@ -18,8 +18,8 @@
     <type>
         <leftType>com.atmire.dspace.content.Dossier</leftType>
         <rightType>com.atmire.dspace.content.Dossier</rightType>
-        <leftLabel></leftLabel>
-        <rightLabel></rightLabel>
+        <leftLabel>Dossier</leftLabel>
+        <rightLabel>Dossier</rightLabel>
         <leftCardinality>
             <min>1</min>
             <max>1</max>
@@ -32,8 +32,8 @@
     <type>
         <leftType>com.atmire.dspace.content.Document</leftType>
         <rightType>com.atmire.dspace.content.Document</rightType>
-        <leftLabel></leftLabel>
-        <rightLabel></rightLabel>
+        <leftLabel>Document</leftLabel>
+        <rightLabel>Document</rightLabel>
         <leftCardinality>
             <min>1</min>
             <max>1</max>
