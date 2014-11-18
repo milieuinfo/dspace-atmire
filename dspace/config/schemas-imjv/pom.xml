@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>be.milieuinfo.architectuur</groupId>
+        <artifactId>acdsuperpom</artifactId>
+        <version>1.0.1</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <packaging>jar</packaging>
+    <groupId>be.milieuinfo.acd</groupId>
+    <artifactId>schemas-imjv</artifactId>
+    <version>6.0.2.IMJV-SNAPSHOT</version>
+    <name>IMJV schemas Collection</name>
+    <description>Contains all the schemas used in IMJV</description>
+
+    <scm>
+        <connection>scm:svn:http://svn-3255.mmis.be/intern/svn/architectuur/schemas/schemas-imjv/trunk</connection>
+        <developerConnection>scm:svn:http://svn-3255.mmis.be/intern/svn/architectuur/schemas/schemas-imjv/trunk</developerConnection>
+      <url>scm:svn:http://svn-3255.mmis.be/intern/svn/architectuur/schemas/schemas-imjv/trunk</url>
+  </scm>
+
+    <!--
+        CAUTION: Make sure you update the internal schemaLocation references (in this module)
+                to the transitive dependencies modules version. There are references in the XSD of this project
+                that reference/imports xsd's of its transitive dependency which is version specific. So
+                updating the version below affects the schemaLocations of this modules xsds!
+    -->
+    <properties>
+        <generiek.schemas.version>5.0.1.IMJV</generiek.schemas.version>
+        <util.schemas.version>1.1.3</util.schemas.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <!--
+                Make sure the transitive schema-modules are present in the dependencies of the maven-jaxb2-plugin
+                and also in the dependencies of this maven schema module so that clients of this module also
+                use its transitive. The documentation of the is quite fuzzy about this:
+                "Please note that if you want to load schemas from the classpath then they must be in the classpath.
+                In order to achieve this you may need to add the artifact containing schemas to the plugins/plugin."
+            -->
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.7.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generatePackage />
+                            <schemaIncludes>
+                                <include>xsd/imjv.xsd</include>
+                            </schemaIncludes>
+                            <schemaExcludes>
+                                <exclude>xsd/MilieuverslagAfval.xsd</exclude>
+                                <exclude>xsd/MilieuverslagAfvalDataTypes.xsd</exclude>
+                            </schemaExcludes>
+                            <bindingIncludes>
+                                <include>**/*.xjb</include>
+                            </bindingIncludes>
+                            <strict>false</strict>
+                            <verbose>true</verbose>
+                            <extension>true</extension>
+                            <episode>true</episode>
+                            <removeOldOutput>true</removeOldOutput>
+                            <catalog>src/main/resources/xcatalog.xml</catalog>
+                            <catalogResolver> be.milieuinfo.jaxb2.resolver.tools.ACDClasspathCatalogResolver </catalogResolver>
+                            <forceRegenerate>false</forceRegenerate>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>be.milieuinfo.acd</groupId>
+                        <artifactId>schemas-imjv-generiek</artifactId>
+                        <version>${generiek.schemas.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>be.ovam.schemas.imjv</groupId>
+                        <artifactId>imjv-afval-schemas</artifactId>
+                        <version>2.0.2</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>be.milieuinfo.acd</groupId>
+                        <artifactId>schemas-util</artifactId>
+                        <version>${util.schemas.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+                    <goals>deploy xsd:publish</goals>
+                </configuration>
+            </plugin>
+
+            <!--
+                Since the build of this module also puts in the classes of its transitive schema modules dependencies
+                we have to define here only the packages of this schema module.
+            -->
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <includes>
+                        <include>**/schemasCatalog.cat</include>
+                        <include>**/sun-jaxb.episode</include>
+                        <include>xcatalog.xml</include>
+                        <include>xsd/**</include>
+                        <include>be/milieuinfo/schemas/milieuverslag/**</include>
+                    </includes>
+                    <excludes>
+                        <exclude>xsd/MilieuverslagAfval.xsd</exclude>
+                        <exclude>xsd/MilieuverslagAfvalDataTypes.xsd</exclude>
+                        <exclude>be/milieuinfo/schemas/milieuverslag/afval/**</exclude>
+                    </excludes>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                        <manifestEntries>
+                            <Publish-Url>${schema.absoluteurl.location}</Publish-Url>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>be.milieuinfo.acd</groupId>
+                <artifactId>maven-xsd-plugin</artifactId>
+                <version>1.0.3</version>
+
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>xsd</goal>
+                        </goals>
+                        <phase>verify</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <dependentSchemaProjectGroupIdExpression>^be\..*</dependentSchemaProjectGroupIdExpression>
+                    <dependentSchemaProjectArtifactIdExpression>.*schemas.*</dependentSchemaProjectArtifactIdExpression>
+                    <includes>
+                        <include>**/*.xsd</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*.xjb</exclude>
+                        <exclude>**/xcatalog.xml</exclude>
+                        <exclude>xsd/MilieuverslagAfval.xsd</exclude>
+                        <exclude>xsd/MilieuverslagAfvalDataTypes.xsd</exclude>
+                    </excludes>
+                    <dependentSchemaProjectUnpackIncludes>
+                        <param>**/*.xsd</param>
+                        <param>**/*.xjb</param>
+                        <param>**/xcatalog.xml</param>
+                    </dependentSchemaProjectUnpackIncludes>
+                    <revisionNumber>${buildNumber}</revisionNumber>
+                    <httpPublishDirectory>${xsd.deploy.topdirectory}</httpPublishDirectory>
+                    <httpPrefix>${schema.absoluteurl.location}</httpPrefix>
+                    <archive>
+                        <manifestEntries>
+                            <Implementation-Vendor>info@milieuinfo.be</Implementation-Vendor>
+                            <Implementation-Title> ${project.name} - ${project.groupId} - ${project.artifactId} </Implementation-Title>
+                            <Implementation-Version>${project.version}</Implementation-Version>
+                            <Implementation-Build>${buildNumber}</Implementation-Build>
+                            <Implementation-BuildDate>${timestamp}</Implementation-BuildDate>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>be.milieuinfo.acd</groupId>
+            <artifactId>schemas-imjv-generiek</artifactId>
+            <version>${generiek.schemas.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ovam.schemas.imjv</groupId>
+            <artifactId>imjv-afval-schemas</artifactId>
+            <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>be.milieuinfo.framework</groupId>
+            <artifactId>core</artifactId>
+            <version>1.2.8.IMJV</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>3.0.3.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>3.0.3.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>3.0.3.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>xmlunit</groupId>
+            <artifactId>xmlunit</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.6.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <!-- Productie is nu actief by default. Omdat Maven bij het release iets upfucked en zijn profiel niet meeneemt.
+         Voor lokale ontwikkeling is het noodzakelijk dat het juiste profiel gebruikt wordt! Anders kan dit fouten geven bij
+         gebruik van de schemas.
+         -->
+        <profile>
+            <id>ontwikkel</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <xsd.deploy.topdirectory>${java.io.tmpdir}/</xsd.deploy.topdirectory>
+                <schema.absoluteurl.location>file://${java.io.tmpdir}/</schema.absoluteurl.location>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>productie</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <xsd.deploy.topdirectory>/var/apache2/schemas/imjv/</xsd.deploy.topdirectory>
+                <schema.absoluteurl.location>https://www.milieuinfo.be/schemas/imjv/</schema.absoluteurl.location>
+            </properties>
+        </profile>
+    </profiles>
+
+</project>

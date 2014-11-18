@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://emissiepunt.lucht.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://emissiepunt.lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="SoortEmissiePuntEnumType">
+		<xs:annotation>
+			<xs:documentation>Mogelijke soorten emissiepunten.
+</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ONGEKEND"/>
+			<xs:enumeration value="SCHOORSTEEN OF PIJP MET VERTIKALE UITSTROMING"/>
+			<xs:enumeration value="SCHOORSTEEN OF PIJP ZONDER VERTIKALE UITSTROMING"/>
+			<xs:enumeration value="INSTALLATIE OF APPARAAT"/>
+			<xs:enumeration value="GEBOUW"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

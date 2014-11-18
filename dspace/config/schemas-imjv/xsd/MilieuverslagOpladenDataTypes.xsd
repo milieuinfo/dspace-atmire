@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="opladen.milieuverslag.schemas.milieuinfo.be"
+    xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+    targetNamespace="opladen.milieuverslag.schemas.milieuinfo.be"
+    xmlns:geografie="http://geografie.schemas.milieuinfo.be"
+    xmlns:grondwatervast="http://vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be"
+    xmlns:luchtvast="http://vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+    xmlns:watervast="http://vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+    xmlns:afvalproducent="http://producent.afval.milieuverslag.schemas.milieuinfo.be"
+    attributeFormDefault="unqualified">
+    <xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+    <xs:import namespace="http://geografie.schemas.milieuinfo.be"/>
+    <xs:import namespace="http://vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+        schemaLocation="Lucht/VasteGegevensAangifteLucht.xsd"/>
+    <xs:import namespace="http://vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+        schemaLocation="Water/VasteGegevensAangifteWater.xsd"/>
+    <xs:import namespace="http://vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be"
+        schemaLocation="Grondwater/VasteGegevensAangifteGrondwater.xsd"/>
+    <xs:import namespace="http://producent.afval.milieuverslag.schemas.milieuinfo.be"
+        schemaLocation="Afval/Producent/Afvalproducent.xsd"/>
+    <xs:include schemaLocation="MilieuverslagOpladenDataCodes.xsd"/>
+    <xs:include schemaLocation="MilieuverslagOpladenDataKern.xsd"/>
+    <xs:complexType name="OpladenElektronischeMilieuverslagenType">
+        <xs:sequence>
+            <xs:element name="CBBnrs" type="OpladenElektronischMilieuverslagType">
+                <xs:unique name="UniekElektronischMilieuverslag">
+                    <xs:selector xpath="CBBnr"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenElektronischMilieuverslagType">
+        <xs:sequence maxOccurs="unbounded" minOccurs="1">
+            <xs:element name="CBBnr" type="generiek:CBBnummerType"> </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenGeweigerdeMilieuverslagenType">
+        <xs:sequence maxOccurs="1">
+            <xs:element name="CBBnrs" type="OpladenGeweigerdMilieuverslagType">
+                <xs:unique name="UniekGeweigerdCBBnr">
+                    <xs:selector xpath="CBBnr"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenGeweigerdMilieuverslagType">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="CBBnr" type="generiek:CBBnummerType"> </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenLuchtemissieType">
+        <xs:choice>
+            <xs:element name="Aangiften" type="OpladenCBBnrsType">
+                <xs:unique name="UniekLuchtemissieAangifte">
+                    <xs:selector xpath="CBBnr"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
+            </xs:element>
+            <xs:element name="Aangiftedata">
+                <xs:complexType>
+                    <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="VasteGegevensLuchtemissie"
+                            type="luchtvast:VasteGegevensAangifteLuchtType"/>
+                    </xs:sequence>
+                </xs:complexType>
+                <xs:unique name="UniekLuchtemissieAangiftedata">
+                    <xs:selector xpath="VasteGegevensLuchtemissie"/>
+                    <xs:field xpath="CBBExploitatieNummer"/>
+                </xs:unique>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="OpladenEnergieType">
+        <xs:choice>
+            <xs:element name="Aangiften" type="OpladenCBBnrsType">
+                <xs:unique name="UniekEnergieAangifte">
+                    <xs:selector xpath="CBBnr"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="OpladenWateremissieType">
+        <xs:choice>
+            <xs:element name="Aangiften" type="OpladenCBBnrsType">
+                <xs:unique name="UniekWateremissieAangifte">
+                    <xs:selector xpath="CBBnr"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
+            </xs:element>
+            <xs:element name="Aangiftedata">
+                <xs:complexType>
+                    <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="VasteGegevensWateremissie"
+                            type="watervast:VasteGegevensAangifteWaterType"/>
+                    </xs:sequence>
+                </xs:complexType>
+                <xs:unique name="UniekWateremissieAangiftedata">
+                    <xs:selector xpath="VasteGegevensWateremissie"/>
+                    <xs:field xpath="CBBExploitatieNummer"/>
+                </xs:unique>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="OpladenGrondwaterType">
+        <xs:choice>
+            <xs:element name="Aangiften" type="OpladenCBBnrsType">
+                <xs:unique name="UniekGrondwaterAangifte">
+                    <xs:selector xpath="CBBnr"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
+            </xs:element>
+            <xs:element name="IMJV-data">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="GrondwaterLabos" type="OpladenGrondwaterlabosType">
+                            <xs:unique name="UniekGrondwaterlaboID">
+                                <xs:selector xpath="Grondwaterlabo"/>
+                                <xs:field xpath="LaboID"/>
+                            </xs:unique>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Aangiftedata">
+                <xs:complexType>
+                    <xs:sequence maxOccurs="unbounded">
+                        <xs:element name="VasteGegevensGrondwater"
+                            type="grondwatervast:VasteGegevensAangifteGrondwaterType"/>
+                    </xs:sequence>
+                </xs:complexType>
+                <xs:unique name="UniekGrondwaterAangiftedata">
+                    <xs:selector xpath="VasteGegevensGrondwater"/>
+                    <xs:field xpath="CBBExploitatieNummer"/>
+                </xs:unique>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="OpladenAfvalproducentenType">
+        <xs:choice>
+            <xs:element name="Aangiften" type="OpladenCBBnrsAfvalproducentType">
+                <xs:unique name="UniekAfvalproducentAangifte">
+                    <xs:selector xpath="Afvalproducentenaangifte"/>
+                    <xs:field xpath="CBBnr"/>
+                </xs:unique>
+            </xs:element>
+            <xs:element name="IMJV-data">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="IHMVerwerkers"
+                            type="OpladenIHMVerwerkersType">
+                            <xs:unique name="UniekOVamnrVolgnr">
+                                <xs:selector xpath="IHMVerwerker"/>
+                                <xs:field xpath="Ovamnr"/>
+                                <xs:field xpath="Volgnr"/>
+                            </xs:unique>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Milieudruk">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="AfvalstoffenIHMs"
+                            type="OpladenAfvalstoffenIHMType"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="OpladenAfvalverwerkersType">
+        <xs:choice>
+            <xs:element name="Aangiften" type="OpladenCBBnrsType">
+                <xs:unique name="UniekAfvalverwerkersAangifte">
+                    <xs:selector xpath="CBBnr"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
+            </xs:element>
+        </xs:choice>
+    </xs:complexType>
+    <xs:complexType name="OpladenCBBnrsType">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="CBBnr" type="generiek:CBBnummerType"> </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenCBBnrsAfvalproducentType">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="Afvalproducentenaangifte" type="OpladenAfvalproducentenAangifteType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenAfvalproducentenAangifteType">
+        <xs:sequence>
+            <xs:element name="CBBnr" type="generiek:CBBnummerType"> </xs:element>
+            <xs:element name="EuralProfiel" type="OpladenEuralprofielType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenIHMVerwerkersType">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="IHMVerwerker" type="OpladenIHMVerwerkerType">
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenIHMVerwerkerType">
+        <xs:sequence>
+            <xs:element name="Ovamnr" type="xs:positiveInteger"/>
+            <xs:element name="Volgnr" type="xs:positiveInteger"/>
+            <xs:element name="Naam" type="OpladenNaamType"/>
+            <xs:element name="Land" type="geografie:LandCodeEnumType"/>
+            <xs:element name="Postcode" minOccurs="0" type="geografie:PostcodeType"/>
+            <xs:element name="Gemeente" type="geografie:GemeenteNaamType"/>
+            <xs:element name="Straat" minOccurs="0" type="geografie:StraatType"/>
+            <xs:element name="Adresaanvulling" minOccurs="0" type="geografie:OmschrijvingType"/>
+            <xs:element name="Huisnr" minOccurs="0" type="geografie:HuisnummerType"/>
+            <xs:element name="Bus" type="geografie:BusType" minOccurs="0"/>
+            <xs:element name="IsIHM" type="xs:boolean"/>
+            <xs:element name="IsVerwerker" type="xs:boolean"/>
+            <xs:element fixed="1" minOccurs="0" name="TeVerwijderen" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenGrondwaterlabosType">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="Grondwaterlabo" type="OpladenGrondwaterlaboType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenGrondwaterlaboType">
+        <xs:sequence>
+            <xs:element name="LaboID" type="xs:positiveInteger"/>
+            <xs:element name="Naam" type="OpladenNaamType"/>
+            <xs:element fixed="1" minOccurs="0" name="TeVerwijderen" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenAfvalstoffenIHMType">
+        <xs:sequence maxOccurs="unbounded">
+            <xs:element name="Afvalstof" type="OpladenGeproduceerdeAfvalstofType"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="OpladenGeproduceerdeAfvalstofType">
+        <xs:sequence>
+            <xs:element name="AfvalproducentCBBnr" type="generiek:CBBnummerType"/>
+            <xs:element name="AfvalproducentNaam" type="generiek:NaamType"/>
+            <xs:element name="AfvalproducentStraat" type="geografie:StraatType"/>
+            <xs:element name="AfvalproducentHuisnrBusnr" type="xs:string" minOccurs="0"/>
+            <xs:element name="AfvalproducentPostcode" type="geografie:PostcodeType" minOccurs="0"/>
+            <xs:element name="AfvalproducentGemeente" type="geografie:GemeenteNaamType"/>
+            <xs:element name="AfvalstofEuralcode" type="OpladenAfvalcodeEnumType"/>
+            <xs:element name="AfvalstofOmschrijving" type="afvalproducent:StringType" maxOccurs="1"
+                minOccurs="0"/>
+            <xs:element name="AfvalstofEenheid" type="OpladenAfvalstofEenheidType"/>
+            <xs:element name="AfvalstofHoeveelheid" type="afvalproducent:HoeveelheidType"/>
+            <xs:element name="AfvalstofVerwerkingBinnenBedrijf" type="xs:string"/>
+            <xs:element name="AfvalstofIHMOvamnr" type="xs:string"/>
+            <xs:element name="AfvalstofVervoerswijze" type="OpladenAfvalproducentVervoerswijze"/>
+            <xs:element name="AfvalstofVerwerkerOvamnr" type="xs:string"/>
+            <xs:element name="AfvalstofVerwerkingswijze"
+                type="OpladenAfvalproducentVerwerkingswijze"/>
+            <xs:element name="AfvalstofReferte" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

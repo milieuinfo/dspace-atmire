@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://lozingspunt.vastegegevens.water.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:lozingspunt="http://lozingspunt.water.milieuverslag.schemas.milieuinfo.be" xmlns:activiteit="http://activiteit.vastegegevens.water.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://lozingspunt.vastegegevens.water.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://lozingspunt.water.milieuverslag.schemas.milieuinfo.be" schemaLocation="Lozingspunt.xsd"/>
+	<xs:import namespace="http://activiteit.vastegegevens.water.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Activiteit/VasteGegevensActiviteit.xsd"/>
+	<xs:complexType name="LozingspuntenType">
+		<xs:sequence>
+			<xs:element name="Lozingspunt" type="LozingspuntType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LozingspuntType">
+		<xs:sequence>
+			<xs:element name="Naam" type="lozingspunt:NaamType"/>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType">
+				<xs:annotation>
+					<xs:documentation>Meetputnummer is meegegeven als een referte</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekLozingspuntReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="MeetputType" type="lozingspunt:MeetputEnumType">
+				<xs:annotation>
+					<xs:documentation>Lozend, transfer of oppompend</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Lozingsplaats" type="lozingspunt:LozingsplaatsEnumType"/>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType"/>
+		</xs:sequence>
+		<xs:attribute name="lozingspuntID" type="xs:int" use="required"/>
+	</xs:complexType>
+</xs:schema>

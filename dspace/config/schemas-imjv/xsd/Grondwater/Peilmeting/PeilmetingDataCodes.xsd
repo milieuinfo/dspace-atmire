@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://peilmeting.grondwater.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://peilmeting.grondwater.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="ReferentiepuntEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Het maaiveld (oppervlakte van de natuurlijke omgeving)"/>
+			<xs:enumeration value="De bovenkant van de peilbuis (buis, vaak in PVC, van enkele cm diameter waarin het peil gemeten wordt)"/>
+			<xs:enumeration value="De bovenkant van de beschermbuis (grote buis waarin o.a. de peilbuis is opgehangen)"/>
+			<xs:enumeration value="Het peil wordt opgemeten in mTAW"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidDebietEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="m3/uur"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GrondwaterDiepteEnumType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:enumeration value="m"/>
+			<xs:enumeration value="mTAW"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="InstrumentPeilmetingEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Peillint"/>
+			<xs:enumeration value="Elektronische meting (sonde)"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

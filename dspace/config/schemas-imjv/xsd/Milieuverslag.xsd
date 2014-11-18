@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Steven De Bock (Ministeries van de Vlaamse Gemeenschap) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://milieuverslag.schemas.milieuinfo.be" targetNamespace="http://milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Het volledig schema voor het milieuverslag</xs:documentation>
+	</xs:annotation>
+	<xs:include schemaLocation="MilieuverslagDataTypes.xsd"/>
+	<xs:element name="Milieuverslag" type="MilieuverslagType">
+		<xs:annotation>
+			<xs:documentation>Element dat het volledige milieuverslag omvat</xs:documentation>
+		</xs:annotation>
+		<xs:unique name="UniqueBestand">
+			<xs:selector xpath=".//Bestand"/>
+			<xs:field xpath="."/>
+		</xs:unique>
+	</xs:element>
+</xs:schema>

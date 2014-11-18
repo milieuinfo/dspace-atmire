@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Steven De Bock (Ministeries van de Vlaamse Gemeenschap) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://lucht.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Gedeelte lucht van het IMJV-->
+	<xs:include schemaLocation="AangifteLuchtDataTypes.xsd"/>
+	<xs:element name="AangifteLucht" type="AangifteLuchtType">
+		<xs:annotation>
+			<xs:documentation>Aangifte Lucht</xs:documentation>
+		</xs:annotation>
+		<xs:key name="KeyMeetmethodeID">
+			<xs:selector xpath=".//Meetmethode"/>
+			<xs:field xpath="@meetmethodeID"/>
+		</xs:key>
+		<xs:key name="KeyActiviteitID">
+			<xs:selector xpath=".//Installatie/ProductieEenheid | .//Installatie/EnergieActiviteit | .//Installatie/OpslagEnOverslag | .//Installatie/Fakkel | .//Installatie/Waterzuivering | .//Apparaat/ProductieEenheid | .//Apparaat/EnergieActiviteit | .//Apparaat/OpslagEnOverslag | .//Apparaat/Fakkel | .//Apparaat/Waterzuivering"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyProductieEenheidActiviteitID">
+			<xs:selector xpath=".//Installatie/ProductieEenheid | .//Apparaat/ProductieEenheid"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyEnergieActiviteitID">
+			<xs:selector xpath=".//Installatie/EnergieActiviteit | .//Apparaat/EnergieActiviteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyOpslagOverslagActiviteitID">
+			<xs:selector xpath=".//Installatie/OpslagEnOverslag | .//Apparaat/OpslagEnOverslag"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyFakkelActiviteitID">
+			<xs:selector xpath=" .//Installatie/Fakkel | .//Apparaat/Fakkel"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyWaterzuiveringActiviteitID">
+			<xs:selector xpath=".//Installatie/Waterzuivering | .//Apparaat/Waterzuivering"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:keyref name="KeyRefMilieudrukProductieEenheidActiviteitID" refer="KeyProductieEenheidActiviteitID">
+			<xs:selector xpath="Milieudruk/ProductieEenheid/VerbruiksGegevens/Afvalproduct/GekoppeldeActiviteiten/Activiteit |Milieudruk/ProductieEenheid/VerbruiksGegevens/Brandstof/GekoppeldeActiviteiten/Activiteit | Milieudruk/ProductieEenheid/VerbruiksGegevens/Eindproduct/GekoppeldeActiviteiten/Activiteit | Milieudruk/ProductieEenheid/VerbruiksGegevens/Grondstof/GekoppeldeActiviteiten/Activiteit | Milieudruk/ProductieEenheid/GeleideEmissies/Emissie/GekoppeldeStofStromen/StofStroom | Milieudruk/ProductieEenheid/Lekverliezen/Emissie/GekoppeldeActiviteiten/Activiteit | Milieudruk/ProductieEenheid/AndereNietGeleideEmissies/Emissie/GekoppeldeActiviteiten/Activiteit | Milieudruk/ProductieEenheid/AbnormaleEmissies/Emissie/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefMilieudrukEnergieActiviteitID" refer="KeyEnergieActiviteitID">
+			<xs:selector xpath="Milieudruk/EnergieProductie/Brandstoffen/Brandstof/GekoppeldeActiviteiten/Activiteit | Milieudruk/EnergieProductie/GeleideEmissies/Emissie/GekoppeldeStofStromen/StofStroom | Milieudruk/EnergieProductie/AbnormaleEmissies/Emissie/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefMilieudrukOpslagOverslagActiviteitID" refer="KeyOpslagOverslagActiviteitID">
+			<xs:selector xpath="Milieudruk/OpslagOverslag/Doorzetgegevens/Doorzet/GekoppeldeActiviteiten/Activiteit | Milieudruk/OpslagOverslag/Doorzetgegevens/Doorzet/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefFakkelActiviteitID" refer="KeyFakkelActiviteitID">
+			<xs:selector xpath="Milieudruk/Fakkel/NietGeleideEmissies/Emissie/GekoppeldeActiviteiten/Activiteit | Milieudruk/Fakkel/AbnormaleEmissies/Emissie/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefWaterzuiveringActiviteitID" refer="KeyWaterzuiveringActiviteitID">
+			<xs:selector xpath="Milieudruk/Waterzuivering/VerbruiksGegevens/Brandstof/GekoppeldeActiviteiten/Activiteit | Milieudruk/Waterzuivering/VerbruiksGegevens/Grondstof/GekoppeldeActiviteiten/Activiteit |Milieudruk/Waterzuivering/VerbruiksGegevens/Afvalproduct/GekoppeldeActiviteiten/Activiteit |Milieudruk/Waterzuivering/VerbruiksGegevens/Eindproduct/GekoppeldeActiviteiten/Activiteit |Milieudruk/Waterzuivering/GeleideEmissies/Emissie/GekoppeldeStofStromen/StofStroom | Milieudruk/Waterzuivering/NietGeleideEmissies/Emissie/GekoppeldeActiviteiten/Activiteit | Milieudruk/Waterzuivering/AbnormaleEmissies/Emissie/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:key name="KeyEmissiepuntID">
+			<xs:selector xpath="EmissiePunten/Emissiepunt"/>
+			<xs:field xpath="@emissiepuntID"/>
+		</xs:key>
+		<xs:keyref name="KeyrefEmissiepuntID" refer="KeyEmissiepuntID">
+			<xs:selector xpath=".//Emissiepunt"/>
+			<xs:field xpath="@emissiepuntID"/>
+		</xs:keyref>
+		<xs:key name="KeyStofID">
+			<xs:selector xpath="Stoffen/Stof"/>
+			<xs:field xpath="@stofID"/>
+		</xs:key>
+		<xs:keyref name="KeyrefStofID" refer="KeyStofID">
+			<xs:selector xpath=".//Stof"/>
+			<xs:field xpath="@stofID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefMeetmethodeID" refer="KeyMeetmethodeID">
+			<xs:selector xpath=".//EmissieHoeveelheid/Hoeveelheid"/>
+			<xs:field xpath="@meetmethodeID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefActiviteitID" refer="KeyActiviteitID">
+			<xs:selector xpath=".//GekoppeldeActiviteiten/Activiteit | .//GekoppeldeStofStromen/StofStroom"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:key name="KeyEmissiepuntActiviteitID">
+			<xs:selector xpath="EmissiePunten/Emissiepunt/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@emissiepuntID"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:keyref name="KeyrefGekoppeldeStofstromenActiviteitEmissiepuntID" refer="KeyEmissiepuntActiviteitID">
+			<xs:selector xpath=".//Emissie/GekoppeldeStofStromen/StofStroom"/>
+			<xs:field xpath="@emissiepuntID"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefGekoppeldeActiviteitenEmissiepuntID" refer="KeyEmissiepuntActiviteitID">
+			<xs:selector xpath=".//Emissie/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@emissiepuntID"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+	</xs:element>
+	<xs:element name="BedrijvenAangifteLucht" type="BedrijvenAangifteLuchtType">
+		<xs:annotation>
+			<xs:documentation>Aangifte Lucht zonder de handtekening</xs:documentation>
+		</xs:annotation>
+		<xs:key name="KeyBedrijvenMeetmethodeID">
+			<xs:selector xpath=".//Meetmethode"/>
+			<xs:field xpath="@meetmethodeID"/>
+		</xs:key>
+		<xs:key name="KeyBedrijvenActiviteitID">
+			<xs:selector xpath=".//Installatie/ProductieEenheid | .//Installatie/EnergieActiviteit | .//Installatie/OpslagEnOverslag | .//Installatie/Fakkel | .//Installatie/Waterzuivering | .//Apparaat/ProductieEenheid | .//Apparaat/EnergieActiviteit | .//Apparaat/OpslagEnOverslag | .//Apparaat/Fakkel | .//Apparaat/Waterzuivering"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyBedrijvenProductieEenheidActiviteitID">
+			<xs:selector xpath=".//Installatie/ProductieEenheid | .//Apparaat/ProductieEenheid"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyBedrijvenEnergieActiviteitID">
+			<xs:selector xpath=".//Installatie/EnergieActiviteit | .//Apparaat/EnergieActiviteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyBedrijvenOpslagOverslagActiviteitID">
+			<xs:selector xpath=".//Installatie/OpslagEnOverslag | .//Apparaat/OpslagEnOverslag"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyBedrijvenFakkelActiviteitID">
+			<xs:selector xpath=" .//Installatie/Fakkel | .//Apparaat/Fakkel"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:key name="KeyBedrijvenWaterzuiveringActiviteitID">
+			<xs:selector xpath=".//Installatie/Waterzuivering | .//Apparaat/Waterzuivering"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:keyref name="KeyRefBedrijvenMilieudrukProductieEenheidActiviteitID" refer="KeyBedrijvenProductieEenheidActiviteitID">
+			<xs:selector xpath="Milieudruk/ProductieEenheid/VerbruiksGegevens/Afvalproduct/GekoppeldeActiviteiten/Activiteit |Milieudruk/ProductieEenheid/VerbruiksGegevens/Brandstof/GekoppeldeActiviteiten/Activiteit | Milieudruk/ProductieEenheid/VerbruiksGegevens/Eindproduct/GekoppeldeActiviteiten/Activiteit | Milieudruk/ProductieEenheid/VerbruiksGegevens/Grondstof/GekoppeldeActiviteiten/Activiteit | Milieudruk/ProductieEenheid/GeleideEmissies/Emissie/GekoppeldeStofStromen/StofStroom | Milieudruk/ProductieEenheid/Lekverliezen/Emissie/GekoppeldeActiviteiten/Activiteit | Milieudruk/ProductieEenheid/AndereNietGeleideEmissies/Emissie/GekoppeldeActiviteiten/Activiteit | Milieudruk/ProductieEenheid/AbnormaleEmissies/Emissie/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefBedrijvenMilieudrukEnergieActiviteitID" refer="KeyBedrijvenEnergieActiviteitID">
+			<xs:selector xpath="Milieudruk/EnergieProductie/Brandstoffen/Brandstof/GekoppeldeActiviteiten/Activiteit | Milieudruk/EnergieProductie/GeleideEmissies/Emissie/GekoppeldeStofStromen/StofStroom | Milieudruk/EnergieProductie/AbnormaleEmissies/Emissie/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefBedrijvenMilieudrukOpslagOverslagActiviteitID" refer="KeyBedrijvenOpslagOverslagActiviteitID">
+			<xs:selector xpath="Milieudruk/OpslagOverslag/Doorzetgegevens/Doorzet/GekoppeldeActiviteiten/Activiteit|Milieudruk/OpslagOverslag/Doorzetgegevens/Doorzet/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefBedrijvenFakkelActiviteitID" refer="KeyBedrijvenFakkelActiviteitID">
+			<xs:selector xpath="Milieudruk/Fakkel/NietGeleideEmissies/Emissie/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefBedrijvenWaterzuiveringActiviteitID" refer="KeyBedrijvenWaterzuiveringActiviteitID">
+			<xs:selector xpath="Milieudruk/Waterzuivering/VerbruiksGegevens/Brandstof/GekoppeldeActiviteiten/Activiteit|Milieudruk/Waterzuivering/VerbruiksGegevens/Grondstof/GekoppeldeActiviteiten/Activiteit|Milieudruk/Waterzuivering/VerbruiksGegevens/Afvalproduct/GekoppeldeActiviteiten/Activiteit|Milieudruk/Waterzuivering/VerbruiksGegevens/Eindproduct/GekoppeldeActiviteiten/Activiteit|Milieudruk/Waterzuivering/NietGeleideEmissies/Emissie/GekoppeldeActiviteiten/Activiteit|Milieudruk/Waterzuivering/AbnormaleEmissies/Emissie/GekoppeldeActiviteiten/Activiteit|Milieudruk/Waterzuivering/GeleideEmissies/Emissie/GekoppeldeStofStromen/StofStroom"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:key name="KeyBedrijvenEmissiepuntID">
+			<xs:selector xpath="EmissiePunten/Emissiepunt"/>
+			<xs:field xpath="@emissiepuntID"/>
+		</xs:key>
+		<xs:keyref name="KeyrefBedrijvenEmissiepuntID" refer="KeyBedrijvenEmissiepuntID">
+			<xs:selector xpath=".//Emissiepunt"/>
+			<xs:field xpath="@emissiepuntID"/>
+		</xs:keyref>
+		<xs:key name="KeyBedrijvenStofID">
+			<xs:selector xpath="Stoffen/Stof"/>
+			<xs:field xpath="@stofID"/>
+		</xs:key>
+		<xs:keyref name="KeyrefBedrijvenStofID" refer="KeyBedrijvenStofID">
+			<xs:selector xpath=".//Stof"/>
+			<xs:field xpath="@stofID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefBedrijvenMeetmethodeID" refer="KeyBedrijvenMeetmethodeID">
+			<xs:selector xpath=".//EmissieHoeveelheid/Hoeveelheid"/>
+			<xs:field xpath="@meetmethodeID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefBedrijvenActiviteitID" refer="KeyBedrijvenActiviteitID">
+			<xs:selector xpath=".//GekoppeldeActiviteiten/Activiteit | .//GekoppeldeStofStromen/StofStroom"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:key name="KeyBedrijvenEmissiepuntActiviteitID">
+			<xs:selector xpath="EmissiePunten/Emissiepunt/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@emissiepuntID"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:keyref name="KeyrefBedrijvenGekoppeldeStofstromenActiviteitEmissiepuntID" refer="KeyBedrijvenEmissiepuntActiviteitID">
+			<xs:selector xpath=".//Emissie/GekoppeldeStofStromen/StofStroom"/>
+			<xs:field xpath="@emissiepuntID"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:keyref name="KeyrefBedrijvenGekoppeldeActiviteitenEmissiepuntID" refer="KeyBedrijvenEmissiepuntActiviteitID">
+			<xs:selector xpath=".//Emissie/GekoppeldeActiviteiten/Activiteit"/>
+			<xs:field xpath="@emissiepuntID"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:activiteit="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be" xmlns="http://stof.lucht.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://stof.lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Deelschema met de types voor het identificeren van de stoffen en hun hoeveelheden voor het luik lucht van het IMJV</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Activiteit/Activiteit.xsd"/>
+	<xs:include schemaLocation="StofDataKern.xsd"/>
+	<xs:include schemaLocation="StofDataCodes.xsd"/>
+	<xs:complexType name="StoffenType">
+		<xs:sequence>
+			<xs:element name="Stof" type="StofType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StofType">
+		<xs:sequence>
+			<xs:element name="Benaming" type="BenamingType">
+				<xs:annotation>
+					<xs:documentation>Bedrijfsinterne benaming van de stof</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Een lijst van refertes die kunnen gebruikt worden voor het identificeren van deze stof</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekStofReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Unieke identificatie van de stof doorheen dit XML bestand</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Type definitie om een lijst met hoeveelheden gekoppeld aan activiteiten bij te houden</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="StofHoeveelhedenType">
+		<xs:choice maxOccurs="unbounded">
+			<xs:element name="Brandstof" type="BrandstofHoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>Ingeval de stof als brandstof gebruikt wordt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Grondstof" type="GrondstofHoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>Ingeval de stof als grondstof gebruikt wordt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Afvalproduct" type="AfvalproductHoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>Ingeval de stof een afvalstof is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Eindproduct" type="EindproductHoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>Indien de stof een eindproduct is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="BrandstofHoeveelheidType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof gebruikt als brandstof</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="HoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AsGehalte" type="AsGehalteType">
+				<xs:annotation>
+					<xs:documentation>Gemiddeld asgehalte in %</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZwavelGehalte" type="ZwavelGehalteType">
+				<xs:annotation>
+					<xs:documentation>Gemiddeld zwavelgehalte in %</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyBrandStofHoeveelheidGekoppeldeActiviteiten">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekBrandStofhoeveelheidReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een unieke identificatie van deze hoeveelheid van een bepaalde stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="GrondstofHoeveelheidType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof gebruikt als grondstof</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="HoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyGrondstofHoeveelheidGekoppeldeActiviteiten">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekGrondstofhoeveelheidReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een unieke identificatie van deze hoeveelheid van een bepaalde stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="AfvalproductHoeveelheidType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof geproduceerd als afvalstof</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="HoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyAfvalproductHoeveelheidGekoppeldeActiviteiten">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekAfvalhoeveelheidReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een unieke identificatie van deze hoeveelheid van een bepaalde stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="EindproductHoeveelheidType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof geproduceerd als eindproduct</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="HoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyEindproductHoeveelheidGekoppeldeActiviteiten">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekEindproducthoeveelheidReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een unieke identificatie van deze hoeveelheid van een bepaalde stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="HoeveelheidType">
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="eenheid" type="EenheidJaarVerbruikEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Type voor het koppelen van de stof ID</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="StofIDType">
+		<xs:attribute name="stofID" type="xs:int" use="required"/>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://emissie.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://emissie.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Dit deelschema bevat de definities voor het deel emissies van het luik Lucht van het IMJV-->
+	<xs:include schemaLocation="VasteGegevensEmissieDataTypes.xsd"/>
+</xs:schema>

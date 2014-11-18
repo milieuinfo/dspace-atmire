@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="opladen.milieuverslag.schemas.milieuinfo.be"
+    targetNamespace="opladen.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified"
+    attributeFormDefault="unqualified" version="1.00">
+
+    <xs:include schemaLocation="MilieuverslagOpladenDataTypes.xsd"/>
+    <xs:element name="LuchtemissieAangifte" type="OpladenLuchtemissieType"/>
+    <xs:element name="EnergieAangifte" type="OpladenEnergieType"/>
+    <xs:element name="WateremissieAangifte" type="OpladenWateremissieType"/>
+    <xs:element name="GrondwaterAangifte" type="OpladenGrondwaterType"/>
+    <xs:element name="AfvalproducentenAangifte" type="OpladenAfvalproducentenType"/>
+    <xs:element name="AfvalverwerkersAangifte" type="OpladenAfvalverwerkersType"/>
+    <xs:element name="ElektronischeMilieuverslagen" type="OpladenElektronischeMilieuverslagenType"/>
+    <xs:element name="GeweigerdeMilieuverslagen" type="OpladenGeweigerdeMilieuverslagenType"/>
+</xs:schema>

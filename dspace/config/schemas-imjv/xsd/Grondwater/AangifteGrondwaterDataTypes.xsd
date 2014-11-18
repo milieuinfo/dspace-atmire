@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://grondwater.milieuverslag.schemas.milieuinfo.be" xmlns:aangiftegeneriek="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:kwaliteitsmeting="http://kwaliteitsmeting.grondwater.milieuverslag.schemas.milieuinfo.be" xmlns:grondwaterput="http://grondwaterput.grondwater.milieuverslag.schemas.milieuinfo.be" xmlns:debietmeter="http://debietmeter.grondwater.milieuverslag.schemas.milieuinfo.be" xmlns:watergebruik="http://watergebruik.grondwater.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://grondwater.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Aangiftegeneriek/Aangiftegeneriek.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://grondwaterput.grondwater.milieuverslag.schemas.milieuinfo.be" schemaLocation="Grondwaterput/Grondwaterput.xsd"/>
+	<xs:import namespace="http://watergebruik.grondwater.milieuverslag.schemas.milieuinfo.be" schemaLocation="Watergebruik/Watergebruik.xsd"/>
+	<xs:import namespace="http://debietmeter.grondwater.milieuverslag.schemas.milieuinfo.be" schemaLocation="debietmeter/Debietmeter.xsd"/>
+	<xs:import namespace="http://kwaliteitsmeting.grondwater.milieuverslag.schemas.milieuinfo.be" schemaLocation="Kwaliteitsmeting/Kwaliteitsmeting.xsd"/>
+	<xs:include schemaLocation="AangifteGrondwaterDataCodes.xsd"/>
+	<xs:include schemaLocation="AangifteGrondwaterDatakern.xsd"/>
+	<xs:complexType name="AangifteGrondwaterType">
+		<xs:complexContent>
+			<xs:extension base="TechnischGedeelteGrondwaterType">
+				<xs:sequence>
+					<xs:element name="Aangiftegeneriek" type="aangiftegeneriek:Aangiftegeneriek"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BedrijvenAangifteGrondwaterType">
+		<xs:complexContent>
+			<xs:extension base="TechnischGedeelteGrondwaterType">
+				<xs:sequence>
+					<xs:element name="Aangiftegeneriek" type="aangiftegeneriek:BedrijvenAangiftegeneriek"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TechnischGedeelteGrondwaterType">
+		<xs:sequence>
+			<xs:element name="Grondwaterputten" type="grondwaterput:GrondwaterputtenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Putten, de filters en de peilmetingen</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekPomputnummer">
+					<xs:selector xpath="Pompput"/>
+					<xs:field xpath="Putnummer"/>
+				</xs:unique>
+				<xs:unique name="UniekPeilputnummer">
+					<xs:selector xpath="Peilput"/>
+					<xs:field xpath="Putnummer"/>
+				</xs:unique>
+				<xs:key name="KeyPompputID">
+					<xs:selector xpath="Pompput"/>
+					<xs:field xpath="@pompputID"/>
+				</xs:key>
+				<xs:key name="KeyPeilputID">
+					<xs:selector xpath="Peilput"/>
+					<xs:field xpath="@peilputID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Debietmeters" type="debietmeter:DebietmetersType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Debietmeters en de onttrekkingen</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyDebietmeterID">
+					<xs:selector xpath="Debietmeter"/>
+					<xs:field xpath="@debietmeterID"/>
+				</xs:key>
+				<xs:key name="KeyOntrekkingID">
+					<xs:selector xpath="Debietmeter/Ontrekkingen/Onttrekking"/>
+					<xs:field xpath="@onttrekkingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Kwaliteitsmetingen" type="kwaliteitsmeting:MonsternamesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Monsternames en de analyses</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyKwaliteitsmetingID">
+					<xs:selector xpath="Monstername"/>
+					<xs:field xpath="@monsternameID"/>
+				</xs:key>
+				<xs:key name="KeyAnalyseID">
+					<xs:selector xpath=".//Analyse"/>
+					<xs:field xpath="@analyseID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Waterbalans" type="watergebruik:WaterBalansType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Watergebruik en verbruik binnen de exploitatie</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyWaterBestemmingID">
+					<xs:selector xpath=".//WaterBestemming"/>
+					<xs:field xpath="@bestemmingID"/>
+				</xs:key>
+				<xs:key name="KeyWaterGebruikID">
+					<xs:selector xpath="Watergebruik"/>
+					<xs:field xpath="@waterGebruikID"/>
+				</xs:key>
+				<xs:unique name="UniekWatergebruikHerkomst">
+					<xs:annotation>
+						<xs:documentation>Herkomst in de waterbalans moet uniek zijn</xs:documentation>
+					</xs:annotation>
+					<xs:selector xpath="Watergebruik"/>
+					<xs:field xpath="Herkomst"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="IMJV" type="aangiftegeneriek:IsIMJVAangifte" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deprecated. Wordt niet meer gebruikt aangezien het alleen mogelijk is aangiftes in het kader van het IMJV op te geven. [True indien deze aangifte een IMJV aangifte is]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by  () -->
+<xs:schema xmlns="http://aangiftemeta.milieuverslag.schemas.milieuinfo.be" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:geografie="http://geografie.schemas.milieuinfo.be" xmlns:aangiftegeneriek="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be" xmlns:generiekmeta="http://generiekmeta.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" targetNamespace="http://aangiftemeta.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:include schemaLocation="AangifteMetaDataCodes.xsd"/>
+	<xs:import namespace="http://geografie.schemas.milieuinfo.be" />
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://generiekmeta.milieuverslag.schemas.milieuinfo.be" schemaLocation="../GeneriekMeta/GeneriekMeta.xsd"/>
+	<xs:import namespace="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Aangiftegeneriek/Aangiftegeneriek.xsd"/>
+	<xs:simpleType name="VanToepassingType">
+		<xs:restriction base="generiekmeta:BooleanType"/>
+	</xs:simpleType>
+	<xs:simpleType name="AangifteTypeType">
+		<xs:restriction base="AangifteTypeEnumType"/>
+	</xs:simpleType>
+	<xs:simpleType name="Milieuverslag">
+		<xs:restriction base="generiekmeta:BooleanType"/>
+	</xs:simpleType>
+	<xs:simpleType name="BijgevraagdType">
+		<xs:restriction base="generiekmeta:BooleanType"/>
+	</xs:simpleType>
+	<xs:simpleType name="AangifteStatusType">
+		<xs:restriction base="AangifteStatusTypeEnumType"/>
+	</xs:simpleType>
+	<xs:simpleType name="VolgNummerType">
+		<xs:annotation>
+			<xs:documentation>VolgNummerType</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{1,10}"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
+

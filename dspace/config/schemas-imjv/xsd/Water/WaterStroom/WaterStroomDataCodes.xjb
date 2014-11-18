@@ -1,0 +1,35 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="WaterStroomDataCodes.xsd">
+        <jxb:bindings node="//xs:simpleType[@name='EenheidConcentratieEnumType']">
+            <jxb:typesafeEnumClass name="EenheidConcentratieEnumType">
+                <jxb:typesafeEnumMember name="MG_L" value="mg/l"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='EenheidVrachtEnumType']">
+            <jxb:typesafeEnumClass name="EenheidVrachtEnumType">
+                <jxb:typesafeEnumMember name="KG_JR" value="kg/jr"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='BepalingsMethodeEnumType']">
+            <jxb:typesafeEnumClass name="BepalingsMethodeEnumType">
+                <jxb:typesafeEnumMember name="MEETGEGEVENS" value="meetgegevens"/>
+                <jxb:typesafeEnumMember name="REKENGEGEVENS" value="rekengegevens"/>
+                <jxb:typesafeEnumMember name="GESCHATTE_GEGEVENS" value="geschatte gegevens"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='EenheidDebietEnumType']">
+            <jxb:typesafeEnumClass name="EenheidDebietEnumType">
+                <jxb:typesafeEnumMember name="M_3_JR" value="m3/jr"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+    </jxb:bindings>
+</jxb:bindings>

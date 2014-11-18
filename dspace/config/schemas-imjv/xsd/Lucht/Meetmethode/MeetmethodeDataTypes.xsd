@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:verontreinigendestof="http://verontreinigendestof.lucht.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns="http://meetmethode.lucht.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://meetmethode.lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Deelschema met de types voor het identificeren van de meetmethodes voor het luik lucht van het IMJV</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://verontreinigendestof.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="../VerontreinigendeStof/VerontreinigendeStof.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:include schemaLocation="MeetmethodeDataKern.xsd"/>
+	<xs:complexType name="MeetmethodenType">
+		<xs:sequence>
+			<xs:element name="Meetmethode" type="MeetmethodeType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MeetmethodeType">
+		<xs:sequence>
+			<xs:element name="VerontreinigendeStof" type="verontreinigendestof:VerontreinigendeStofLuchtEnumType">
+				<xs:annotation>
+					<xs:documentation>De naam van de verontreinigende stof waarvoor deze meetmethode van toepassing is. Er is een vaste lijst voorzien met mogelijke waarden.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Meetnorm" type="MeetnormType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Beschrijving van de norm of het protocol</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Methode" type="MethodeType">
+				<xs:annotation>
+					<xs:documentation>De eventuele meetapparatuur</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Refertes die gebruikt worden voor het identificeren van deze meetmethode</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekMeetmethodeReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="meetmethodeID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Uniek ID voor deze meetmethode</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

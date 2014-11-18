@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<foei:aanmaning xmlns:foei="urn:be:milieuinfo:schemas:milieuverslag:documents:aanmaning:ovam" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:be:milieuinfo:schemas:milieuverslag:documents:aanmaning:ovam file:/private/tmp/schemas-imjv-4.0.0/src/main/resources/xsd/Afval/aanmaning/AanmaningOvam.xsd">
+    <naamZetel>naamZetel0</naamZetel>
+    <cbbNr>cbbNr0</cbbNr>
+    <ondernemingsnr>ondernemingsnr0</ondernemingsnr>
+    <verzendAdres>
+        <straatnaam>straatnaam0</straatnaam>
+        <huisnr>huisnr0</huisnr>
+        <busnr>busnr0</busnr>
+        <aanvulling>aanvulling0</aanvulling>
+        <postcode>postcode0</postcode>
+        <gemeente>gemeente0</gemeente>
+    </verzendAdres>
+    <imjvAdres>
+        <straatnaam>straatnaam1</straatnaam>
+        <huisnr>huisnr1</huisnr>
+        <busnr>busnr1</busnr>
+        <aanvulling>aanvulling1</aanvulling>
+        <postcode>postcode1</postcode>
+        <gemeente>gemeente1</gemeente>
+    </imjvAdres>
+    <datumW>10 januari 2010</datumW>
+    <datumX>10 januari 2010</datumX>
+    <datumY>10 januari 2010</datumY>
+    <datumZ>10 januari 2010</datumZ>
+    <datumExtra>10 januari 2010</datumExtra>
+    <aanTeLeverenDeelformulieren>
+        <deelformulier naam="I. Identificatiegegevens"/>
+        <deelformulier naam="I. Identificatiegegevens"/>
+    </aanTeLeverenDeelformulieren>
+    <ontbrekendeDeelformulieren>
+        <deelformulier naam="I. Identificatiegegevens"/>
+        <deelformulier naam="I. Identificatiegegevens"/>
+    </ontbrekendeDeelformulieren>
+</foei:aanmaning>

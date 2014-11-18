@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns="http://activiteit.water.milieuverslag.schemas.milieuinfo.be" xmlns:watergebruik="http://watergebruik.water.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://activiteit.water.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://watergebruik.water.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Watergebruik/Watergebruik.xsd"/>
+	<xs:include schemaLocation="ActiviteitDataKern.xsd"/>
+	<xs:include schemaLocation="ActiviteitDataCodes.xsd"/>
+	<xs:complexType name="ActiviteitenType">
+		<xs:sequence>
+			<xs:element name="Activiteit" type="ActiviteitType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ActiviteitType">
+		<xs:sequence>
+			<xs:element name="Naam" type="NaamType"/>
+			<xs:element name="NosePCode" type="nosePCodeEnumType">
+				<xs:annotation>
+					<xs:documentation>De NoseP code te selecteren uit een vaste lijst</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="BlijvendBuitenWerking" type="BlijvendBuitenWerkingType">
+				<xs:annotation>
+					<xs:documentation>True indien deze activiteit blijvend buiten werking werd gesteld</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Een lijst van alternatieve identificatiecodes die gebruikt worden voor deze activiteit</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekActiviteitReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Watergebruiken" type="watergebruik:WaterGebruikenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 2: gebruik en Deel 6A bestemming</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekHerkomst">
+					<xs:selector xpath=".//Watergebruik"/>
+					<xs:field xpath="Herkomst"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="activiteitID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een uniek nummer voor deze activiteit binnen het XML bestand</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Lijst van gekoppelde activiteiten</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="GekoppeldeActiviteitenType">
+		<xs:sequence>
+			<xs:element name="Activiteit" type="ActiviteitIDType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+    <xs:complexType name="BedrijvenGekoppeldeActiviteitenType">
+		<xs:sequence>
+			<xs:element name="Activiteit" type="BedrijvenActiviteitIDType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ActiviteitIDType">
+		<xs:annotation>
+			<xs:documentation>ID van een activiteit</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BlijvendBuitenWerking" type="BlijvendBuitenWerkingType"/>
+		</xs:sequence>
+		<xs:attribute name="activiteitID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="BedrijvenActiviteitIDType">
+		<xs:annotation>
+			<xs:documentation>ID van een activiteit</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="activiteitID" type="xs:int" use="required"/>
+	</xs:complexType>
+</xs:schema>

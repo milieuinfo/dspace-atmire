@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://aangiftegeneriekmeta.milieuverslag.schemas.milieuinfo.be" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:geografie="http://geografie.schemas.milieuinfo.be" xmlns:aangiftegeneriek="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://aangiftegeneriekmeta.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Dit subschema bevat het algemeen gedeelte van het IMJV formulier dat bij elk deel terugkomt-->
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://geografie.schemas.milieuinfo.be" />
+	<xs:import namespace="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Aangiftegeneriek/Aangiftegeneriek.xsd"/>
+	<xs:include schemaLocation="AangiftegeneriekMetaDataKern.xsd"/>
+	<xs:complexType name="Aangiftegeneriek">
+		<xs:sequence>
+			<xs:element name="NietVanToepassing" type="aangiftegeneriek:NietVanToepassingType">
+				<xs:annotation>
+					<xs:documentation>True indien deze aangifte niet van toepassing is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Contactpersoon" type="aangiftegeneriek:ContactpersoonJaarverslagType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Contactpersoon voor dit onderdeel van de aangifte </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Commentaar" type="aangiftegeneriek:CommentaarType" minOccurs="0"/>
+			<xs:element name="Ondertekening" type="aangiftegeneriek:OndertekeningType" minOccurs="0"/>
+			<xs:element name="OpPapier" type="aangiftegeneriek:OpPapierType">
+				<xs:annotation>
+					<xs:documentation>True indien aangifte op paper</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekIMJVDeelReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Bijlagen" type="generiek:BestandenLijstStringType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

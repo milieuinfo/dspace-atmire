@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Gebruikte eenheden</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="EenheidCapaciteitEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van capaciteit bij opslag en overslag</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="kubieke meter"/>
+			<xs:enumeration value="liter"/>
+			<xs:enumeration value="ton"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidVermogenAEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van vermogen (MW of t/jaar) voor type A activiteit</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Megawatt"/>
+			<xs:enumeration value="ton per jaar"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="EenheidVermogenBEnumType">
+		<xs:annotation>
+			<xs:documentation>Eenheid van vermogen (MW) voor type B activiteit</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Megawatt"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>Enumeraties voor de verschillende activiteiten codes</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="EnergieEnumType">
+		<xs:annotation>
+			<xs:documentation>Aard van de activiteit indien energie productie of distributie</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="WKK-INSTALLATIES"/>
+			<xs:enumeration value="OPWEKKING VAN ENERGIE IN DE VORM VAN WARMTE, ELEKTR. OF DRUK"/>
+			<xs:enumeration value="OPWEKKING VAN STOOM"/>
+			<xs:enumeration value="OPWEKKING VAN WARM WATER"/>
+			<xs:enumeration value="OPWEKKING VAN HETE LUCHT"/>
+			<xs:enumeration value="OPWEKKING VAN WARMTE"/>
+			<xs:enumeration value="OPWEKKING VAN ELEKTRICITEIT"/>
+			<xs:enumeration value="ZELFPRODUCENTEN MET WARMTEKRACHTKOPPELING DMV STOOMKETELS, OVENS EA"/>
+			<xs:enumeration value="ZELFPRODUCENTEN MET WARMTEKRACHTKOPPELING DMV STOOMTURBINES, GASTURBINES EN MOTOREN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="WaterzuiveringEnumType">
+		<xs:annotation>
+			<xs:documentation>Aard van de activiteit indien waterzuivering</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AFVALWATERZUIVERING IN HET ALGEMEEN"/>
+			<xs:enumeration value="AFVALWATERZUIVERING, ALLEEN MECHANISCH"/>
+			<xs:enumeration value="AFVALWATERZUIVERING, ALLEEN CHEMISCH"/>
+			<xs:enumeration value="AFVALWATERZUIVERING, MECHANISCH EN CHEMISCH"/>
+			<xs:enumeration value="AFVALWATERZUIVERING, MECHANISCH EN BIOLOGISCH"/>
+			<xs:enumeration value="AFVALWATERZUIVERING, MECHANISCH, CHEMISCH EN BIOLOGISCH"/>
+			<xs:enumeration value="AFVALWATERZUIVERING, ALLEEN BIOLOGISCH"/>
+			<xs:enumeration value="ANDERE AFVALWATERZUIVERING"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

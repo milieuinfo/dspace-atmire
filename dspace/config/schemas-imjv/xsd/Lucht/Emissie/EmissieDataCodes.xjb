@@ -1,0 +1,68 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="EmissieDataCodes.xsd">
+        <jxb:bindings node="//xs:simpleType[@name='EenheidEmissieConcentratieEnumType']">
+            <jxb:typesafeEnumClass name="EenheidEmissieConcentratieEnum">
+                <jxb:typesafeEnumMember name="MG_NM3" value="milligram per normaal kubieke meter"/>
+                <jxb:typesafeEnumMember name="PG_TEQ_NM3" value="picogram toxiciteit equiv. per normaal kub. meter"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+         <jxb:bindings node="//xs:simpleType[@name='EenheidEmissieEnumType']">
+            <jxb:typesafeEnumClass name="EenheidEmissieEnum">
+                <jxb:typesafeEnumMember name="TON_JAAR" value="ton per jaar"/>
+                <jxb:typesafeEnumMember name="MQ_TEQ_JR" value="milligram toxiciteit equivalenten per jaar"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='EenheidEmissieMassastroomEnumType']">
+            <jxb:typesafeEnumClass name="EenheidEmissieMassastroomEnum">
+                <jxb:typesafeEnumMember name="KG_U" value="kilogram per uur"/>
+                <jxb:typesafeEnumMember name="UG_TEQ_U" value="microgram toxiciteit equivalenten per uur"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='EenheidEmissieDebietEnumType']">
+            <jxb:typesafeEnumClass name="EenheidEmissieDebietEnum">
+                <jxb:typesafeEnumMember name="NM3_U" value="normaal kubieke meter per uur"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='SubtypeEmissieEnumType']">
+            <jxb:typesafeEnumClass name="SubtypeEmissieEnum">
+                <jxb:typesafeEnumMember name="LEKVERLIES" value="Lekverlies"/>
+                <jxb:typesafeEnumMember name="OPSLAGVERLIES" value="Opslagverlies"/>
+                <jxb:typesafeEnumMember name="OVERSLAGVERLIES" value="Overslagverlies"/>
+                <jxb:typesafeEnumMember name="ANDERE_NIET_GELEIDE_EMISSIES" value="Andere niet geleide emissies"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='BepalingsMethodeEnumType']">
+            <jxb:typesafeEnumClass name="BepalingsMethodeEnum">
+                <jxb:typesafeEnumMember name="CONCENTRATIE_KLEINER_DAN_DE_DETECTIELIMIET" value="Concentratie kleiner dan de detectielimiet"/>
+                <jxb:typesafeEnumMember name="INTERNATIONAAL_AANVAARDE_MEETNORM" value="Internationaal aanvaarde meetnorm"/>
+                <jxb:typesafeEnumMember name="MEETMETHODE_OPGELEGD_IN_DE_EXPLOITATIEVERGUNNING" value="Meetmethode opgelegd in de exploitatievergunning"/>
+                <jxb:typesafeEnumMember name="NATIONAAL_OF_REGIONAAL_WETTELIJK_VERPLICHTE_MEETMETHODE" value="Nationaal of regionaal wettelijk verplichte meetmethode"/>
+                <jxb:typesafeEnumMember name="ALTERNATIEVE_MEETMETHODE_OVEREENKOMSTIG_BESTAANDE_CEN_ISO_MEETNORMEN" value="Alternatieve meetmethode overeenkomstig bestaande CEN/ISO-meetnormen"/>
+                <jxb:typesafeEnumMember name="GECERTIFICEERDE_MEETMETHODE_GOEDGEKEURD_DOOR_DE_BEVOEGDE_INSTANTIE" value="Gecertificeerde meetmethode goedgekeurd door de bevoegde instantie"/>
+                <jxb:typesafeEnumMember name="OVERIGE_MEETMETHODE" value="Overige meetmethode"/>
+                <jxb:typesafeEnumMember name="SCHATTING" value="Schatting"/>
+                <jxb:typesafeEnumMember name="INTERNATIONAAL_AANVAARDE_BEREKENINGSMETHODE_VOOR_VERHANDELBARE_EMISSIERECHTEN" value="Internationaal aanvaarde berekeningsmethode voor verhandelbare emissierechten"/>
+                <jxb:typesafeEnumMember name="INTERNATIONAAL_AANVAARDE_BEREKENINGSMETHODE_VOLGENS_IPCC" value="Internationaal aanvaarde berekeningsmethode volgens IPCC"/>
+                <jxb:typesafeEnumMember name="INTERNATIONAAL_AANVAARDE_BEREKENINGSMETHODE_VOLGENS_UNECE_EMEP" value="Internationaal aanvaarde berekeningsmethode volgens UNECE/EMEP"/>
+                <jxb:typesafeEnumMember name="BEREKENINGSMETHODE_OPGELEGD_IN_DE_EXPLOITATIEVERGUNNING" value="Berekeningsmethode opgelegd in de exploitatievergunning"/>
+                <jxb:typesafeEnumMember name="NATIONAAL_OF_REGIONAAL_WETTELIJK_VERPLICHTE_BEREKENINGSMETHODE" value="Nationaal of regionaal wettelijk verplichte berekeningsmethode"/>
+                <jxb:typesafeEnumMember name="MASSABALANSMETHODE_GOEDGEKEURD_DOOR_DE_BEVOEGDE_INSTANTIE" value="Massabalansmethode goedgekeurd door de bevoegde instantie"/>
+                <jxb:typesafeEnumMember name="EUROPESE_SECTORSPECIFIEKE_BEREKENINGSMETHODE" value="Europese sectorspecifieke berekeningsmethode"/>
+                <jxb:typesafeEnumMember name="OVERIGE_BEREKENINGSMETHODE" value="overige berekeningsmethode"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+    </jxb:bindings>
+
+</jxb:bindings>
+

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="NaamType">
+		<xs:annotation>
+			<xs:documentation>De naam die aan een activiteit wordt gegeven</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="DatumIngebruiknameType">
+		<xs:annotation>
+			<xs:documentation>Exacte datum, maand en jaartal of enkel een jaartal</xs:documentation>
+		</xs:annotation>
+		<xs:union memberTypes="xs:date xs:gYearMonth xs:gYear"/>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>Onderstaande types worden gebruikt als er voor een activiteit dit jaar geen gegevens opgegeven worden</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="BlijvendBuitenWerkingType">
+		<xs:annotation>
+			<xs:documentation>Tag die toegevoegd wordt indien de activiteit definitief buiten werking is</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>Details van een productie-eenheid (type 2A)</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="BeschrijvingType">
+		<xs:annotation>
+			<xs:documentation>Tekstuele beschrijving van de activiteit</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="4096"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BeschrijvingFakkelType">
+		<xs:annotation>
+			<xs:documentation>Tekstuele beschrijving van de activiteit</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="500"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="GeproduceerdeStofNaamType">
+		<xs:annotation>
+			<xs:documentation>Naam of beschrijving van de geproduceerde stof</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="60"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>Details van een activiteit type productie en of distributie van energie (type 2B)</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="TypeEnergieActiviteitType">
+		<xs:annotation>
+			<xs:documentation>Tekstuele omschrijving van de activiteit</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:annotation>
+		<xs:documentation>Details van een activiteit type opslag en overslag (type 2C)</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="TypeOpslagEnOverslagType">
+		<xs:annotation>
+			<xs:documentation>Identificatie van het soort opslag en overslag</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="FunctieOpslagEnOverslagType">
+		<xs:annotation>
+			<xs:documentation>Tekstuele omschrijving van de opgeslagen stoffen</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="255"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

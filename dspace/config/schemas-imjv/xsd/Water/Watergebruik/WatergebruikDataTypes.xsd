@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://watergebruik.water.milieuverslag.schemas.milieuinfo.be" xmlns:activiteit="http://activiteit.water.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" targetNamespace="http://watergebruik.water.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:include schemaLocation="WatergebruikDataKern.xsd"/>
+	<xs:include schemaLocation="WatergebruikDataCodes.xsd"/>
+	<xs:complexType name="WaterGebruikenType">
+		<xs:sequence>
+			<xs:element name="Watergebruik" type="WaterGebruikType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WaterGebruikType">
+		<xs:annotation>
+			<xs:documentation>Het totale watergebruik per herkomst</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="BlijvendBuitenWerking" type="BlijvendBuitenWerkingType">
+				<xs:annotation>
+					<xs:documentation>True indien dit watergebruik blijvend buiten werking werd gesteld</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Herkomst" type="HerkomstEnumType">
+				<xs:annotation>
+					<xs:documentation>De herkomst van het water, te selecteren uit een vaste lijst</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hoeveelheid" type="HoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>De hoeveelheid in m3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Bestemming" type="WaterBestemmingType">
+				<xs:annotation>
+					<xs:documentation>De bestemming van het water op te geven in procenten per mogelijke bestemming</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekBestemming">
+					<xs:selector xpath="WaterBestemming"/>
+					<xs:field xpath="Bestemming"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekWatergebruikReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="waterGebruikID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een uniek nummer voor dit watergebruik binnen het XML bestand.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="WaterBestemmingType">
+		<xs:sequence>
+			<xs:element name="WaterBestemming" type="BestemmingType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BestemmingType">
+		<xs:sequence>
+			<xs:element name="Bestemming" type="BestemmingEnumType">
+				<xs:annotation>
+					<xs:documentation>De bestemming te kiezen uit een vaste lijst</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Procent" type="ProcentType">
+				<xs:annotation>
+					<xs:documentation>Procent van het water dat via deze bestemming afgevoerd wordt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="bestemmingID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een uniek nummer ter identificatie van deze bestemming binnen dit XML bestand</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

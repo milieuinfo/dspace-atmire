@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://watergebruik.grondwater.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://watergebruik.grondwater.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:include schemaLocation="WatergebruikDataCodes.xsd"/>
+	<xs:include schemaLocation="WatergebruikDatakern.xsd"/>
+	<xs:complexType name="WaterBalansType">
+		<xs:sequence>
+			<xs:element name="Watergebruik" type="WaterGebruikType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BestemmingType">
+		<xs:sequence>
+			<xs:element name="Bestemming" type="BestemmingEnumType">
+				<xs:annotation>
+					<xs:documentation>Drinkwater, Koelwater, ...</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Procent" type="ProcentType"/>
+		</xs:sequence>
+		<xs:attribute name="bestemmingID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="WaterBestemmingType">
+		<xs:sequence>
+			<xs:element name="WaterBestemming" type="BestemmingType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WaterGebruikType">
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="HoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>in m3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Herkomst" type="HerkomstEnumType">
+				<xs:annotation>
+					<xs:documentation>Grondwater, Hemelwater, ...</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Bestemming" type="WaterBestemmingType" minOccurs="0">
+				<xs:unique name="UniekBestemming">
+					<xs:selector xpath="WaterBestemming"/>
+					<xs:field xpath="Bestemming"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="waterGebruikID" type="xs:int" use="required"/>
+	</xs:complexType>
+</xs:schema>

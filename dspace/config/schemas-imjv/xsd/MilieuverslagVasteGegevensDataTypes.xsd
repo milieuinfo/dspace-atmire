@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://vastegegevens.milieuverslag.schemas.milieuinfo.be"
+	xmlns:lucht="http://vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:water="http://vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:grondwater="http://vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://vastegegevens.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Lucht/VasteGegevensAangifteLucht.xsd"/>
+	<xs:import namespace="http://vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Water/VasteGegevensAangifteWater.xsd"/>
+	<xs:import namespace="http://vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Grondwater/VasteGegevensAangifteGrondwater.xsd"/>
+	<xs:complexType name="MilieuverslagVasteGegevensType">
+		<xs:annotation>
+			<xs:documentation>De delen van het milieuverslag waarvoor vaste gegevens kunnen aangeleverd worden</xs:documentation>
+		</xs:annotation>
+		<xs:all>
+			<xs:element ref="water:VasteGegevensAangifteWater" minOccurs="0"/>
+			<xs:element ref="grondwater:VasteGegevensAangifteGrondwater" minOccurs="0"/>
+			<xs:element ref="lucht:VasteGegevensAangifteLucht" minOccurs="0"/>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>

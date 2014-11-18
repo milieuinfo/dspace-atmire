@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:processchema="http://processchema.milieuverslag.schemas.milieuinfo.be"
+	xmlns:activiteit="http://activiteit.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:aangiftegeneriek="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+	xmlns:verbetering="http://verbetering.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:lozingspunt="http://lozingspunt.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:apparatuur="http://apparatuur.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:meetmethode="http://meetmethode.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:waterstroom="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:verontreinigendestof="http://verontreinigendestof.water.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://water.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Aangiftegeneriek/Aangiftegeneriek.xsd"/>
+	<xs:import namespace="http://processchema.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../ProcesSchema/ProcesSchema.xsd"/>
+	<xs:import namespace="http://verbetering.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Verbetering/Verbetering.xsd"/>
+	<xs:import namespace="http://activiteit.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Activiteit/Activiteit.xsd"/>
+	<xs:import namespace="http://lozingspunt.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Lozingspunt/Lozingspunt.xsd"/>
+	<xs:import namespace="http://apparatuur.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Apparaat/Apparaat.xsd"/>
+	<xs:import namespace="http://meetmethode.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Meetmethode/Meetmethode.xsd"/>
+	<xs:import namespace="http://waterstroom.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="WaterStroom/WaterStroom.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:complexType name="AangifteWaterType">
+		<xs:annotation>
+			<xs:documentation>De aangifte water voor de export</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TechnischGedeelteWaterType">
+				<xs:sequence>
+					<xs:element name="Aangiftegeneriek" type="aangiftegeneriek:Aangiftegeneriek"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BedrijvenAangifteWaterType">
+		<xs:annotation>
+			<xs:documentation>De aangifte water voor de import door de bedrijven</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BedrijvenTechnischGedeelteWaterType">
+				<xs:sequence>
+					<xs:element name="Aangiftegeneriek"
+						type="aangiftegeneriek:BedrijvenAangiftegeneriek"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TechnischGedeelteWaterType">
+		<xs:sequence>
+			<xs:element name="Activiteiten" type="activiteit:ActiviteitenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel IA</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyWaterGebruikID">
+					<xs:selector xpath=".//Watergebruik"/>
+					<xs:field xpath="@waterGebruikID"/>
+				</xs:key>
+				<xs:key name="KeyWaterBestemmingID">
+					<xs:selector xpath=".//WaterBestemming"/>
+					<xs:field xpath="@bestemmingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="ProcesSchemas" type="processchema:ProcesSchemasType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 1B</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyProcesSchemaID">
+					<xs:selector xpath="ProcesSchema"/>
+					<xs:field xpath="@procesSchemaID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Lozingspunten" type="lozingspunt:LozingspuntenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 3 aangevuld met 
+6B1 (geleide stromen)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyLozingspuntID">
+					<xs:selector xpath="Lozingspunt"/>
+					<xs:field xpath="@lozingspuntID"/>
+				</xs:key>
+				<xs:key name="KeyGeleideLozingID">
+					<xs:selector xpath="Lozingspunt/GeleideLozing"/>
+					<xs:field xpath="@geleideLozingID"/>
+				</xs:key>
+				<xs:key name="KeyWaterEmissieID">
+					<xs:selector xpath=".//WaterEmissie"/>
+					<xs:field xpath="@waterEmissieID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element minOccurs="0" name="AndereLozingen" type="waterstroom:AndereLozingenType">
+				<xs:annotation>
+					<xs:documentation>Deel 7: Vrachten van verontreinigende stoffen die niet voorkomen op de standaard lijst</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyAndereLozingID">
+					<xs:selector xpath=".//AndereLozing"/>
+					<xs:field xpath="@andereLozingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Apparaten" type="apparatuur:ApparatenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 4: Apparatuur waterbehandeling en waterzuivering</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyApparaatID">
+					<xs:selector xpath="Apparaat"/>
+					<xs:field xpath="@apparaatID"/>
+				</xs:key>
+				<xs:key name="KeyTechniekID">
+					<xs:selector xpath=".//Technieken/Techniek"/>
+					<xs:field xpath="@techniekID"/>
+				</xs:key>
+				<xs:key name="KeyVerwijderingID">
+					<xs:selector xpath=".//Verwijdering"/>
+					<xs:field xpath="@verwijderingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Meetmethoden" type="meetmethode:MeetmethodenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 5A</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbnormaleLozingen" type="waterstroom:AbnormaleLozingenType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6B2</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyAbnormaleLozingID">
+					<xs:selector xpath="AbnormaleLozing"/>
+					<xs:field xpath="@abnormaleLozingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="GeplandeVerbeteringen"
+				type="verbetering:GeplandeVerbeteringenWaterType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 8B</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyGeplandeVerbeteringID">
+					<xs:selector xpath="GeplandeVerbetering"/>
+					<xs:field xpath="@geplandeVerbeteringID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Evaluatie" type="generiek:BestandenLijstStringType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 8A: Commentaar en evaluatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IMJV" type="aangiftegeneriek:IsIMJVAangifte" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deprecated. Wordt niet meer gebruikt aangezien het alleen mogelijk is aangiftes in het kader van het IMJV op te geven. [True indien deze aangifte een IMJV aangifte is]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BedrijvenTechnischGedeelteWaterType">
+		<xs:sequence>
+			<xs:element name="Activiteiten" type="activiteit:ActiviteitenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel IA</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyWaterGebruikIDBedrijven">
+					<xs:selector xpath=".//Watergebruik"/>
+					<xs:field xpath="@waterGebruikID"/>
+				</xs:key>
+				<xs:key name="KeyWaterBestemmingIDBedrijven">
+					<xs:selector xpath=".//WaterBestemming"/>
+					<xs:field xpath="@bestemmingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="ProcesSchemas" type="processchema:BedrijvenProcesSchemasType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 1B</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyProcesSchemaIDBedrijven">
+					<xs:selector xpath="ProcesSchema"/>
+					<xs:field xpath="@procesSchemaID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Lozingspunten" type="lozingspunt:BedrijvenLozingspuntenType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 3 aangevuld met
+6B1 (geleide stromen)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyLozingspuntIDBedrijven">
+					<xs:selector xpath="Lozingspunt"/>
+					<xs:field xpath="@lozingspuntID"/>
+				</xs:key>
+				<xs:key name="KeyGeleideLozingIDBedrijven">
+					<xs:selector xpath="Lozingspunt/GeleideLozing"/>
+					<xs:field xpath="@geleideLozingID"/>
+				</xs:key>
+				<xs:key name="KeyWaterEmissieIDBedrijven">
+					<xs:selector xpath=".//WaterEmissie"/>
+					<xs:field xpath="@waterEmissieID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element minOccurs="0" name="AndereLozingen" type="waterstroom:AndereLozingenType">
+				<xs:annotation>
+					<xs:documentation>Deel 7: Vrachten van verontreinigende stoffen die niet voorkomen op de standaard lijst</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyAndereLozingIDBedrijven">
+					<xs:selector xpath=".//AndereLozing"/>
+					<xs:field xpath="@andereLozingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Apparaten" type="apparatuur:BedrijvenApparatenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 4: Apparatuur waterbehandeling en waterzuivering</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyApparaatIDBedrijven">
+					<xs:selector xpath="Apparaat"/>
+					<xs:field xpath="@apparaatID"/>
+				</xs:key>
+				<xs:key name="KeyTechniekIDBedrijven">
+					<xs:selector xpath=".//Technieken/Techniek"/>
+					<xs:field xpath="@techniekID"/>
+				</xs:key>
+				<xs:key name="KeyVerwijderingIDBedrijven">
+					<xs:selector xpath=".//Verwijdering"/>
+					<xs:field xpath="@verwijderingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Meetmethoden" type="meetmethode:BedrijvenMeetmethodenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 5A</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbnormaleLozingen" type="waterstroom:AbnormaleLozingenType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6B2</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyAbnormaleLozingIDBedrijven">
+					<xs:selector xpath="AbnormaleLozing"/>
+					<xs:field xpath="@abnormaleLozingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="GeplandeVerbeteringen"
+				type="verbetering:GeplandeVerbeteringenWaterType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 8B</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyGeplandeVerbeteringIDBedrijven">
+					<xs:selector xpath="GeplandeVerbetering"/>
+					<xs:field xpath="@geplandeVerbeteringID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Evaluatie" type="generiek:BestandenLijstType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 8A: Commentaar en evaluatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IMJV" type="aangiftegeneriek:IsIMJVAangifte" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deprecated. Wordt niet meer gebruikt aangezien het alleen mogelijk is aangiftes in het kader van het IMJV op te geven. [True indien deze aangifte een IMJV aangifte is]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

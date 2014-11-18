@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by  () -->
+<xs:schema xmlns="http://identificatiemeta.milieuverslag.schemas.milieuinfo.be"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:geografie="http://geografie.schemas.milieuinfo.be"
+	xmlns:exploitant="http://exploitant.schemas.milieuinfo.be"
+	xmlns:exploitatie="http://exploitatie.schemas.milieuinfo.be"
+	xmlns:aangiftegeneriek="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:identificatie="http://identificatie.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://identificatiemeta.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Dit subschema bevat het luik identificatie van het IMJV formulier-->
+	<xs:include schemaLocation="IdentificatieMetaDataKern.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://exploitant.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://identificatie.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Identificatie/Identificatie.xsd"/>
+	<xs:import namespace="http://exploitatie.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Aangiftegeneriek/Aangiftegeneriek.xsd"/>
+	<xs:import namespace="http://geografie.schemas.milieuinfo.be"/>
+	<xs:complexType name="IdentificatieMetaType">
+		<xs:annotation>
+			<xs:documentation>De extra metadata aangaande het Identificatieluik</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RapporteringsJaar" type="RapporteringsJaarType">
+				<xs:annotation>
+					<xs:documentation>Jaar waarop het verslag betrekking heeft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Exploitatie" type="identificatie:IdentificatieExploitatieType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De exploitatie zetel</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Exploitant" type="identificatie:IdentificatieExploitantType">
+				<xs:annotation>
+					<xs:documentation>De maatschappelijke zetel</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Wijzigingen" type="identificatie:WijzigingenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De wijzigingen die zich gedurende het afgelopen jaar hebben voorgedaan aan de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeenOverschrijdingDrempelwaarde"
+				type="identificatie:GeenOverschrijdingDrempelwaardeType" fixed="true" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Er is geen overschrijding van de drempelwaarde (laatste kolom VLAREM I lijst)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

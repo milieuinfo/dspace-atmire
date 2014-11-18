@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by  () -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://generiekmeta.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" targetNamespace="http://generiekmeta.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:include schemaLocation="GeneriekMetaDataCodes.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:annotation>
+		<xs:documentation>Generieke typedefinities die op verschillende plaatsen gebruikt worden</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="AlleenLezenType">
+		<xs:restriction base="BooleanType"/>
+	</xs:simpleType>
+	<xs:simpleType name="FunctieType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="DatumType">
+		<xs:annotation>
+			<xs:documentation>DatumType</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-2,9][0-9]{3}-[0-1][0-9]-[0-3][0-9] [0-9][0-9]:[0-9][0-9]:[0-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TijdelijkType">
+		<xs:restriction base="BooleanType"/>
+	</xs:simpleType>
+	<xs:simpleType name="VolledigType">
+		<xs:restriction base="BooleanType"/>
+	</xs:simpleType>
+	<xs:simpleType name="ActieType">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="ActiefType">
+		<xs:restriction base="BooleanType"/>
+	</xs:simpleType>
+	<xs:simpleType name="BooleanType">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://apparatuur.vastegegevens.water.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:apparatuur="http://apparatuur.water.milieuverslag.schemas.milieuinfo.be" xmlns:activiteit="http://activiteit.vastegegevens.water.milieuverslag.schemas.milieuinfo.be" xmlns:verontreinigendestof="http://verontreinigendestof.water.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://apparatuur.vastegegevens.water.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://apparatuur.water.milieuverslag.schemas.milieuinfo.be" schemaLocation="Apparaat.xsd"/>
+	<xs:import namespace="http://activiteit.vastegegevens.water.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Activiteit/VasteGegevensActiviteit.xsd"/>
+	<xs:import namespace="http://verontreinigendestof.water.milieuverslag.schemas.milieuinfo.be" schemaLocation="../VerontreinigendeStof/VerontreinigendeStof.xsd"/>
+	<xs:complexType name="ApparatenType">
+		<xs:sequence>
+			<xs:element name="Apparaat" type="ApparaatType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ApparaatType">
+		<xs:sequence>
+			<xs:element name="Naam" type="apparatuur:NaamType"/>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType">
+				<xs:annotation>
+					<xs:documentation>VMM Nummers worden als referte meegegeven</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekApparaatReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Technieken" type="TechniekenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Lijst van de toegepaste technieken</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType"/>
+			<xs:element name="Zuivering" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De bekomen zuiveringsrendementen per stof voor deze zuiveringsapparatuur</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Verwijdering" type="VerwijderingType" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+				<xs:unique name="UniekVerontreinigendeStof">
+					<xs:selector xpath=".//Verwijdering"/>
+					<xs:field xpath="VerontreinigendeStof"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="apparaatID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="VerwijderingType">
+		<xs:annotation>
+			<xs:documentation>Gegevens over het verwijderingspercentage </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="VerontreinigendeStof" type="verontreinigendestof:VerontreinigendeStofWaterEnumType"/>
+			<xs:element name="Rendement" type="apparatuur:RendementType">
+				<xs:annotation>
+					<xs:documentation>Verwijderingsrendement in %</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="verwijderingID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TechniekType">
+		<xs:annotation>
+			<xs:documentation>Gebruikte technieken bij de behandeling of zuivering</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Techniek" type="apparatuur:TechniekEnumType">
+				<xs:annotation>
+					<xs:documentation>Codelijst zuiverings en/of behandelingstechnieken</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="JaarIngebruikname" type="apparatuur:JaarIngebruiknameType"/>
+		</xs:sequence>
+		<xs:attribute name="techniekID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="TechniekenType">
+		<xs:sequence>
+			<xs:element name="Techniek" type="TechniekType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

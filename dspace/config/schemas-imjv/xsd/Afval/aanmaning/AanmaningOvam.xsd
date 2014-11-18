@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema targetNamespace="urn:be:milieuinfo:schemas:milieuverslag:documents:aanmaning:ovam" xmlns:foei="urn:be:milieuinfo:schemas:milieuverslag:documents:aanmaning:ovam" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0" elementFormDefault="unqualified">
+	<xs:element name="aanmaning" type="foei:Aanmaning"/>
+
+	<xs:complexType name="Aanmaning">
+		<xs:annotation>
+			<xs:documentation>
+				wat verduidelijking bij sommige velden:
+				
+				- de adressering van de brief: deze moet gestuurd worden naar het verzendadres, dus waarnaar het IMJV werd verstuurd (is niet noodzakelijk hetzelfde als het adres van de plichtige).
+				
+				- naam en adres in de brief: dit is de IMJV-plichtige (en dus niet noodzakelijk hetzelfde als het adres in de adressering aangezien daar een ander verzendadres kan worden gebruikt)
+				
+				- datumvelden moeten volgende vorm hebben: 'dag' 'naam vd maand' 'jaartal', dus bijvoorbeeld 20 april 2012.
+				
+				- datum X = wanneer de originele oproepingsbrief werd verstuurd (voor de meesten ergens einde januari, volgens mij).
+				
+				- datum Y = verzenddatum van de eerste aanmaningsbrief.
+				
+				- datum Z = datum dat de brieven worden gegenereerd.
+				
+				- datum W = datum dat de brieven verstuurd worden door de OVAM (dus een 3-tal dagen nadat het brieven zijn gegenereerd)
+				
+				- Wanneer de deelformulieren worden opgelijst in de brief, enkel de deelformulieren vermelden die van toepassing zijn. Er zijn 2 overzichten in de brief: eentje om te vermelden waarvoor ze een IMJV moesten indien + eentje om te vermelden welke deelformulieren nog niet werden ingediend (op datum Z). 
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="cbbNr" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="imjvJaar" type="xs:string"/>
+            <xs:element name="ondernemingsnr" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="verzendAdres" type="foei:VerzendAdres" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="imjvAdres" type="foei:IMJVAdres" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="datumW" type="foei:Datum" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						- datum W = datum dat de brieven verstuurd worden door de OVAM (dus een 3-tal dagen nadat het brieven zijn gegenereerd) 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datumX" type="foei:Datum" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						- datum X = wanneer de originele oproepingsbrief werd verstuurd (voor de meesten ergens einde januari, volgens mij)
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datumZ" type="foei:Datum" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						- datum Z = datum dat de brieven worden gegenereerd.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datumExtra" type="foei:Datum" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>
+						- datumExtra = Op vraag van Tina 
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="aanTeLeverenDeelformulieren" type="foei:Deelformulieren" minOccurs="1" maxOccurs="1">
+				<xs:unique name="uniekaanTeLeverenDeelformulieren">
+					<xs:selector xpath="deelformulier"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="ontbrekendeDeelformulieren" type="foei:Deelformulieren" minOccurs="1" maxOccurs="1">
+				<xs:unique name="uniekontbrekendeDeelformulieren">
+					<xs:selector xpath="deelformulier"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Adres" abstract="true">
+		<xs:sequence>
+			<xs:element name="onderneming" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="straatnaam" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="huisnr" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="busnr" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="aanvulling" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="postcode" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="gemeente" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="land" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VerzendAdres">
+		<xs:annotation>
+			<xs:documentation>
+				de adressering van de brief: deze moet gestuurd worden naar het verzendadres, dus waarnaar het IMJV werd verstuurd (is niet noodzakelijk hetzelfde als het adres van de plichtige).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="foei:Adres"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IMJVAdres">
+		<xs:annotation>
+			<xs:documentation>
+				naam en adres in de brief: dit is de IMJV-plichtige (en dus niet noodzakelijk hetzelfde als het adres in de adressering aangezien daar een ander verzendadres kan worden gebruikt)
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="foei:Adres"/>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="Deelformulieren">
+		<xs:sequence>
+			<xs:element name="deelformulier" type="foei:Deelformulier" minOccurs="1" maxOccurs="unbounded"> </xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Deelformulier">
+		<xs:attribute name="naam" type="foei:DeelformulierEnum"/>
+	</xs:complexType>
+	<xs:simpleType name="DeelformulierEnum">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="I. Identificatiegegevens"/>
+			<xs:enumeration value="II. Luchtemissie"/>
+			<xs:enumeration value="III. Energiegegevens"/>
+			<xs:enumeration value="IVA. Wateremissie"/>
+			<xs:enumeration value="IVB. Grondwaterstatistiek"/>
+			<xs:enumeration value="VA. Afval Producenten"/>
+			<xs:enumeration value="VD. Grondstoffen Producent"/>
+			<xs:enumeration value="VC. Afval Verwerker"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Datum">
+		<xs:annotation>
+			<xs:documentation>
+				datumvelden moeten volgende vorm hebben: 'dag' 'naam vd maand' 'jaartal', dus bijvoorbeeld 20 april 2012.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:pattern value="([1-3][0-9]|[1-9]) (januari|februari|maart|april|mei|juni|juli|september|oktober|november|december) 20[1-9][0-9]"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+
+</xs:schema>
+<!--
+    // Identificatie plicht.
+    IDEN("I","Identificatie"),
+    // Lucht plicht.
+    LUEM("II","Luchtemissie"),
+    // Energie plicht
+    ENER("III","Energie"),
+    // Water emissie plicht.
+    WAEM("IVA","Wateremissie"),
+    // Grondwater plicht.
+    GRWA("IVB","Grondwater"),
+    // Afvalproducent plicht.
+    AFPR("VA","Afvalproducent"),
+    // GrondstoffenProducent plicht.
+    GRPR("VD","GrondstoffenProducent"),
+    // Afvalverwerker plicht.
+    AFVW("VC","Afvalverwerker"); -->

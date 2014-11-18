@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Steven De Bock (Ministeries van de Vlaamse Gemeenschap) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Deelschema voor het aanleveren van de vaste gegevens voor het deel Lucht van het IMJV-->
+	<xs:include schemaLocation="VasteGegevensAangifteLuchtDataTypes.xsd"/>
+	<xs:element name="VasteGegevensAangifteLucht" type="VasteGegevensAangifteLuchtType">
+		<xs:keyref name="KeyRefStofID" refer="KeyStofID">
+			<xs:selector xpath=".//Stof"/>
+			<xs:field xpath="@StofID"/>
+		</xs:keyref>
+        <xs:key name="KeyStofID">
+            <xs:selector xpath="Stoffen/Stof"/>
+            <xs:field xpath="@stofID"/>
+        </xs:key>
+		<xs:keyref name="KeyrefActiviteitID" refer="KeyActiviteitID">
+			<xs:selector xpath=".//GekoppeldeActiviteiten/Activiteit | .//GekoppeldeStofstromen/Stofstroom"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:keyref>
+		<xs:key name="KeyActiviteitID">
+			<xs:selector xpath=".//Activiteiten/Installatie/ProductieEenheid | .//Activiteiten/Installatie/EnergieActiviteit | .//Activiteiten/Installatie/Fakkel | .//Activiteiten/Installatie/OpslagEnOverslag | .//Activiteiten/Installatie/Waterzuivering | .//Activiteiten/Installatie/Apparaten/Apparaat/ProductieEenheid | .//Activiteiten/Installatie/Apparaten/Apparaat/EnergieActiviteit |
+ .//Activiteiten/Installatie/Apparaten/Apparaat/OpslagEnOverslag | .//Activiteiten/Installatie/Apparaten/Apparaat/Fakkel | .//Activiteiten/Installatie/Apparaten/Apparaat/Waterzuivering"/>
+			<xs:field xpath="@activiteitID"/>
+		</xs:key>
+		<xs:keyref name="KeyrefEmissiepuntID" refer="KeyEmissiepuntID">
+			<xs:selector xpath=".//Emissiepunt"/>
+			<xs:field xpath="@emissiepuntID"/>
+		</xs:keyref>
+		<xs:key name="KeyEmissiepuntID">
+			<xs:selector xpath=".//EmissiePunten/Emissiepunt"/>
+			<xs:field xpath="@emissiepuntID"/>
+		</xs:key>
+	</xs:element>
+</xs:schema>

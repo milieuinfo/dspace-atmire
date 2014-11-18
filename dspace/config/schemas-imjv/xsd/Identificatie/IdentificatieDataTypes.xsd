@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://identificatie.milieuverslag.schemas.milieuinfo.be"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:geografie="http://geografie.schemas.milieuinfo.be"
+	xmlns:exploitant="http://exploitant.schemas.milieuinfo.be"
+	xmlns:exploitatie="http://exploitatie.schemas.milieuinfo.be"
+	xmlns:aangiftegeneriek="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	targetNamespace="http://identificatie.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Dit subschema bevat het luik identificatie van het IMJV formulier-->
+	<xs:include schemaLocation="IdentificatieDataKern.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://exploitant.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://exploitatie.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Aangiftegeneriek/Aangiftegeneriek.xsd"/>
+	<xs:import namespace="http://geografie.schemas.milieuinfo.be"
+		/>
+	<xs:complexType name="IdentificatieType">
+		<xs:annotation>
+			<xs:documentation>Aangifte Identificatie</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RapporteringsJaar" type="RapporteringsJaarType">
+				<xs:annotation>
+					<xs:documentation>Jaar waarop het verslag betrekking heeft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Milieuverslagnummer" type="Milieuverslagnummer">
+				<xs:annotation>
+					<xs:documentation>Het nummer van dit milieuverslag</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Exploitatie" type="IdentificatieExploitatieType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De exploitatie zetel</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Exploitant" type="IdentificatieExploitantType">
+				<xs:annotation>
+					<xs:documentation>De maatschappelijke zetel</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Wijzigingen" type="WijzigingenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De wijzigingen die zich gedurende het afgelopen jaar hebben voorgedaan aan de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeenOverschrijdingDrempelwaarde"
+				type="GeenOverschrijdingDrempelwaardeType">
+				<xs:annotation>
+					<xs:documentation>True indien er geen overschrijding van de drempelwaarde (laatste kolom VLAREM I lijst)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Aangiftegeneriek"
+				type="aangiftegeneriek:AangiftegeneriekIdentificatie">
+				<xs:annotation>
+					<xs:documentation>Elementen die op alle aangiftes van toepassing zijn</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BedrijvenIdentificatieType">
+		<xs:annotation>
+			<xs:documentation>Aangifte Identificatie</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RapporteringsJaar" type="RapporteringsJaarType">
+				<xs:annotation>
+					<xs:documentation>Jaar waarop het verslag betrekking heeft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Aangiftegeneriek"
+				type="aangiftegeneriek:BedrijvenAangiftegeneriekIdentificatie" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Elementen die op alle aangiftes van toepassing zijn</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Exploitatie" type="BedrijvenIdentificatieExploitatieType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De exploitatie zetel</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Exploitant" type="BedrijvenIdentificatieExploitantType">
+				<xs:annotation>
+					<xs:documentation>De maatschappelijke zetel</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Wijzigingen" type="WijzigingenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De wijzigingen die zich gedurende het afgelopen jaar hebben voorgedaan aan de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeenOverschrijdingDrempelwaarde"
+				type="GeenOverschrijdingDrempelwaardeType">
+				<xs:annotation>
+					<xs:documentation>Er is geen overschrijding van de drempelwaarde (laatste kolom VLAREM I lijst)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation/>
+	<xs:complexType name="WijzigingenType">
+		<xs:annotation>
+			<xs:documentation>Gegevens over de wijzigingen aan de exploitatie</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Stopzetting" type="StopzettingType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indien de exploitatie werd stopgezet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Overname" type="OvernameType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Indien de exploitatie werd overgenomen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OvernameType">
+		<xs:annotation>
+			<xs:documentation>Overname van de exploitatie. Vermeld het deel indien het gaat om een gedeeltelijke overname</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Datum" type="DatumType"/>
+			<xs:element name="Overnemer">
+				<xs:annotation>
+					<xs:documentation>Melding door overlater</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="Ondernemingsnaam" type="OvernameNaamType"/>
+						<xs:element name="Ondernemingsnummer" type="generiek:OndernemingsNummerType">
+							<xs:annotation>
+								<xs:documentation>Ondernemingsnummer van het bedrijf betrokken bij de overname</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Overlater">
+				<xs:annotation>
+					<xs:documentation>Melding door overnemer</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:choice>
+						<xs:element name="Ondernemingsnaam" type="OvernameNaamType"/>
+						<xs:element name="Ondernemingsnummer" type="generiek:OndernemingsNummerType">
+							<xs:annotation>
+								<xs:documentation>Ondernemingsnummer van het bedrijf betrokken bij de overname</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:choice>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Deel" type="DeelType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Beschrijving van het gedeelte dat wordt overgenomen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OvernameNaamType">
+		<xs:sequence>
+			<xs:element name="Naam" type="NaamType">
+				<xs:annotation>
+					<xs:documentation>Naam van het bedrijf betrokken bij de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Ondernemingsnummer" type="generiek:OndernemingsNummerType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ondernemingsnummer van het bedrijf betrokken bij de overname</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StopzettingType">
+		<xs:annotation>
+			<xs:documentation>Stopzetting van de exploitatie. Vermeld het deel indien het gaat om een gedeeltelijke stopzetting</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Datum" type="DatumType">
+				<xs:annotation>
+					<xs:documentation>Datum van de stofzetting</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Deel" type="DeelType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Beschrijving van het gedeelte dat wordt stopgezet</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IdentificatieExploitatieType">
+		<xs:complexContent>
+			<xs:extension base="exploitatie:IMJVExploitatieType">
+				<xs:sequence>
+					<xs:element name="AantalVTEWerknemers" type="AantalVTEWerknemersType"
+						minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Aantal voltijdse werknemers</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="AantalVTEAlleWerknemers" type="AantalVTEAlleWerknemersType"
+						minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Aantal voltijdse werknemers inclusief uitzendkrachten</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Wijzigingen" minOccurs="0">
+						<xs:complexType>
+							<xs:complexContent>
+								<xs:extension base="exploitatie:IMJVWijzigExploitatieType">
+									<xs:sequence>
+										<xs:element name="AantalVTEWerknemers"
+											type="AantalVTEWerknemersType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Aantal voltijdse werknemers</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+										<xs:element name="AantalVTEAlleWerknemers"
+											type="AantalVTEAlleWerknemersType" minOccurs="0">
+											<xs:annotation>
+												<xs:documentation>Aantal voltijdse werknemers inclusief uitzendkrachten</xs:documentation>
+											</xs:annotation>
+										</xs:element>
+									</xs:sequence>
+								</xs:extension>
+							</xs:complexContent>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="IdentificatieExploitantType">
+		<xs:complexContent>
+			<xs:extension base="exploitant:ExploitantType">
+				<xs:sequence>
+					<xs:element name="Wijzigingen" type="WijzigExploitantType"
+						minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation/>
+	<xs:annotation>
+		<xs:documentation>Gegevens over de exploitatie (aangepast hier om voor de lokakatie de gemeente af te dwingen)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="BedrijvenIdentificatieExploitatieType">
+		<xs:sequence>
+			<xs:element name="Wijzigingen" minOccurs="0">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="WijzigExploitatieType">
+							<xs:sequence>
+								<xs:element name="AantalVTEWerknemers"
+									type="AantalVTEWerknemersType" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Aantal voltijdse werknemers</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+								<xs:element name="AantalVTEAlleWerknemers"
+									type="AantalVTEAlleWerknemersType" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation>Aantal voltijdse werknemers inclusief uitzendkrachten</xs:documentation>
+									</xs:annotation>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="CBBExploitatieNummer" type="generiek:CBBnummerType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="WijzigExploitatieType">
+		<xs:annotation>
+			<xs:documentation>Type om wijzigingen aan een exploitatie bij te houden</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Naam" type="exploitatie:NaamType" minOccurs="0"/>
+			<xs:element name="Vestigingsnummer" type="generiek:VestigingsnummerType" minOccurs="0"/>
+			<xs:element name="NacebelCode" type="generiek:NacebelType" minOccurs="0"/>
+			<xs:element name="Locatie" type="geografie:IMJVImportLocatieType" minOccurs="0"/>
+			<xs:element name="ContactGegevens" type="generiek:IMJVContactType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Telefoon, fax, mail</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+            <xs:element name="Rechtsstatus" type="generiek:BaseCodetabelType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Rechtsstatus</xs:documentation>
+            </xs:annotation>
+            </xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Gegevens over de exploitant (overgenomen uit het generiek deel)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="BedrijvenIdentificatieExploitantType">
+		<xs:sequence>
+			<xs:element name="Wijzigingen" type="BedrijvenWijzigExploitantType" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute name="CBBExploitantNummer" type="generiek:CBBnummerType" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="WijzigExploitantType">
+		<xs:annotation>
+			<xs:documentation>Om de voorgestelde wijzigingen bij een exploitant bij te houden, contactpersoon is niet identiek aan generiek</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Naam" type="exploitant:StringType" minOccurs="0"/>
+			<xs:element name="OndernemingsNummer" type="generiek:OndernemingsNummerType"
+				minOccurs="0"/>
+            <xs:element name="TypeOnderneming" type="generiek:BaseCodetabelType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Type onderneming</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="Rechtsvorm" type="generiek:RechtsvormType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Rechtsvorm</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="Adres" type="geografie:AdresType" minOccurs="0"/>
+			<xs:element name="ContactGegevens" type="generiek:IMJVContactType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Telefoon, fax, mail</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+    <xs:complexType name="BedrijvenWijzigExploitantType">
+		<xs:annotation>
+			<xs:documentation>Om de voorgestelde wijzigingen bij een exploitant bij te houden, contactpersoon is niet identiek aan generiek</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Naam" type="exploitant:StringType" minOccurs="0"/>
+			<xs:element name="OndernemingsNummer" type="generiek:OndernemingsNummerType"
+				minOccurs="0"/>
+            <xs:element name="Rechtsvorm" type="generiek:RechtsvormenType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>Rechtsvorm of Natuurlijk persoon</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="Adres" type="geografie:AdresType" minOccurs="0"/>
+			<xs:element name="ContactGegevens" type="generiek:IMJVContactType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Telefoon, fax, mail</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

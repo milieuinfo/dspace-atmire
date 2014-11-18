@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<foei:aanmaning xmlns:foei="urn:be:milieuinfo:schemas:milieuverslag:documents:aanmaning:ovam" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <naamZetel>Barcelona zetel (1929) Model 250L</naamZetel>
+    <cbbNr>12345678901234</cbbNr>
+    <ondernemingsnr>1234567890</ondernemingsnr>
+    <verzendAdres>
+        <straatnaam>test1straat</straatnaam>
+        <huisnr>100</huisnr>
+        <busnr>1A</busnr>
+        <aanvulling>aanvulling0</aanvulling>
+        <postcode>1000</postcode>
+        <gemeente>Gemeente1</gemeente>
+    </verzendAdres>
+    <imjvAdres>
+        <straatnaam>test2straat</straatnaam>
+        <huisnr>200</huisnr>
+        <busnr>2A</busnr>
+        <aanvulling>aanvulling1</aanvulling>
+        <postcode>2000</postcode>
+        <gemeente>Gemeente2</gemeente>
+    </imjvAdres>
+    <datumW>10 januari 2010</datumW>
+    <datumX>10 februari 2010</datumX>
+    <datumY>10 maart 2010</datumY>
+    <datumZ>10 april 2010</datumZ>
+    <datumExtra>10 mei 2010</datumExtra>
+    <aanTeLeverenDeelformulieren>
+        <deelformulier naam="I. Identificatiegegevens"/>
+        <deelformulier naam="II. Luchtemissie"/>
+        <deelformulier naam="III. Energiegegevens"/>
+        <deelformulier naam="IVA. Wateremissie"/>
+        <deelformulier naam="IVB. Grondwaterstatistiek"/>
+        <deelformulier naam="VA. Afval Producenten"/>
+    </aanTeLeverenDeelformulieren>
+    <ontbrekendeDeelformulieren>
+        <deelformulier naam="I. Identificatiegegevens"/>
+        <deelformulier naam="II. Luchtemissie"/>
+        <deelformulier naam="III. Energiegegevens"/>
+        <deelformulier naam="IVA. Wateremissie"/>
+        <deelformulier naam="IVB. Grondwaterstatistiek"/>
+        <deelformulier naam="VA. Afval Producenten"/>
+    </ontbrekendeDeelformulieren>
+</foei:aanmaning>

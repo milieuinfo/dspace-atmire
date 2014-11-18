@@ -1,0 +1,1221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Steven De Bock (Ministeries van de Vlaamse Gemeenschap) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:activiteit="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be" xmlns:emissie="http://emissie.lucht.milieuverslag.schemas.milieuinfo.be" xmlns="http://milieudruk.lucht.milieuverslag.schemas.milieuinfo.be" xmlns:emissiepunt="http://emissiepunt.lucht.milieuverslag.schemas.milieuinfo.be" xmlns:stof="http://stof.lucht.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://milieudruk.lucht.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Deelschema met de types voor het identificeren van de stoffen en hun hoeveelheden voor het luik lucht van het IMJV</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://stof.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Stof/Stof.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://activiteit.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Activiteit/Activiteit.xsd"/>
+	<xs:import namespace="http://emissie.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Emissie/Emissie.xsd"/>
+	<xs:include schemaLocation="MilieudrukDataKern.xsd"/>
+	<xs:include schemaLocation="MilieudrukDataCodes.xsd"/>
+	<xs:import namespace="http://emissiepunt.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Emissiepunt/Emissiepunt.xsd"/>
+	<xs:import namespace="http://stof.lucht.milieuverslag.schemas.milieuinfo.be" schemaLocation="../Stof/Stof.xsd"/>
+	<xs:annotation>
+		<xs:documentation>Type definitie om hoeveelheden gekoppeld aan activiteiten bij te houden</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="BrandstofHoeveelheidBasisType">
+		<xs:sequence>
+			<xs:element name="Stof" type="stof:StofIDType">
+				<xs:annotation>
+					<xs:documentation>Het uniek nummer van deze stof waarvoor hier een hoeveelheid opgegeven wordt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AsGehalte" type="AsGehalteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Gemiddeld asgehalte in %</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ZwavelGehalte" type="ZwavelGehalteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Gemiddeld zwavelgehalte in %</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyBrandStofHoeveelheidGekoppeldeActiviteiten">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een unieke identificatie van deze hoeveelheid van een bepaalde stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BrandstofHoeveelheidAType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof gebruikt als brandstof</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BrandstofHoeveelheidBasisType">
+				<xs:sequence>
+                    <xs:element name="Aard" type="AardType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Verduidelijking aard van de stof</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Hoeveelheid" type="HoeveelheidTypeAType">
+						<xs:annotation>
+							<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+						<xs:unique name="UniekVerbruikBrandStofhoeveelheidAReferte">
+							<xs:selector xpath=".//*"/>
+							<xs:field xpath="@naam"/>
+						</xs:unique>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BrandstofHoeveelheidBType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof gebruikt als brandstof</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BrandstofHoeveelheidBasisType">
+				<xs:sequence>
+                    <xs:element name="Aard" type="AardType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Verduidelijking aard van de stof</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Hoeveelheid" type="HoeveelheidTypeBType">
+						<xs:annotation>
+							<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+						<xs:unique name="UniekVerbruikBrandStofhoeveelheidBReferte">
+							<xs:selector xpath=".//*"/>
+							<xs:field xpath="@naam"/>
+						</xs:unique>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BrandstofHoeveelheidEType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof gebruikt als brandstof</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="BrandstofHoeveelheidBasisType">
+				<xs:sequence>
+					<xs:element name="Hoeveelheid" type="HoeveelheidTypeEType">
+						<xs:annotation>
+							<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+						<xs:unique name="UniekVerbruikBrandStofhoeveelheidEReferte">
+							<xs:selector xpath=".//*"/>
+							<xs:field xpath="@naam"/>
+						</xs:unique>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GrondstofHoeveelheidBasisType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Stof" type="stof:StofIDType">
+				<xs:annotation>
+					<xs:documentation>Het uniek nummer van deze stof waarvoor hier een hoeveelheid opgegeven wordt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyGrondstofHoeveelheidGekoppeldeActiviteiten">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een unieke identificatie van deze hoeveelheid van een bepaalde stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="GrondstofHoeveelheidAType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof gebruikt als grondstof</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GrondstofHoeveelheidBasisType">
+				<xs:sequence>
+                    <xs:element name="Aard" type="AardType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Verduidelijking aard van de stof</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Hoeveelheid" type="HoeveelheidTypeAType">
+						<xs:annotation>
+							<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+						<xs:unique name="UniekGrondstofhoeveelheidAReferte">
+							<xs:selector xpath=".//*"/>
+							<xs:field xpath="@naam"/>
+						</xs:unique>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="GrondstofHoeveelheidEType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof gebruikt als grondstof</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="GrondstofHoeveelheidBasisType">
+				<xs:sequence>
+					<xs:element name="Hoeveelheid" type="HoeveelheidTypeEType">
+						<xs:annotation>
+							<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+						<xs:unique name="UniekGrondstofhoeveelheidEReferte">
+							<xs:selector xpath=".//*"/>
+							<xs:field xpath="@naam"/>
+						</xs:unique>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AfvalproductHoeveelheidBasisType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Stof" type="stof:StofIDType">
+				<xs:annotation>
+					<xs:documentation>Het uniek nummer van deze stof waarvoor hier een hoeveelheid opgegeven wordt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyAfvalproductHoeveelheidGekoppeldeActiviteiten">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een unieke identificatie van deze hoeveelheid van een bepaalde stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="AfvalproductHoeveelheidAType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof geproduceerd als afvalstof</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AfvalproductHoeveelheidBasisType">
+				<xs:sequence>
+                    <xs:element name="Aard" type="AardType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Verduidelijking aard van de stof</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Hoeveelheid" type="HoeveelheidTypeAType">
+						<xs:annotation>
+							<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+						<xs:unique name="UniekAfvalhoeveelheidAReferte">
+							<xs:selector xpath=".//*"/>
+							<xs:field xpath="@naam"/>
+						</xs:unique>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="AfvalproductHoeveelheidEType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof geproduceerd als afvalstof</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="AfvalproductHoeveelheidBasisType">
+				<xs:sequence>
+					<xs:element name="Hoeveelheid" type="HoeveelheidTypeEType">
+						<xs:annotation>
+							<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+						<xs:unique name="UniekAfvalhoeveelheidEReferte">
+							<xs:selector xpath=".//*"/>
+							<xs:field xpath="@naam"/>
+						</xs:unique>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EindproductHoeveelheidBasisType">
+		<xs:annotation>
+			<xs:documentation/>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Stof" type="stof:StofIDType">
+				<xs:annotation>
+					<xs:documentation>Het uniek nummer van deze stof waarvoor hier een hoeveelheid opgegeven wordt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyProductieEindproductHoeveelheidGekoppeldeActiviteiten">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een unieke identificatie van deze hoeveelheid van een bepaalde stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="EindproductHoeveelheidAType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof geproduceerd als eindproduct</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="EindproductHoeveelheidBasisType">
+				<xs:sequence>
+                    <xs:element name="Aard" type="AardType" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>Verduidelijking aard van de stof</xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="Hoeveelheid" type="HoeveelheidTypeAType">
+						<xs:annotation>
+							<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+						<xs:unique name="UniekProductieEindproducthoeveelheidAReferte">
+							<xs:selector xpath=".//*"/>
+							<xs:field xpath="@naam"/>
+						</xs:unique>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="EindproductHoeveelheidEType">
+		<xs:annotation>
+			<xs:documentation>Hoeveelheid van een stof geproduceerd als eindproduct</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="EindproductHoeveelheidBasisType">
+				<xs:sequence>
+					<xs:element name="Hoeveelheid" type="HoeveelheidTypeEType">
+						<xs:annotation>
+							<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+						<xs:unique name="UniekProductieEindproducthoeveelheidEReferte">
+							<xs:selector xpath=".//*"/>
+							<xs:field xpath="@naam"/>
+						</xs:unique>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="DoorzetHoeveelhedenCType">
+		<xs:sequence>
+			<xs:element name="Doorzet" type="DoorzetHoeveelheidCType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DoorzetHoeveelheidCType">
+		<xs:annotation>
+			<xs:documentation>Doorzet van een stof</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Stof" type="stof:StofIDType">
+				<xs:annotation>
+					<xs:documentation>Het uniek nummer van deze stof waarvoor hier een hoeveelheid opgegeven wordt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Aard" type="AardType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Verduidelijking aard van de stof</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Hoeveelheid" type="HoeveelheidTypeCType">
+				<xs:annotation>
+					<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType">
+				<xs:annotation>
+					<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyDoorzetHoeveelheidGekoppeldeActiviteiten">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekDoorzetHoeveelheidReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een unieke identificatie van deze hoeveelheid van een bepaalde stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="HoeveelheidTypeAType">
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidJaarVerbruikAEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="HoeveelheidTypeBType">
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidJaarVerbruikBEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="HoeveelheidTypeCType">
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidJaarVerbruikCEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="HoeveelheidTypeDType">
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidJaarVerbruikDEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="HoeveelheidTypeEType">
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidJaarVerbruikEEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="JaardebietHoeveelheidType">
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidJaarDebietEnumType" use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Deel 6 van het IMJV</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="MilieudrukType">
+		<xs:sequence>
+			<xs:element name="ProductieEenheid" type="MilieudrukAType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Deel 6A van het formulier</xs:documentation>
+				</xs:annotation>
+				<xs:keyref name="KeyrefTypeAGeleideEmissieStofHoeveelheid" refer="KeyTypeAStofhoeveelheidID">
+					<xs:selector xpath="GeleideEmissies/Emissie/GekoppeldeStofStromen/StofStroom"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:keyref>
+				<xs:key name="KeyTypeAStofhoeveelheidID">
+					<xs:selector xpath=".//VerbruiksGegevens/*"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="EnergieProductie" type="MilieudrukBType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Deel 6B van het formulier</xs:documentation>
+				</xs:annotation>
+				<xs:keyref name="KeyrefTypeBGeleideEmissieStofstromen" refer="KeyTypeBStofHoeveelheidID">
+					<xs:annotation>
+						<xs:documentation>Een geleide emissie moet altijd aan een verbruiksgegeven gekoppeld zijn</xs:documentation>
+					</xs:annotation>
+					<xs:selector xpath="GeleideEmissies/Emissie/GekoppeldeStofStromen/StofStroom"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:keyref>
+				<xs:key name="KeyTypeBStofHoeveelheidID">
+					<xs:selector xpath=".//Brandstoffen/*"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="OpslagOverslag" type="MilieudrukCType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Deel 6C van het formulier</xs:documentation>
+				</xs:annotation>
+				<xs:keyref name="KeyrefTypeC1GeleideEmissieStofHoeveelheid" refer="KeyTypeCStofhoeveelheidID">
+					<xs:annotation>
+						<xs:documentation>Een geleide emissie moet altijd aan een doorzet gekoppeld zijn</xs:documentation>
+					</xs:annotation>
+					<xs:selector xpath="Opslagverliezen/GeleideEmissies/Emissie/GekoppeldeStofStromen/StofStroom"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:keyref>
+				<xs:keyref name="KeyrefTypeC2GeleideEmissieStofHoeveelheid" refer="KeyTypeCStofhoeveelheidID">
+					<xs:annotation>
+						<xs:documentation>Een geleide emissie moet altijd aan een doorzet gekoppeld zijn</xs:documentation>
+					</xs:annotation>
+					<xs:selector xpath="Overslagverliezen/GeleideEmissies/Emissie/GekoppeldeStofStromen/StofStroom"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:keyref>
+				<xs:key name="KeyTypeCStofhoeveelheidID">
+					<xs:selector xpath="Doorzetgegevens/Doorzet"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Fakkel" type="MilieudrukDType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Deel 6D van het formulier</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Waterzuivering" type="MilieudrukEType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Deel 6E van het formulier</xs:documentation>
+				</xs:annotation>
+				<xs:keyref name="KeyRefVerbruikTypeE" refer="KeyTypeEStofHoeveelheidID">
+					<xs:selector xpath=".//GekoppeldeStofStromen/StofStroom"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:keyref>
+				<xs:key name="KeyTypeEStofHoeveelheidID">
+					<xs:selector xpath=".//VerbruiksGegevens/*"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:key>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Milieudruk specifiek voor de type A activiteiten</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="MilieudrukAType">
+		<xs:sequence>
+			<xs:element name="VerbruiksGegevens" type="VerbruiksgegevensAType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.A.1. Verbruiks- en productiegegevens</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeleideEmissies" type="VerbrandingGeleideEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.A.2.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Lekverliezen" type="NietGeleideEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.A.2.2.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AndereNietGeleideEmissies" type="AndereNietGeleideEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.A.2.2.2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbnormaleEmissies" type="AbnormaleEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.A.2.3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VerbruiksgegevensAType">
+		<xs:sequence>
+			<xs:element name="Brandstof" type="BrandstofHoeveelheidAType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Grondstof" type="GrondstofHoeveelheidAType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Afvalproduct" type="AfvalproductHoeveelheidAType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Eindproduct" type="EindproductHoeveelheidAType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AndereNietGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" type="AndereNietGeleideEmissieType" maxOccurs="unbounded">
+				<xs:key name="KeyEmissiepuntBijDezeAndereNietGeleideEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeAndereNietGeleideEmissieGekoppeldeEmissiepuntID" refer="KeyEmissiepuntBijDezeAndereNietGeleideEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AndereNietGeleideEmissieType">
+		<xs:complexContent>
+			<xs:extension base="emissie:NietGeleideEmissieType">
+				<xs:sequence>
+					<xs:element name="GekoppeldeActiviteiten" type="emissiepunt:EmissiepuntGekoppeldeActiviteitenType">
+						<xs:annotation>
+							<xs:documentation>Indien enkel een koppeling kan gemaakt worden met een activiteit</xs:documentation>
+						</xs:annotation>
+						<xs:unique name="UniqueAndereNietGeleideEmissiesActiviteitID">
+							<xs:selector xpath="Activiteit"/>
+							<xs:field xpath="@activiteitID"/>
+						</xs:unique>
+					</xs:element>
+					<xs:element name="Oorzaak" type="emissie:OorzaakType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Milieudruk specifiek voor de type B activiteiten</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="MilieudrukBType">
+		<xs:sequence>
+			<xs:element name="Brandstoffen" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.B.1</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="Brandstof" maxOccurs="unbounded">
+							<xs:complexType>
+								<xs:complexContent>
+									<xs:extension base="BrandstofHoeveelheidBType"/>
+								</xs:complexContent>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GeleideEmissies" type="VerbrandingGeleideEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.B.2.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbnormaleEmissies" type="AbnormaleEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.B.2.2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Milieudruk specifiek voor de type C activiteiten</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="MilieudrukCType">
+		<xs:sequence>
+			<xs:element name="Doorzetgegevens" type="DoorzetHoeveelhedenCType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.C.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Opslagverliezen" type="OpslagVerliezenType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Deel 6.C.2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Overslagverliezen" type="OverslagVerliezenType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Deel 6.C.3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Milieudruk voor de type D activiteiten</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="MilieudrukDType">
+		<xs:sequence maxOccurs="1">
+			<xs:element name="NietGeleideEmissies" type="FakkelNietGeleideEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.D.1 </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbnormaleEmissies" type="FakkelAbnormaleEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.D.2 </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AfgasHoeveelheidType">
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="JaardebietHoeveelheidType">
+				<xs:annotation>
+					<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekEindproducthoeveelheidReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Stof" type="stof:StofIDType"/>
+			<xs:element name="Samenstelling" type="generiek:OmschrijvingType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FakkelBrandstofHoeveelheidType">
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="HoeveelheidTypeDType">
+				<xs:annotation>
+					<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekBrandStofhoeveelheidReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Stof" type="stof:StofIDType"/>
+			<xs:element name="Samenstelling" type="generiek:OmschrijvingType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OpslagNietGeleideEmissieDoorzetType">
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="HoeveelheidTypeCType">
+				<xs:annotation>
+					<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekOpslagNietGeleideEmissieDoorzetReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Stof" type="stof:StofIDType"/>
+			<xs:element name="Samenstelling" type="generiek:OmschrijvingType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OpslagAbnormaleEmissieDoorzetType">
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="HoeveelheidTypeCType">
+				<xs:annotation>
+					<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekOpslagAbnormaleEmissieDoorzetReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Stof" type="stof:StofIDType"/>
+			<xs:element name="Samenstelling" type="generiek:OmschrijvingType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OverslagNietGeleideEmissieDoorzetType">
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="HoeveelheidTypeCType">
+				<xs:annotation>
+					<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekOverslagNietGeleideEmissieDoorzetReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Stof" type="stof:StofIDType"/>
+			<xs:element name="Samenstelling" type="generiek:OmschrijvingType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OverslagAbnormaleEmissieDoorzetType">
+		<xs:sequence>
+			<xs:element name="Hoeveelheid" type="HoeveelheidTypeCType">
+				<xs:annotation>
+					<xs:documentation>Effectieve hoeveelheid</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekOverslagAbnormaleEmissieDoorzetReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Stof" type="stof:StofIDType"/>
+			<xs:element name="Samenstelling" type="generiek:OmschrijvingType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Milieudruk specifiek voor de type E activiteiten</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="MilieudrukEType">
+		<xs:sequence>
+			<xs:element name="VerbruiksGegevens" type="VerbruiksgegevensEType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.E.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GeleideEmissies" type="VerbrandingGeleideEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.E.2.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NietGeleideEmissies" type="NietGeleideEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.E.2.2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbnormaleEmissies" type="AbnormaleEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.E.2.3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VerbruiksgegevensEType">
+		<xs:sequence>
+			<xs:element name="Brandstof" type="BrandstofHoeveelheidEType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Grondstof" type="GrondstofHoeveelheidEType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Afvalproduct" type="AfvalproductHoeveelheidEType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Eindproduct" type="EindproductHoeveelheidEType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Koppeling met de stroom (stofhoeveelheid gekoppeld aan een of meerdere activiteiten)</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="StofStroomType">
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required"/>
+		<xs:attribute name="activiteitID" type="xs:int" use="required"/>
+		<xs:attribute name="emissiepuntID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="StofStromenType">
+		<xs:sequence>
+			<xs:element name="StofStroom" type="StofStroomType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:GeleideEmissieType">
+							<xs:sequence>
+								<xs:element name="GekoppeldeStofStromen" type="StofStromenType">
+									<xs:annotation>
+										<xs:documentation>De koppeling naar de stoffen en de activiteiten. Voor de stoffen dient verwezen te worden naar de ID van een stofhoeveelheid. Voor de activiteiten moeten de ID's van de activiteiten opgegeven worden.</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueGeleideEmissieStofstromen">
+										<xs:selector xpath="StofStroom"/>
+										<xs:field xpath="@stofHoeveelheidID"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+				<xs:key name="KeyEmissiepuntBijDezeGeleideEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeGeleideEmissieGekoppeldeEmissiepuntID" refer="KeyEmissiepuntBijDezeGeleideEmissie">
+					<xs:selector xpath="GekoppeldeStofStromen/StofStroom"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VerbrandingGeleideEmissiesType">
+		<xs:annotation>
+			<xs:documentation>Geleide emissies ingeval van een verbrandingsproces</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:VerbrandingGeleideEmissieType">
+							<xs:sequence>
+								<xs:element name="GekoppeldeStofStromen" type="StofStromenType">
+									<xs:annotation>
+										<xs:documentation>De koppeling naar de stoffen en de activiteiten. Voor de stoffen dient verwezen te worden naar de ID van een stofhoeveelheid. Voor de activiteiten moeten de ID's van de activiteiten opgegeven worden.</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueVerbrandingGeleideEmissieStofstromen">
+										<xs:selector xpath="StofStroom"/>
+										<xs:field xpath="@stofHoeveelheidID"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+				<xs:key name="KeyEmissiepuntBijDezeVerbrandingEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeVerbrandingEmissieGekoppeldeEmissiepuntID" refer="KeyEmissiepuntBijDezeVerbrandingEmissie">
+					<xs:selector xpath="GekoppeldeStofStromen/StofStroom"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NietGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:NietGeleideEmissieType">
+							<xs:sequence>
+								<xs:element name="GekoppeldeActiviteiten" type="emissiepunt:EmissiepuntGekoppeldeActiviteitenType">
+									<xs:annotation>
+										<xs:documentation>Indien enkel een koppeling kan gemaakt worden met een activiteit</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueNietGeleideEmissiesActiviteitIDA">
+										<xs:selector xpath="Activiteit"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+				<xs:key name="KeyEmissiepuntBijDezeNietGeleideEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeNietGeleideEmissieGekoppeldeEmissiepuntID" refer="KeyEmissiepuntBijDezeNietGeleideEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AbnormaleEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:AbnormaleEmissieType">
+							<xs:sequence>
+								<xs:element name="GekoppeldeActiviteiten" type="emissiepunt:EmissiepuntGekoppeldeActiviteitenType">
+									<xs:annotation>
+										<xs:documentation>Indien enkel een koppeling kan gemaakt worden met een activiteit</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueAbnormaleEmissiesActiviteitID">
+										<xs:selector xpath="Activiteit"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+				<xs:key name="KeyEmissiepuntBijDezeEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefGekoppeldeActiviteitEmissiepuntID" refer="KeyEmissiepuntBijDezeEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FakkelAbnormaleEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:AbnormaleEmissieType">
+							<xs:sequence>
+								<xs:element name="Afgas" type="AfgasHoeveelheidType"/>
+								<xs:element name="Brandstof" type="FakkelBrandstofHoeveelheidType"/>
+								<xs:element name="GekoppeldeActiviteiten" type="emissiepunt:EmissiepuntGekoppeldeActiviteitenType">
+									<xs:annotation>
+										<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueAbnormaleEmissiesActiviteitIDD">
+										<xs:selector xpath="Activiteit"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="FakkelNietGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:NietGeleideEmissieType">
+							<xs:sequence>
+								<xs:element name="Afgas" type="AfgasHoeveelheidType"/>
+								<xs:element name="Brandstof" type="FakkelBrandstofHoeveelheidType"/>
+								<xs:element name="GekoppeldeActiviteiten" type="emissiepunt:EmissiepuntGekoppeldeActiviteitenType">
+									<xs:annotation>
+										<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueNietGeleideEmissiesActiviteitIDD">
+										<xs:selector xpath="Activiteit"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OpslagGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:GeleideEmissieType">
+							<xs:sequence>
+								<xs:element name="GekoppeldeStofStromen" type="StofStromenType">
+									<xs:annotation>
+										<xs:documentation>De koppeling naar de stoffen en de activiteiten. Voor de stoffen dient verwezen te worden naar de ID van een stofhoeveelheid. Voor de activiteiten moeten de ID's van de activiteiten opgegeven worden.</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueOpslagGeleideEmissieStofstromen">
+										<xs:selector xpath="StofStroom"/>
+										<xs:field xpath="@stofHoeveelheidID"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+				<xs:key name="KeyEmissiepuntBijDezeOpslagEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeOpslagEmissieGekoppeldeEmissiepuntID" refer="KeyEmissiepuntBijDezeOpslagEmissie">
+					<xs:selector xpath="GekoppeldeStofStromen/StofStroom"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OpslagVerliezenType">
+		<xs:sequence>
+			<xs:element name="GeleideEmissies" type="OpslagGeleideEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.C.2.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NietGeleideEmissies" type="OpslagNietGeleideEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.C.2.2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbnormaleEmissies" type="OpslagAbnormaleEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.C.2.3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OpslagNietGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:NietGeleideEmissieType">
+							<xs:sequence>
+								<xs:element name="GekoppeldeActiviteiten" type="emissiepunt:EmissiepuntGekoppeldeActiviteitenType">
+									<xs:annotation>
+										<xs:documentation>Indien enkel een koppeling kan gemaakt worden met een activiteit</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueNietGeleideEmissiesActiviteitIDC1">
+										<xs:selector xpath="Activiteit"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+								<xs:element name="Doorzet" type="OpslagNietGeleideEmissieDoorzetType"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+				<xs:key name="KeyEmissiepuntBijOpslagNietGeleideEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeOpslagNietGeleideEmissieGekoppeldeEmissiepuntID" refer="KeyEmissiepuntBijOpslagNietGeleideEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OpslagAbnormaleEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:AbnormaleEmissieType">
+							<xs:sequence>
+								<xs:element name="GekoppeldeActiviteiten" type="emissiepunt:EmissiepuntGekoppeldeActiviteitenType">
+									<xs:annotation>
+										<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+									</xs:annotation>
+									<xs:key name="UniqueAbnormaleEmissiesActiviteitIDC1">
+										<xs:selector xpath="Activiteit"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:key>
+								</xs:element>
+								<xs:element name="Doorzet" type="OpslagAbnormaleEmissieDoorzetType"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+				<xs:key name="KeyEmissiepuntBijOpslagAbnormaleEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeOpslagAbnormaleEmissieGekoppeldeEmissiepuntID" refer="KeyEmissiepuntBijOpslagAbnormaleEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OverslagVerliezenType">
+		<xs:sequence>
+			<xs:element name="GeleideEmissies" type="OverslagGeleideEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.C.3.1</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NietGeleideEmissies" type="OverslagNietGeleideEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.C.3.2</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AbnormaleEmissies" type="OverslagAbnormaleEmissiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 6.C.3.3</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OverslagGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:GeleideEmissieType">
+							<xs:sequence>
+								<xs:element name="GekoppeldeStofStromen" type="StofStromenType">
+									<xs:annotation>
+										<xs:documentation>De koppeling naar de stoffen en de activiteiten. Voor de stoffen dient verwezen te worden naar de ID van een stofhoeveelheid. Voor de activiteiten moeten de ID's van de activiteiten opgegeven worden.</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueOverslagGeleideEmissieStofstromen">
+										<xs:selector xpath="StofStroom"/>
+										<xs:field xpath="@stofHoeveelheidID"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+				<xs:key name="KeyEmissiepuntBijDezeOverslagEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeOverslagEmissieGekoppeldeEmissiepuntID" refer="KeyEmissiepuntBijDezeOverslagEmissie">
+					<xs:selector xpath="GekoppeldeStofStromen/StofStroom"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OverslagNietGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:NietGeleideEmissieType">
+							<xs:sequence>
+								<xs:element name="GekoppeldeActiviteiten" type="emissiepunt:EmissiepuntGekoppeldeActiviteitenType">
+									<xs:annotation>
+										<xs:documentation>Indien enkel een koppeling kan gemaakt worden met een activiteit</xs:documentation>
+									</xs:annotation>
+									<xs:unique name="UniqueNietGeleideEmissiesActiviteitIDC2">
+										<xs:selector xpath="Activiteit"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:unique>
+								</xs:element>
+								<xs:element name="Doorzet" type="OverslagNietGeleideEmissieDoorzetType"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+				<xs:key name="KeyEmissiepuntBijOverslagNietGeleideEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeOverslagNietGeleideEmissieGekoppeldeEmissiepuntID" refer="KeyEmissiepuntBijOverslagNietGeleideEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OverslagAbnormaleEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:complexContent>
+						<xs:extension base="emissie:AbnormaleEmissieType">
+							<xs:sequence>
+								<xs:element name="GekoppeldeActiviteiten" type="emissiepunt:EmissiepuntGekoppeldeActiviteitenType">
+									<xs:annotation>
+										<xs:documentation>ID's van de gekoppelde activiteiten (installaties en apparaten)</xs:documentation>
+									</xs:annotation>
+									<xs:key name="UniqueAbnormaleEmissiesActiviteitIDC2">
+										<xs:selector xpath="Activiteit"/>
+										<xs:field xpath="@activiteitID"/>
+									</xs:key>
+								</xs:element>
+								<xs:element name="Doorzet" type="OverslagAbnormaleEmissieDoorzetType"/>
+							</xs:sequence>
+						</xs:extension>
+					</xs:complexContent>
+				</xs:complexType>
+				<xs:key name="KeyEmissiepuntBijOverslagAbnormaleEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeOverslagAbnormaleEmissieGekoppeldeEmissiepuntID" refer="KeyEmissiepuntBijOverslagAbnormaleEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

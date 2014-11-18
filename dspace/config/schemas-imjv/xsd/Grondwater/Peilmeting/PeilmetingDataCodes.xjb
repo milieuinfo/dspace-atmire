@@ -1,0 +1,27 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="PeilmetingDataCodes.xsd">
+
+        <jxb:bindings node="//xs:simpleType[@name='ReferentiepuntEnumType']">
+            <jxb:typesafeEnumClass name="ReferentiepuntEnumType">
+                <jxb:typesafeEnumMember name="MAAIVELD" value="Het maaiveld (oppervlakte van de natuurlijke omgeving)"/>
+                <jxb:typesafeEnumMember name="PEILBUIS_BOVEN" value="De bovenkant van de peilbuis (buis, vaak in PVC, van enkele cm diameter waarin het peil gemeten wordt)"/>
+                <jxb:typesafeEnumMember name="BESCHERMBUIS_BOVEN" value="De bovenkant van de beschermbuis (grote buis waarin o.a. de peilbuis is opgehangen)"/>
+                <jxb:typesafeEnumMember name="IN_MTAW" value="Het peil wordt opgemeten in mTAW"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+        
+        <jxb:bindings node="//xs:simpleType[@name='InstrumentPeilmetingEnumType']">
+            <jxb:typesafeEnumClass name="InstrumentPeilmetingEnumType">
+                <jxb:typesafeEnumMember name="PEILLINT" value="Peillint"/>
+                <jxb:typesafeEnumMember name="ELEC_METING" value="Elektronische meting (sonde)"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+        
+    </jxb:bindings>
+</jxb:bindings>
+

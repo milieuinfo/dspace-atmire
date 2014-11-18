@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://verbetering.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	targetNamespace="http://verbetering.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"
+		/>
+	<xs:include schemaLocation="VerbeteringDataKern.xsd"/>
+	<xs:complexType name="GeplandeVerbeteringenLuchtType">
+		<xs:sequence>
+			<xs:element name="GeplandeVerbetering" type="GeplandeVerbeteringLuchtType"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GeplandeVerbeteringenWaterType">
+		<xs:sequence>
+			<xs:element name="GeplandeVerbetering" type="GeplandeVerbeteringWaterType"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GeplandeVerbeteringLuchtType">
+		<xs:sequence>
+			<xs:element name="JaarIngebruikname" type="xs:gYear" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Het jaar waarin de verbetering werd in gebruik genomen of is voorzien in gebruik genomen te worden</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Omschrijving" type="OmschrijvingType">
+				<xs:annotation>
+					<xs:documentation>Beschrijving van de geplande verbetering</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Kostprijs" type="generiek:NonNegativeDecimalType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Uitgedrukt in Euro, twee cijfers na de komma</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReductiePotentieel" type="generiek:NonNegativeDecimalType"
+				minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Beschrijving van de verwachte verbetering</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="geplandeVerbeteringID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Inieke identificatie voor deze geplande verbetering doorheen dit XML bestand</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="GeplandeVerbeteringWaterType">
+		<xs:sequence>
+			<xs:element name="JaarIngebruikname" type="xs:gYear" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Het jaar waarin de verbetering werd in gebruik genomen of is voorzien in gebruik genomen te worden</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Omschrijving" type="OmschrijvingType">
+				<xs:annotation>
+					<xs:documentation>Beschrijving van de geplande verbetering</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Kostprijs" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Uitgedrukt in Euro, twee cijfers na de komma</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ReductiePotentieel" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Beschrijving van de verwachte verbetering</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:minLength value="1"/>
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="geplandeVerbeteringID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Inieke identificatie voor deze geplande verbetering doorheen dit XML bestand</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

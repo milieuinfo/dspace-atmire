@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by  () -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://aangiftemeta.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://aangiftemeta.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="AangifteTypeEnumType">
+		<xs:annotation>
+			<xs:documentation>Toegelaten manieren om contact op te nemen</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="LuchtEmissie"/>
+			<xs:enumeration value="Identificatie"/>
+			<xs:enumeration value="GrondwaterStatistiek"/>
+			<xs:enumeration value="Energie"/>
+			<xs:enumeration value="WaterEmissie"/>
+			<xs:enumeration value="AfvalProducent"/>
+			<xs:enumeration value="GrondstoffenProducent"/>
+			<xs:enumeration value="AfvalVerwerker"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ProjectTypeEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Imjv"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AangifteStatusTypeEnumType">
+		<xs:annotation>
+			<xs:documentation>Toegelaten manieren om contact op te nemen</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Verstuurd"/>
+			<xs:enumeration value="Ontvangen"/>
+			<xs:enumeration value="Afgepunt"/>
+			<xs:enumeration value="Nog Te Versturen"/>
+			<xs:enumeration value="Ander Formaat"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

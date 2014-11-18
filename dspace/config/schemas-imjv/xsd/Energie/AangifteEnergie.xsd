@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://energie.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://energie.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Het luik Energie van het IMJV-->
+	<xs:include schemaLocation="AangifteEnergieDataTypes.xsd"/>
+	<xs:element name="AangifteEnergie" type="AangifteEnergieType">
+		<xs:annotation>
+			<xs:documentation>Aangifte Energie</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="BedrijvenAangifteEnergie" type="BedrijvenAangifteEnergieType">
+		<xs:annotation>
+			<xs:documentation>Aangifte Energie zonder de handtekening</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

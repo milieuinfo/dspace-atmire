@@ -1,0 +1,29 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="LozingspuntDataCodes.xsd">
+        <jxb:bindings node="//xs:simpleType[@name='MeetputEnumType']">
+            <jxb:typesafeEnumClass name="MeetputEnumType">
+                <jxb:typesafeEnumMember name="OPPOMPEND" value="Oppompend"/>
+			    <jxb:typesafeEnumMember name="TRANSFER" value="Transfer"/>
+			    <jxb:typesafeEnumMember name="LOZEND" value="Lozend"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+        <jxb:bindings node="//xs:simpleType[@name='LozingsplaatsEnumType']">
+            <jxb:typesafeEnumClass name="LozingsplaatsEnumType">
+                <jxb:typesafeEnumMember name="RIOLERING" value="Riool"/>
+                <jxb:typesafeEnumMember name="OPPERVLAKTEWATER" value="Oppervlaktewater"/>
+                <jxb:typesafeEnumMember name="GRONDWATER" value="Grondwater"/>
+                <jxb:typesafeEnumMember name="COLLECTOR" value="Collector"/>
+                <jxb:typesafeEnumMember name="KUNSTMATIGE_AFVOER_HEMELWATER" value="Kunstmatige afvoer hemelwater"/>
+                <jxb:typesafeEnumMember name="OPGENOMEN_IN_OPPERVLAKTEWATER" value="Opgenomen oppervlaktewater"/>
+                <jxb:typesafeEnumMember name="INFLUENT_RWZI" value="Influent RWZI" />
+                <jxb:typesafeEnumMember name="AFVOER" value="Afvoer naar andere exploitatie/industriële WZI" />
+                <jxb:typesafeEnumMember name="INTERNE_STROOM" value="Interne stroom"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+    </jxb:bindings>
+</jxb:bindings>

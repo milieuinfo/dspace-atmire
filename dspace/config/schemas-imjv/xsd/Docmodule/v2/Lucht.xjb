@@ -1,0 +1,113 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="Lucht.xsd">
+        <jxb:bindings node="//xs:simpleType[@name='verontreinigendestofType']">
+            <jxb:typesafeEnumClass name="verontreinigendestofType">
+                <jxb:typesafeEnumMember name="CO" value="koolstofmonoxide"/>
+                <jxb:typesafeEnumMember name="SOX" value="zwaveloxiden (uitgedrukt als zwaveldioxide)"/>
+                <jxb:typesafeEnumMember name="NOX" value="stikstofoxiden (uitgedrukt als stikstofdioxide)"/>
+                <jxb:typesafeEnumMember name="F_VERBINDINGEN" value="F-verbindingen (uitgedrukt als F-)"/>
+                <jxb:typesafeEnumMember name="CL_VERBINDINGEN" value="Cl-verbindingen (uitgedrukt als Cl-)"/>
+                <jxb:typesafeEnumMember name="CHLOOR" value="chloor"/>
+                <jxb:typesafeEnumMember name="H2S" value="(di)waterstofsulfide"/>
+                <jxb:typesafeEnumMember name="NH3" value="ammoniak"/>
+                <jxb:typesafeEnumMember name="CO2" value="koolstofdioxide"/>
+                <jxb:typesafeEnumMember name="N2O" value="distikstofmonoxide"/>
+                <jxb:typesafeEnumMember name="HCN" value="waterstofcyanide"/>
+                <jxb:typesafeEnumMember name="ZWAVELKOOLSTOF" value="zwavelkoolstof"/>
+                <jxb:typesafeEnumMember name="CH4" value="methaan"/>
+                <jxb:typesafeEnumMember name="ACRYLONITRIL" value="acrylonitrile"/>
+                <jxb:typesafeEnumMember name="ETHYLEENOXIDE" value="ethyleenoxide"/>
+                <jxb:typesafeEnumMember name="BENZEEN" value="benzeen"/>
+                <jxb:typesafeEnumMember name="ETHAANDICHLORIDE" value="1,2-dichloorethaan"/>
+                <jxb:typesafeEnumMember name="DICHLOORMETHAAN" value="dichloormethaan"/>
+                <jxb:typesafeEnumMember name="FENOL" value="fenol"/>
+                <jxb:typesafeEnumMember name="FORMALDEHYDE" value="formaldehyde"/>
+                <jxb:typesafeEnumMember name="STYREEN" value="styreen"/>
+                <jxb:typesafeEnumMember name="TETRACHLOORMETHAAN" value="tetrachloormethaan"/>
+                <jxb:typesafeEnumMember name="TRICHLOORETHEEN" value="trichlooretheen"/>
+                <jxb:typesafeEnumMember name="TOLUEEN" value="tolueen"/>
+                <jxb:typesafeEnumMember name="MONO_VINYLCHLORIDE" value="mono-vinylchloride"/>
+                <jxb:typesafeEnumMember name="XYLEEN_ISOMEREN" value="xyleen-isomeren"/>
+                <jxb:typesafeEnumMember name="TETRACHLOORETHEEN" value="tetrachlooretheen"/>
+                <jxb:typesafeEnumMember name="PENTACHLOORFENOL" value="pentachloorfenol"/>
+                <jxb:typesafeEnumMember name="HEXACHLOORBENZEEN" value="hexachloorbenzeen"/>
+                <jxb:typesafeEnumMember name="TRICHLOORBENZEEN" value="trichloorbenzeen"/>
+                <jxb:typesafeEnumMember name="TRICHLOORETHAAN" value="trichloorethaan"/>
+                <jxb:typesafeEnumMember name="TRICHLOORMETHAAN" value="trichloormethaan"/>
+                <jxb:typesafeEnumMember name="ACETYLEEN" value="1,1,2,2-tetrachloroethaan"/>
+                <jxb:typesafeEnumMember name="NIET_EERDER_GENOEMDE_GEHALOGENEERDE_NMVOS"
+                                        value="niet eerder genoemde gehalogeneerde NMVOS"/>
+                <jxb:typesafeEnumMember name="NIET_EERDER_GENOEMDE_AROMATISCHE_NMVOS"
+                                        value="niet eerder genoemde aromatische NMVOS"/>
+                <jxb:typesafeEnumMember name="NIET_EERDER_GENOEMDE_NMVOS" value="niet eerder genoemde NMVOS"/>
+                <jxb:typesafeEnumMember name="TOTAAL_GEHALOGENEERDE_NMVOS" value="totaal gehalogeneerde NMVOS"/>
+                <jxb:typesafeEnumMember name="TOTAAL_AROMATISCHE_NMVOS" value="totaal aromatische NMVOS"/>
+                <jxb:typesafeEnumMember name="TOTAAL_NMVOS" value="totaal NMVOS"/>
+                <jxb:typesafeEnumMember name="CFKS" value="CFK's (chloorfluorkoolstoffen) (1)"/>
+                <jxb:typesafeEnumMember name="HCFKS" value="HCFK's (chloorfluorkoolwaterstoffen) (2)"/>
+                <jxb:typesafeEnumMember name="HFK" value="HFK's (fluorkoolwaterstoffen) (3)"/>
+                <jxb:typesafeEnumMember name="PFK" value="PFK's (perfluorkoolwaterstoffen) (4)"/>
+                <jxb:typesafeEnumMember name="SF6" value="zwavelhexafluoride"/>
+                <jxb:typesafeEnumMember name="HALONEN" value="halonen (5)"/>
+                <jxb:typesafeEnumMember name="NIER_EERDER_GENOEMDE_OZONAFBREKENDE_STOFFEN"
+                                        value="niet eerder genoemde ozonafbrekende stoffen en F- gassen"/>
+                <jxb:typesafeEnumMember name="TOTAAL_OZONAFBREKENDE_STOFFEN"
+                                        value="totaal ozonafbrekende stoffen en F-gassen"/>
+                <jxb:typesafeEnumMember name="PAKS" value="polycyclische aromatische KWS (PAK's)"/>
+                <jxb:typesafeEnumMember name="NAFTALEEN" value="naftaleen"/>
+                <jxb:typesafeEnumMember name="PHENANTHREEN" value="phenanthreen"/>
+                <jxb:typesafeEnumMember name="ANTHRACEEN" value="anthraceen"/>
+                <jxb:typesafeEnumMember name="FLUORANTHEEN" value="fluorantheen"/>
+                <jxb:typesafeEnumMember name="CHRYSEEN" value="chryseen"/>
+                <jxb:typesafeEnumMember name="BENZO_A_ANTHRACEEN" value="benzo(a)anthraceen"/>
+                <jxb:typesafeEnumMember name="BENZOPYREEN" value="benzo(a)pyreen"/>
+                <jxb:typesafeEnumMember name="BENZO_K_FLUOEANTHEEN" value="benzo(k)fluorantheen"/>
+                <jxb:typesafeEnumMember name="INDENO_1_2_3_CD_PYREEN" value="indeno(1,2,3-cd)pyreen"/>
+                <jxb:typesafeEnumMember name="BENZO_G_H_I_PERYLEEN" value="benzo(g,h,i)peryleen"/>
+                <jxb:typesafeEnumMember name="BENZO_E_PYREEN" value="benzo(e)pyreen"/>
+                <jxb:typesafeEnumMember name="BENZO_J_FLUORANTHEEN" value="benzo(j)fluorantheen"/>
+                <jxb:typesafeEnumMember name="BENZO_B_FLUORANTHEEN" value="benzo(b)fluorantheen"/>
+                <jxb:typesafeEnumMember name="DIBENZO_A_H_ANTHRACEEN" value="dibenzo(a,h)anthraceen"/>
+                <jxb:typesafeEnumMember name="PCBS" value="PCB's (polychloorbiphenyls)"/>
+                <jxb:typesafeEnumMember name="HEXABROOMBIPHENYL" value="hexabroombiphenyl"/>
+                <jxb:typesafeEnumMember name="ALDRIN" value="aldrin"/>
+                <jxb:typesafeEnumMember name="CHLORDAAN" value="chlordaan"/>
+                <jxb:typesafeEnumMember name="CHLORDECON" value="chlordecon"/>
+                <jxb:typesafeEnumMember name="DDT" value="DDT"/>
+                <jxb:typesafeEnumMember name="DIELDRIN" value="dieldrin"/>
+                <jxb:typesafeEnumMember name="ENDRIN" value="endrin"/>
+                <jxb:typesafeEnumMember name="HEPTACHLOOR" value="heptachloor"/>
+                <jxb:typesafeEnumMember name="LINDAAN" value="lindaan"/>
+                <jxb:typesafeEnumMember name="MIREX" value="mirex"/>
+                <jxb:typesafeEnumMember name="PENTACHLOORBENZEEN" value="pentachloorbenzeen"/>
+                <jxb:typesafeEnumMember name="TOXAPHEEN" value="toxapheen"/>
+                <jxb:typesafeEnumMember name="DEHP" value="di-(2-ethyl hexyl) phthalaat (DEHP)"/>
+                <jxb:typesafeEnumMember name="ANTIMOON" value="antimoon"/>
+                <jxb:typesafeEnumMember name="ARSEEN" value="arseen"/>
+                <jxb:typesafeEnumMember name="ASBEST" value="asbest"/>
+                <jxb:typesafeEnumMember name="BERYLLIUM" value="beryllium"/>
+                <jxb:typesafeEnumMember name="CADMIUM" value="cadmium"/>
+                <jxb:typesafeEnumMember name="CHROOM" value="chroom"/>
+                <jxb:typesafeEnumMember name="KOBALT" value="kobalt"/>
+                <jxb:typesafeEnumMember name="KWIK" value="kwik"/>
+                <jxb:typesafeEnumMember name="LOOD" value="lood"/>
+                <jxb:typesafeEnumMember name="KOPER" value="koper"/>
+                <jxb:typesafeEnumMember name="MANGAAN" value="mangaan"/>
+                <jxb:typesafeEnumMember name="NIKKEL" value="nikkel"/>
+                <jxb:typesafeEnumMember name="SELEEN" value="seleen"/>
+                <jxb:typesafeEnumMember name="THALLIUM" value="thallium"/>
+                <jxb:typesafeEnumMember name="VANADIUM" value="vanadium"/>
+                <jxb:typesafeEnumMember name="ZINK" value="zink"/>
+                <jxb:typesafeEnumMember name="PM25" value="PM2.5"/>
+                <jxb:typesafeEnumMember name="PM10" value="PM10"/>
+                <jxb:typesafeEnumMember name="TOTAAL_STOF" value="totaal stof"/>
+                <jxb:typesafeEnumMember name="PCDD_F" value="PCDD/F"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+    </jxb:bindings>
+</jxb:bindings>

@@ -1,0 +1,72 @@
+<jxb:bindings version="2.0"
+              xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+              xmlns:xs="http://www.w3.org/2001/XMLSchema"
+              xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+              jxb:extensionBindingPrefixes="xjc">
+
+    <jxb:bindings schemaLocation="MilieudrukDataCodes.xsd">
+
+        <jxb:bindings node="//xs:simpleType[@name='EenheidJaarVerbruikAEnumType']">
+            <jxb:typesafeEnumClass name="EenheidJaarVerbruikAEnumType">
+                <jxb:typesafeEnumMember name="GIGAJOULE" value="gigajoule"/>
+                <jxb:typesafeEnumMember name="TON" value="ton"/>
+                <jxb:typesafeEnumMember name="LITER" value="liter"/>
+                <jxb:typesafeEnumMember name="METER" value="meter"/>
+                <jxb:typesafeEnumMember name="VIERKANTE_METER" value="vierkante meter"/>
+                <jxb:typesafeEnumMember name="KUBIEKE_METER" value="kubieke meter"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='EenheidJaarVerbruikBEnumType']">
+            <jxb:typesafeEnumClass name="EenheidJaarVerbruikBEnumType">
+                <jxb:typesafeEnumMember name="GIGAJOULE" value="gigajoule"/>
+                <jxb:typesafeEnumMember name="TON" value="ton"/>
+                <jxb:typesafeEnumMember name="LITER" value="liter"/>
+                <jxb:typesafeEnumMember name="KUBIEKE_METER" value="kubieke meter"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='EenheidJaarVerbruikCEnumType']">
+            <jxb:typesafeEnumClass name="EenheidJaarVerbruikCEnumType">
+                <jxb:typesafeEnumMember name="TON" value="ton"/>
+                <jxb:typesafeEnumMember name="LITER" value="liter"/>
+                <jxb:typesafeEnumMember name="KUBIEKE_METER" value="kubieke meter"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='EenheidJaarVerbruikDEnumType']">
+            <jxb:typesafeEnumClass name="EenheidJaarVerbruikDEnumType">
+                <jxb:typesafeEnumMember name="TON" value="ton"/>
+                <jxb:typesafeEnumMember name="GIGAJOULE" value="gigajoule"/>
+                <jxb:typesafeEnumMember name="KUBIEKE_METER" value="kubieke meter"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+        <jxb:bindings node="//xs:simpleType[@name='EenheidJaarVerbruikEEnumType']">
+            <jxb:typesafeEnumClass name="EenheidJaarVerbruikEEnumType">
+                <jxb:typesafeEnumMember name="TON" value="ton"/>
+                <jxb:typesafeEnumMember name="GIGAJOULE" value="gigajoule"/>
+                <jxb:typesafeEnumMember name="KUBIEKE_METER" value="kubieke meter"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+	<jxb:bindings node="//xs:simpleType[@name='StofFunctieEnumType']">
+            <jxb:typesafeEnumClass name="StofFunctieEnum">
+                <jxb:typesafeEnumMember name="GRONDSTOF" value="Grondstof"/>
+                <jxb:typesafeEnumMember name="BRANDSTOF" value="Brandstof"/>
+                <jxb:typesafeEnumMember name="EINDPRODUCT" value="Eindproduct"/>
+                <jxb:typesafeEnumMember name="AFVALPRODUCT" value="Afvalproduct"/>
+                <jxb:typesafeEnumMember name="AFGAS" value="Afgas"/>
+                <jxb:typesafeEnumMember name="DOORZET" value="Doorzet"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+	<jxb:bindings node="//xs:simpleType[@name='EenheidJaarDebietEnumType']">
+            <jxb:typesafeEnumClass name="EenheidJaarDebietEnum">
+                <jxb:typesafeEnumMember name="TON" value="ton"/>
+            </jxb:typesafeEnumClass>
+        </jxb:bindings>
+
+    </jxb:bindings>
+
+</jxb:bindings>

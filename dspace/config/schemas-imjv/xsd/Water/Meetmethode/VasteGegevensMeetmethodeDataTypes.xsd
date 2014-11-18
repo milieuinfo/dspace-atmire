@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://meetmethode.vastegegevens.water.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:meetmethode="http://meetmethode.water.milieuverslag.schemas.milieuinfo.be" xmlns:verontreinigendestof="http://verontreinigendestof.water.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://meetmethode.vastegegevens.water.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+    <xs:import namespace="http://meetmethode.water.milieuverslag.schemas.milieuinfo.be" schemaLocation="Meetmethode.xsd"/>
+	<xs:import namespace="http://verontreinigendestof.water.milieuverslag.schemas.milieuinfo.be" schemaLocation="../VerontreinigendeStof/VerontreinigendeStof.xsd"/>
+	<xs:complexType name="MeetmethodenType">
+		<xs:sequence>
+			<xs:element name="Meetmethode" type="MeetmethodeType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MeetmethodeType">
+		<xs:sequence>
+			<xs:element name="VerontreinigendeStof" type="verontreinigendestof:VerontreinigendeStofWaterEnumType"/>
+			<xs:element name="Meetmethode" type="meetmethode:MeetmethodeEnumType">
+				<xs:annotation>
+					<xs:documentation>Beschrijving van de norm of het protocol</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Commentaar" type="meetmethode:CommentaarType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Op te geven indien andere meetnorm</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType">
+				<xs:unique name="UniekMeetmethodeReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="meetmethodeID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Uniek ID voor deze meetmethode</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+</xs:schema>

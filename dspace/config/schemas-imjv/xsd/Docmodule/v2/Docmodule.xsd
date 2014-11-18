@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="urn:be:milieuinfo:schemas:milieuverslag:documents:v2"
+    xmlns:documents="urn:be:milieuinfo:schemas:milieuverslag:documents:v2"
+    attributeFormDefault="unqualified">
+
+
+    <xs:element name="docmodule" type="documents:Docmodule"/>
+    <xs:complexType name="Docmodule" abstract="true">
+        <xs:sequence>
+            <xs:element name="cbbnr" type="xs:string" minOccurs="0"/>
+            <xs:element name="jaar" type="xs:string" minOccurs="0"/>
+            <xs:element name="aantalBijlagen" type="xs:string" minOccurs="0"/>
+            <xs:element name="milieuverslagnr" type="xs:string" minOccurs="0"/>
+            <xs:element name="nietVanToepassing" minOccurs="0" type="xs:string">
+                <xs:annotation>
+                    <xs:documentation>0=van toepassing, 1=niet van toepassing</xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

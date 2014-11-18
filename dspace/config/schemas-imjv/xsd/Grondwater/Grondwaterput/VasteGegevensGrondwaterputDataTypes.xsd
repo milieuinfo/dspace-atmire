@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://grondwaterput.vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:grondwaterput="http://grondwaterput.grondwater.milieuverslag.schemas.milieuinfo.be"
+	xmlns:filter="http://filter.vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://grondwaterput.vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00"
+	xmlns:geografie="http://geografie.schemas.milieuinfo.be">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"
+		/>
+	<xs:import namespace="http://grondwaterput.grondwater.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Grondwaterput.xsd"/>
+	<xs:import
+		namespace="http://filter.vastegegevens.grondwater.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Filter/VasteGegevensFilter.xsd"/>
+	<xs:import namespace="http://geografie.schemas.milieuinfo.be"
+		/>
+	<xs:complexType name="GrondwaterputtenType">
+		<xs:sequence>
+			<xs:element name="Grondwaterput" type="GrondwaterputType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="GrondwaterputType">
+		<xs:sequence>
+			<xs:element name="Putnummer" type="grondwaterput:PutnummerType">
+				<xs:annotation>
+					<xs:documentation>Van de exploitant</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Diepte" type="grondwaterput:DiepteType"/>
+			<xs:element name="LambertcoordinaatX" type="geografie:VlaamsXLambertCoordinaatType"
+				minOccurs="0"/>
+			<xs:element name="LambertcoordinaatY" type="geografie:VlaamsYLambertCoordinaatType"
+				minOccurs="0"/>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>Ofwel 1 pompfilter ofwel meerdere peilfilters</xs:documentation>
+				</xs:annotation>
+				<xs:element name="Pompfilter" type="filter:PompfilterType"/>
+				<xs:element name="Peilfilters" type="filter:PeilfiltersType"/>
+			</xs:choice>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType">
+				<xs:annotation>
+					<xs:documentation>Referte bij de grondwaterput</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekGrondwaterputReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="GrondwaterputID" type="xs:int" use="required"/>
+	</xs:complexType>
+</xs:schema>

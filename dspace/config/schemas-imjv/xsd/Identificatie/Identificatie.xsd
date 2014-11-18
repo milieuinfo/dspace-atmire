@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns="http://identificatie.milieuverslag.schemas.milieuinfo.be" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://identificatie.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Dit subschema bevat het luik identificatie van het IMJV formulier-->
+	<xs:include schemaLocation="IdentificatieDataTypes.xsd"/>
+	<xs:element name="Identificatie" type="IdentificatieType">
+		<xs:annotation>
+			<xs:documentation>Identificatiedeel</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="BedrijvenIdentificatie" type="BedrijvenIdentificatieType">
+		<xs:annotation>
+			<xs:documentation>Identificatiedeel zonder de handtekening</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://watergebruik.grondwater.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://watergebruik.grondwater.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:simpleType name="HerkomstEnumType">
+		<xs:annotation>
+			<xs:documentation>Mogelijke </xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Grondwater"/>
+			<xs:enumeration value="Hemelwater"/>
+			<xs:enumeration value="OppervlaktewaterWaterwegen"/>
+			<xs:enumeration value="OppervlaktewaterVijvers"/>
+			<xs:enumeration value="Drinkwater"/>
+			<xs:enumeration value="Grijswater"/>
+			<xs:enumeration value="Ander"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="BestemmingEnumType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Drinkwater"/>
+			<xs:enumeration value="Koelwater"/>
+			<xs:enumeration value="Sanitair"/>
+			<xs:enumeration value="BeregeningOpenLucht"/>
+			<xs:enumeration value="BeregeningGlasteelt"/>
+			<xs:enumeration value="DrinkwaterVee"/>
+			<xs:enumeration value="Bodemsanering"/>
+			<xs:enumeration value="Proceswater"/>
+			<xs:enumeration value="Spoelwater"/>
+			<xs:enumeration value="Stoomproductie"/>
+			<xs:enumeration value="Andere"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

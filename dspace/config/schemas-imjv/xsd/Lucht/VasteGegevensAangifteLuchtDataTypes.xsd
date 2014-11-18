@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 rel. 2 sp1 (x64) (http://www.altova.com) by Steven De Bock (Ministeries van de Vlaamse Gemeenschap) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:activiteit="http://activiteit.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:emissiepunt="http://emissiepunt.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:identificatie="http://identificatie.milieuverslag.schemas.milieuinfo.be"
+	xmlns:meetmethode="http://meetmethode.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:processchema="http://processchema.vastegegevens.milieuverslag.schemas.milieuinfo.be"
+	xmlns:stof="http://stof.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:emissie="http://emissie.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	xmlns:vastegegevens="http://vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:annotation>
+		<xs:documentation>Deelschema voor het aanleveren van de vaste gegevens van de aangifte Lucht van het IMJV</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="http://activiteit.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Activiteit/VasteGegevensActiviteit.xsd"/>
+	<xs:import namespace="http://processchema.vastegegevens.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../ProcesSchema/VasteGegevensProcesSchema.xsd"/>
+	<xs:import
+		namespace="http://emissiepunt.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Emissiepunt/VasteGegevensEmissiepunt.xsd"/>
+	<xs:import
+		namespace="http://meetmethode.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Meetmethode/VasteGegevensMeetmethode.xsd"/>
+	<xs:import namespace="http://stof.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Stof/VasteGegevensStof.xsd"/>
+	<xs:import namespace="http://identificatie.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Identificatie/Identificatie.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://emissie.vastegegevens.lucht.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Emissie/VasteGegevensEmissieDataTypes.xsd"/>
+	<xs:complexType name="VasteGegevensAangifteLuchtType">
+		<xs:annotation>
+			<xs:documentation>De vaste gegevens van het luik lucht die vooraf ingeladen zullen worden in het loket</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="RapporteringsJaar" type="identificatie:RapporteringsJaarType">
+				<xs:annotation>
+					<xs:documentation>Jaar waarvoor deze gegevens aangelverd worden</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="CBBExploitatieNummer" type="generiek:CBBnummerType">
+				<xs:annotation>
+					<xs:documentation>Het CBB nummer van de exploitatie</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProcesSchemas" type="processchema:ProcesSchemasType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 1: de digitaal aangeleverde processchemas</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyProcesSchemaID">
+					<xs:selector xpath="ProcesSchema"/>
+					<xs:field xpath="@procesSchemaID"/>
+				</xs:key>
+				<xs:unique name="UniqueProcesSchemaBestand">
+					<xs:selector xpath="ProcesSchema/Bestand"/>
+					<xs:field xpath="."/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Activiteiten" type="activiteit:InstallatiesType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 2: de vaste gegevens van de activiteiten</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeetMethoden" type="meetmethode:MeetmethodenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 5 (gebruikte meetmethode en apparatuur voor het meten van de concentratie van een verontreinigde stof)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyMeetmethodeID">
+					<xs:selector xpath="Meetmethode"/>
+					<xs:field xpath="@meetmethodeID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Stoffen" type="stof:StoffenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Stoffen en hun hoeveelheden</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EmissiePunten" type="emissiepunt:EmissiepuntenType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deel 3 (bronnen en de bijhorende emissies)</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyZuiveringsapparaatID">
+					<xs:selector xpath=".//Zuiveringsapparaat"/>
+					<xs:field xpath="@zuiveringsapparaatID"/>
+				</xs:key>
+				<xs:key name="KeyVerwijderingID">
+					<xs:selector xpath=".//Verwijdering"/>
+					<xs:field xpath="@verwijderingID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Milieudruk" type="vastegegevens:MilieudrukType">
+				<xs:annotation>
+					<xs:documentation>Deel 6 van formulier</xs:documentation>
+				</xs:annotation>
+				<xs:key name="KeyStofHoeveelheidID">
+					<xs:selector
+						xpath=".//Grondstof  |  .//VerbruiksGegevens/Brandstof | .//Brandstoffen/Brandstof | .//Afvalproduct | .//Eindproduct | .//Doorzetgegevens /Doorzet"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:key>
+				<xs:key name="KeyEmissieID">
+					<xs:selector xpath=".//Emissie"/>
+					<xs:field xpath="@emissieID"/>
+				</xs:key>
+				<xs:key name="KeyEmissieHoeveelheidID">
+					<xs:selector xpath=".//EmissieHoeveelheid"/>
+					<xs:field xpath="@emissieHoeveelheidID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType">
+				<xs:annotation>
+					<xs:documentation>Bijkomende identificatienummers voor deze aangifte. Deze refertes zullen op identieke wijze terug te vinden zijn in de aangeleverde gegevens.</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekAangifteReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MilieudrukType">
+		<xs:sequence>
+			<xs:element name="ProductieEenheid" type="vastegegevens:MilieuDrukAType" minOccurs="0">
+				<xs:key name="KeyTypeAStofhoeveelheidID">
+					<xs:selector xpath=".//VerbruiksGegevens/*"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefTypeAGeleideEmissieStofHoeveelheid"
+					refer="vastegegevens:KeyTypeAStofhoeveelheidID">
+					<xs:selector xpath="GeleideEmissies/Emissie/GekoppeldeStofstromen/Stofstroom"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:keyref>
+			</xs:element>
+			<xs:element name="EnergieProductie" type="vastegegevens:MilieuDrukBType" minOccurs="0">
+				<xs:key name="KeyTypeBStofhoeveelheidID">
+					<xs:selector xpath=".//Brandstoffen/*"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefTypeBGeleideEmissieStofHoeveelheid"
+					refer="vastegegevens:KeyTypeBStofhoeveelheidID">
+					<xs:selector xpath="GeleideEmissies/Emissie/GekoppeldeStofstromen/Stofstroom"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:keyref>
+			</xs:element>
+			<xs:element name="OpslagOverslag" type="vastegegevens:MilieuDrukCType" minOccurs="0">
+				<xs:keyref name="KeyrefTypCOpslagverzliezenGeleideEmissieStofHoeveelheid"
+					refer="vastegegevens:KeyTypeCStofhoeveelheidID">
+					<xs:selector
+						xpath="Opslagverliezen/GeleideEmissies/Emissie/GekoppeldeStofstromen/Stofstroom"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:keyref>
+				<xs:keyref name="KeyrefTypCOverslagverzliezenGeleideEmissieStofHoeveelheid"
+					refer="vastegegevens:KeyTypeCStofhoeveelheidID">
+					<xs:selector
+						xpath="Overslagverliezen/GeleideEmissies/Emissie/GekoppeldeStofstromen/Stofstroom"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:keyref>
+				<xs:key name="KeyTypeCStofhoeveelheidID">
+					<xs:selector xpath=".//Doorzetgegevens/*"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="Fakkel" type="vastegegevens:MilieuDrukDType" minOccurs="0"/>
+			<xs:element name="Waterzuivering" type="vastegegevens:MilieuDrukEType" minOccurs="0">
+				<xs:key name="KeyTypeEStofhoeveelheidID">
+					<xs:selector xpath=".//VerbruiksGegevens/*"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefTypeEGeleideEmissieStofHoeveelheid"
+					refer="vastegegevens:KeyTypeEStofhoeveelheidID">
+					<xs:selector xpath="GeleideEmissies/Emissie/GekoppeldeStofstromen/Stofstroom"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+				</xs:keyref>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MilieuDrukAType">
+		<xs:sequence>
+			<xs:element name="VerbruiksGegevens"
+				type="vastegegevens:VasteGegevensVerbruiksgegevensType" minOccurs="0"/>
+			<xs:element name="GeleideEmissies" type="vastegegevens:VasteGegevensGeleideEmissiesType"
+				minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Lekverliezen" type="vastegegevens:VasteGegevensLekverliezenType"
+				minOccurs="0"/>
+			<xs:element name="AnderNietGeleideEmissies"
+				type="vastegegevens:VasteGegevensAndereNietGeleideEmissiesType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MilieuDrukBType">
+		<xs:sequence>
+			<xs:element name="Brandstoffen" type="vastegegevens:BrandstofType"/>
+			<xs:element name="GeleideEmissies" type="vastegegevens:VasteGegevensGeleideEmissiesType"
+				minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MilieuDrukCType">
+		<xs:sequence>
+			<xs:element name="Doorzetgegevens" type="vastegegevens:DoorzetgegevensType"
+				minOccurs="0"/>
+			<xs:element name="Opslagverliezen" type="vastegegevens:OpslagVerliezenType"
+				minOccurs="0"/>
+			<xs:element name="Overslagverliezen" type="vastegegevens:OverslagVerliezenType"
+				minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MilieuDrukDType">
+		<xs:sequence>
+			<xs:element name="NietGeleideEmissies"
+				type="vastegegevens:VasteGegevensFakkelNietGeleideEmissiesType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MilieuDrukEType">
+		<xs:sequence>
+			<xs:element name="VerbruiksGegevens"
+				type="vastegegevens:VasteGegevensVerbruiksgegevensType" minOccurs="0"/>
+			<xs:element name="GeleideEmissies" type="vastegegevens:VasteGegevensGeleideEmissiesType"
+				minOccurs="0"/>
+			<xs:element name="NietGeleideEmissies"
+				type="vastegegevens:VasteGegevensWaterzuiveringNietGeleideEmissiesType"
+				minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensNietGeleideEmissieType">
+		<xs:sequence>
+			<xs:element name="Emissiepunt">
+				<xs:complexType>
+					<xs:attribute name="emissiepuntID" type="xs:int" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GekoppeldeActiviteiten"
+				type="emissiepunt:EmissiepuntGekoppeldeActiviteitenType">
+				<xs:unique name="UniqueNietGeleideEmissiesActiviteitID">
+					<xs:selector xpath="Activiteit"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Emissiehoeveelheden" type="emissie:EmissieHoeveelhedenType"/>
+		</xs:sequence>
+		<xs:attribute name="emissieID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensFakkelNietGeleideEmissieType">
+		<xs:complexContent>
+			<xs:extension base="vastegegevens:VasteGegevensNietGeleideEmissieType">
+				<xs:sequence>
+					<xs:element name="FakkelAfgas" type="vastegegevens:NietGeleideEmissieStofType"/>
+					<xs:element name="FakkelBrandstof"
+						type="vastegegevens:NietGeleideEmissieStofType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensAndereNietGeleideEmissieType">
+		<xs:complexContent>
+			<xs:extension base="vastegegevens:VasteGegevensNietGeleideEmissieType">
+				<xs:sequence>
+					<xs:element name="Oorzaak" type="generiek:OmschrijvingType" minOccurs="0"
+						maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensAndereNietGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie"
+				type="vastegegevens:VasteGegevensAndereNietGeleideEmissieType" maxOccurs="unbounded">
+				<xs:key name="KeyEmissiepuntBijDezeAndereNietGeleideEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeAndereNietGeleideEmissieGekoppeldeEmissiepuntID"
+					refer="vastegegevens:KeyEmissiepuntBijDezeAndereNietGeleideEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+				<xs:unique name="UniqueAndereNietGeleideEmissiehoeveelheidStof">
+					<xs:selector xpath="Emissiehoeveelheden/EmissieHoeveelheid"/>
+					<xs:field xpath="VerontreinigendeStof"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OpslagVerliezenType">
+		<xs:sequence>
+			<xs:element name="GeleideEmissies" type="vastegegevens:VasteGegevensGeleideEmissiesType"
+				minOccurs="0"/>
+			<xs:element name="NietGeleideEmissies"
+				type="vastegegevens:VasteGegevensOpslagverliezenNietGeleideEmissiesType"
+				minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OverslagVerliezenType">
+		<xs:sequence>
+			<xs:element name="GeleideEmissies" type="vastegegevens:VasteGegevensGeleideEmissiesType"
+				minOccurs="0"/>
+			<xs:element name="NietGeleideEmissies"
+				type="vastegegevens:VasteGegevensOverslagverliezenNietGeleideEmissiesType"
+				minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" type="vastegegevens:VasteGegevensGeleideEmissieType"
+				minOccurs="1" maxOccurs="unbounded">
+				<xs:unique name="UniqueGeleideEmissiehoeveelheidStof">
+					<xs:selector xpath="Emissiehoeveelheden/EmissieHoeveelheid"/>
+					<xs:field xpath="VerontreinigendeStof"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensGeleideEmissieType">
+		<xs:sequence>
+			<xs:element name="Emissiepunt">
+				<xs:complexType>
+					<xs:attribute name="emissiepuntID" type="xs:int" use="required"/>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GekoppeldeStofstromen" type="vastegegevens:StofstromenType">
+				<xs:unique name="UniqueGeleideEmissieStofstromen">
+					<xs:selector xpath="Stofstroom"/>
+					<xs:field xpath="@stofHoeveelheidID"/>
+					<xs:field xpath="@activiteitID"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Emissiehoeveelheden" type="emissie:EmissieHoeveelhedenType"/>
+		</xs:sequence>
+		<xs:attribute name="emissieID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="StofstromenType">
+		<xs:sequence>
+			<xs:element name="Stofstroom" type="vastegegevens:StofstroomType" maxOccurs="unbounded"
+			/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StofstroomType">
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required"/>
+		<xs:attribute name="activiteitID" type="xs:int" use="required"/>
+		<xs:attribute name="emissiepuntID" type="xs:int" use="required" form="unqualified"/>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensLekverliezenType">
+		<xs:sequence>
+			<xs:element name="Emissie" type="vastegegevens:VasteGegevensNietGeleideEmissieType"
+				minOccurs="1" maxOccurs="unbounded">
+				<xs:key name="KeyEmissiepuntBijDezeLekversliesEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeLekverliesEmissieGekoppeldeEmissiepuntID"
+					refer="vastegegevens:KeyEmissiepuntBijDezeLekversliesEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+				<xs:unique name="UniqueLekverliesEmissiehoeveelheidStof">
+					<xs:selector xpath="Emissiehoeveelheden/EmissieHoeveelheid"/>
+					<xs:field xpath="VerontreinigendeStof"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensOpslagverliezenNietGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie"
+				type="vastegegevens:VasteGegevensOpslagOverslagNietGeleideEmissieType" minOccurs="1"
+				maxOccurs="unbounded">
+				<xs:key name="KeyEmissiepuntBijDezeOpslagversliesNietGeleideEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeOpslagverliesNietGeleideEmissieGekoppeldeEmissiepuntID"
+					refer="vastegegevens:KeyEmissiepuntBijDezeOpslagversliesNietGeleideEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+				<xs:unique name="UniqueOpslagverliesNietGeleideEmissiehoeveelheidStof">
+					<xs:selector xpath="Emissiehoeveelheden/EmissieHoeveelheid"/>
+					<xs:field xpath="VerontreinigendeStof"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensOverslagverliezenNietGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie"
+				type="vastegegevens:VasteGegevensOpslagOverslagNietGeleideEmissieType" minOccurs="1"
+				maxOccurs="unbounded">
+				<xs:key name="KeyEmissiepuntBijDezeOverslagversliesNietGeleideEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeOverslagverliesNietGeleideEmissieGekoppeldeEmissiepuntID"
+					refer="vastegegevens:KeyEmissiepuntBijDezeOverslagversliesNietGeleideEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+				<xs:unique name="UniqueOverslagverliesNietGeleideEmissiehoeveelheidStof">
+					<xs:selector xpath="Emissiehoeveelheden/EmissieHoeveelheid"/>
+					<xs:field xpath="VerontreinigendeStof"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensWaterzuiveringNietGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie" type="vastegegevens:VasteGegevensNietGeleideEmissieType"
+				minOccurs="1" maxOccurs="unbounded">
+				<xs:key name="KeyEmissiepuntBijDezeWaterzuiveringNietGeleideEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeWaterzuiveringNietGeleideEmissieGekoppeldeEmissiepuntID"
+					refer="vastegegevens:KeyEmissiepuntBijDezeWaterzuiveringNietGeleideEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+				<xs:unique name="UniqueWaterzuiveringNietGeleideEmissiehoeveelheidStof">
+					<xs:selector xpath="Emissiehoeveelheden/EmissieHoeveelheid"/>
+					<xs:field xpath="VerontreinigendeStof"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensFakkelNietGeleideEmissiesType">
+		<xs:sequence>
+			<xs:element name="Emissie"
+				type="vastegegevens:VasteGegevensFakkelNietGeleideEmissieType" minOccurs="1"
+				maxOccurs="unbounded">
+				<xs:key name="KeyEmissiepuntBijDezeFakkelNietGeleideEmissie">
+					<xs:selector xpath="Emissiepunt"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:key>
+				<xs:keyref name="KeyrefDezeFakkelNietGeleideEmissieGekoppeldeEmissiepuntID"
+					refer="vastegegevens:KeyEmissiepuntBijDezeFakkelNietGeleideEmissie">
+					<xs:selector xpath="GekoppeldeActiviteiten/Activiteit"/>
+					<xs:field xpath="@emissiepuntID"/>
+				</xs:keyref>
+				<xs:unique name="UniqueFakkelNietGeleideEmissiehoeveelheidStof">
+					<xs:selector xpath="Emissiehoeveelheden/EmissieHoeveelheid"/>
+					<xs:field xpath="VerontreinigendeStof"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="StofIDType">
+		<xs:attribute name="StofID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensVerbruiksgegevensType">
+		<xs:sequence>
+			<xs:element name="Brandstof" type="vastegegevens:VasteGegevensVerbruiksgegevenType"
+				minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Grondstof" type="vastegegevens:VasteGegevensVerbruiksgegevenType"
+				minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Afvalproduct" type="vastegegevens:VasteGegevensVerbruiksgegevenType"
+				minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Eindproduct" type="vastegegevens:VasteGegevensVerbruiksgegevenType"
+				minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensVerbruiksgegevenType">
+		<xs:sequence>
+			<xs:element name="Stof" type="vastegegevens:StofIDType"/>
+			<xs:element name="Aard" type="generiek:OmschrijvingType" minOccurs="0"/>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType"/>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="1">
+				<xs:unique name="UniekVerbruiksGegevensReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="stofHoeveelheidID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een unieke identificatie van deze hoeveelheid van een bepaalde stof</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="BrandstofType">
+		<xs:sequence>
+			<xs:element name="Brandstof" type="vastegegevens:VasteGegevensVerbruiksgegevenType"
+				minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DoorzetHoeveelheidType">
+		<xs:sequence>
+			<xs:element name="Stof" type="vastegegevens:StofIDType"/>
+			<xs:element name="Aard"/>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType"/>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WaterzuiveringVerbruikType">
+		<xs:sequence>
+			<xs:element name="Stof" type="vastegegevens:StofIDType"/>
+			<xs:element name="Aard"/>
+			<xs:element name="GekoppeldeActiviteiten" type="activiteit:GekoppeldeActiviteitenType"/>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DoorzetgegevensType">
+		<xs:sequence>
+			<xs:element name="Doorzet" type="vastegegevens:VasteGegevensVerbruiksgegevenType"
+				maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NietGeleideEmissieStofType">
+		<xs:sequence>
+			<xs:element name="Stof" type="vastegegevens:StofIDType"/>
+			<xs:element name="Samenstelling" type="generiek:OmschrijvingType" minOccurs="0"/>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekFakkelAfgashoeveelheidReferte">
+					<xs:selector xpath=".//*"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="VasteGegevensOpslagOverslagNietGeleideEmissieType">
+		<xs:complexContent>
+			<xs:extension base="vastegegevens:VasteGegevensNietGeleideEmissieType">
+				<xs:sequence>
+					<xs:element name="Doorzet" type="vastegegevens:NietGeleideEmissieStofType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

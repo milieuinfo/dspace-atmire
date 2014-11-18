@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://energie.milieuverslag.schemas.milieuinfo.be"
+	xmlns:aangiftegeneriek="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	targetNamespace="http://energie.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://aangiftegeneriek.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Aangiftegeneriek/Aangiftegeneriek.xsd"/>
+	<xs:include schemaLocation="AangifteEnergieDataCodes.xsd"/>
+	<xs:include schemaLocation="AangifteEnergieDatakern.xsd"/>
+	<xs:complexType name="AangifteEnergieType">
+		<xs:annotation>
+			<xs:documentation>De aangifte Energie</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TechnischeGegevensEnergieExportType">
+				<xs:sequence>
+					<xs:element name="Aangiftegeneriek" type="aangiftegeneriek:Aangiftegeneriek"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="BedrijvenAangifteEnergieType">
+		<xs:annotation>
+			<xs:documentation>De aangifte Energie zonder de handtekening</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="TechnischeGegevensEnergieType">
+				<xs:sequence>
+					<xs:element name="Aangiftegeneriek"
+						type="aangiftegeneriek:BedrijvenAangiftegeneriek"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="TechnischeGegevensEnergieExportType">
+		<xs:annotation>
+			<xs:documentation>Technische gegevens aangifte energie</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EnergieVerbruik" type="EnergieVerbruikExportType" minOccurs="0">
+				<xs:key name="KeyAndereEnergiebronExportID">
+					<xs:selector xpath="AndereEnergiebronnen/AndereEnergiebron"/>
+					<xs:field xpath="@andereEnergiebronID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="EnergieProductie" type="EnergieProductieType" minOccurs="0"/>
+			<xs:element name="IMJV" type="aangiftegeneriek:IsIMJVAangifte" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deprecated. Wordt niet meer gebruikt aangezien het alleen mogelijk is aangiftes in het kader van het IMJV op te geven. [True indien deze aangifte een IMJV aangifte is]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TechnischeGegevensEnergieType">
+		<xs:annotation>
+			<xs:documentation>Technische gegevens aangifte energie</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="EnergieVerbruik" type="EnergieVerbruikType">
+				<xs:key name="KeyAndereEnergiebronID">
+					<xs:selector xpath="AndereEnergiebronnen/AndereEnergiebron"/>
+					<xs:field xpath="@andereEnergiebronID"/>
+				</xs:key>
+			</xs:element>
+			<xs:element name="EnergieProductie" type="EnergieProductieType" minOccurs="0"/>
+			<xs:element name="IMJV" type="aangiftegeneriek:IsIMJVAangifte" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Deprecated. Wordt niet meer gebruikt aangezien het alleen mogelijk is aangiftes in het kader van het IMJV op te geven. [True indien deze aangifte een IMJV aangifte is]</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:annotation/>
+	<xs:complexType name="EnergieVerbruikType">
+		<xs:sequence maxOccurs="1">
+			<xs:element name="TotaalElektriciteitsVerbruik" type="TotaalElektriciteitsVerbruikType"
+				minOccurs="0" maxOccurs="1"/>
+			<xs:element name="AndereEnergiebronnen" type="AndereEnergiebronnenType" minOccurs="0"/>
+			<xs:element name="TotaalEnergieVerbruik" type="TotaalEnergieVerbruikType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EnergieVerbruikExportType">
+		<xs:sequence maxOccurs="1">
+			<xs:element name="TotaalElektriciteitsVerbruik" type="TotaalElektriciteitsVerbruikType"
+				minOccurs="0" maxOccurs="1"/>
+			<xs:element name="AndereEnergiebronnen" type="AndereEnergiebronnenType" minOccurs="0"/>
+			<xs:element name="TotaalEnergieVerbruik" type="TotaalEnergieVerbruikType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EnergieProductieType">
+		<xs:sequence>
+			<xs:element name="TotaleWarmteOfStoomproductie" type="TotaleWarmteOfStoomProductieType"
+				minOccurs="0"/>
+			<xs:element name="TotaleElektriciteitsProductie"
+				type="TotaleElektriciteitsProductieType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotaalElektriciteitsVerbruikType">
+		<xs:annotation>
+			<xs:documentation>Het totale electriciteitsverbruik</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="eenheid" type="EenheidElektriciteitsVerbruikEnumType"
+					use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="TotaleWarmteOfStoomProductieType">
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="eenheid" type="EenheidWarmteOfStoomProductieEnumType"
+					use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="TotaleElektriciteitsProductieType">
+		<xs:simpleContent>
+			<xs:extension base="xs:decimal">
+				<xs:attribute name="eenheid" type="EenheidElektriciteitsProductieEnumType"
+					use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="AndereEnergiebronnenType">
+		<xs:sequence>
+			<xs:element name="AndereEnergiebron" type="AndereEnergiebronType" maxOccurs="unbounded"
+			/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="TotaalEnergieVerbruikType">
+		<xs:annotation>
+			<xs:documentation>Berekening van het totaal energieverbruik</xs:documentation>
+		</xs:annotation>
+		<xs:simpleContent>
+			<xs:extension base="generiek:NonNegativeDecimalType">
+				<xs:attribute name="eenheid" type="EenheidTotaalEnergieVerbruikEnumType"
+					use="required"/>
+			</xs:extension>
+		</xs:simpleContent>
+	</xs:complexType>
+	<xs:complexType name="AndereEnergiebronType">
+		<xs:sequence>
+			<xs:element name="Benaming" type="BenamingType"/>
+			<xs:element name="Hoeveelheid">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="generiek:NonNegativeDecimalType">
+							<xs:attribute name="eenheid" type="EenheidEnergieVerbruikEnumType"
+								use="required"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="andereEnergiebronID" type="xs:int" use="required"/>
+	</xs:complexType>
+</xs:schema>

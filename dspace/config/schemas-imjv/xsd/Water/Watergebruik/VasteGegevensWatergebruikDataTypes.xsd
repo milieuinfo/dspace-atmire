@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://watergebruik.vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	xmlns:watergebruik="http://watergebruik.water.milieuverslag.schemas.milieuinfo.be"
+	targetNamespace="http://watergebruik.vastegegevens.water.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"/>
+	<xs:import namespace="http://watergebruik.water.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="Watergebruik.xsd"/>
+	<xs:complexType name="WaterGebruikenType">
+		<xs:sequence>
+			<xs:element name="Watergebruik" type="WaterGebruikType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="WaterGebruikType">
+		<xs:annotation>
+			<xs:documentation>Het totale watergebruik per herkomst</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Herkomst" type="watergebruik:HerkomstEnumType">
+				<xs:annotation>
+					<xs:documentation>De herkomst van het water, te selecteren uit een vaste lijst</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType">
+				<xs:annotation>
+					<xs:documentation>Bijkomende refertes ter identificatie van dit watergebruik</xs:documentation>
+				</xs:annotation>
+				<xs:unique name="UniekWatergebruikReferte">
+					<xs:selector xpath="Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="waterGebruikID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een uniek nummer voor dit watergebruik binnen het XML bestand.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="WaterBestemmingType">
+		<xs:sequence>
+			<xs:element name="WaterBestemming" type="BestemmingType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="BestemmingType">
+		<xs:sequence>
+			<xs:element name="Bestemming" type="watergebruik:BestemmingEnumType"/>
+			<xs:element name="Procent" type="watergebruik:ProcentType"/>
+		</xs:sequence>
+		<xs:attribute name="bestemmingID" type="xs:int" use="required"/>
+	</xs:complexType>
+</xs:schema>

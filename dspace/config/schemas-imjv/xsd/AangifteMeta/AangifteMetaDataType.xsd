@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp2 U (http://www.altova.com) by  () -->
+<xs:schema xmlns="http://aangiftemeta.milieuverslag.schemas.milieuinfo.be" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:geografie="http://geografie.schemas.milieuinfo.be" xmlns:aangiftegeneriekmeta="http://aangiftegeneriekmeta.milieuverslag.schemas.milieuinfo.be" xmlns:generiek="http://generiek.schemas.milieuinfo.be" xmlns:generiekmeta="http://generiekmeta.milieuverslag.schemas.milieuinfo.be" targetNamespace="http://aangiftemeta.milieuverslag.schemas.milieuinfo.be" elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<!--Dit subschema bevat de info gebonden aan een aangifte-->
+	<xs:include schemaLocation="AangifteMetaDataKern.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be" />
+	<xs:import namespace="http://generiekmeta.milieuverslag.schemas.milieuinfo.be" schemaLocation="../GeneriekMeta/GeneriekMeta.xsd"/>
+	<xs:import namespace="http://aangiftegeneriekmeta.milieuverslag.schemas.milieuinfo.be" schemaLocation="../AangiftegeneriekMeta/AangiftegeneriekMeta.xsd"/>
+	<xs:import namespace="http://geografie.schemas.milieuinfo.be" />
+	<xs:complexType name="AangiftenType">
+		<xs:sequence>
+			<xs:element name="Aangifte" type="AangifteType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="HandtekeningType">
+		<xs:annotation>
+			<xs:documentation>Handtekening gegevens</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="naam" type="generiek:NaamType">
+				<xs:annotation>
+					<xs:documentation>De naam van de persoon die de handtekening gezet heeft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="functie" type="generiekmeta:FunctieType">
+				<xs:annotation>
+					<xs:documentation>De functie van de persoon die de handtekening gezet heeft</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="datum" type="generiekmeta:DatumType">
+				<xs:annotation>
+					<xs:documentation>De datum wanneer de handtekening gezet is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="AangifteType">
+		<xs:annotation>
+			<xs:documentation>Aangifte gegevens</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="AangifteType" type="AangifteTypeType">
+				<xs:annotation>
+					<xs:documentation>Het type van de aangifte</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Status" type="AangifteStatusType">
+				<xs:annotation>
+					<xs:documentation>De status van de aangifte</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Volledig" type="generiekmeta:VolledigType">
+				<xs:annotation>
+					<xs:documentation>De aangifte is volledig</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Bijgevraagd" type="BijgevraagdType">
+				<xs:annotation>
+					<xs:documentation>De aangifte is bijgevraagd</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AlleenLezen" type="generiekmeta:AlleenLezenType">
+				<xs:annotation>
+					<xs:documentation>De aangifte is alleen lezen</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AangiftePdf" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>De bestandsnaam van de pdf van de aangifte</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ProcesSchema" type="generiek:BestandenLijstStringType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>De bestandsnaam van het processchema van de aangifte</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IMJV" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>Het project waarbinnen de aangifte valt</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Volgnummer" type="VolgNummerType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Het volgnummer van de aangifte</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="AangifteGeneriek" type="aangiftegeneriekmeta:Aangiftegeneriek"/>
+			<xs:element name="Feiten" type="generiekmeta:FeitenType">
+				<xs:annotation>
+					<xs:documentation>De feiten met betrekking tot deze aangifte</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

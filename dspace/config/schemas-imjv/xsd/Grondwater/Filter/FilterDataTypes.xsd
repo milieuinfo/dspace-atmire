@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://filter.grondwater.milieuverslag.schemas.milieuinfo.be"
+	xmlns:peilmeting="http://peilmeting.grondwater.milieuverslag.schemas.milieuinfo.be"
+	xmlns:generiek="http://generiek.schemas.milieuinfo.be"
+	targetNamespace="http://filter.grondwater.milieuverslag.schemas.milieuinfo.be"
+	elementFormDefault="unqualified" attributeFormDefault="unqualified" version="1.00">
+	<xs:include schemaLocation="FilterDataKern.xsd"/>
+	<xs:include schemaLocation="FilterDataCodes.xsd"/>
+	<xs:import namespace="http://peilmeting.grondwater.milieuverslag.schemas.milieuinfo.be"
+		schemaLocation="../Peilmeting/Peilmeting.xsd"/>
+	<xs:import namespace="http://generiek.schemas.milieuinfo.be"
+		/>
+	<xs:annotation>
+		<xs:documentation>Definitie van een peilfilter</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="PeilfiltersType">
+		<xs:annotation>
+			<xs:documentation>Lijst van peilfilters</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Peilfilter" type="PeilfilterType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilfilterType">
+		<xs:sequence>
+			<xs:element name="Filternummer" type="FilternummerType"/>
+			<xs:element name="WatervoerendeLaag" type="WatervoerendeLaagEnumType"/>
+			<xs:element name="BlijvendBuitenWerking" type="BijvendBuitenWerkingType">
+				<xs:annotation>
+					<xs:documentation>True indien deze filter niet langer van toepassing is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiepteOnderkant" type="DiepteOnderkantType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Lengte" type="LengteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Peilmetingen" type="peilmeting:PeilmetingenType" minOccurs="0">
+				<xs:unique name="UniquePeilfilterPeilmeting">
+					<xs:selector xpath="Peilmeting"/>
+					<xs:field xpath="Referentiepunt | AnderReferentiepunt"/>
+					<xs:field xpath="InstrumentPeilmeting | AnderInstrumentPeilmeting"/>
+					<xs:field xpath="AfstandMaaiveld"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekPeilfilterReferte">
+					<xs:selector xpath=".//Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="peilfilterID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een uniek nummer voor deze filter binnen het XML bestand</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Definitie van een pompfilter</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="PompfiltersType">
+		<xs:annotation>
+			<xs:documentation>Lijst van pompfilters</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Pompfilter" type="PompfilterType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PompfilterType">
+		<xs:sequence>
+			<xs:element name="Filternummer" type="FilternummerType"/>
+			<xs:element name="WatervoerendeLaag" type="WatervoerendeLaagEnumType"/>
+			<xs:element name="BlijvendBuitenWerking" type="BijvendBuitenWerkingType">
+				<xs:annotation>
+					<xs:documentation>True indien deze filter niet langer van toepassing is</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiepteOnderkant" type="DiepteOnderkantType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DieptePomp" type="DieptePompType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Lengte" type="LengteType" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>In meter</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Peilmetingen" type="peilmeting:PeilmetingenType" minOccurs="0">
+				<xs:unique name="UniquePompfilterPeilmeting">
+					<xs:selector xpath="Peilmeting"/>
+					<xs:field xpath="Referentiepunt | AnderReferentiepunt"/>
+					<xs:field xpath="InstrumentPeilmeting | AnderInstrumentPeilmeting"/>
+					<xs:field xpath="AfstandMaaiveld"/>
+				</xs:unique>
+			</xs:element>
+			<xs:element name="Refertes" type="generiek:ReferteLijstType" minOccurs="0">
+				<xs:unique name="UniekPompfilterReferte">
+					<xs:selector xpath=".//Referte"/>
+					<xs:field xpath="@naam"/>
+				</xs:unique>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="pompfilterID" type="xs:int" use="required">
+			<xs:annotation>
+				<xs:documentation>Een uniek nummer voor deze filter binnen het XML bestand</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Element om de pompfilters te koppelen</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="GekoppeldePompfiltersType">
+		<xs:sequence>
+			<xs:element name="Pompfilter" type="PompfilterIDType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PompfilterIDType">
+		<xs:attribute name="pompfilterID" type="xs:int" use="required"/>
+	</xs:complexType>
+	<xs:annotation>
+		<xs:documentation>Element om de peilfilters te koppelen</xs:documentation>
+	</xs:annotation>
+	<xs:complexType name="GekoppeldePeilfiltersType">
+		<xs:sequence>
+			<xs:element name="Peilfilter" type="PeilfilterIDType" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PeilfilterIDType">
+		<xs:attribute name="peilfilterID" type="xs:int" use="required"/>
+	</xs:complexType>
+</xs:schema>
