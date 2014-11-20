@@ -98,8 +98,6 @@ public class BulkUploadIMJV {
                 }
 
                 convertToArchive(xmlFile,outputFolderPath + File.separator + "result.xml",xslPath);
-
-                addFilesToArchive(doc, inputFolderPath, outputFolderPath);
             }
         }
         catch (Exception e) {
@@ -148,38 +146,4 @@ public class BulkUploadIMJV {
         return true;
     }
 
-    private static void addFilesToArchive(Document doc, String inputFolderPath, String outputFolderPath) throws IOException, SAXException, ParserConfigurationException, XPathExpressionException {
-        XPath xPath =  XPathFactory.newInstance().newXPath();
-
-        XPathExpression expr  = xPath.compile("//Aangifte");
-        NodeList nodeList = (NodeList) expr.evaluate(doc, XPathConstants.NODESET);
-
-        List<String> elementsWithFile = new ArrayList<String>();
-        elementsWithFile.add("AangiftePdf");
-        elementsWithFile.add("ProcesSchema/Bestand");
-
-        for(int i = 0; i<nodeList.getLength();i++){
-            for (String element : elementsWithFile) {
-                String filename = xPath.compile(element).evaluate(nodeList.item(i));
-
-                if(filename != null && !filename.equals("")) {
-                    addFileToArchive(inputFolderPath, outputFolderPath, filename, i+1);
-                }
-            }
-        }
-    }
-
-    private static void addFileToArchive(String inputFolderPath, String outputFolderPath, String filename, int number) throws IOException {
-        File source = new File(inputFolderPath + File.separator + filename);
-        File destination = new File(outputFolderPath + File.separator + "aangifte" + number + File.separator + filename);
-        File contents = new File(outputFolderPath + File.separator + "aangifte" + number + File.separator + "contents");
-
-        FileUtils.copyFile(source,destination);
-
-        BufferedWriter output;
-        output = new BufferedWriter(new FileWriter(contents,true));
-        output.append(destination.getName());
-        output.newLine();
-        output.close();
-    }
 }
