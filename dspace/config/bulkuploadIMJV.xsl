@@ -40,7 +40,7 @@
                 <xsl:text>../../</xsl:text>
                 <xsl:value-of select="ProcesSchema/Bestand"/>
             </xsl:if>
-                </redirect:write>
+        </redirect:write>
     </xsl:template>
 
     <xsl:template match="IdentificatieMetaData/Exploitatie/Naam">
