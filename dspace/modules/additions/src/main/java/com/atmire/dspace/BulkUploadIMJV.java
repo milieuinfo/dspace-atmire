@@ -141,13 +141,18 @@ public class BulkUploadIMJV extends ContextScript {
     @Override
     public void run() {
         try {
-            String outputFolderPath = directory + File.separator + "archive";
             File dir = new File(directory);
-            File output = new File(outputFolderPath);
-            output.mkdir();
+            File[] subdirs = dir.listFiles();
+            for (File subdir : subdirs) {
+                String workingDirPath = subdir.getAbsolutePath() + File.separator + "IngediendeDocumentenOrigineel";
+                String outputFolderPath = workingDirPath + File.separator + "archive";
+                File workingDir = new File(workingDirPath);
+                File output = new File(outputFolderPath);
+                output.mkdir();
 
-            makeArchives(outputFolderPath, dir);
-            importArchives(output);
+                makeArchives(outputFolderPath, workingDir);
+                importArchives(output);
+            }
             context.commit();
 
         } catch (Exception e) {

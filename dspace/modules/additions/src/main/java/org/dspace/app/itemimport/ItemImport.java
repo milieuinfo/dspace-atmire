@@ -15,6 +15,7 @@ import gr.ekt.bte.dataloader.FileDataLoader;
 import gr.ekt.bteio.generators.DSpaceOutputGenerator;
 import gr.ekt.bteio.loaders.OAIPMHDataLoader;
 import org.apache.commons.cli.*;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -1497,7 +1498,9 @@ public class ItemImport
             String fileName, String bundleName, boolean primary) throws SQLException,
             IOException, AuthorizeException
     {
-        String fullpath = path + File.separatorChar + fileName;
+        String fullpath = FilenameUtils.concat(path, fileName);
+        fileName = fileName.substring(fileName.lastIndexOf(File.separator));
+//        String fullpath = path + File.separatorChar + fileName;
 
         // get an input stream
         BufferedInputStream bis = new BufferedInputStream(new FileInputStream(
