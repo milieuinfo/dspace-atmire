@@ -98,6 +98,9 @@
                     <excludes>
                         <exclude>**/Abstract*</exclude>
                     </excludes>
+                    <systemPropertyVariables>
+                        <root.basedir>${root.basedir}</root.basedir>
+                    </systemPropertyVariables>
                     <!--
                     Enable to debug Maven Surefire tests in remote proces
                     <debugForkedProcess>true</debugForkedProcess>
@@ -1360,6 +1363,27 @@
             <id>sonatype-releases</id>
             <name>Sonatype Releases Repository</name>
             <url>https://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+        <repository>
+
+            <id>restlet</id>
+
+            <name>restlet</name>
+
+            <url>http://maven.restlet.org</url>
+
+            <releases>
+
+                <enabled>true</enabled>
+
+            </releases>
+
+            <snapshots>
+
+                <enabled>false</enabled>
+
+            </snapshots>
+
         </repository>
         <repository>
             <id>atmire.com-releases</id>

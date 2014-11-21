@@ -6,7 +6,7 @@ import org.dspace.core.Context;
 import org.dspace.storage.rdbms.DatabaseManager;
 import org.dspace.storage.rdbms.TableRow;
 import org.dspace.storage.rdbms.TableRowIterator;
-import org.dspace.utils.DSpace;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -19,15 +19,17 @@ public class RelationshipServiceImpl implements RelationshipService {
 
 
     private final String RELATIONSHIP_TABLE = "Relationship";
-    private final List<String> RELATIONSHIP_TABLE_COLUMNS = Arrays.asList("relationship_id","left_id", "type_id", "right_id");
+    private final List<String> RELATIONSHIP_TABLE_COLUMNS = Arrays.asList("relationship_id", "left_id", "type_id", "right_id");
 
-    private static RelationshipTypeService relationshipTypeService;
+    private RelationshipTypeService relationshipTypeService;
 
-    private RelationshipTypeService getRelationshipTypeService() {
-        if (relationshipTypeService == null) {
-            relationshipTypeService = new DSpace().getServiceManager().getServiceByName("relationshipTypeService", RelationshipTypeService.class);
-        }
-        return relationshipTypeService;
+    @Autowired
+    public void setRelationshipTypeService(RelationshipTypeService relationshipTypeService) {
+        this.relationshipTypeService = relationshipTypeService;
+    }
+
+    protected RelationshipTypeService getRelationshipTypeService() {
+        return this.relationshipTypeService;
     }
 
     @Override
@@ -63,7 +65,7 @@ public class RelationshipServiceImpl implements RelationshipService {
         String myQuery = "SELECT * FROM " + RELATIONSHIP_TABLE;
         WhereConstruct where = new WhereConstruct();
 
-        if (example.getId() != 0) {
+        if (example.getId() != null) {
             where.addEqualField("relationship_id", example.getId());
         }
         if (example.getLeft() != null) {
@@ -102,12 +104,14 @@ public class RelationshipServiceImpl implements RelationshipService {
     @Override
     public boolean delete(Context context, Relationship relationship) {
         boolean deleted = false;
-        TableRow row = makeTableRow(relationship);
-        try {
-            int affectRows = DatabaseManager.delete(context, row);
-            deleted = affectRows > 0;
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if (relationship != null) {
+            TableRow row = makeTableRow(relationship);
+            try {
+                int affectRows = DatabaseManager.delete(context, row);
+                deleted = affectRows > 0;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         }
         return deleted;
     }
@@ -120,6 +124,16 @@ public class RelationshipServiceImpl implements RelationshipService {
         row.setColumn("relationship_id", id);
         DatabaseManager.update(context, row);
         return makeRelationship(context, row);
+    }
+
+    @Override
+    public Relationship create(Context context, Item left, Item right, RelationshipType type) throws SQLException {
+        return create(context, new Relationship(null, left, right, type));
+    }
+
+    @Override
+    public Relationship findByItems(Context context, Item left, Item right, RelationshipType type) {
+        return findByExampleUnique(context, new Relationship(null, left, right, type));
     }
 
     private Relationship makeRelationship(Context context, TableRow row) throws SQLException {
@@ -151,7 +165,9 @@ public class RelationshipServiceImpl implements RelationshipService {
     }
 
     private TableRow makeTableRow(Relationship relationship, TableRow row) {
-        row.setColumn("relationship_id", relationship.getId());
+        if(relationship.getId()!=null) {
+            row.setColumn("relationship_id", relationship.getId());
+        }
         row.setColumn("left_id", relationship.getLeft().getID());
         row.setColumn("type_id", relationship.getType().getId());
         row.setColumn("right_id", relationship.getRight().getID());

@@ -27,9 +27,8 @@ CREATE TABLE IF NOT EXISTS Type
 CREATE TABLE IF NOT EXISTS Relationship
 (
   relationship_id SERIAL PRIMARY KEY,
-  left_id         INTEGER REFERENCES Item,
-  type_id         INTEGER REFERENCES Type,
-  right_id        INTEGER REFERENCES Item,
-  CONSTRAINT relationship_left_type_right_unique UNIQUE (left_id, type_id, right_id),
-  CONSTRAINT relationship_left_and_type_unique UNIQUE (left_id, type_id)
+  left_id         INTEGER REFERENCES Item on DELETE CASCADE ,
+  type_id         INTEGER REFERENCES Type on DELETE RESTRICT ,
+  right_id        INTEGER REFERENCES Item on DELETE CASCADE ,
+  CONSTRAINT relationship_left_type_right_unique UNIQUE (left_id, type_id, right_id)
 );

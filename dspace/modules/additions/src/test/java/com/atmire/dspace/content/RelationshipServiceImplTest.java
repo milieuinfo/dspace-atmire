@@ -1,19 +1,10 @@
 package com.atmire.dspace.content;
 
-import org.apache.commons.io.FileUtils;
 import org.dspace.content.Item;
-import org.dspace.core.ConfigurationManager;
 import org.dspace.core.Context;
-import org.dspace.servicemanager.DSpaceKernelImpl;
-import org.dspace.servicemanager.DSpaceKernelInit;
-import org.dspace.storage.rdbms.DatabaseManager;
 import org.dspace.utils.DSpace;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.*;
 
-import java.io.File;
 import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
@@ -21,23 +12,22 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assume.assumeNotNull;
 
 /**
- * // -Ddspace.dir=/Users/antoine/Development/dspaces/dspace42 -Ddspace.configuration=/Users/antoine/Development/dspaces/dspace42/config/dspace.cfg
+ * // -Ddspace.dir=/Users/antoine/Development/dspaces/dspace42 -Ddspace.configuration=/Users/antoine/Development/dspaces/dspace42/config/dspace.cfg -Droot.basedir=/Users/antoine/IdeaProjects/lne42/code
  */
 public class RelationshipServiceImplTest {
 
-    private static DSpaceKernelImpl kernelImpl;
-    private static String sqlFilesDir;
     private Context readContext;
     private Context writeContext;
     private RelationshipService relationshipService;
 
     @BeforeClass
     public static void setUpBF() throws Exception {
-        kernelImpl = DSpaceKernelInit.getKernel(null);
-        if (!kernelImpl.isRunning()) {
-            kernelImpl.start(ConfigurationManager.getProperty("dspace.dir"));
-            sqlFilesDir = ConfigurationManager.getProperty("dspace.dir") + File.separator + "etc" + File.separator + "postgres" + File.separator + "lne" + File.separator + "test_data" + File.separator;
-        }
+        TestUtils.setUpBF();
+    }
+
+    @AfterClass
+    public static void tearDownAS() throws Exception {
+        TestUtils.tearDownAS();
     }
 
 
@@ -47,32 +37,28 @@ public class RelationshipServiceImplTest {
         writeContext = new Context();
 
         // load test data sql
-        String sql = FileUtils.readFileToString(new File(sqlFilesDir + "load-relationship-test-data.sql"), "UTF-8");
-        DatabaseManager.loadSql(sql);
+        TestUtils.loadTestSQL();
 
-        relationshipService = new DSpace().getServiceManager().getServiceByName("relationshipService", RelationshipService.class);
+        relationshipService = new DSpace().getServiceManager().getServicesByType(RelationshipService.class).get(0);
 
     }
 
     @After
     public void tearDown() throws Exception {
-        if (readContext.getDBConnection() != null) {
-            readContext.abort();
-        }
         if (writeContext.getDBConnection() != null) {
             writeContext.abort();
         }
+        if (readContext.getDBConnection() != null) {
+            readContext.abort();
+        }
 
         // unload test data sql
-        String sql = FileUtils.readFileToString(new File(sqlFilesDir + "unload-relationship-test-data.sql"), "UTF-8");
-        DatabaseManager.loadSql(sql);
-
-
+        TestUtils.unloadTestSQL();
     }
 
     @Test
     public void testFindById() throws Exception {
-        int id = Integer.MAX_VALUE;
+        Integer id = Integer.MAX_VALUE;
         Relationship relationship = relationshipService.findById(readContext, id);
 
         assertEquals(id, relationship.getId());
@@ -113,7 +99,7 @@ public class RelationshipServiceImplTest {
         test.setRight(rightItem);
 
         relationshipService.update(writeContext, test);
-        writeContext.complete();
+        writeContext.commit();
         Relationship result = relationshipService.findById(readContext, test.getId());
 
         compare(test, result);
@@ -123,7 +109,7 @@ public class RelationshipServiceImplTest {
     public void testDelete() throws Exception {
         Relationship test = testSubject();
         relationshipService.delete(writeContext, test);
-        writeContext.complete();
+        writeContext.commit();
         Relationship result = relationshipService.findById(readContext, test.getId());
         assertNull(result);
     }
@@ -138,21 +124,38 @@ public class RelationshipServiceImplTest {
 
         Relationship result = relationshipService.create(writeContext, test);
         relationshipService.delete(writeContext, result); // cleaning up, but of course delete() needs to work
-        writeContext.complete();
+        writeContext.commit();
 
         test.setId(result.getId()); // not comparing id
         compare(test, result);
 
     }
 
+    @Test
+    public void testCreateItemItem() throws Exception {
+        Relationship rt = testSubject();
+        rt.setLeft(Item.find(readContext, 2147483644));
+        rt.setRight(Item.find(readContext, 2147483646));
+        Relationship result = relationshipService.create(writeContext, rt);
+
+        writeContext.commit();
+
+        result = relationshipService.findById(readContext, result.getId());
+        rt.setId(result.getId()); // not comparing id
+        compare(rt, result);
+
+
+    }
+
+
     private void compareTestSubject(Relationship result) {
         compare(testSubject(), result);
     }
 
     private void compare(Relationship expected, Relationship actual) {
-        if(expected==null){
+        if (expected == null) {
             assertNull(actual);
-        }else {
+        } else {
             assertEquals(expected.getId(), actual.getId());
             assertEquals(expected.getLeft().getID(), actual.getLeft().getID());
             assertEquals(expected.getRight().getID(), actual.getRight().getID());
@@ -160,7 +163,7 @@ public class RelationshipServiceImplTest {
         }
     }
 
-    private Relationship testSubject(){
+    private Relationship testSubject() {
         Relationship testSubject = relationshipService.findById(readContext, Integer.MAX_VALUE);
         assumeNotNull(testSubject);
         return testSubject;

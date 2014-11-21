@@ -8,16 +8,35 @@ import org.dspace.content.Item;
  */
 public class Relationship {
 
-    private int id;
+    private Integer id;
     private Item left;
-    private Item right;
+
+	public Relationship() {
+	}
+
+	public Relationship(Integer id, Item left, Item right, RelationshipType type) {
+		this.id = id;
+		this.left = left;
+		this.right = right;
+		this.type = type;
+
+	}
+
+	private Item right;
     private RelationshipType type;
 
-    public int getId() {
+	public Relationship(Relationship other) {
+		this.id = other.id;
+		this.left = other.left;
+		this.right = other.right;
+		this.type = other.type;
+	}
+
+	public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

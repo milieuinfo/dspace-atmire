@@ -68,13 +68,23 @@ public class RelationshipTypeServiceImpl implements RelationshipTypeService {
         if (StringUtils.isNotBlank(relationshipType.getRightType())) {
             where.addEqualField("right_type", relationshipType.getRightType());
         }
-        if (relationshipType.getLeftCardinality() != null) {
-            where.addEqualField("left_min_cardinality", relationshipType.getLeftCardinality().getLeft());
-            where.addEqualField("left_max_cardinality", relationshipType.getLeftCardinality().getRight());
+        Pair<Integer, Integer> leftCardinality = relationshipType.getLeftCardinality();
+        if (leftCardinality != null) {
+            if(leftCardinality.getLeft()!=null) {
+                where.addEqualField("left_min_cardinality", leftCardinality.getLeft());
+            }
+            if(leftCardinality.getRight()!=null) {
+                where.addEqualField("left_max_cardinality", leftCardinality.getRight());
+            }
         }
-        if (relationshipType.getRightCardinality() != null) {
-            where.addEqualField("right_min_cardinality", relationshipType.getRightCardinality().getLeft());
-            where.addEqualField("right_max_cardinality", relationshipType.getRightCardinality().getRight());
+        Pair<Integer, Integer> rightCardinality = relationshipType.getRightCardinality();
+        if (rightCardinality != null) {
+            if(rightCardinality.getLeft()!=null) {
+                where.addEqualField("right_min_cardinality", rightCardinality.getLeft());
+            }
+            if(rightCardinality.getRight()!=null) {
+                where.addEqualField("right_max_cardinality", rightCardinality.getRight());
+            }
         }
         if (StringUtils.isNotBlank(relationshipType.getSemanticRuleset())) {
             where.addEqualField("semantic_ruleset", relationshipType.getSemanticRuleset());
@@ -155,10 +165,24 @@ public class RelationshipTypeServiceImpl implements RelationshipTypeService {
         row.setColumn("right_type", relationshipType.getRightType());
         row.setColumn("left_label", relationshipType.getLeftLabel());
         row.setColumn("right_label", relationshipType.getRightLabel());
-        row.setColumn("left_min_cardinality", relationshipType.getLeftCardinality().getLeft());
-        row.setColumn("left_max_cardinality", relationshipType.getLeftCardinality().getRight());
-        row.setColumn("right_min_cardinality", relationshipType.getRightCardinality().getLeft());
-        row.setColumn("right_max_cardinality", relationshipType.getRightCardinality().getRight());
+        Pair<Integer, Integer> leftCardinality = relationshipType.getLeftCardinality();
+        if(leftCardinality !=null) {
+            if(leftCardinality.getLeft()!=null) {
+                row.setColumn("left_min_cardinality", leftCardinality.getLeft());
+            }
+            if(leftCardinality.getRight()!=null) {
+                row.setColumn("left_max_cardinality", leftCardinality.getRight());
+            }
+        }
+        Pair<Integer, Integer> rightCardinality = relationshipType.getRightCardinality();
+        if(rightCardinality !=null) {
+            if(rightCardinality.getLeft()!=null) {
+                row.setColumn("right_min_cardinality", rightCardinality.getLeft());
+            }
+            if(rightCardinality.getRight()!=null) {
+                row.setColumn("right_max_cardinality", rightCardinality.getRight());
+            }
+        }
         row.setColumn("semantic_ruleset", relationshipType.getSemanticRuleset());
         return row;
     }

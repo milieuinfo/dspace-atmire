@@ -1,45 +1,34 @@
 package com.atmire.dspace.content;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.dspace.core.ConfigurationManager;
 import org.dspace.core.Context;
-import org.dspace.servicemanager.DSpaceKernelImpl;
-import org.dspace.servicemanager.DSpaceKernelInit;
-import org.dspace.storage.rdbms.DatabaseManager;
 import org.dspace.utils.DSpace;
 import org.junit.*;
 
-import java.io.File;
 import java.util.Collection;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 import static org.junit.Assume.assumeNotNull;
 
 /**
- * // -Ddspace.dir=/Users/antoine/Development/dspaces/dspace42 -Ddspace.configuration=/Users/antoine/Development/dspaces/dspace42/config/dspace.cfg
+ * // -Ddspace.dir=/Users/antoine/Development/dspaces/dspace42 -Ddspace.configuration=/Users/antoine/Development/dspaces/dspace42/config/dspace.cfg -Droot.basedir=/Users/antoine/IdeaProjects/lne42/code
  */
 public class RelationshipTypeServiceTest {
-    private static DSpaceKernelImpl kernelImpl;
-    private static String sqlFilesDir;
+
     private Context readContext;
     private Context writeContext;
     private RelationshipTypeService relationshipTypeService;
 
     @BeforeClass
     public static void setUpBF() throws Exception {
-        kernelImpl = DSpaceKernelInit.getKernel(null);
-        if (!kernelImpl.isRunning()) {
-            kernelImpl.start(ConfigurationManager.getProperty("dspace.dir"));
-            sqlFilesDir = ConfigurationManager.getProperty("dspace.dir") + File.separator + "etc" + File.separator + "postgres" + File.separator + "lne" + File.separator + "test_data" + File.separator;
-        }
+        TestUtils.setUpBF();
     }
 
     @AfterClass
     public static void tearDownAS() throws Exception {
-        kernelImpl.destroy();
+        TestUtils.tearDownAS();
     }
+
 
     @Before
     public void setUp() throws Exception {
@@ -47,31 +36,29 @@ public class RelationshipTypeServiceTest {
         writeContext = new Context();
 
         // load test data sql
-        String sql = FileUtils.readFileToString(new File(sqlFilesDir + "load-relationship-test-data.sql"), "UTF-8");
-        DatabaseManager.loadSql(sql);
+        TestUtils.loadTestSQL();
 
-        relationshipTypeService = new DSpace().getServiceManager().getServiceByName("relationshipTypeService", RelationshipTypeService.class);
+        relationshipTypeService = new DSpace().getServiceManager().getServicesByType(RelationshipTypeService.class).get(0);
     }
 
     @After
     public void tearDown() throws Exception {
-        if (readContext.getDBConnection() != null) {
-            readContext.abort();
-        }
         if (writeContext.getDBConnection() != null) {
             writeContext.abort();
         }
+        if (readContext.getDBConnection() != null) {
+            readContext.abort();
+        }
 
         // unload test data sql
-        String sql = FileUtils.readFileToString(new File(sqlFilesDir + "unload-relationship-test-data.sql"), "UTF-8");
-        DatabaseManager.loadSql(sql);
+        TestUtils.unloadTestSQL();
     }
 
     @Test
     public void testFindById() throws Exception {
         int id = Integer.MAX_VALUE - 2;
         RelationshipType type = relationshipTypeService.findById(readContext, id);
-
+        assertNotNull(type);
 //        compareFirstSubject(type); // this would be redundant because it uses findById
 
         assertEquals(Integer.MAX_VALUE - 2, type.getId());
