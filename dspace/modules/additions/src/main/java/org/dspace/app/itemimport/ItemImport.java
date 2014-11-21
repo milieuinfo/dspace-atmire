@@ -431,61 +431,7 @@ public class ItemImport
 
             c.setCurrentUser(myEPerson);
 
-            // find collections
-            Collection[] mycollections = null;
-
-            // don't need to validate collections set if command is "delete"
-            if (!"delete".equals(command))
-            {
-                System.out.println("Destination collections:");
-
-                mycollections = new Collection[collections.length];
-
-                // validate each collection arg to see if it's a real collection
-                for (int i = 0; i < collections.length; i++)
-                {
-                    // is the ID a handle?
-                    if (collections[i].indexOf('/') != -1)
-                    {
-                        // string has a / so it must be a handle - try and resolve
-                        // it
-                        mycollections[i] = (Collection) HandleManager
-                                .resolveToObject(c, collections[i]);
-
-                        // resolved, now make sure it's a collection
-                        if ((mycollections[i] == null)
-                                || (mycollections[i].getType() != Constants.COLLECTION))
-                        {
-                            mycollections[i] = null;
-                        }
-                    }
-                    // not a handle, try and treat it as an integer collection
-                    // database ID
-                    else if (collections[i] != null)
-                    {
-                        mycollections[i] = Collection.find(c, Integer
-                                .parseInt(collections[i]));
-                    }
-
-                    // was the collection valid?
-                    if (mycollections[i] == null)
-                    {
-                        throw new IllegalArgumentException("Cannot resolve "
-                                + collections[i] + " to collection");
-                    }
-
-                    // print progress info
-                    String owningPrefix = "";
-
-                    if (i == 0)
-                    {
-                        owningPrefix = "Owning ";
-                    }
-
-                    System.out.println(owningPrefix + " Collection: "
-                            + mycollections[i].getMetadata("name"));
-                }
-            } // end of validating collections
+            Collection[] mycollections = getCollections(command, collections, c);
 
             try
             {
@@ -610,6 +556,65 @@ public class ItemImport
         }
 
         System.exit(status);
+    }
+
+    public static Collection[] getCollections(String command, String[] collections, Context c) throws SQLException {
+        // find collections
+        Collection[] mycollections = null;
+
+        // don't need to validate collections set if command is "delete"
+        if (!"delete".equals(command))
+        {
+            System.out.println("Destination collections:");
+
+            mycollections = new Collection[collections.length];
+
+            // validate each collection arg to see if it's a real collection
+            for (int i = 0; i < collections.length; i++)
+            {
+                // is the ID a handle?
+                if (collections[i].indexOf('/') != -1)
+                {
+                    // string has a / so it must be a handle - try and resolve
+                    // it
+                    mycollections[i] = (Collection) HandleManager
+                            .resolveToObject(c, collections[i]);
+
+                    // resolved, now make sure it's a collection
+                    if ((mycollections[i] == null)
+                            || (mycollections[i].getType() != Constants.COLLECTION))
+                    {
+                        mycollections[i] = null;
+                    }
+                }
+                // not a handle, try and treat it as an integer collection
+                // database ID
+                else if (collections[i] != null)
+                {
+                    mycollections[i] = Collection.find(c, Integer
+                            .parseInt(collections[i]));
+                }
+
+                // was the collection valid?
+                if (mycollections[i] == null)
+                {
+                    throw new IllegalArgumentException("Cannot resolve "
+                            + collections[i] + " to collection");
+                }
+
+                // print progress info
+                String owningPrefix = "";
+
+                if (i == 0)
+                {
+                    owningPrefix = "Owning ";
+                }
+
+                System.out.println(owningPrefix + " Collection: "
+                        + mycollections[i].getMetadata("name"));
+            }
+        } // end of validating collections
+        return mycollections;
     }
 
     /**
@@ -860,10 +865,10 @@ public class ItemImport
      * item? try and add it to the archive.
      * @param mycollections - add item to these Collections.
      * @param path - directory containing the item directories.
-     * @param itemname handle - non-null means we have a pre-defined handle already
+     * @param itemname directory containing the item
      * @param mapOut - mapfile we're writing
      */
-    private Item addItem(Context c, Collection[] mycollections, String path,
+    public Item addItem(Context c, Collection[] mycollections, String path,
             String itemname, PrintWriter mapOut, boolean template) throws Exception
     {
         String mapOutput = null;

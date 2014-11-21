@@ -16,7 +16,7 @@ public class Document extends RelationShipObject {
 
     private Dossier dossier;
 
-    protected Document(Relationship coreRelationship, List<Relationship> incoming, List<Relationship> outgoing, Item item) {
+    public Document(Relationship coreRelationship, List<Relationship> incoming, List<Relationship> outgoing, Item item) {
         super(coreRelationship, incoming, outgoing, item);
     }
 

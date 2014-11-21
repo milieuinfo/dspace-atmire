@@ -19,6 +19,9 @@
                 </dcvalue>
             </dublin_core>
         </redirect:write>
+        <redirect:write select="concat('aangifte',position(), '/contents')">
+           <xsl:text></xsl:text>
+        </redirect:write>
     </xsl:template>
 
     <xsl:template match="AangiftenMetaData/Aangifte">
