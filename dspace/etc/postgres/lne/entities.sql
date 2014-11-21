@@ -10,7 +10,7 @@ CREATE FUNCTION getnextid(t VARCHAR(40))
                       OR relname = $1 || '_' || $1 || '_id_seq'))
          AS INTEGER) AS RESULT; $$ LANGUAGE SQL;
 
-CREATE TABLE IF NOT EXISTS Type
+CREATE TABLE IF NOT EXISTS type
 (
   type_id               SERIAL PRIMARY KEY,
   left_type             VARCHAR(256),
@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS Type
   semantic_ruleset      VARCHAR(256)
 );
 
-CREATE TABLE IF NOT EXISTS Relationship
+CREATE TABLE IF NOT EXISTS relationship
 (
   relationship_id SERIAL PRIMARY KEY,
   left_id         INTEGER REFERENCES Item on DELETE CASCADE ,
