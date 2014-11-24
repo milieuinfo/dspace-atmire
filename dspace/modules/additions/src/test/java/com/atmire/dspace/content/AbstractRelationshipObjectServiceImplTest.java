@@ -15,8 +15,8 @@ public class AbstractRelationshipObjectServiceImplTest {
 
     private Context readContext;
     private Context writeContext;
-    private DocumentService documentService;
-    private DossierService dossierService;
+    private RelationshipObjectService<Document> documentService;
+    private RelationshipObjectService<Dossier> dossierService;
     private RelationshipTypeService relationshipTypeService = TestUtils.relationshipTypeService;
     private RelationshipService relationshipService = TestUtils.relationshipService;
     protected List<Relationship> relationships;
@@ -41,8 +41,8 @@ public class AbstractRelationshipObjectServiceImplTest {
         readContext = TestUtils.readContext;
         writeContext = TestUtils.writeContext;
 
-        documentService = new DSpace().getServiceManager().getServicesByType(DocumentService.class).get(0);
-        dossierService = new DSpace().getServiceManager().getServicesByType(DossierService.class).get(0);
+        documentService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Document.class);
+        dossierService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Dossier.class);
 
         relationships = TestUtils.loadTestDossiersAndDocuments(readContext);
     }

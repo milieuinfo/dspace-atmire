@@ -16,11 +16,15 @@ public class Document extends RelationShipObject {
 
     private Dossier dossier;
 
-    public Document(Relationship coreRelationship, List<Relationship> incoming, List<Relationship> outgoing, Item item) {
+    public Document(Item item) {
+        this(null, null, null, item);
+    }
+
+    protected Document(Relationship coreRelationship, List<Relationship> incoming, List<Relationship> outgoing, Item item) {
         super(coreRelationship, incoming, outgoing, item);
     }
 
-    public Document(Relationship coreRelationship, List<Relationship> incoming, List<Relationship> outgoing, Item item, Dossier dossier) {
+    protected Document(Relationship coreRelationship, List<Relationship> incoming, List<Relationship> outgoing, Item item, Dossier dossier) {
         super(coreRelationship, incoming, outgoing, item);
         this.dossier = dossier;
     }

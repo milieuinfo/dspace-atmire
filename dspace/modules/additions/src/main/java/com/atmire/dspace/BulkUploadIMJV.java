@@ -1,7 +1,8 @@
 package com.atmire.dspace;
 
 import com.atmire.dspace.content.Dossier;
-import com.atmire.dspace.content.DossierService;
+import com.atmire.dspace.content.RelationshipObjectService;
+import com.atmire.dspace.content.RelationshipObjectServiceFactory;
 import com.atmire.scripts.ContextScript;
 import com.atmire.util.LneUtils;
 import org.apache.commons.cli.CommandLine;
@@ -15,7 +16,6 @@ import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.core.ConfigurationManager;
 import org.dspace.handle.HandleManager;
-import org.dspace.utils.DSpace;
 import org.jdom.transform.XSLTransformException;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -39,7 +39,7 @@ import java.util.List;
  */
 public class BulkUploadIMJV extends ContextScript {
 
-    private DossierService dossierService = new DSpace().getServiceManager().getServicesByType(DossierService.class).get(0);
+    private RelationshipObjectService<Dossier> dossierService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Dossier.class);
 
     private String directory;
     private String XSLPath;
@@ -184,12 +184,12 @@ public class BulkUploadIMJV extends ContextScript {
         List<com.atmire.dspace.content.Document> documents = new LinkedList<com.atmire.dspace.content.Document>();
         for (File documentArchive : documentArchives) {
             Item documentItem = importItem(outputFolder, documentArchive, LneUtils.getDocumentCollections(community));
-            com.atmire.dspace.content.Document document = new com.atmire.dspace.content.Document(null, null, null, documentItem);
+            com.atmire.dspace.content.Document document = new com.atmire.dspace.content.Document(documentItem);
             documents.add(document);
         }
 
         Item dossierItem = importItem(outputFolder, dossierArchive, LneUtils.getDossierCollections(community));
-        Dossier dossier = new Dossier(null, null, null, dossierItem, documents);
+        Dossier dossier = new Dossier(dossierItem, documents);
         dossierService.create(context, dossier);
     }
 
@@ -197,7 +197,7 @@ public class BulkUploadIMJV extends ContextScript {
         ItemImport myloader = new ItemImport();
         String path = outputFolder.getAbsolutePath();
         String itemFolder = itemArchive.getName();
-        String mapFile = outputFolder.getAbsolutePath() + File.separator + "mapfile-"+itemFolder; //do not include it inside the itemArchive
+        String mapFile = outputFolder.getAbsolutePath() + File.separator + "mapfile-" + itemFolder; //do not include it inside the itemArchive
         PrintWriter mapOut = new PrintWriter(new FileWriter(mapFile, false));
         boolean useTemplate = false;
         return myloader.addItem(context, collections, path, itemFolder, mapOut, useTemplate);

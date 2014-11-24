@@ -35,8 +35,8 @@ public class TestUtils {
     public static ServiceManager serviceManager;
     public static RelationshipTypeService relationshipTypeService;
     public static RelationshipService relationshipService;
-    public static DocumentService documentService;
-    public static DossierService dossierService;
+    public static RelationshipObjectService<Document> documentService;
+    public static RelationshipObjectService<Dossier> dossierService;
     public static Context readContext;
     public static Context writeContext;
 
@@ -47,8 +47,8 @@ public class TestUtils {
             serviceManager = new DSpace().getServiceManager();
             relationshipTypeService = serviceManager.getServicesByType(RelationshipTypeService.class).get(0);
             relationshipService = serviceManager.getServicesByType(RelationshipService.class).get(0);
-            documentService = new DSpace().getServiceManager().getServicesByType(DocumentService.class).get(0);
-            dossierService = new DSpace().getServiceManager().getServicesByType(DossierService.class).get(0);
+            documentService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Document.class);
+            dossierService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Dossier.class);
         }
     }
 
