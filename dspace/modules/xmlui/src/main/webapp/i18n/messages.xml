@@ -2357,4 +2357,16 @@
     <message key="xmlui.aspect.versioning.VersionNoticeTransformer.notice.workflow_version_help">A more recent version of this item is in the Workflow.</message>
 
     <!-- End Versioning -->
+
+    <!-- LNE: custom messages -->
+
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_aangifteType">Aangifte Type</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_rapporteringsJaar">Rapporteringsjaar</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_exploitatieLocatieStad">Exploitatie Stad</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_exploitatieLocatiePostcode">Exploitatie Postcode</message>
+
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.aangifteType">Aangifte Type</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.rapporteringsJaar">Rapporteringsjaar</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.exploitatieLocatieStad">Exploitatie Stad</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.exploitatieLocatiePostcode">Exploitatie Postcode</message>
 </catalogue>

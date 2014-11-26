@@ -38,6 +38,7 @@
                 <xsl:call-template name="document-title"/>
                 <xsl:call-template name="document-date-issued"/>
                 <xsl:call-template name="document-publisher"/>
+                <xsl:call-template name="document-author"/>
                 <xsl:apply-templates mode="dc"/>
             </dublin_core>
         </redirect:write>
@@ -193,10 +194,10 @@
         </dcvalue>
     </xsl:template>
     
-    <xsl:template name="document-date-issued">
-        <xsl:if test="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']">
-            <dcvalue element="date" qualifier="issued">
-                <xsl:value-of select="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']/Tijdstip" />
+    <xsl:template name="document-author">
+        <xsl:if test="//IdentificatieMetaData/Exploitatie/Naam">
+            <dcvalue element="contributor" qualifier="author">
+                <xsl:value-of select="//IdentificatieMetaData/Exploitatie/Naam" />
             </dcvalue>
         </xsl:if>
     </xsl:template>
@@ -206,9 +207,23 @@
             <xsl:text>IMJV</xsl:text>
         </dcvalue>
     </xsl:template>
-    
+
+    <xsl:template name="document-date-issued">
+        <xsl:if test="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']">
+            <dcvalue element="date" qualifier="issued">
+                <xsl:value-of select="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']/Tijdstip" />
+            </dcvalue>
+        </xsl:if>
+    </xsl:template>
+
     <xsl:template match="Aangifte/AangifteType" mode="imjv">
         <dcvalue element="AangifteType">
+            <xsl:value-of select="text()"/>
+        </dcvalue>
+    </xsl:template>
+
+    <xsl:template match="Aangifte/AangifteType/Feiten/Feit[Actie/text()='Creatie']/Gebruiker" mode="dc">
+        <dcvalue element="contributor" qualifier="author">
             <xsl:value-of select="text()"/>
         </dcvalue>
     </xsl:template>

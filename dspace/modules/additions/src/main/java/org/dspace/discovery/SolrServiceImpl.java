@@ -1465,6 +1465,10 @@ public class SolrServiceImpl implements SearchService, IndexingService {
             case 11:
                 dfArr = new SimpleDateFormat[]{new SimpleDateFormat("yyyy MMM dd")};
                 break;
+            case 19:
+                dfArr = new SimpleDateFormat[]{new SimpleDateFormat(
+                        "yyyy-MM-dd HH:mm:ss")};
+                break;
             case 20:
                 dfArr = new SimpleDateFormat[]{new SimpleDateFormat(
                         "yyyy-MM-dd'T'HH:mm:ss'Z'")};
