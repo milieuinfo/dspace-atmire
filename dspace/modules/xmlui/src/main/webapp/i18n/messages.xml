@@ -2369,4 +2369,9 @@
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.rapporteringsJaar">Rapporteringsjaar</message>
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.exploitatieLocatieStad">Exploitatie Stad</message>
     <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.exploitatieLocatiePostcode">Exploitatie Postcode</message>
+
+    <message key="xmlui.Discovery.AbstractSearch.type_aangifteType">Filter by: Aangifte Type</message>
+    <message key="xmlui.Discovery.AbstractSearch.type_rapporteringsJaar">Filter by: Rapporteringsjaar</message>
+    <message key="xmlui.Discovery.AbstractSearch.type_exploitatieLocatieStad">Filter by: Exploitatie Stad</message>
+    <message key="xmlui.Discovery.AbstractSearch.type_exploitatieLocatiePostcode">Filter by: Exploitatie Postcode</message>
 </catalogue>
