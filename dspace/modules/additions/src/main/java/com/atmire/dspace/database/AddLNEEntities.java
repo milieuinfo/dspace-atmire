@@ -18,7 +18,7 @@ public class AddLNEEntities extends DatabaseLoader {
     public void loadDatabaseChanges(Context context) throws Exception {
 
         TableRow type = DatabaseManager.row("Type");
-        if (type.toString().length() > 4) {
+        if (type.toString().length() == 4) {
             // if the table does not exist, type.toString() will be "type"
             // otherwise it will have much more info
             String sqlFile = ConfigurationManager.getProperty("dspace.dir") + File.separator + "etc" + File.separator + "postgres" + File.separator + "lne" + File.separator + "entities.sql";
