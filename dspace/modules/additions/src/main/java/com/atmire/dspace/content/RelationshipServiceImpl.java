@@ -147,13 +147,8 @@ public class RelationshipServiceImpl implements RelationshipService {
 
             relationship.setId(relationship_id);
 
-            if(getRelationshipTypeService()!=null) {
                 RelationshipType type = getRelationshipTypeService().findById(context, type_id);
                 relationship.setType(type);
-            } else{
-                RelationshipServiceImpl rlssi = new RelationshipServiceImpl();
-                relationship.setType(rlssi.findById(context, type_id).getType());
-            }
 
             Item leftItem = Item.find(context, left_id);
             Item rightItem = Item.find(context, right_id);
