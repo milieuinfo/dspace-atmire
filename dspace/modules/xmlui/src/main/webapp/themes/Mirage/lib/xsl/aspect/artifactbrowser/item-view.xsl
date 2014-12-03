@@ -568,24 +568,6 @@
               </xsl:call-template>
           </xsl:when>
 
-          <!-- Relations row -->
-          <xsl:when test="$clause = 21 and (/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='relation'])">
-              <div class="simple-item-view-other">
-                  <span class="bold">Relation:</span>
-                  <span>
-                      <xsl:for-each select="dim:pageMeta/dim:metadata[@element='relation']">
-                          <xsl:copy-of select="./node()"/>
-                          <xsl:if test="count(following-sibling::dim:pageMeta/dim:metadata[@element='relation']) != 0">
-                              <br/>
-                          </xsl:if>
-                      </xsl:for-each>
-                  </span>
-              </div>
-              <xsl:call-template name="itemSummaryView-DIM-fields">
-                  <xsl:with-param name="clause" select="($clause + 1)"/>
-                  <xsl:with-param name="phase" select="$otherPhase"/>
-              </xsl:call-template>
-          </xsl:when>
 
           <!-- date.issued row -->
           <xsl:when test="$clause = 22 and (dim:field[@element='date' and @qualifier='issued' and descendant::text()])">
