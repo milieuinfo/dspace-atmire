@@ -31,7 +31,7 @@ import java.util.Map;
  *
  * @author Bert
  */
-public class RelationViewerTmp extends AbstractDSpaceTransformer
+public class RelationViewer extends AbstractDSpaceTransformer
 {
     public void addBody(Body body) throws SAXException, WingException,
             UIException, SQLException, IOException, AuthorizeException
