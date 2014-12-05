@@ -246,6 +246,8 @@
               <alert.recipient>noreply@atmire.com</alert.recipient>
               <mail.server.disabled>true</mail.server.disabled>
               <solr.server>http://localhost:11420/solr</solr.server>
+              <!--<sword.url>${dspace.baseUrl}/dspace-lne42-sword</sword.url>-->
+              <sword.url>http://dev.atmire.com/dspace-lne42-sword</sword.url>
            </properties>
        </profile>
 
