@@ -29,7 +29,7 @@ and searching the repository.
             <map:transformer name="CommunityViewer" src="org.dspace.app.xmlui.aspect.artifactbrowser.CommunityViewer" />
             <map:transformer name="CollectionViewer" src="org.dspace.app.xmlui.aspect.artifactbrowser.CollectionViewer" />
             <map:transformer name="ItemViewer" src="org.dspace.app.xmlui.aspect.artifactbrowser.ItemViewer" />
-            <map:transformer name="relationViewer" src="org.dspace.app.xmlui.aspect.artifactbrowser.RelationViewer"/>
+            <map:transformer name="relationViewer" src="org.dspace.app.xmlui.aspect.artifactbrowser.RelationViewerTmp"/>
             <map:transformer name="ItemRequestForm" src="org.dspace.app.xmlui.aspect.artifactbrowser.ItemRequestForm" />
             <map:transformer name="ItemRequestSent" src="org.dspace.app.xmlui.aspect.artifactbrowser.ItemRequestSent" />
             <map:transformer name="FeedbackForm" src="org.dspace.app.xmlui.aspect.artifactbrowser.FeedbackForm" />

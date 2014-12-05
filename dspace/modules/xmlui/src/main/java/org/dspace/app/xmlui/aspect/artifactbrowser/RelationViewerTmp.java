@@ -31,7 +31,7 @@ import java.util.Map;
  *
  * @author Bert
  */
-public class relationViewer extends AbstractDSpaceTransformer
+public class RelationViewerTmp extends AbstractDSpaceTransformer
 {
     public void addBody(Body body) throws SAXException, WingException,
             UIException, SQLException, IOException, AuthorizeException
@@ -42,21 +42,13 @@ public class relationViewer extends AbstractDSpaceTransformer
         {
             return;
         }
-
         Item item = (Item) dso;
 
         RelationshipTypeService relationshipTypeService = new DSpace().getServiceManager().getServiceByName("relationshipTypeService", RelationshipTypeService.class);
-        Relationship relationship = new Relationship();
-        relationship.setLeft(item);
-
-        RelationshipType relationshipType = new RelationshipType();
-        java.util.Collection<RelationshipType> relationshipTypes = relationshipTypeService.findByExample(context, relationshipType);
-
+        java.util.Collection<RelationshipType> relationshipTypes = relationshipTypeService.findByExample(context, new RelationshipType());
         java.util.List<String> theTypes = new ArrayList<String>();
-        for(RelationshipType rlst : relationshipTypes){
-            if(rlst.getLeftType().equals(rlst.getRightType())){
-                theTypes.add(rlst.getLeftType());
-            }
+        for(RelationshipType relationshipType : relationshipTypes){
+            if(!theTypes.contains(relationshipType.getLeftType())) theTypes.add(relationshipType.getLeftType());
         }
 
         Map<String, java.util.List<RelationShipObject>> outObjects = new HashMap<String, java.util.List<RelationShipObject>>();
