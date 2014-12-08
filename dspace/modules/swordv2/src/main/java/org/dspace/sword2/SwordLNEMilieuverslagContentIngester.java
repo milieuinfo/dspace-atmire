@@ -18,13 +18,13 @@ public class SwordLNEMilieuverslagContentIngester extends AbstractSwordContentIn
 
     @Override
     public DepositResult ingestToCollection(Context context, Deposit deposit, Collection collection, VerboseDescription verboseDescription, DepositResult result) throws DSpaceSwordException, SwordError, SwordAuthException, SwordServerException {
-        log.error("SwordLNEMilieuverslagContentIngester ingestToCollection parameters: deposit: " + deposit + ", collection: " + collection + ", verboseDescription: " + verboseDescription + ", result: " + result );
+        log.info("SwordLNEMilieuverslagContentIngester ingestToCollection parameters: deposit: " + deposit + ", collection: " + collection + ", verboseDescription: " + verboseDescription + ", result: " + result );
         return null;
     }
 
     @Override
     public DepositResult ingestToItem(Context context, Deposit deposit, Item item, VerboseDescription verboseDescription, DepositResult result) throws DSpaceSwordException, SwordError, SwordAuthException, SwordServerException {
-        log.error("SwordLNEMilieuverslagContentIngester ingestToItem parameters: deposit: " + deposit + ", item: " + item + ", verboseDescription: " + verboseDescription + ", result: " + result );
+        log.info("SwordLNEMilieuverslagContentIngester ingestToItem parameters: deposit: " + deposit + ", item: " + item + ", verboseDescription: " + verboseDescription + ", result: " + result );
         return null;
     }
 }
