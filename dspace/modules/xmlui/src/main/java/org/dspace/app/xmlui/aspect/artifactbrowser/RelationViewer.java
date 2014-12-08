@@ -49,6 +49,7 @@ public class RelationViewer extends AbstractDSpaceTransformer
         java.util.List<String> theTypes = new ArrayList<String>();
         for(RelationshipType relationshipType : relationshipTypes){
             if(!theTypes.contains(relationshipType.getLeftType())) theTypes.add(relationshipType.getLeftType());
+            if(!theTypes.contains(relationshipType.getRightType())) theTypes.add(relationshipType.getRightType());
         }
 
         Map<String, java.util.List<RelationShipObject>> outObjects = new HashMap<String, java.util.List<RelationShipObject>>();
@@ -62,7 +63,10 @@ public class RelationViewer extends AbstractDSpaceTransformer
                         if(relationshipObjectService!=null){
                             RelationShipObject relationShipObject = relationshipObjectService.findByItem(context,item);
                             if(relationShipObject!=null){
-                                outObjects.put(relationShipObject.getTypeText(),relationshipObjectService.getOutgoingRelationshipObjects(context,relationShipObject));
+                                java.util.List<RelationShipObject> newList = new ArrayList<RelationShipObject>();
+                                newList.addAll(relationshipObjectService.getOutgoingRelationshipObjects(context,relationShipObject));
+                                newList.addAll(relationshipObjectService.getIncomingRelationshipObjects(context,relationShipObject));
+                                outObjects.put(relationShipObject.getTypeText(),newList);
                             }
                         }
                     }
