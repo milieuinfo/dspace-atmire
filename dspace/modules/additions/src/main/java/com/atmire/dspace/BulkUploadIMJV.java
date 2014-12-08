@@ -15,6 +15,7 @@ import org.dspace.content.Community;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
 import org.dspace.core.ConfigurationManager;
+import org.dspace.core.Context;
 import org.dspace.handle.HandleManager;
 import org.jdom.transform.XSLTransformException;
 import org.w3c.dom.Document;
@@ -50,6 +51,13 @@ public class BulkUploadIMJV extends ContextScript {
     public static void main(String[] args) {
         BulkUploadIMJV script = new BulkUploadIMJV();
         script.mainImpl(args);
+    }
+
+    public BulkUploadIMJV(Context context) {
+        super(context);
+    }
+
+    public BulkUploadIMJV() {
     }
 
     @Override
