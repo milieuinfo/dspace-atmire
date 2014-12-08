@@ -9,6 +9,12 @@ import org.swordapp.server.SwordAuthException;
 import org.swordapp.server.SwordError;
 import org.swordapp.server.SwordServerException;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+
 /**
  * Created by philip on 05/12/14.
  */
@@ -18,7 +24,19 @@ public class SwordLNEMilieuverslagContentIngester extends AbstractSwordContentIn
 
     @Override
     public DepositResult ingestToCollection(Context context, Deposit deposit, Collection collection, VerboseDescription verboseDescription, DepositResult result) throws DSpaceSwordException, SwordError, SwordAuthException, SwordServerException {
-        log.info("SwordLNEMilieuverslagContentIngester ingestToCollection parameters: deposit: " + deposit + ", collection: " + collection + ", verboseDescription: " + verboseDescription + ", result: " + result );
+        try {
+            File depositFile = deposit.getFile();
+            ZipFile zip = new ZipFile(depositFile);
+
+            Enumeration zenum = zip.entries();
+            while (zenum.hasMoreElements())
+            {
+                ZipEntry entry = (ZipEntry) zenum.nextElement();
+                log.info(entry.toString());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
