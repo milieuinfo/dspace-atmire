@@ -228,12 +228,16 @@
         </dcvalue>
     </xsl:template>
 
+    <xsl:template match="//Rijksregisternummer" mode="dc"/>
+    <xsl:template match="//Rijksregisternummer" mode="imjv"/>
+
+
     <!-- utility templates -->
 
     <xsl:template name="vervlakte-voorstelling">
         <xsl:choose>
             <xsl:when test="child::*">
-                <xsl:for-each select="child::*">
+                <xsl:for-each select="child::*[not('Rijksregisternummer')]">
                     <xsl:call-template name="vervlakte-voorstelling"/>
                     <xsl:if test="not(position()=last())">
                         <xsl:text> </xsl:text>
