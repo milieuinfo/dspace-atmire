@@ -10,10 +10,8 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.dspace.app.itemimport.ItemImport;
-import org.dspace.content.Collection;
-import org.dspace.content.Community;
-import org.dspace.content.DSpaceObject;
-import org.dspace.content.Item;
+import org.dspace.authorize.AuthorizeException;
+import org.dspace.content.*;
 import org.dspace.core.ConfigurationManager;
 import org.dspace.core.Context;
 import org.dspace.handle.HandleManager;
@@ -192,13 +190,29 @@ public class BulkUploadIMJV extends ContextScript {
         List<com.atmire.dspace.content.Document> documents = new LinkedList<com.atmire.dspace.content.Document>();
         for (File documentArchive : documentArchives) {
             Item documentItem = importItem(outputFolder, documentArchive, LneUtils.getDocumentCollections(community));
+
+            createImportBundle(documentItem, documentArchive);
+
             com.atmire.dspace.content.Document document = new com.atmire.dspace.content.Document(documentItem);
             documents.add(document);
         }
 
         Item dossierItem = importItem(outputFolder, dossierArchive, LneUtils.getDossierCollections(community));
+
+        createImportBundle(dossierItem, dossierArchive);
+
         Dossier dossier = new Dossier(dossierItem, documents);
         dossierService.create(context, dossier);
+    }
+
+    private void createImportBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
+        Bundle bundle = item.createBundle("IMPORT");
+        InputStream inputstream = new FileInputStream(folder.getPath() + File.separator + "source.xml");
+        Bitstream bs = bundle.createBitstream(inputstream);
+        bs.setName("source.xml");
+        BitstreamFormat bf = FormatIdentifier.guessFormat(context, bs);
+        bs.setFormat(bf);
+        bs.update();
     }
 
     protected Item importItem(File outputFolder, File itemArchive, Collection[] collections) throws Exception {

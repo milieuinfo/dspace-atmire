@@ -45,11 +45,14 @@
         <xsl:copy-of select="$SFXLink" />
         <!-- Generate the bitstream information from the file section -->
         <xsl:choose>
-            <xsl:when test="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']/mets:file">
-                <xsl:apply-templates select="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']">
+            <xsl:when test="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='IMPORT']/mets:file">
+                <h2><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-head</i18n:text></h2>
+                <div class="file-list">
+                <xsl:apply-templates select="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='IMPORT']">
                     <xsl:with-param name="context" select="."/>
                     <xsl:with-param name="primaryBitstream" select="./mets:structMap[@TYPE='LOGICAL']/mets:div[@TYPE='DSpace Item']/mets:fptr/@FILEID"/>
                 </xsl:apply-templates>
+                </div>
             </xsl:when>
             <!-- Special case for handling ORE resource maps stored as DSpace bitstreams -->
             <xsl:when test="./mets:fileSec/mets:fileGrp[@USE='ORE']">
@@ -721,12 +724,10 @@
     <xsl:template match="dri:div[@n='item-view']/dri:head" priority="5">
     </xsl:template>
 
-        <xsl:template match="mets:fileGrp[@USE='CONTENT']">
+        <xsl:template match="mets:fileGrp[@USE='CONTENT' or @USE='IMPORT']">
         <xsl:param name="context"/>
         <xsl:param name="primaryBitstream" select="-1"/>
 
-        <h2><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-head</i18n:text></h2>
-        <div class="file-list">
             <xsl:choose>
                 <!-- If one exists and it's of text/html MIME type, only display the primary bitstream -->
                 <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='text/html'">
@@ -744,7 +745,6 @@
                     </xsl:apply-templates>
                 </xsl:otherwise>
             </xsl:choose>
-        </div>
     </xsl:template>
 
     <xsl:template match="mets:file">
