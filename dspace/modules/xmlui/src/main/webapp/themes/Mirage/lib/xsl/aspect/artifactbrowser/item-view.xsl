@@ -99,6 +99,8 @@
             </xsl:choose>
       </xsl:variable>
 
+
+
       <xsl:choose>
           <!-- Title row -->
           <xsl:when test="$clause = 1">

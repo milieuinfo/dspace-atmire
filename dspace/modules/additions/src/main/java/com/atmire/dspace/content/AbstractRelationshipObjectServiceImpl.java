@@ -61,7 +61,11 @@ public abstract class AbstractRelationshipObjectServiceImpl<T extends RelationSh
     public T findByItem(Context context, Item item) {
         Relationship example = new Relationship(null, item, item, getRelationshipLoopType(context));
         Relationship relationship = relationshipService.findByExampleUnique(context, example);
-        return findByRelationshipUnique(context, relationship);
+        T uniqueRelations = null;
+        if(relationship!=null){
+            uniqueRelations = findByRelationshipUnique(context, relationship);
+        }
+        return uniqueRelations;
     }
 
     @Override

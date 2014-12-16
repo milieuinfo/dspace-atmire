@@ -251,6 +251,30 @@
            </properties>
        </profile>
 
+       <profile>
+           <id>client-dev</id>
+           <properties>
+              <dspace.dir>/opt/tomcat/apps/dspace</dspace.dir>
+              <dspace.name>DSpace at LNE</dspace.name>
+              <dspace.hostname>dspace-on-101.mmis.be</dspace.hostname>
+              <dspace.baseUrl>http://${dspace.hostname}:8080</dspace.baseUrl>
+              <dspace.url>${dspace.baseUrl}/xmlui</dspace.url>
+              <!-- <dspace.oai.url>https://dev.atmire.com/dspace-lne42-oai</dspace.oai.url> -->
+              <db.name>postgres</db.name>
+              <db.driver>org.postgresql.Driver</db.driver>
+              <db.url>jdbc:postgresql://postgres-on-1153.mmis.be:5515/dspace_ontwikkel</db.url>
+              <db.username>dspace</db.username>
+              <db.password>QJNiRsFVSm3amtt</db.password>
+              <mail.server>no-mail-server</mail.server>
+              <mail.from.address>noreply@atmire.com</mail.from.address>
+              <feedback.recipient>noreply@atmire.com</feedback.recipient>
+              <mail.admin>noreply@atmire.com</mail.admin>
+              <alert.recipient>noreply@atmire.com</alert.recipient>
+              <mail.server.disabled>true</mail.server.disabled>
+              <solr.server>http://localhost:8080/solr</solr.server>
+           </properties>
+       </profile>
+
        <!-- By default the main dspace.cfg file will be filtered during the build
             using the "build.properties" file. This profile takes effect, unless
             "-Denv" is passed in (see 'environment' profile below for more info). -->

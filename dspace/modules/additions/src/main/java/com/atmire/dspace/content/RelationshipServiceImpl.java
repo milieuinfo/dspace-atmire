@@ -147,8 +147,8 @@ public class RelationshipServiceImpl implements RelationshipService {
 
             relationship.setId(relationship_id);
 
-            RelationshipType type = getRelationshipTypeService().findById(context, type_id);
-            relationship.setType(type);
+                RelationshipType type = getRelationshipTypeService().findById(context, type_id);
+                relationship.setType(type);
 
             Item leftItem = Item.find(context, left_id);
             Item rightItem = Item.find(context, right_id);
