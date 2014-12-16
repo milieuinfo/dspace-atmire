@@ -254,7 +254,7 @@
        <profile>
            <id>client-dev</id>
            <properties>
-              <dspace.dir>/opt/tomcat/apps/dspace</dspace.dir>
+              <dspace.dir>/opt/tomcat/data/dspace</dspace.dir>
               <dspace.name>DSpace at LNE</dspace.name>
               <dspace.hostname>dspace-on-101.mmis.be</dspace.hostname>
               <dspace.baseUrl>http://${dspace.hostname}:8080</dspace.baseUrl>
