@@ -45,11 +45,14 @@
         <xsl:copy-of select="$SFXLink" />
         <!-- Generate the bitstream information from the file section -->
         <xsl:choose>
-            <xsl:when test="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']/mets:file">
-                <xsl:apply-templates select="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL']">
+            <xsl:when test="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='IMPORT']/mets:file">
+                <h2><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-head</i18n:text></h2>
+                <div class="file-list">
+                <xsl:apply-templates select="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='IMPORT']">
                     <xsl:with-param name="context" select="."/>
                     <xsl:with-param name="primaryBitstream" select="./mets:structMap[@TYPE='LOGICAL']/mets:div[@TYPE='DSpace Item']/mets:fptr/@FILEID"/>
                 </xsl:apply-templates>
+                </div>
             </xsl:when>
             <!-- Special case for handling ORE resource maps stored as DSpace bitstreams -->
             <xsl:when test="./mets:fileSec/mets:fileGrp[@USE='ORE']">
@@ -112,9 +115,9 @@
                           <xsl:value-of select="dim:field[@element='title'][not(@qualifier)][1]/node()"/>
                       </h1>
                       <div class="simple-item-view-other">
-                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-title</i18n:text>:</span>
                           <span>
                               <xsl:for-each select="dim:field[@element='title'][not(@qualifier)]">
+                                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-title</i18n:text>:</span>
                                   <xsl:value-of select="./node()"/>
                                   <xsl:if test="count(following-sibling::dim:field[@element='title'][not(@qualifier)]) != 0">
                                       <xsl:text>; </xsl:text>
@@ -188,20 +191,20 @@
           <!-- identifier.uri row -->
           <xsl:when test="$clause = 3 and (dim:field[@element='identifier' and @qualifier='uri' and descendant::text()])">
                     <div class="simple-item-view-other">
-	                <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-uri</i18n:text>:</span>
-	                <span>
 	                	<xsl:for-each select="dim:field[@element='identifier' and @qualifier='uri']">
+                            <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-uri</i18n:text>:</span>
+                            <span>
 		                    <a>
 		                        <xsl:attribute name="href">
 		                            <xsl:copy-of select="./node()"/>
 		                        </xsl:attribute>
 		                        <xsl:copy-of select="./node()"/>
 		                    </a>
+                            </span>
 		                    <xsl:if test="count(following-sibling::dim:field[@element='identifier' and @qualifier='uri']) != 0">
 		                    	<br/>
 		                    </xsl:if>
 	                    </xsl:for-each>
-	                </span>
 	            </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -212,15 +215,15 @@
           <!-- imjv.AangifteType row -->
           <xsl:when test="$clause = 4 and (dim:field[@element='AangifteType' and @mdschema='imjv'])">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-AangifteType</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='AangifteType' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-AangifteType</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='AangifteType' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -231,15 +234,15 @@
           <!-- imjv.Rapporteringsjaar row -->
           <xsl:when test="$clause = 4 and (dim:field[@element='Rapporteringsjaar' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-Rapporteringsjaar</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='Rapporteringsjaar' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-Rapporteringsjaar</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='Rapporteringsjaar' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -251,15 +254,15 @@
           <!-- imjv.ExploitatieCBBNummer row -->
           <xsl:when test="$clause = 5 and (dim:field[@element='ExploitatieCBBNummer' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieCBBNummer</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='ExploitatieCBBNummer' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieCBBNummer</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='ExploitatieCBBNummer' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -270,15 +273,15 @@
           <!-- imjv.ExploitantCBBNummer row -->
           <xsl:when test="$clause = 6 and (dim:field[@element='ExploitantCBBNummer' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitantCBBNummer</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='ExploitantCBBNummer' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitantCBBNummer</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='ExploitantCBBNummer' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -289,15 +292,15 @@
           <!-- imjv.ExploitatieNaam row -->
           <xsl:when test="$clause = 7 and (dim:field[@element='ExploitatieNaam' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieNaam</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='ExploitatieNaam' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieNaam</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='ExploitatieNaam' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -308,15 +311,15 @@
           <!-- imjv.ExploitantOndernemingsNummer row -->
           <xsl:when test="$clause = 8 and (dim:field[@element='ExploitantOndernemingsNummer' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitantOndernemingsNummer</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='ExploitantOndernemingsNummer' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitantOndernemingsNummer</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='ExploitantOndernemingsNummer' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -327,15 +330,15 @@
           <!-- imjv.ExploitatieLocatie row -->
           <xsl:when test="$clause = 9 and (dim:field[@element='ExploitatieLocatie' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieLocatie</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='ExploitatieLocatie' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieLocatie</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='ExploitatieLocatie' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -350,15 +353,15 @@
           <!-- imjv.ExploitatieLocatieStad row -->
           <xsl:when test="$clause = 10 and (dim:field[@element='ExploitatieLocatieStad' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieLocatieStad</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='ExploitatieLocatieStad' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieLocatieStad</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='ExploitatieLocatieStad' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -369,15 +372,15 @@
           <!-- imjv.ExploitatieLocatiePostcode row -->
           <xsl:when test="$clause = 11 and (dim:field[@element='ExploitatieLocatiePostcode' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieLocatiePostcode</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='ExploitatieLocatiePostcode' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieLocatiePostcode</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='ExploitatieLocatiePostcode' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -389,15 +392,15 @@
           <!-- imjv.ExploitantAdres row -->
           <xsl:when test="$clause = 12 and (dim:field[@element='ExploitantAdres' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitantAdres</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='ExploitantAdres' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitantAdres</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='ExploitantAdres' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -408,15 +411,15 @@
           <!-- imjv.ExploitantAdresStad row -->
           <xsl:when test="$clause = 13 and (dim:field[@element='ExploitantAdresStad' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitantAdresStad</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='ExploitantAdresStad' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitantAdresStad</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='ExploitantAdresStad' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -430,15 +433,15 @@
           <!-- imjv.ExploitantAdresPostcode row -->
           <xsl:when test="$clause = 14 and (dim:field[@element='ExploitantAdresPostcode' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitantAdresPostcode</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='ExploitantAdresPostcode' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-ExploitantAdresPostcode</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='ExploitantAdresPostcode' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -449,15 +452,15 @@
           <!-- imjv.MilieuVerslagVerzendAdres row -->
           <xsl:when test="$clause = 15 and (dim:field[@element='MilieuVerslagVerzendAdres' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagVerzendAdres</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='MilieuVerslagVerzendAdres' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagVerzendAdres</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='MilieuVerslagVerzendAdres' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -471,15 +474,15 @@
           <!-- imjv.MilieuVerslagFeit row -->
           <xsl:when test="$clause = 16 and (dim:field[@element='MilieuVerslagFeit' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeit</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='MilieuVerslagFeit' and @mdschema='imjv']">
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeit</i18n:text>:</span>
+                          <span>
                           <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='MilieuVerslagFeit' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -493,15 +496,15 @@
           <!-- imjv.MilieuVerslagFeitTijdstip row -->
           <xsl:when test="$clause = 17 and (dim:field[@element='MilieuVerslagFeitTijdstip' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeitTijdstip</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='MilieuVerslagFeitTijdstip' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeitTijdstip</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='MilieuVerslagFeitTijdstip' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -512,15 +515,15 @@
           <!-- imjv.MilieuVerslagFeitGebruikerVoornaam row -->
           <xsl:when test="$clause = 18 and (dim:field[@element='MilieuVerslagFeitGebruikerVoornaam' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeitGebruikerVoornaam</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='MilieuVerslagFeitGebruikerVoornaam' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeitGebruikerVoornaam</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='MilieuVerslagFeitGebruikerVoornaam' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -532,15 +535,15 @@
           <!-- imjv.MilieuVerslagFeitGebruikerNaam row -->
           <xsl:when test="$clause = 19 and (dim:field[@element='MilieuVerslagFeitGebruikerNaam' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeitGebruikerNaam</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='MilieuVerslagFeitGebruikerNaam' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeitGebruikerNaam</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='MilieuVerslagFeitGebruikerNaam' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -552,15 +555,15 @@
           <!-- imjv.MilieuVerslagFeitActie row -->
           <xsl:when test="$clause = 20 and (dim:field[@element='MilieuVerslagFeitActie' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeitActie</i18n:text>:</span>
-                  <span>
                       <xsl:for-each select="dim:field[@element='MilieuVerslagFeitActie' and @mdschema='imjv']">
-                          <xsl:copy-of select="./node()"/>
+                          <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeitActie</i18n:text>:</span>
+                          <span>
+                              <xsl:copy-of select="./node()"/>
+                          </span>
                           <xsl:if test="count(following-sibling::dim:field[@element='MilieuVerslagFeitActie' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>
-                  </span>
               </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                   <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -573,14 +576,14 @@
           <xsl:when test="$clause = 22 and (dim:field[@element='date' and @qualifier='issued' and descendant::text()])">
                     <div class="simple-item-view-other">
 	                <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.item-date</i18n:text>:</span>
-	                <span>
 		                <xsl:for-each select="dim:field[@element='date' and @qualifier='issued']">
-		                	<xsl:copy-of select="substring(./node(),1,10)"/>
+                            <span>
+                                <xsl:copy-of select="substring(./node(),1,10)"/>
+                            </span>
 		                	 <xsl:if test="count(following-sibling::dim:field[@element='date' and @qualifier='issued']) != 0">
 	                    	<br/>
 	                    </xsl:if>
 		                </xsl:for-each>
-	                </span>
 	            </div>
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
@@ -657,7 +660,7 @@
           <!-- recurse without changing phase if we didn't output anything -->
           <xsl:otherwise>
             <!-- IMPORTANT: This test should be updated if clauses are added! -->
-            <xsl:if test="$clause &lt; 8">
+            <xsl:if test="$clause &lt; 26">
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$phase"/>
@@ -721,12 +724,10 @@
     <xsl:template match="dri:div[@n='item-view']/dri:head" priority="5">
     </xsl:template>
 
-        <xsl:template match="mets:fileGrp[@USE='CONTENT']">
+        <xsl:template match="mets:fileGrp[@USE='CONTENT' or @USE='IMPORT']">
         <xsl:param name="context"/>
         <xsl:param name="primaryBitstream" select="-1"/>
 
-        <h2><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-head</i18n:text></h2>
-        <div class="file-list">
             <xsl:choose>
                 <!-- If one exists and it's of text/html MIME type, only display the primary bitstream -->
                 <xsl:when test="mets:file[@ID=$primaryBitstream]/@MIMETYPE='text/html'">
@@ -744,7 +745,6 @@
                     </xsl:apply-templates>
                 </xsl:otherwise>
             </xsl:choose>
-        </div>
     </xsl:template>
 
     <xsl:template match="mets:file">

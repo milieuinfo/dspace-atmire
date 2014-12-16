@@ -26,7 +26,12 @@
                 <xsl:apply-templates select="//MilieuVerslagMetaData" mode="imjv"/>
             </dublin_core>
         </redirect:write>
-        <redirect:write select="concat('aangifte',position(), '/contents')">
+        <redirect:write select="concat('IdentificatieMetaData',position(),'/source.xml')">
+            <xsl:copy>
+                <xsl:apply-templates select="/" mode="copy"/>
+            </xsl:copy>
+        </redirect:write>
+        <redirect:write select="concat('IdentificatieMetaData',position(), '/contents')">
             <xsl:text></xsl:text>
         </redirect:write>
     </xsl:template>
@@ -58,8 +63,14 @@
                 <xsl:value-of select="ProcesSchema/Bestand"/>
             </xsl:if>
         </redirect:write>
+        <redirect:write select="concat('aangifte',position(),'/source.xml')">
+            <xsl:copy>
+                <xsl:apply-templates select="@*|node()" mode="copy"/>
+            </xsl:copy>
+        </redirect:write>
+
     </xsl:template>
-    
+
     <!-- Dossier metadata -->
 
     <xsl:template name="dossier-title">
@@ -69,7 +80,7 @@
             <xsl:value-of select="RapporteringsJaar/text()"/>
         </dcvalue>
     </xsl:template>
-    
+
     <xsl:template match="IdentificatieMetaData/Exploitatie/Naam" mode="dc">
         <dcvalue element="contributor" qualifier="author">
             <xsl:value-of select="text()"/>
@@ -193,7 +204,7 @@
             <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
         </dcvalue>
     </xsl:template>
-    
+
     <xsl:template name="document-author">
         <xsl:if test="//IdentificatieMetaData/Exploitatie/Naam">
             <dcvalue element="contributor" qualifier="author">
@@ -228,12 +239,16 @@
         </dcvalue>
     </xsl:template>
 
+    <xsl:template match="//Rijksregisternummer" mode="dc"/>
+    <xsl:template match="//Rijksregisternummer" mode="imjv"/>
+
+
     <!-- utility templates -->
 
     <xsl:template name="vervlakte-voorstelling">
         <xsl:choose>
             <xsl:when test="child::*">
-                <xsl:for-each select="child::*">
+                <xsl:for-each select="child::*[not('Rijksregisternummer')]">
                     <xsl:call-template name="vervlakte-voorstelling"/>
                     <xsl:if test="not(position()=last())">
                         <xsl:text> </xsl:text>
@@ -244,6 +259,12 @@
                 <xsl:value-of select="."/>
             </xsl:otherwise>
         </xsl:choose>
+    </xsl:template>
+
+    <xsl:template match="@*|node()" mode="copy">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()" mode="copy"/>
+        </xsl:copy>
     </xsl:template>
 
 </xsl:stylesheet>
