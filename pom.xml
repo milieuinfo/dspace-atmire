@@ -248,13 +248,15 @@
               <solr.server>http://localhost:11420/solr</solr.server>
               <!--<sword.url>${dspace.baseUrl}/dspace-lne42-sword</sword.url>-->
               <sword.url>http://dev.atmire.com/dspace-lne42-sword</sword.url>
+               <assetstore.dir>${dspace.dir}/assetstore</assetstore.dir>
+               <log.dir>${dspace.dir}/log</log.dir>
            </properties>
        </profile>
 
        <profile>
            <id>client-dev</id>
            <properties>
-              <dspace.dir>/opt/tomcat/data/dspace</dspace.dir>
+              <dspace.dir>/opt/tomcat/apps/dspace</dspace.dir>
               <dspace.name>DSpace at LNE</dspace.name>
               <dspace.hostname>dspace-on-101.mmis.be</dspace.hostname>
               <dspace.baseUrl>http://${dspace.hostname}:8080</dspace.baseUrl>
@@ -272,6 +274,10 @@
               <alert.recipient>noreply@atmire.com</alert.recipient>
               <mail.server.disabled>true</mail.server.disabled>
               <solr.server>http://localhost:8080/solr</solr.server>
+              <!--<sword.url>${dspace.baseUrl}/dspace-lne42-sword</sword.url>-->
+              <sword.url>${dspace.baseUrl}/dspace-sword</sword.url>
+              <assetstore.dir>/opt/tomcat/data/dspace/assetstore</assetstore.dir>
+              <log.dir>/opt/tomcat/data/dspace/log</log.dir>
            </properties>
        </profile>
 
