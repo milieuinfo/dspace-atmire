@@ -80,7 +80,7 @@ public class SwordLNEMilieuverslagContentIngester extends AbstractSwordContentIn
 
             bulkUploadIMJV.setDirectory(mainDirectory.getPath());
             bulkUploadIMJV.setValidationEnabled(false);
-            bulkUploadIMJV.setCommunity(Community.find(context, 1));
+            bulkUploadIMJV.setCommunity((Community) collection.getParentObject());
             bulkUploadIMJV.setXSLPath(ConfigurationManager.getProperty("imjv-import", "transformation.stylesheet"));
 
             bulkUploadIMJV.run();
@@ -95,11 +95,11 @@ public class SwordLNEMilieuverslagContentIngester extends AbstractSwordContentIn
             return result;
         } catch (IOException e) {
             log.error(e.getMessage(), e);
+            throw new DSpaceSwordException(e);
         } catch (SQLException e1) {
             log.error(e1.getMessage(), e1);
+            throw new DSpaceSwordException(e1);
         }
-
-        return null;
     }
 
     @Override
