@@ -248,10 +248,12 @@
     <xsl:template name="vervlakte-voorstelling">
         <xsl:choose>
             <xsl:when test="child::*">
-                <xsl:for-each select="child::*[not('Rijksregisternummer')]">
-                    <xsl:call-template name="vervlakte-voorstelling"/>
-                    <xsl:if test="not(position()=last())">
-                        <xsl:text> </xsl:text>
+                <xsl:for-each select="child::*">
+                    <xsl:if test="name(.)!='Rijksregisternummer'">
+                        <xsl:call-template name="vervlakte-voorstelling"/>
+                        <xsl:if test="not(position()=last())">
+                            <xsl:text> </xsl:text>
+                        </xsl:if>
                     </xsl:if>
                 </xsl:for-each>
             </xsl:when>
