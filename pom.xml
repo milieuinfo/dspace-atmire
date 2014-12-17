@@ -258,7 +258,8 @@
            <properties>
               <dspace.dir>/opt/tomcat/apps/dspace</dspace.dir>
               <dspace.name>DSpace at LNE</dspace.name>
-              <dspace.hostname>dspace-on-101.mmis.be</dspace.hostname>
+              <!--<dspace.hostname>dspace-on-101.mmis.be</dspace.hostname>-->
+              <dspace.hostname>dspace-on-1-mgt.mmis.be</dspace.hostname>
               <dspace.baseUrl>http://${dspace.hostname}:8080</dspace.baseUrl>
               <dspace.url>${dspace.baseUrl}/xmlui</dspace.url>
               <!-- <dspace.oai.url>https://dev.atmire.com/dspace-lne42-oai</dspace.oai.url> -->
