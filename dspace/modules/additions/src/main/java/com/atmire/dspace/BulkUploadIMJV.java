@@ -23,7 +23,10 @@ import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Source;
+import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
@@ -38,24 +41,27 @@ import java.util.List;
  */
 public class BulkUploadIMJV extends ContextScript {
 
+    protected static DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+    protected static TransformerFactory transFactory = TransformerFactory.newInstance();
+    protected static SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
+    private Transformer transformer;
     private RelationshipObjectService<Dossier> dossierService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Dossier.class);
-
     private String directory;
     private String XSLPath;
     private String schemaString;
     private boolean validationEnabled;
-    private Community community;
-
-    public static void main(String[] args) {
-        BulkUploadIMJV script = new BulkUploadIMJV();
-        script.mainImpl(args);
-    }
+        private Community community;;
 
     public BulkUploadIMJV(Context context) {
         super(context);
     }
 
     public BulkUploadIMJV() {
+    }
+
+    public static void main(String[] args) {
+        BulkUploadIMJV script = new BulkUploadIMJV();
+        script.mainImpl(args);
     }
 
     @Override
@@ -150,14 +156,16 @@ public class BulkUploadIMJV extends ContextScript {
             File dir = new File(directory);
             File[] subdirs = dir.listFiles();
             for (File subdir : subdirs) {
-                String workingDirPath = subdir.getAbsolutePath() + File.separator + "IngediendeDocumentenOrigineel";
-                String outputFolderPath = workingDirPath + File.separator + "archive";
-                File workingDir = new File(workingDirPath);
-                File output = new File(outputFolderPath);
-                output.mkdir();
+                if(subdir.isDirectory()) {
+                    String workingDirPath = subdir.getAbsolutePath() + File.separator + "IngediendeDocumentenOrigineel";
+                    String outputFolderPath = workingDirPath + File.separator + "archive";
+                    File workingDir = new File(workingDirPath);
+                    File output = new File(outputFolderPath);
+                    output.mkdir();
 
-                makeArchives(outputFolderPath, workingDir);
-                importArchives(output);
+                    makeArchives(outputFolderPath, workingDir);
+                    importArchives(output);
+                }
             }
             context.commit();
 
@@ -187,6 +195,7 @@ public class BulkUploadIMJV extends ContextScript {
         }
         File dossierArchive = dossierArchives[0];
 
+        List<Item> createdItems = new LinkedList<Item>();
         List<com.atmire.dspace.content.Document> documents = new LinkedList<com.atmire.dspace.content.Document>();
         for (File documentArchive : documentArchives) {
             Item documentItem = importItem(outputFolder, documentArchive, LneUtils.getDocumentCollections(community));
@@ -195,6 +204,7 @@ public class BulkUploadIMJV extends ContextScript {
 
             com.atmire.dspace.content.Document document = new com.atmire.dspace.content.Document(documentItem);
             documents.add(document);
+            createdItems.add(documentItem);
         }
 
         Item dossierItem = importItem(outputFolder, dossierArchive, LneUtils.getDossierCollections(community));
@@ -203,6 +213,11 @@ public class BulkUploadIMJV extends ContextScript {
 
         Dossier dossier = new Dossier(dossierItem, documents);
         dossierService.create(context, dossier);
+
+        createdItems.add(dossierItem);
+        for (Item createdItem : createdItems) {
+            createdItem.decache();
+        }
     }
 
     private void createImportBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
@@ -233,8 +248,7 @@ public class BulkUploadIMJV extends ContextScript {
         });
 
         for (File xmlFile : xmlFiles) {
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            DocumentBuilder dBuilder = documentBuilderFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(xmlFile);
 
             if (validationEnabled) {
@@ -246,9 +260,7 @@ public class BulkUploadIMJV extends ContextScript {
     }
 
     protected void ValidateAgainstSchema(Document doc, String schemaString) throws IOException, SAXException {
-        String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
-        SchemaFactory factory = SchemaFactory.newInstance(language);
-        Schema schema = factory.newSchema(new File(org.dspace.core.ConfigurationManager.getProperty("dspace.dir") + File.separator + "config" + File.separator + "schemas-imjv" + File.separator + "xsd" + File.separator + schemaString));
+        Schema schema = schemaFactory.newSchema(new File(org.dspace.core.ConfigurationManager.getProperty("dspace.dir") + File.separator + "config" + File.separator + "schemas-imjv" + File.separator + "xsd" + File.separator + schemaString));
 
         Validator validator = schema.newValidator();
         validator.validate(new DOMSource(doc));
@@ -259,19 +271,9 @@ public class BulkUploadIMJV extends ContextScript {
         javax.xml.transform.Source xsltSource = new javax.xml.transform.stream.StreamSource(new File(xslPath));
         javax.xml.transform.Result result = new javax.xml.transform.stream.StreamResult(new File(outputPath));
 
-        // create an instance of TransformerFactory
-        javax.xml.transform.TransformerFactory transFact = javax.xml.transform.TransformerFactory.newInstance();
-
-        javax.xml.transform.Transformer trans;
         try {
-            trans = transFact.newTransformer(xsltSource);
-        } catch (TransformerConfigurationException e) {
-            print("Error: the stylesheet at '" + xslPath + "' couldn't be used");
-            return false;
-        }
-
-        try {
-            trans.transform(xmlSource, result);
+            Transformer transformer = getTransformer(xsltSource, xslPath);
+            transformer.transform(xmlSource, result);
         } catch (Throwable t) {
             print("Error: couldn't convert the metadata file at '" + input.getAbsolutePath());
             return false;
@@ -286,43 +288,57 @@ public class BulkUploadIMJV extends ContextScript {
         return true;
     }
 
-    public void setDirectory(String directory) {
-        this.directory = directory;
+    private Transformer getTransformer(Source xsltSource, String xslPath) throws TransformerConfigurationException {
+        if (transformer == null) {
+            // create an instance of TransformerFactory
+            try {
+                transformer = transFactory.newTransformer(xsltSource);
+            } catch (TransformerConfigurationException e) {
+                print("Error: the stylesheet at '" + xslPath + "' couldn't be used");
+                throw e;
+            }
+        }
+        return transformer;
+
     }
 
     public String getDirectory() {
         return directory;
     }
 
-    public void setXSLPath(String XSLPath) {
-        this.XSLPath = XSLPath;
+    public void setDirectory(String directory) {
+        this.directory = directory;
     }
 
     public String getXSLPath() {
         return XSLPath;
     }
 
-    public void setSchemaString(String schemaString) {
-        this.schemaString = schemaString;
+    public void setXSLPath(String XSLPath) {
+        this.XSLPath = XSLPath;
     }
 
     public String getSchemaString() {
         return schemaString;
     }
 
-    public void setValidationEnabled(boolean validationEnabled) {
-        this.validationEnabled = validationEnabled;
+    public void setSchemaString(String schemaString) {
+        this.schemaString = schemaString;
     }
 
     public boolean isValidationEnabled() {
         return validationEnabled;
     }
 
-    public void setCommunity(Community community) {
-        this.community = community;
+    public void setValidationEnabled(boolean validationEnabled) {
+        this.validationEnabled = validationEnabled;
     }
 
     public Community getCommunity() {
         return community;
+    }
+
+    public void setCommunity(Community community) {
+        this.community = community;
     }
 }
