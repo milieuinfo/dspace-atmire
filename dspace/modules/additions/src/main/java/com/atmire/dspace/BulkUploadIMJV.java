@@ -77,7 +77,7 @@ public class BulkUploadIMJV extends ContextScript {
 
         OptionBuilder.withArgName("xsl");
         OptionBuilder.hasArg();
-        OptionBuilder.withDescription("xsl stylesheet used to covert the xml");
+        OptionBuilder.withDescription("xsl stylesheet used to convert the xml");
         Option xslPathOption = OptionBuilder.create('x');
         options.addOption(xslPathOption);
 
@@ -163,8 +163,11 @@ public class BulkUploadIMJV extends ContextScript {
                     File output = new File(outputFolderPath);
                     output.mkdir();
 
+                    String xmlCommunicatiePath = subdir.getAbsolutePath() + File.separator + "XML-Communicatie";
+                    File xmlCommunicatie = new File(xmlCommunicatiePath);
+
                     makeArchives(outputFolderPath, workingDir);
-                    importArchives(output);
+                    importArchives(output,xmlCommunicatie);
                 }
             }
             context.commit();
@@ -174,7 +177,7 @@ public class BulkUploadIMJV extends ContextScript {
         }
     }
 
-    protected void importArchives(File outputFolder) throws Exception {
+    protected void importArchives(File outputFolder, File xmlCommunicatie) throws Exception {
 
         File[] documentArchives = outputFolder.listFiles(new FilenameFilter() {
             @Override
@@ -211,6 +214,10 @@ public class BulkUploadIMJV extends ContextScript {
 
         createImportBundle(dossierItem, dossierArchive);
 
+        if(xmlCommunicatie.exists()) {
+            createXmlCommunicatieBundle(dossierItem, xmlCommunicatie);
+        }
+
         Dossier dossier = new Dossier(dossierItem, documents);
         dossierService.create(context, dossier);
 
@@ -228,6 +235,25 @@ public class BulkUploadIMJV extends ContextScript {
         BitstreamFormat bf = FormatIdentifier.guessFormat(context, bs);
         bs.setFormat(bf);
         bs.update();
+    }
+
+    private void createXmlCommunicatieBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
+        Bundle bundle = item.createBundle("XML-Communicatie");
+
+        File[] xmlFiles = folder.listFiles(new FilenameFilter() {
+            public boolean accept(File dir, String name) {
+                return name.endsWith(".xml");
+            }
+        });
+
+        for (File xmlFile : xmlFiles) {
+            InputStream inputstream = new FileInputStream(xmlFile);
+            Bitstream bs = bundle.createBitstream(inputstream);
+            bs.setName(xmlFile.getName());
+            BitstreamFormat bf = FormatIdentifier.guessFormat(context, bs);
+            bs.setFormat(bf);
+            bs.update();
+        }
     }
 
     protected Item importItem(File outputFolder, File itemArchive, Collection[] collections) throws Exception {

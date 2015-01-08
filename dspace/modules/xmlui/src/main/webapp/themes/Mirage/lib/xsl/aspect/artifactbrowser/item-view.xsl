@@ -45,10 +45,10 @@
         <xsl:copy-of select="$SFXLink" />
         <!-- Generate the bitstream information from the file section -->
         <xsl:choose>
-            <xsl:when test="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='IMPORT']/mets:file">
+            <xsl:when test="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='IMPORT' or @USE='XML-Communicatie']/mets:file">
                 <h2><i18n:text>xmlui.dri2xhtml.METS-1.0.item-files-head</i18n:text></h2>
                 <div class="file-list">
-                <xsl:apply-templates select="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='IMPORT']">
+                <xsl:apply-templates select="./mets:fileSec/mets:fileGrp[@USE='CONTENT' or @USE='ORIGINAL' or @USE='IMPORT' or @USE='XML-Communicatie']">
                     <xsl:with-param name="context" select="."/>
                     <xsl:with-param name="primaryBitstream" select="./mets:structMap[@TYPE='LOGICAL']/mets:div[@TYPE='DSpace Item']/mets:fptr/@FILEID"/>
                 </xsl:apply-templates>
@@ -724,7 +724,7 @@
     <xsl:template match="dri:div[@n='item-view']/dri:head" priority="5">
     </xsl:template>
 
-        <xsl:template match="mets:fileGrp[@USE='CONTENT' or @USE='IMPORT']">
+        <xsl:template match="mets:fileGrp[@USE='CONTENT' or @USE='IMPORT' or @USE='XML-Communicatie']">
         <xsl:param name="context"/>
         <xsl:param name="primaryBitstream" select="-1"/>
 
