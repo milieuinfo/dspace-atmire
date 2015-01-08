@@ -78,6 +78,8 @@
             <xsl:value-of select="Exploitatie/Naam/text()"/>
             <xsl:text> - </xsl:text>
             <xsl:value-of select="RapporteringsJaar/text()"/>
+            <xsl:text> - </xsl:text>
+            <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
         </dcvalue>
     </xsl:template>
 
@@ -199,9 +201,11 @@
         <dcvalue element="title">
             <xsl:value-of select="//IdentificatieMetaData/Exploitatie/Naam/text()"/>
             <xsl:text> - </xsl:text>
-            <xsl:value-of select="AangifteType/text()"/>
-            <xsl:text> - </xsl:text>
             <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
+            <xsl:text> - </xsl:text>
+            <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
+            <xsl:text> - </xsl:text>
+            <xsl:value-of select="AangifteType/text()"/>
         </dcvalue>
     </xsl:template>
 
