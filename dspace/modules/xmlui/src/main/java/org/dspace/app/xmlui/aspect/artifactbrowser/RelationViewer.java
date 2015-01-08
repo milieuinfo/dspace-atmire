@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -52,7 +53,7 @@ public class RelationViewer extends AbstractDSpaceTransformer
             if(!theTypes.contains(relationshipType.getRightType())) theTypes.add(relationshipType.getRightType());
         }
 
-        Map<String, java.util.List<RelationShipObject>> outObjects = new HashMap<String, java.util.List<RelationShipObject>>();
+        Map<String, java.util.List<RelationShipObject>> groupedRelationships = new HashMap<String, java.util.List<RelationShipObject>>();
         for(String theType : theTypes){
             RelationshipObjectServiceFactory rlsf = RelationshipObjectServiceFactory.getInstance();
             try {
@@ -66,7 +67,7 @@ public class RelationViewer extends AbstractDSpaceTransformer
                                 java.util.List<RelationShipObject> newList = new ArrayList<RelationShipObject>();
                                 newList.addAll(relationshipObjectService.getOutgoingRelationshipObjects(context,relationShipObject));
                                 newList.addAll(relationshipObjectService.getIncomingRelationshipObjects(context,relationShipObject));
-                                outObjects.put(relationShipObject.getTypeText(),newList);
+                                addToGroupedRelationship(groupedRelationships, newList);
                             }
                         }
                     }
@@ -78,7 +79,7 @@ public class RelationViewer extends AbstractDSpaceTransformer
 
         Division divRelations = body.addDivision("relations");
 
-        for(Map.Entry<String, java.util.List<RelationShipObject>> entry : outObjects.entrySet()) {
+        for(Map.Entry<String, java.util.List<RelationShipObject>> entry : groupedRelationships.entrySet()) {
             String key = entry.getKey();
 
             Division divisionOut = divRelations.addDivision("relation_" + key);
@@ -94,5 +95,15 @@ public class RelationViewer extends AbstractDSpaceTransformer
         }
     }
 
+    protected void addToGroupedRelationship(Map<String, java.util.List<RelationShipObject>> outObjects, java.util.List<RelationShipObject> newList) {
+        for (RelationShipObject shipObject : newList) {
+            java.util.List<RelationShipObject> typeList = outObjects.get(shipObject.getTypeText());
+            if (typeList == null) {
+                typeList = new LinkedList<RelationShipObject>();
+            }
+            typeList.add(shipObject);
+            outObjects.put(shipObject.getTypeText(), typeList);
+        }
+    }
 
 }
