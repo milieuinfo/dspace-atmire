@@ -1522,7 +1522,13 @@ public class ItemImport
             }
         }
         if (bis == null) {
-            throw new FileNotFoundException(fullpath);
+            try {
+                throw new FileNotFoundException(fullpath);
+            } catch (FileNotFoundException e) {
+                System.out.println("Skipping file " + fullpath);
+                log.error("Skipping file " + fullpath);
+                e.printStackTrace();
+            }
         }
 
         Bitstream bs = null;
