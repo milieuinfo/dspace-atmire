@@ -1528,6 +1528,7 @@ public class ItemImport
                 System.out.println("Skipping file " + fullpath);
                 log.error("Skipping file " + fullpath);
                 e.printStackTrace();
+                return;
             }
         }
 
