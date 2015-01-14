@@ -1,0 +1,3 @@
+#!/bin/sh
+
+diff -rw /opt/tomcat/data/dms-export/downloads/ /opt/tomcat/data/dms-export/downloadsv2/
