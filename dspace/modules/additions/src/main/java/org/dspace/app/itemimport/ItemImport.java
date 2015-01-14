@@ -1503,8 +1503,27 @@ public class ItemImport
 //        String fullpath = path + File.separatorChar + fileName;
 
         // get an input stream
-        BufferedInputStream bis = new BufferedInputStream(new FileInputStream(
-                fullpath));
+        BufferedInputStream bis = null;
+        try {
+            bis = new BufferedInputStream(new FileInputStream(
+                    fullpath));
+        } catch (FileNotFoundException e) {
+            File f = new File(fullpath);
+            File dir = f.getParentFile();
+            if (dir.exists()) {
+                File[] files = dir.listFiles();
+                for (File file1 : files) {
+                    if (file1.getAbsolutePath().toLowerCase().endsWith(fullpath.toLowerCase()) && fullpath.length() > 5) {
+                        bis = new BufferedInputStream(new FileInputStream(file1));
+                        fileName = FilenameUtils.getBaseName(fullpath) + "." + FilenameUtils.getExtension(fullpath);
+                        break;
+                    }
+                }
+            }
+        }
+        if (bis == null) {
+            throw new FileNotFoundException(fullpath);
+        }
 
         Bitstream bs = null;
         String newBundleName = bundleName;
