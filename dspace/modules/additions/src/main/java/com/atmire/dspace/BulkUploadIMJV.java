@@ -268,9 +268,16 @@ public class BulkUploadIMJV extends ContextScript {
     protected void makeArchives(String outputFolderPath, File dir) throws ParserConfigurationException, SAXException, IOException, XSLTransformException {
         File[] xmlFiles = dir.listFiles(new FilenameFilter() {
             public boolean accept(File dir, String name) {
-                return name.endsWith(".xml");
+                return name.endsWith("METADATA.xml");
             }
         });
+        if (xmlFiles.length == 0) {
+            xmlFiles = dir.listFiles(new FilenameFilter() {
+                public boolean accept(File dir, String name) {
+                    return name.endsWith(".xml");
+                }
+            });
+        }
 
         for (File xmlFile : xmlFiles) {
             DocumentBuilder dBuilder = documentBuilderFactory.newDocumentBuilder();
