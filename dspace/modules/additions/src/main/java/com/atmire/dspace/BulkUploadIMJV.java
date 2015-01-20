@@ -51,7 +51,6 @@ public class BulkUploadIMJV extends ContextScript {
     private String schemaString;
     private boolean validationEnabled;
     private Community community;
-    private InputStream inputstream;
 
     public BulkUploadIMJV(Context context) {
         super(context);
@@ -199,6 +198,7 @@ public class BulkUploadIMJV extends ContextScript {
         }
         File dossierArchive = dossierArchives[0];
 
+        List<Item> createdItems = new LinkedList<Item>();
         List<com.atmire.dspace.content.Document> documents = new LinkedList<com.atmire.dspace.content.Document>();
         for (File documentArchive : documentArchives) {
             Item documentItem = importItem(outputFolder, documentArchive, LneUtils.getDocumentCollections(community));
@@ -207,7 +207,7 @@ public class BulkUploadIMJV extends ContextScript {
 
             com.atmire.dspace.content.Document document = new com.atmire.dspace.content.Document(documentItem);
             documents.add(document);
-            documentItem.decache();
+            createdItems.add(documentItem);
         }
 
         Item dossierItem = importItem(outputFolder, dossierArchive, LneUtils.getDossierCollections(community));
@@ -221,12 +221,15 @@ public class BulkUploadIMJV extends ContextScript {
         Dossier dossier = new Dossier(dossierItem, documents);
         dossierService.create(context, dossier);
 
-        dossierItem.decache();
+        createdItems.add(dossierItem);
+        for (Item createdItem : createdItems) {
+            createdItem.decache();
+        }
     }
 
     private void createImportBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
         Bundle bundle = item.createBundle("IMPORT");
-        inputstream = new FileInputStream(folder.getPath() + File.separator + "source.xml");
+        InputStream inputstream = new FileInputStream(folder.getPath() + File.separator + "source.xml");
         Bitstream bs = bundle.createBitstream(inputstream);
         bs.setName("source.xml");
         BitstreamFormat bf = FormatIdentifier.guessFormat(context, bs);
@@ -245,7 +248,7 @@ public class BulkUploadIMJV extends ContextScript {
         });
 
         for (File xmlFile : xmlFiles) {
-            inputstream = new FileInputStream(xmlFile);
+            InputStream inputstream = new FileInputStream(xmlFile);
             Bitstream bs = bundle.createBitstream(inputstream);
             bs.setName(xmlFile.getName());
             BitstreamFormat bf = FormatIdentifier.guessFormat(context, bs);
