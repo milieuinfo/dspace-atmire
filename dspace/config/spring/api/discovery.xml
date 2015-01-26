@@ -336,6 +336,7 @@
                 <value>imjv.Rapporteringsjaar</value>
             </list>
         </property>
+        <property name="type" value="date"/>
         <property name="facetLimit" value="10"/>
         <property name="sortOrder" value="COUNT"/>
     </bean>
