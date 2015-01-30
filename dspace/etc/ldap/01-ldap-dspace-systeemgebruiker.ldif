@@ -1,0 +1,19 @@
+#
+# Systeem gebruiker gebruikt door de DSpace applicatie
+#
+dn: uid=dspace,ou=systemusers,dc=milieuinfo,dc=be
+changetype: add
+objectClass: top
+objectClass: person
+objectClass: inetorgperson
+objectClass: organizationalPerson
+sn: dspace
+cn: dspace
+uid: dspace
+userPassword: {SSHA}LyvLI5fRX3NfofUY3zL/xpZ4FhYKxhjjAaY3TQ==
+objectClass: oauthClient
+oauthsecret: 825fvdkWLX9JMLQUFvGXUipMQz6PhhgDrRZ7XrKl5G95j29Q3EPqRyyM3bGNcjAJ
+trustedclient: FALSE
+allowedattributes: persoonsid|cn|sn|givenName|mail
+allowedroles: DSpace.*
+#password: 76GXk68uAlVD

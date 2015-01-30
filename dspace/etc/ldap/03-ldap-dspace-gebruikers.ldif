@@ -1,0 +1,19 @@
+dn: cn=DSpaceAdmin,ou=dspace,ou=groups,dc=milieuinfo,dc=be
+changetype: modify
+add: uniqueMember
+uniqueMember: uid=tvgulck,ou=people,dc=milieuinfo,dc=be
+
+dn: cn=DSpaceAdmin,ou=dspace,ou=groups,dc=milieuinfo,dc=be
+changetype: modify
+add: uniqueMember
+uniqueMember: uid=jalie,ou=people,dc=milieuinfo,dc=be
+
+dn: cn=DSpaceIMJV,ou=dspace,ou=groups,dc=milieuinfo,dc=be
+changetype: modify
+add: uniqueMember
+uniqueMember: uid=tneckeb,ou=people,dc=milieuinfo,dc=be
+
+dn: cn=DSpaceDBA,ou=dspace,ou=groups,dc=milieuinfo,dc=be
+changetype: modify
+add: uniqueMember
+uniqueMember: uid=bz7j1p,ou=people,dc=milieuinfo,dc=be

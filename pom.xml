@@ -211,13 +211,13 @@
                     <strictCheck>true</strictCheck>
                 </configuration>
                 <executions>
-                    <execution>
-                        <id>check-headers</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
+                    <!--<execution>-->
+                        <!--<id>check-headers</id>-->
+                        <!--<phase>verify</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>check</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
                 </executions>
          </plugin>
       </plugins>
@@ -722,6 +722,19 @@
             <type>war</type>
          </dependency>
          <!-- DSpace third Party Dependencies -->
+
+          <!-- ACD dependencies -->
+          <dependency>
+              <groupId>be.milieuinfo.security</groupId>
+              <artifactId>acd-openam-oauth-client</artifactId>
+              <version>11.0.0.12</version>
+          </dependency>
+
+          <dependency>
+              <groupId>be.milieuinfo.framework</groupId>
+              <artifactId>core-log</artifactId>
+              <version>2.1.2</version>
+          </dependency>
 
          <dependency>
             <groupId>org.swordapp</groupId>
