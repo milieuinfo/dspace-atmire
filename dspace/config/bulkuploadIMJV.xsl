@@ -129,6 +129,7 @@
     <xsl:template match="IdentificatieMetaData/Exploitatie/Locatie/Gemeente" mode="imjv">
         <dcvalue element="ExploitatieLocatieStad">
             <xsl:value-of select="text()"/>
+            <xsl:value-of select="Naam"/>
         </dcvalue>
     </xsl:template>
 
@@ -148,6 +149,7 @@
     <xsl:template match="IdentificatieMetaData/Exploitant/Adres/Gemeente" mode="imjv">
         <dcvalue element="ExploitantAdresStad">
             <xsl:value-of select="text()"/>
+            <xsl:value-of select="Naam"/>
         </dcvalue>
     </xsl:template>
 
