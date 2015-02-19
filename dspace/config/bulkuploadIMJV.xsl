@@ -58,10 +58,11 @@
                 <xsl:value-of select="AangiftePdf" disable-output-escaping="yes"/>
                 <xsl:text>&#10;</xsl:text>
             </xsl:if>
-            <xsl:if test="ProcesSchema/Bestand">
-                <xsl:text>../../</xsl:text>
-                <xsl:value-of select="ProcesSchema/Bestand" disable-output-escaping="yes"/>
-            </xsl:if>
+            <xsl:for-each select="ProcesSchema/Bestand">
+                    <xsl:text>../../</xsl:text>
+                    <xsl:value-of select="." disable-output-escaping="yes"/>
+                <xsl:text>&#10;</xsl:text>
+            </xsl:for-each>
         </redirect:write>
         <redirect:write select="concat('aangifte',position(),'/source.xml')">
             <xsl:copy>
