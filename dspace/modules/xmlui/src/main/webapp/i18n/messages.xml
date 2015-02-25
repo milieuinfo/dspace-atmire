@@ -2394,5 +2394,6 @@
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeitGebruikerNaam">Milieuverslag Feit Gebruiker Naam</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-MilieuVerslagFeitActie">Milieuverslag Feit Actie</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-AangifteType">Aangifte Type</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.imjv-dmsexportnotes">Export notes</message>
 
 </catalogue>
