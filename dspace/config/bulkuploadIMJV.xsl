@@ -24,6 +24,7 @@
             <dublin_core schema="imjv">
                 <xsl:apply-templates select="." mode="imjv"/>
                 <xsl:apply-templates select="//MilieuVerslagMetaData" mode="imjv"/>
+                <xsl:call-template name="dossier-dmsexportnotes"/>
             </dublin_core>
         </redirect:write>
         <redirect:write select="concat('IdentificatieMetaData',position(),'/source.xml')">
@@ -50,6 +51,7 @@
         <redirect:write select="concat('aangifte',position(), '/metadata_imjv.xml')">
             <dublin_core schema="imjv">
                 <xsl:apply-templates mode="imjv"/>
+                <xsl:call-template name="document-dmsexportnotes"/>
             </dublin_core>
         </redirect:write>
         <redirect:write select="concat('aangifte',position(), '/contents')">
@@ -75,6 +77,8 @@
     <!-- Dossier metadata -->
 
     <xsl:template name="dossier-title">
+        <xsl:choose>
+            <xsl:when test="Exploitatie">
         <dcvalue element="title">
             <xsl:value-of select="Exploitatie/Naam/text()"/>
             <xsl:text> - </xsl:text>
@@ -82,6 +86,18 @@
             <xsl:text> - </xsl:text>
             <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
         </dcvalue>
+            </xsl:when>
+            <xsl:otherwise>
+                <dcvalue element="title">
+                    <xsl:value-of select="Exploitant/Naam/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="RapporteringsJaar/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="Exploitant/CBBExploitantNummer/text()"/>
+                </dcvalue>
+            </xsl:otherwise>
+        </xsl:choose>
+
     </xsl:template>
 
     <xsl:template match="IdentificatieMetaData/Exploitatie/Naam" mode="dc">
@@ -201,6 +217,8 @@
     <!-- Document metadata -->
 
     <xsl:template name="document-title">
+        <xsl:choose>
+            <xsl:when test="//IdentificatieMetaData/Exploitatie">
         <dcvalue element="title">
             <xsl:value-of select="//IdentificatieMetaData/Exploitatie/Naam/text()"/>
             <xsl:text> - </xsl:text>
@@ -210,6 +228,19 @@
             <xsl:text> - </xsl:text>
             <xsl:value-of select="AangifteType/text()"/>
         </dcvalue>
+            </xsl:when>
+            <xsl:otherwise>
+                <dcvalue element="title">
+                    <xsl:value-of select="//IdentificatieMetaData/Exploitant/Naam/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="//IdentificatieMetaData/Exploitant/CBBExploitantNummer/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="AangifteType/text()"/>
+                </dcvalue>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template name="document-author">
@@ -245,6 +276,23 @@
             <xsl:value-of select="text()"/>
         </dcvalue>
     </xsl:template>
+
+    <xsl:template name="dossier-dmsexportnotes">
+        <xsl:if test="not(Exploitatie)">
+            <dcvalue element="dmsexportnotes">
+                <xsl:text>Exploitatie ontbrak in DMS op moment van export</xsl:text>
+            </dcvalue>
+        </xsl:if>
+    </xsl:template>
+
+    <xsl:template name="document-dmsexportnotes">
+        <xsl:if test="not(//IdentificatieMetaData/Exploitatie)">
+            <dcvalue element="dmsexportnotes">
+                <xsl:text>Exploitatie ontbrak in DMS op moment van export</xsl:text>
+            </dcvalue>
+        </xsl:if>
+    </xsl:template>
+
 
     <xsl:template match="//Rijksregisternummer" mode="dc"/>
     <xsl:template match="//Rijksregisternummer" mode="imjv"/>
