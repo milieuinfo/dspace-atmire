@@ -1154,10 +1154,10 @@
       </license>
     </licenses>
 
-   <issueManagement>
-      <system>JIRA</system>
-      <url>https://jira.duraspace.org/browse/DS</url>
-   </issueManagement>
+   <!--<issueManagement>-->
+      <!--<system>JIRA</system>-->
+      <!--<url>https://jira.duraspace.org/browse/DS</url>-->
+   <!--</issueManagement>-->
 
    <mailingLists>
       <mailingList>
@@ -1433,9 +1433,9 @@
         on release to deploy release versions to the repository by the
         release manager.
     -->
-    <distributionManagement>
+    <!--<distributionManagement>-->
         <!-- further distribution management is found upstream in the sonatype parent -->
-    </distributionManagement>
+    <!--</distributionManagement>-->
 
     <repositories>
         <repository>
