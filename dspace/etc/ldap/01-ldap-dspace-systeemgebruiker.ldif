@@ -16,4 +16,5 @@ oauthsecret: 825fvdkWLX9JMLQUFvGXUipMQz6PhhgDrRZ7XrKl5G95j29Q3EPqRyyM3bGNcjAJ
 trustedclient: FALSE
 allowedattributes: persoonsid|cn|sn|givenName|mail
 allowedroles: DSpace.*
+weakauthallowed: true
 #password: 76GXk68uAlVD

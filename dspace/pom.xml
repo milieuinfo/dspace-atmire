@@ -119,7 +119,12 @@
            <artifactId>additions</artifactId>
         </dependency>
 
-    	<!-- This dependency ensures DSpace OAI JAR is added to [dspace]/lib/,
+        <dependency>
+            <groupId>be.milieuinfo.framework</groupId>
+            <artifactId>core-log</artifactId>
+        </dependency>
+
+        <!-- This dependency ensures DSpace OAI JAR is added to [dspace]/lib/,
              so that the 'dspace oai' launcher.xml command works.  -->
     	<dependency>
             <groupId>org.dspace</groupId>

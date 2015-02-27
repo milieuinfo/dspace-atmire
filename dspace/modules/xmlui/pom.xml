@@ -101,6 +101,11 @@
       </dependency>
 
        <dependency>
+           <groupId>be.milieuinfo.framework</groupId>
+           <artifactId>core-log</artifactId>
+       </dependency>
+
+       <dependency>
            <groupId>com.atmire</groupId>
            <artifactId>atmire-datamodel-xmlui</artifactId>
            <version>${datamodel.version.number}</version>

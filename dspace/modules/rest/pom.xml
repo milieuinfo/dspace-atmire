@@ -89,6 +89,11 @@
             <artifactId>additions</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>be.milieuinfo.framework</groupId>
+            <artifactId>core-log</artifactId>
+        </dependency>
+
         <!-- DSpace REST Webapp -->
         <dependency>
             <groupId>org.dspace</groupId>
