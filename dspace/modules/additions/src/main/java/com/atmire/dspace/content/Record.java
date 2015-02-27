@@ -6,6 +6,7 @@ import org.dspace.core.Constants;
 import org.dspace.core.Context;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +22,10 @@ public class Record extends RelationShipObject {
 
     public Record(Item item, List<Record> records) {
         this(null, null, null, item, records);
+    }
+
+    public Record(Item item) {
+        this(null, null, null, item, null);
     }
 
     protected Record(Relationship coreRelationship, List<Relationship> incoming, List<Relationship> outgoing, Item item, List<Record> records) {
@@ -61,6 +66,14 @@ public class Record extends RelationShipObject {
 
     public void setRecord(Record record) {
         this.record = record;
+    }
+
+    public void addRecord(Record record){
+        if(records==null){
+            records = new ArrayList<Record>();
+        }
+
+        records.add(record);
     }
 
     @Override
