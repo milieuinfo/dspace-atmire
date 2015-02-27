@@ -107,13 +107,13 @@ public class RecordService extends AbstractRelationshipObjectServiceImpl<Record>
     @Override
     public Record create(Context context, Record record) throws RelationshipException {
         try {
-            Relationship relationship = getRelationshipService().create(context, record.getItem(), record.getItem(), getRelationshipLoopType(context));
+            getRelationshipService().create(context, record.getItem(), record.getItem(), getRelationshipLoopType(context));
             for (Record record1: record.getRecords()) {
                 record1.setRecord(record); // make sure it's set or throw an exception if it isn't ?
-                create(context, record1);
+                getRelationshipService().create(context, record.getItem(), record1.getItem(), getRelationshipType(context));
             }
 
-            return findByRelationshipUnique(context, relationship);
+            return record;
         } catch (SQLException e) {
             throw new RelationshipException(e);
         }

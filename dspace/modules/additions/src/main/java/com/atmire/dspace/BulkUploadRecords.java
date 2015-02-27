@@ -236,6 +236,10 @@ public class BulkUploadRecords extends ContextScript {
             createdDocuments.put(documentArchive.getName(), documentItem);
         }
 
+        for (Record record : createdDossiers.values()) {
+            recordService.create(context,record);
+        }
+
         for (File pdfArchive : pdfArchives) {
             doc = builder.parse(pdfArchive.getAbsolutePath() + File.separator + "relations.xml");
             Node node = XPathAPI.selectSingleNode(doc, "/dublin_core/dcvalue");
