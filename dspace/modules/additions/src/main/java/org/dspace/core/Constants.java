@@ -43,6 +43,8 @@ public class Constants
 	public static final int DOSSIER = 8;
 	public static final int DOCUMENT = 9;
 
+    public static final int RECORD = 10;
+
     /**
      * lets you look up type names from the type IDs
      */
