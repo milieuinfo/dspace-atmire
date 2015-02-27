@@ -3,8 +3,8 @@
     <type>
         <leftType>com.atmire.dspace.content.Record</leftType>
         <rightType>com.atmire.dspace.content.Record</rightType>
-        <leftLabel>Record</leftLabel>
-        <rightLabel>Record</rightLabel>
+        <leftLabel>Parent</leftLabel>
+        <rightLabel>Child</rightLabel>
         <leftCardinality>
             <min>0</min>
             <max>1</max>
