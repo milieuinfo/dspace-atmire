@@ -208,9 +208,10 @@
         -->
         <moduleSet>
             <includes>
-                <include>org.dspace.modules:solr:war:*</include>
-                <include>org.dspace.modules:swordv2:war:*</include>
-                <include>org.dspace.modules:xmlui:war:*</include>
+                <include>be.milieuinfo.dspace.modules:rest:war:*</include>
+                <include>be.milieuinfo.dspace.modules:solr:war:*</include>
+                <include>be.milieuinfo.dspace.modules:swordv2:war:*</include>
+                <include>be.milieuinfo.dspace.modules:xmlui:war:*</include>
             </includes>
             <binaries>
                 <includeDependencies>false</includeDependencies>
