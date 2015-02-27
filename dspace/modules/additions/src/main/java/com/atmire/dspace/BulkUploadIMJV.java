@@ -1,10 +1,6 @@
 package com.atmire.dspace;
 
-import com.atmire.dspace.content.Dossier;
-import com.atmire.dspace.content.RelationshipObjectService;
-import com.atmire.dspace.content.RelationshipObjectServiceFactory;
 import com.atmire.scripts.ContextScript;
-import com.atmire.util.LneUtils;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
@@ -33,8 +29,6 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.*;
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by philip on 07/11/14.
@@ -45,7 +39,7 @@ public class BulkUploadIMJV extends ContextScript {
     protected static TransformerFactory transFactory = TransformerFactory.newInstance();
     protected static SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
     private Transformer transformer;
-    private RelationshipObjectService<Dossier> dossierService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Dossier.class);
+//    private RelationshipObjectService<Dossier> dossierService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Dossier.class);
     private String directory;
     private String XSLPath;
     private String schemaString;
@@ -198,33 +192,33 @@ public class BulkUploadIMJV extends ContextScript {
         }
         File dossierArchive = dossierArchives[0];
 
-        List<Item> createdItems = new LinkedList<Item>();
-        List<com.atmire.dspace.content.Document> documents = new LinkedList<com.atmire.dspace.content.Document>();
-        for (File documentArchive : documentArchives) {
-            Item documentItem = importItem(outputFolder, documentArchive, LneUtils.getDocumentCollections(community));
+//        List<Item> createdItems = new LinkedList<Item>();
+//        List<com.atmire.dspace.content.Document> documents = new LinkedList<com.atmire.dspace.content.Document>();
+//        for (File documentArchive : documentArchives) {
+//            Item documentItem = importItem(outputFolder, documentArchive, LneUtils.getDocumentCollections(community));
+//
+//            createImportBundle(documentItem, documentArchive);
+//
+//            com.atmire.dspace.content.Document document = new com.atmire.dspace.content.Document(documentItem);
+//            documents.add(document);
+//            createdItems.add(documentItem);
+//        }
+//
+//        Item dossierItem = importItem(outputFolder, dossierArchive, LneUtils.getDossierCollections(community));
+//
+//        createImportBundle(dossierItem, dossierArchive);
+//
+//        if(xmlCommunicatie.exists()) {
+//            createXmlCommunicatieBundle(dossierItem, xmlCommunicatie);
+//        }
+//
+//        Dossier dossier = new Dossier(dossierItem, documents);
+//        dossierService.create(context, dossier);
 
-            createImportBundle(documentItem, documentArchive);
-
-            com.atmire.dspace.content.Document document = new com.atmire.dspace.content.Document(documentItem);
-            documents.add(document);
-            createdItems.add(documentItem);
-        }
-
-        Item dossierItem = importItem(outputFolder, dossierArchive, LneUtils.getDossierCollections(community));
-
-        createImportBundle(dossierItem, dossierArchive);
-
-        if(xmlCommunicatie.exists()) {
-            createXmlCommunicatieBundle(dossierItem, xmlCommunicatie);
-        }
-
-        Dossier dossier = new Dossier(dossierItem, documents);
-        dossierService.create(context, dossier);
-
-        createdItems.add(dossierItem);
-        for (Item createdItem : createdItems) {
-            createdItem.decache();
-        }
+//        createdItems.add(dossierItem);
+//        for (Item createdItem : createdItems) {
+//            createdItem.decache();
+//        }
     }
 
     private void createImportBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
