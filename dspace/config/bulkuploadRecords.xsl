@@ -95,6 +95,24 @@
     <xsl:template name="aangiftePdf">
         <xsl:param name="aangifte-directory"/>
 
+        <redirect:write select="concat('aangiftePdf',position(), '/dublin_core.xml')">
+            <dublin_core schema="dc">
+                <xsl:call-template name="document-title"/>
+                <xsl:call-template name="document-date-issued"/>
+                <xsl:call-template name="document-publisher"/>
+                <xsl:call-template name="document-author"/>
+                <xsl:apply-templates mode="dc"/>
+            </dublin_core>
+        </redirect:write>
+
+        <redirect:write select="concat('aangiftePdf',position(), '/metadata_imjv.xml')">
+            <dublin_core schema="imjv">
+                <xsl:apply-templates mode="imjv"/>
+                <xsl:call-template name="document-dmsexportnotes"/>
+            </dublin_core>
+        </redirect:write>
+
+
         <redirect:write select="concat('aangiftePdf',position(), '/contents')">
         <xsl:if test="AangiftePdf">
             <xsl:text>../../</xsl:text>

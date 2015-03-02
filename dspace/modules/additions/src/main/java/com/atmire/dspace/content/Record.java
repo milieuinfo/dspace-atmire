@@ -34,6 +34,9 @@ public class Record extends RelationShipObject {
     }
 
     public List<Record> getRecords() {
+        if(records==null){
+            records = new ArrayList<Record>();
+        }
         return records;
     }
 

@@ -183,88 +183,66 @@ public class BulkUploadRecords extends ContextScript {
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = null;
 
-        File[] pdfArchives = outputFolder.listFiles(new FilenameFilter() {
+        File[] archives = outputFolder.listFiles(new FilenameFilter() {
             @Override
-            public boolean accept(File dir, String name) {
-                return name.startsWith("aangiftePdf");
+            public boolean accept(File current, String name) {
+                return new File(current, name).isDirectory();
             }
         });
 
-        File[] documentArchives = outputFolder.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.startsWith("aangifte") && !name.startsWith("aangiftePdf");
-            }
-        });
+        HashMap<String,Record> recordMap = new HashMap<String,Record>();
+        HashMap<Record,String> referenceMap = new HashMap<Record,String>();
 
-        File[] dossierArchives = outputFolder.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.startsWith("IdentificatieMetaData");
-            }
-        });
-
-
-        HashMap<String,Record> createdDossiers = new HashMap<String,Record>();
-
-        for (File dossierArchive : dossierArchives) {
-            Item dossierItem = importItem(outputFolder, dossierArchive, LneUtils.getRecordCollections(community));
-            createImportBundle(dossierItem, dossierArchive);
+        for (File archive : archives) {
+            Item item = importItem(outputFolder, archive, LneUtils.getRecordCollections(community));
+            createImportBundle(item, archive);
 
             if(xmlCommunicatie.exists()) {
-                createXmlCommunicatieBundle(dossierItem, xmlCommunicatie);
+                createXmlCommunicatieBundle(item, xmlCommunicatie);
             }
 
-            Record document = new Record(dossierItem);
-            dossierItem.decache();
+            Record record = new Record(item);
+            recordMap.put(archive.getName(),record);
 
-            createdDossiers.put(dossierArchive.getName(), document);
-        }
+            File relations = new File(archive.getAbsolutePath() + File.separator + "relations.xml");
 
-        HashMap<String,Item> createdDocuments = new HashMap<String,Item>();
-        for (File documentArchive : documentArchives) {
-            Item documentItem = importItem(outputFolder, documentArchive, LneUtils.getRecordCollections(community));
-            Record record = new Record(documentItem);
+            if(relations.exists()) {
+                doc = builder.parse(relations);
+                Node node = XPathAPI.selectSingleNode(doc, "/dublin_core/dcvalue");
 
-            doc = builder.parse(documentArchive.getAbsolutePath() + File.separator + "relations.xml");
-            Node node = XPathAPI.selectSingleNode(doc, "/dublin_core/dcvalue");
-
-            if(createdDossiers.containsKey(node.getTextContent())){
-                createdDossiers.get(node.getTextContent()).addRecord(record);
+                referenceMap.put(record,node.getTextContent());
             }
 
-            createdDocuments.put(documentArchive.getName(), documentItem);
-        }
-
-        for (Record record : createdDossiers.values()) {
-            recordService.create(context,record);
-        }
-
-        for (File pdfArchive : pdfArchives) {
-            doc = builder.parse(pdfArchive.getAbsolutePath() + File.separator + "relations.xml");
-            Node node = XPathAPI.selectSingleNode(doc, "/dublin_core/dcvalue");
-
-            if(createdDocuments.containsKey(node.getTextContent())){
-                Item item = createdDocuments.get(node.getTextContent());
-                processContentsFile(item,pdfArchive.getAbsolutePath());
-            }
-        }
-
-        for (Item item : createdDocuments.values()) {
             item.decache();
+        }
+
+        for (Record record : referenceMap.keySet()) {
+            if(recordMap.containsKey(referenceMap.get(record))){
+                Record parentRecord = recordMap.get(referenceMap.get(record));
+                parentRecord.addRecord(record);
+                record.setRecord(parentRecord);
+            }
+        }
+
+        for (Record record : recordMap.values()) {
+            recordService.create(context,record);
         }
     }
 
 
     private void createImportBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
         Bundle bundle = item.createBundle("IMPORT");
-        InputStream inputstream = new FileInputStream(folder.getPath() + File.separator + "source.xml");
-        Bitstream bs = bundle.createBitstream(inputstream);
-        bs.setName("source.xml");
-        BitstreamFormat bf = FormatIdentifier.guessFormat(context, bs);
-        bs.setFormat(bf);
-        bs.update();
-        inputstream.close();
+        File source = new File(folder.getPath() + File.separator + "source.xml");
+
+        if(source.exists()) {
+            InputStream inputstream = new FileInputStream(source);
+            Bitstream bs = bundle.createBitstream(inputstream);
+            bs.setName("source.xml");
+            BitstreamFormat bf = FormatIdentifier.guessFormat(context, bs);
+            bs.setFormat(bf);
+            bs.update();
+            inputstream.close();
+        }
     }
 
     private void createXmlCommunicatieBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
@@ -295,11 +273,6 @@ public class BulkUploadRecords extends ContextScript {
         PrintWriter mapOut = new PrintWriter(new FileWriter(mapFile, false));
         boolean useTemplate = false;
         return myloader.addItem(context, collections, path, itemFolder, mapOut, useTemplate);
-    }
-
-    protected void processContentsFile(Item item, String path) throws SQLException, IOException, AuthorizeException {
-        ItemImport myloader = new ItemImport();
-        myloader.processContentsFile(context,item,path,"contents");
     }
 
     protected void makeArchives(String outputFolderPath, File dir) throws ParserConfigurationException, SAXException, IOException, XSLTransformException {

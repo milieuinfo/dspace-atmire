@@ -1243,7 +1243,7 @@ public class ItemImport
      * contents file Returns a List of Strings with lines from the contents
      * file that request non-default bitstream permission
      */
-    public List<String> processContentsFile(Context c, Item i, String path,
+    private List<String> processContentsFile(Context c, Item i, String path,
             String filename) throws SQLException, IOException,
             AuthorizeException
     {

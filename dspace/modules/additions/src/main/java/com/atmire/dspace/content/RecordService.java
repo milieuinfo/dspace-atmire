@@ -107,10 +107,8 @@ public class RecordService extends AbstractRelationshipObjectServiceImpl<Record>
     @Override
     public Record create(Context context, Record record) throws RelationshipException {
         try {
-            getRelationshipService().create(context, record.getItem(), record.getItem(), getRelationshipLoopType(context));
-            for (Record record1: record.getRecords()) {
-                record1.setRecord(record); // make sure it's set or throw an exception if it isn't ?
-                getRelationshipService().create(context, record.getItem(), record1.getItem(), getRelationshipType(context));
+            if(record.getRecord()!=null){
+                getRelationshipService().create(context, record.getRecord().getItem(), record.getItem(), getRelationshipType(context));
             }
 
             return record;
