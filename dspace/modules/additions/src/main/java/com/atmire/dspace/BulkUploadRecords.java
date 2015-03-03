@@ -14,7 +14,9 @@ import org.dspace.app.itemimport.ItemImport;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.*;
 import org.dspace.core.ConfigurationManager;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
+import org.dspace.event.Event;
 import org.dspace.handle.HandleManager;
 import org.jdom.transform.XSLTransformException;
 import org.w3c.dom.Document;
@@ -226,6 +228,7 @@ public class BulkUploadRecords extends ContextScript {
 
         for (Record record : recordMap.values()) {
             recordService.create(context,record);
+            context.addEvent(new Event(Event.MODIFY, Constants.ITEM, record.getItem().getID(), null));
         }
     }
 

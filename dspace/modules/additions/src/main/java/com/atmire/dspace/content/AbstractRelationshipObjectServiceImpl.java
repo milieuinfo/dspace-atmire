@@ -5,6 +5,7 @@ import org.dspace.content.Item;
 import org.dspace.core.Context;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -67,6 +68,14 @@ public abstract class AbstractRelationshipObjectServiceImpl<T extends RelationSh
         }
         return uniqueRelations;
     }
+
+    @Override
+    public Collection<Relationship> findRelationsByItem(Context context, Item leftItem, Item rightItem) {
+        Relationship example = new Relationship(null, leftItem, rightItem, getRelationshipLoopType(context));
+        Collection<Relationship> relationships = relationshipService.findByExample(context, example);
+        return relationships;
+    }
+
 
     @Override
     public List<RelationShipObject> getIncomingRelationshipObjects(Context context, RelationShipObject relationShipObject) {
