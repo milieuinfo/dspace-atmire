@@ -67,6 +67,14 @@ public class RecordService extends AbstractRelationshipObjectServiceImpl<Record>
         return getRelationshipTypeService().findByExampleUnique(context, new RelationshipType(Record.class.getCanonicalName(), Record.class.getCanonicalName()));
     }
 
+    public String getRelationLeftLabel(Context context) {
+        return getRelationshipType(context).getLeftLabel();
+    }
+
+    public String getRelationRightLabel(Context context) {
+        return getRelationshipType(context).getRightLabel();
+    }
+
     @Override
     public Record findById(Context context, Integer id) {
         Relationship byId = getRelationshipService().findById(context, id);
