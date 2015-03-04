@@ -6,6 +6,8 @@
 
     <xsl:output encoding="UTF-8" indent="yes" omit-xml-declaration="yes"/>
 
+    <xsl:param name="directory" />
+
     <xsl:template match="@* | node()">
         <xsl:apply-templates select="*"/>
     </xsl:template>
@@ -237,7 +239,8 @@
 
         <redirect:write select="concat('aangiftePdf',position(), '/contents')">
             <xsl:if test="AangiftePdf">
-                <xsl:text>../../</xsl:text>
+                <xsl:value-of select="$directory"/>
+                <xsl:text>/</xsl:text>
                 <xsl:value-of select="AangiftePdf" disable-output-escaping="yes"/>
                 <xsl:text>&#10;</xsl:text>
             </xsl:if>
@@ -281,7 +284,8 @@
             </redirect:write>
             <redirect:write select="concat('ProcesSchema',position(), '/contents')">
                 <xsl:for-each select="ProcesSchema/Bestand">
-                    <xsl:text>../../</xsl:text>
+                    <xsl:value-of select="$directory"/>
+                    <xsl:text>/</xsl:text>
                     <xsl:value-of select="." disable-output-escaping="yes"/>
                     <xsl:text>&#10;</xsl:text>
                 </xsl:for-each>
