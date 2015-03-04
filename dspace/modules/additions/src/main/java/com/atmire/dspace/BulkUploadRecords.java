@@ -50,6 +50,7 @@ public class BulkUploadRecords extends ContextScript {
     private Transformer transformer;
     private RelationshipObjectService<Record> recordService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Record.class);
     private String directory;
+    private String outputDirectory;
     private String XSLPath;
     private String schemaString;
     private boolean validationEnabled;
@@ -77,6 +78,13 @@ public class BulkUploadRecords extends ContextScript {
         OptionBuilder.isRequired();
         Option inputDirectoryOption = OptionBuilder.create('d');
         options.addOption(inputDirectoryOption);
+
+        OptionBuilder.withArgName("output-directory");
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription("directory containing the outputted archives");
+        OptionBuilder.isRequired();
+        Option outputDirectoryOption = OptionBuilder.create('o');
+        options.addOption(outputDirectoryOption);
 
         OptionBuilder.withArgName("xsl");
         OptionBuilder.hasArg();
@@ -109,6 +117,12 @@ public class BulkUploadRecords extends ContextScript {
         boolean exit = false;
         if (line.hasOption('d')) {
             setDirectory(line.getOptionValue("d"));
+        } else {
+            exit = true;
+        }
+
+        if (line.hasOption('o')) {
+            setOutputDirectory(line.getOptionValue("o"));
         } else {
             exit = true;
         }
@@ -161,7 +175,7 @@ public class BulkUploadRecords extends ContextScript {
             for (File subdir : subdirs) {
                 if(subdir.isDirectory()) {
                     String workingDirPath = subdir.getAbsolutePath() + File.separator + "IngediendeDocumentenOrigineel";
-                    String outputFolderPath = workingDirPath + File.separator + "archive";
+                    String outputFolderPath = outputDirectory + File.separator + "archive";
                     File workingDir = new File(workingDirPath);
                     File output = new File(outputFolderPath);
                     output.mkdir();
@@ -318,6 +332,7 @@ public class BulkUploadRecords extends ContextScript {
 
         try {
             Transformer transformer = getTransformer(xsltSource, xslPath);
+            transformer.setParameter("directory", input.getParent());
             transformer.transform(xmlSource, result);
         } catch (Throwable t) {
             print("Error: couldn't convert the metadata file at '" + input.getAbsolutePath());
@@ -353,6 +368,14 @@ public class BulkUploadRecords extends ContextScript {
 
     public void setDirectory(String directory) {
         this.directory = directory;
+    }
+
+    public String getOutputDirectory() {
+        return outputDirectory;
+    }
+
+    public void setOutputDirectory(String outputDirectory) {
+        this.outputDirectory = outputDirectory;
     }
 
     public String getXSLPath() {
