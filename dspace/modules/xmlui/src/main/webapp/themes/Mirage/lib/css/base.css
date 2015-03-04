@@ -89,3 +89,7 @@ button {  width: auto; overflow: visible; }
     font-size: 16px;
     color: rgb(68, 68, 68);
 }
+
+#aspect_artifactbrowser_RelationViewer_div_relation_Child {
+    margin-top: 15px;
+}
