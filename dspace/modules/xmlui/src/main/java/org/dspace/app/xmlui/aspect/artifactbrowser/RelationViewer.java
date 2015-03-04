@@ -12,20 +12,17 @@ import org.dspace.app.xmlui.cocoon.AbstractDSpaceTransformer;
 import org.dspace.app.xmlui.utils.HandleUtil;
 import org.dspace.app.xmlui.utils.UIException;
 import org.dspace.app.xmlui.wing.WingException;
-import org.dspace.app.xmlui.wing.element.*;
+import org.dspace.app.xmlui.wing.element.Body;
+import org.dspace.app.xmlui.wing.element.Division;
+import org.dspace.app.xmlui.wing.element.List;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
-import org.dspace.utils.DSpace;
 import org.xml.sax.SAXException;
-import org.dspace.app.xmlui.wing.element.List;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Display a single item.
@@ -45,65 +42,55 @@ public class RelationViewer extends AbstractDSpaceTransformer
         }
         Item item = (Item) dso;
 
-        RelationshipTypeService relationshipTypeService = new DSpace().getServiceManager().getServiceByName("relationshipTypeService", RelationshipTypeService.class);
-        java.util.Collection<RelationshipType> relationshipTypes = relationshipTypeService.findByExample(context, new RelationshipType());
-        java.util.List<String> theTypes = new ArrayList<String>();
-        for(RelationshipType relationshipType : relationshipTypes){
-            if(!theTypes.contains(relationshipType.getLeftType())) theTypes.add(relationshipType.getLeftType());
-            if(!theTypes.contains(relationshipType.getRightType())) theTypes.add(relationshipType.getRightType());
-        }
+        RelationshipObjectService<Record> recordService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Record.class);
+        String leftLabel = ((RecordService) recordService).getRelationLeftLabel(context);
+        String rightlabel = ((RecordService) recordService).getRelationRightLabel(context);
 
-        Map<String, java.util.List<RelationShipObject>> groupedRelationships = new HashMap<String, java.util.List<RelationShipObject>>();
-        for(String theType : theTypes){
-            RelationshipObjectServiceFactory rlsf = RelationshipObjectServiceFactory.getInstance();
-            try {
-                if(theType!=null){
-                    Class<? extends RelationShipObject> theClass = (Class<? extends RelationShipObject>) Class.forName(theType);
-                    if(theClass!=null){
-                        RelationshipObjectService<? extends RelationShipObject> relationshipObjectService = rlsf.getRelationshipObjectService(theClass);
-                        if(relationshipObjectService!=null){
-                            RelationShipObject relationShipObject = relationshipObjectService.findByItem(context,item);
-                            if(relationShipObject!=null){
-                                java.util.List<RelationShipObject> newList = new ArrayList<RelationShipObject>();
-                                newList.addAll(relationshipObjectService.getOutgoingRelationshipObjects(context,relationShipObject));
-                                newList.addAll(relationshipObjectService.getIncomingRelationshipObjects(context,relationShipObject));
-                                addToGroupedRelationship(groupedRelationships, newList);
-                            }
-                        }
-                    }
-                }
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
+        java.util.List<Relationship> children = findRelationsByItem(item,null,recordService);
+        java.util.List<Relationship> parents = findRelationsByItem(null,item,recordService);
 
         Division divRelations = body.addDivision("relations");
 
-        for(Map.Entry<String, java.util.List<RelationShipObject>> entry : groupedRelationships.entrySet()) {
-            String key = entry.getKey();
+        if(parents.size()>0){
+            Division divisionOut = divRelations.addDivision("relation_" + leftLabel);
 
-            Division divisionOut = divRelations.addDivision("relation_" + key);
+            List relationListOut = divisionOut.addList("relationList_"+ leftLabel,List.TYPE_GLOSS);
 
-            List relationListOut = divisionOut.addList("relationList_"+ key,List.TYPE_GLOSS);
-
-            relationListOut.setHead(key+":");//.addItem(key+":","ds-list-head").addContent(key+":");
+            relationListOut.setHead(leftLabel+":");
 
 
-            for (RelationShipObject rls : entry.getValue()) {
-                relationListOut.addItemXref(contextPath + "/handle/" + rls.getHandle(), rls.getName());
+            for (Relationship rls : parents) {
+                relationListOut.addItemXref(contextPath + "/handle/" + rls.getLeft().getHandle(), rls.getLeft().getName());
+            }
+        }
+
+        if(children.size()>0){
+            Division divisionOut = divRelations.addDivision("relation_" + rightlabel);
+
+            List relationListOut = divisionOut.addList("relationList_"+ rightlabel,List.TYPE_GLOSS);
+
+            relationListOut.setHead(rightlabel+":");
+
+
+            for (Relationship rls : children) {
+                relationListOut.addItemXref(contextPath + "/handle/" + rls.getRight().getHandle(), rls.getRight().getName());
             }
         }
     }
 
-    protected void addToGroupedRelationship(Map<String, java.util.List<RelationShipObject>> outObjects, java.util.List<RelationShipObject> newList) {
-        for (RelationShipObject shipObject : newList) {
-            java.util.List<RelationShipObject> typeList = outObjects.get(shipObject.getTypeText());
-            if (typeList == null) {
-                typeList = new LinkedList<RelationShipObject>();
-            }
-            typeList.add(shipObject);
-            outObjects.put(shipObject.getTypeText(), typeList);
-        }
-    }
+    private java.util.List<Relationship> findRelationsByItem(Item left, Item right, RelationshipObjectService<Record> recordService){
+        java.util.List<Relationship> relationList = new ArrayList<Relationship>();
+        Collection<Relationship>  relations = recordService.findRelationsByItem(context, left, right);
+        Iterator<Relationship> iterator = relations.iterator();
 
+        while(iterator.hasNext()) {
+
+            Relationship relationship = iterator.next();
+
+            if (relationship != null) {
+                relationList.add(relationship);
+            }
+        }
+        return relationList;
+    }
 }
