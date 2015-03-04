@@ -124,5 +124,12 @@
     <scope_note>dms export notes</scope_note>
   </dc-type>
 
+  <dc-type>
+    <schema>imjv</schema>
+    <element>type</element>
+    <scope_note>type</scope_note>
+  </dc-type>
+
+
 
 </dspace-dc-types>
