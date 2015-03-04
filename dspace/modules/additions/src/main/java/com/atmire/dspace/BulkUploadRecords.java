@@ -178,7 +178,7 @@ public class BulkUploadRecords extends ContextScript {
                     String outputFolderPath = outputDirectory + File.separator + "archive";
                     File workingDir = new File(workingDirPath);
                     File output = new File(outputFolderPath);
-                    output.mkdir();
+                    output.mkdirs();
 
                     String xmlCommunicatiePath = subdir.getAbsolutePath() + File.separator + "XML-Communicatie";
                     File xmlCommunicatie = new File(xmlCommunicatiePath);
