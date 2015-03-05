@@ -9,6 +9,7 @@ import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
+import org.apache.commons.io.FileUtils;
 import org.apache.xpath.XPathAPI;
 import org.dspace.app.itemimport.ItemImport;
 import org.dspace.authorize.AuthorizeException;
@@ -175,7 +176,7 @@ public class BulkUploadRecords extends ContextScript {
             for (File subdir : subdirs) {
                 if(subdir.isDirectory()) {
                     String workingDirPath = subdir.getAbsolutePath() + File.separator + "IngediendeDocumentenOrigineel";
-                    String outputFolderPath = outputDirectory + File.separator + "archive";
+                    String outputFolderPath = outputDirectory + File.separator + File.separator + subdir.getName() + File.separator + "archive";
                     File workingDir = new File(workingDirPath);
                     File output = new File(outputFolderPath);
                     output.mkdirs();
@@ -206,45 +207,45 @@ public class BulkUploadRecords extends ContextScript {
             }
         });
 
-        HashMap<String,Record> recordMap = new HashMap<String,Record>();
-        HashMap<Record,String> referenceMap = new HashMap<Record,String>();
+            HashMap<String, Record> recordMap = new HashMap<String, Record>();
+            HashMap<Record, String> referenceMap = new HashMap<Record, String>();
 
-        for (File archive : archives) {
+            for (File archive : archives) {
             Item item = importItem(outputFolder, archive, LneUtils.getRecordCollections(community));
-            createImportBundle(item, archive);
+                createImportBundle(item, archive);
 
-            if(xmlCommunicatie.exists()) {
-                createXmlCommunicatieBundle(item, xmlCommunicatie);
+                if (xmlCommunicatie.exists()) {
+                    createXmlCommunicatieBundle(item, xmlCommunicatie);
+                }
+
+                Record record = new Record(item);
+                recordMap.put(archive.getName(), record);
+
+                File relations = new File(archive.getAbsolutePath() + File.separator + "relations.xml");
+
+                if (relations.exists()) {
+                    doc = builder.parse(relations);
+                    Node node = XPathAPI.selectSingleNode(doc, "/dublin_core/dcvalue");
+
+                    referenceMap.put(record, node.getTextContent());
+                }
+
+                item.decache();
             }
 
-            Record record = new Record(item);
-            recordMap.put(archive.getName(),record);
-
-            File relations = new File(archive.getAbsolutePath() + File.separator + "relations.xml");
-
-            if(relations.exists()) {
-                doc = builder.parse(relations);
-                Node node = XPathAPI.selectSingleNode(doc, "/dublin_core/dcvalue");
-
-                referenceMap.put(record,node.getTextContent());
+            for (Record record : referenceMap.keySet()) {
+                if (recordMap.containsKey(referenceMap.get(record))) {
+                    Record parentRecord = recordMap.get(referenceMap.get(record));
+                    parentRecord.addRecord(record);
+                    record.setRecord(parentRecord);
+                }
             }
 
-            item.decache();
-        }
-
-        for (Record record : referenceMap.keySet()) {
-            if(recordMap.containsKey(referenceMap.get(record))){
-                Record parentRecord = recordMap.get(referenceMap.get(record));
-                parentRecord.addRecord(record);
-                record.setRecord(parentRecord);
+            for (Record record : recordMap.values()) {
+                recordService.create(context, record);
+                context.addEvent(new Event(Event.MODIFY, Constants.ITEM, record.getItem().getID(), null));
             }
         }
-
-        for (Record record : recordMap.values()) {
-            recordService.create(context,record);
-            context.addEvent(new Event(Event.MODIFY, Constants.ITEM, record.getItem().getID(), null));
-        }
-    }
 
 
     private void createImportBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
@@ -293,6 +294,14 @@ public class BulkUploadRecords extends ContextScript {
     }
 
     protected void makeArchives(String outputFolderPath, File dir) throws ParserConfigurationException, SAXException, IOException, XSLTransformException {
+        File output = new File(outputFolderPath);
+
+        if(output.exists()){
+            FileUtils.deleteDirectory(output);
+        }
+
+        output.mkdirs();
+
         File[] xmlFiles = dir.listFiles(new FilenameFilter() {
             public boolean accept(File dir, String name) {
                 return name.endsWith("METADATA.xml");
