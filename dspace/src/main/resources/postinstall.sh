@@ -20,7 +20,8 @@ sed -i \
     ${tomcat_apps_dir}/cleanup.sh \
     ${tomcat_apps_dir}/setenv.sh \
     ${tomcat_apps_dir}/ansible.properties \
-    ${tomcat_apps_dir}/dspace/config/modules/authentication-openam.cfg
+    ${tomcat_apps_dir}/dspace/config/modules/authentication-openam.cfg \
+    ${tomcat_apps_dir}/dspace/bin/bulk/imjv-upload.sh
 
 # Add the ansible substituted properties file to the head of dspace.cfg
 cat ${tomcat_apps_dir}/ansible.properties | cat - ${tomcat_apps_dir}/dspace/config/dspace.cfg > ${tomcat_apps_dir}/dspace/config/dspace.cfg.tmp && mv -f ${tomcat_apps_dir}/dspace/config/dspace.cfg.tmp ${tomcat_apps_dir}/dspace/config/dspace.cfg
@@ -46,10 +47,10 @@ if [ ! -d "${tomcat_data_dir}/dspace/bin" ]; then
     cd ${tomcat_apps_dir}/dspace && ant init_installation init_configs test_database load_registries install_code update_webapps clean_backups
 
     # Create administrator
-    ${tomcat_data_dir}/dspace/bin/dspace create-administrator -e 'dspace@milieuinfo.be' -f 'admin' -l 'dspace' -c 'en' -p 'DspacE'
+    #${tomcat_data_dir}/dspace/bin/dspace create-administrator -e 'dspace@milieuinfo.be' -f 'admin' -l 'dspace' -c 'en' -p 'DspacE'
 
     # (Create Communities, groups and policies)
-    ${tomcat_apps_dir}/import-structure-policies.py -x -b ${tomcat_apps_dir}/dspace/bin/dspace -f ${tomcat_apps_dir}/dspace/config/community-tree.xml
+    #${tomcat_apps_dir}/import-structure-policies.py -x -b ${tomcat_apps_dir}/dspace/bin/dspace -f ${tomcat_apps_dir}/dspace/config/community-tree.xml
 else
     cd ${tomcat_apps_dir}/dspace && ant update clean_backups
 fi
