@@ -110,6 +110,13 @@ public class BulkUploadRecords extends ContextScript {
         OptionBuilder.isRequired();
         Option communityOption = OptionBuilder.create('c');
         options.addOption(communityOption);
+
+        OptionBuilder.withArgName("consumer");
+        OptionBuilder.withDescription("override the consumer list");
+        OptionBuilder.hasArg();
+        Option consumerOption = OptionBuilder.create('r');
+        options.addOption(consumerOption);
+
         return options;
     }
 
@@ -163,6 +170,10 @@ public class BulkUploadRecords extends ContextScript {
             } else {
                 exit = true;
             }
+        }
+
+        if (line.hasOption('r')) {
+            context.setDispatcher(line.getOptionValue("r"));
         }
 
         return exit;
