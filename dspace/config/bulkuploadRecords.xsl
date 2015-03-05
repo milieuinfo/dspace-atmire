@@ -114,6 +114,9 @@
                 <dublin_core schema="dc">
                     <xsl:call-template name="document-title">
                         <xsl:with-param name="type"/>
+                        <xsl:with-param name="level">
+                            <xsl:text>0</xsl:text>
+                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:call-template name="document-date-issued"/>
                     <xsl:call-template name="document-publisher"/>
@@ -184,6 +187,9 @@
                     <xsl:with-param name="type">
                         <xsl:text>Source</xsl:text>
                     </xsl:with-param>
+                    <xsl:with-param name="level">
+                        <xsl:text>0</xsl:text>
+                    </xsl:with-param>
                 </xsl:call-template>
                 <xsl:call-template name="document-date-issued"/>
                 <xsl:call-template name="document-publisher"/>
@@ -239,6 +245,9 @@
                     <xsl:call-template name="document-title">
                         <xsl:with-param name="type">
                             <xsl:text>Aangifte Pdf</xsl:text>
+                        </xsl:with-param>
+                        <xsl:with-param name="level">
+                            <xsl:text>1</xsl:text>
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:call-template name="document-date-issued"/>
@@ -298,6 +307,9 @@
                         <xsl:with-param name="type">
                             <xsl:text>Proces Schema</xsl:text>
                         </xsl:with-param>
+                        <xsl:with-param name="level">
+                            <xsl:text>2</xsl:text>
+                        </xsl:with-param>
                     </xsl:call-template>
                     <xsl:call-template name="document-date-issued"/>
                     <xsl:call-template name="document-publisher"/>
@@ -351,6 +363,9 @@
                     <xsl:call-template name="document-title">
                         <xsl:with-param name="type">
                             <xsl:text>Bijlage</xsl:text>
+                        </xsl:with-param>
+                        <xsl:with-param name="level">
+                            <xsl:text>3</xsl:text>
                         </xsl:with-param>
                     </xsl:call-template>
                     <xsl:call-template name="document-date-issued"/>
@@ -543,6 +558,7 @@
 
     <xsl:template name="document-title">
         <xsl:param name="type"/>
+        <xsl:param name="level"/>
         <xsl:choose>
             <xsl:when test="//IdentificatieMetaData/Exploitatie">
                 <dcvalue element="title">
@@ -552,7 +568,23 @@
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
                     <xsl:text> - </xsl:text>
-                    <xsl:value-of select="AangifteType/text()"/>
+                    <xsl:choose>
+                        <xsl:when test="$level='0'">
+                            <xsl:value-of select="AangifteType/text()"/>
+                        </xsl:when>
+                        <xsl:when test="$level='1'">
+                            <xsl:value-of select="../AangifteType/text()"/>
+                        </xsl:when>
+                        <xsl:when test="$level='2'">
+                            <xsl:value-of select="../../AangifteType/text()"/>
+                        </xsl:when>
+                        <xsl:when test="$level='3'">
+                            <xsl:value-of select="../../../AangifteType/text()"/>
+                        </xsl:when>
+                        <xsl:when test="$level='4'">
+                            <xsl:value-of select="../../../../AangifteType/text()"/>
+                        </xsl:when>
+                    </xsl:choose>
                     <xsl:if test="$type">
                         <xsl:text> - </xsl:text>
                         <xsl:value-of select="$type"/>
@@ -567,7 +599,23 @@
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="//IdentificatieMetaData/Exploitant/CBBExploitantNummer/text()"/>
                     <xsl:text> - </xsl:text>
-                    <xsl:value-of select="AangifteType/text()"/>
+                    <xsl:choose>
+                        <xsl:when test="$level='0'">
+                            <xsl:value-of select="AangifteType/text()"/>
+                        </xsl:when>
+                        <xsl:when test="$level='1'">
+                            <xsl:value-of select="../AangifteType/text()"/>
+                        </xsl:when>
+                        <xsl:when test="$level='2'">
+                            <xsl:value-of select="../../AangifteType/text()"/>
+                        </xsl:when>
+                        <xsl:when test="$level='3'">
+                            <xsl:value-of select="../../../AangifteType/text()"/>
+                        </xsl:when>
+                        <xsl:when test="$level='4'">
+                            <xsl:value-of select="../../../../AangifteType/text()"/>
+                        </xsl:when>
+                    </xsl:choose>
                     <xsl:if test="$type">
                         <xsl:text> - </xsl:text>
                         <xsl:value-of select="$type"/>
