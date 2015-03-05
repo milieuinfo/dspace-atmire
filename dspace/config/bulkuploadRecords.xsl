@@ -20,7 +20,9 @@
     <xsl:template match="IdentificatieMetaData">
         <redirect:write select="concat('IdentificatieMetaData',position(),'/dublin_core.xml')">
             <dublin_core schema="dc">
-                <xsl:call-template name="dossier-title"/>
+                <xsl:call-template name="dossier-title">
+                    <xsl:with-param name="type"/>
+                </xsl:call-template>
                 <xsl:apply-templates select="." mode="dc"/>
             </dublin_core>
         </redirect:write>
@@ -63,7 +65,11 @@
         <xsl:param name="root-directory"/>
         <redirect:write select="concat('source',position(),'/dublin_core.xml')">
             <dublin_core schema="dc">
-                <xsl:call-template name="dossier-title"/>
+                <xsl:call-template name="dossier-title">
+                    <xsl:with-param name="type">
+                        <xsl:text>Source</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
                 <xsl:apply-templates select="." mode="dc"/>
             </dublin_core>
         </redirect:write>
@@ -106,7 +112,9 @@
         <xsl:for-each select="../AangiftenMetaData/Aangifte">
             <redirect:write select="concat('aangifte',position(), '/dublin_core.xml')">
                 <dublin_core schema="dc">
-                    <xsl:call-template name="document-title"/>
+                    <xsl:call-template name="document-title">
+                        <xsl:with-param name="type"/>
+                    </xsl:call-template>
                     <xsl:call-template name="document-date-issued"/>
                     <xsl:call-template name="document-publisher"/>
                     <xsl:call-template name="document-author"/>
@@ -153,6 +161,12 @@
                 </xsl:with-param>
             </xsl:call-template>
 
+            <xsl:call-template name="Bijlage">
+                <xsl:with-param name="root-directory">
+                    <xsl:value-of select="concat('aangifte',position())"/>
+                </xsl:with-param>
+            </xsl:call-template>
+
             <redirect:write select="concat('aangifte',position(), '/contents')">
                 <xsl:text></xsl:text>
             </redirect:write>
@@ -166,7 +180,11 @@
         <xsl:param name="root-directory"/>
         <redirect:write select="concat('source',position(), '/dublin_core.xml')">
             <dublin_core schema="dc">
-                <xsl:call-template name="document-title"/>
+                <xsl:call-template name="document-title">
+                    <xsl:with-param name="type">
+                        <xsl:text>Source</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
                 <xsl:call-template name="document-date-issued"/>
                 <xsl:call-template name="document-publisher"/>
                 <xsl:call-template name="document-author"/>
@@ -213,7 +231,11 @@
 
         <redirect:write select="concat('aangiftePdf',position(), '/dublin_core.xml')">
             <dublin_core schema="dc">
-                <xsl:call-template name="document-title"/>
+                <xsl:call-template name="document-title">
+                    <xsl:with-param name="type">
+                        <xsl:text>Aangifte Pdf</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
                 <xsl:call-template name="document-date-issued"/>
                 <xsl:call-template name="document-publisher"/>
                 <xsl:call-template name="document-author"/>
@@ -257,11 +279,16 @@
     </xsl:template>
 
     <xsl:template name="ProcesSchema">
+        <!--2013/00112120000187-->
         <xsl:param name="root-directory"/>
 
             <redirect:write select="concat('ProcesSchema',position(), '/dublin_core.xml')">
                 <dublin_core schema="dc">
-                    <xsl:call-template name="document-title"/>
+                    <xsl:call-template name="document-title">
+                        <xsl:with-param name="type">
+                            <xsl:text>Proces Schema</xsl:text>
+                        </xsl:with-param>
+                    </xsl:call-template>
                     <xsl:call-template name="document-date-issued"/>
                     <xsl:call-template name="document-publisher"/>
                     <xsl:call-template name="document-author"/>
@@ -300,10 +327,60 @@
 
     </xsl:template>
 
+    <xsl:template name="Bijlage">
+        <!--2013/00112120000187-->
+        <xsl:param name="root-directory"/>
+
+            <redirect:write select="concat('Bijlage',position(), '/dublin_core.xml')">
+                <dublin_core schema="dc">
+                    <xsl:call-template name="document-title">
+                        <xsl:with-param name="type">
+                            <xsl:text>Bijlage</xsl:text>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:call-template name="document-date-issued"/>
+                    <xsl:call-template name="document-publisher"/>
+                    <xsl:call-template name="document-author"/>
+                    <xsl:apply-templates mode="dc"/>
+                    <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
+                </dublin_core>
+            </redirect:write>
+            <redirect:write select="concat('Bijlage',position(), '/metadata_imjv.xml')">
+                <dublin_core schema="imjv">
+                    <xsl:apply-templates mode="imjv"/>
+                    <xsl:call-template name="document-dmsexportnotes"/>
+                    <xsl:apply-templates select="//IdentificatieMetaData" mode="imjv"/>
+                    <xsl:apply-templates select="//MilieuVerslagMetaData" mode="imjv"/>
+                    <xsl:call-template name="imjv-type">
+                        <xsl:with-param name="type">
+                            <xsl:text>Bijlage</xsl:text>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </dublin_core>
+            </redirect:write>
+            <redirect:write select="concat('Bijlage',position(), '/contents')">
+                <xsl:for-each select="AangifteGeneriek/Bijlagen/Bestand">
+                    <xsl:value-of select="$directory"/>
+                    <xsl:text>/</xsl:text>
+                    <xsl:value-of select="." disable-output-escaping="yes"/>
+                    <xsl:text>&#10;</xsl:text>
+                </xsl:for-each>
+            </redirect:write>
+            <redirect:write select="concat('Bijlage',position(),'/relations.xml')">
+                <dublin_core schema="relation">
+                    <dcvalue element="hasParent">
+                        <xsl:value-of select="$root-directory"/>
+                    </dcvalue>
+                </dublin_core>
+            </redirect:write>
+
+    </xsl:template>
+
 
     <!-- Dossier metadata -->
 
     <xsl:template name="dossier-title">
+        <xsl:param name="type"/>
         <xsl:choose>
             <xsl:when test="Exploitatie">
                 <dcvalue element="title">
@@ -312,6 +389,10 @@
                     <xsl:value-of select="RapporteringsJaar/text()"/>
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
+                    <xsl:if test="$type">
+                        <xsl:text> - </xsl:text>
+                        <xsl:value-of select="$type"/>
+                    </xsl:if>
                 </dcvalue>
             </xsl:when>
             <xsl:otherwise>
@@ -321,6 +402,10 @@
                     <xsl:value-of select="RapporteringsJaar/text()"/>
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="Exploitant/CBBExploitantNummer/text()"/>
+                    <xsl:if test="$type">
+                        <xsl:text> - </xsl:text>
+                        <xsl:value-of select="$type"/>
+                    </xsl:if>
                 </dcvalue>
             </xsl:otherwise>
         </xsl:choose>
@@ -444,6 +529,7 @@
     <!-- Document metadata -->
 
     <xsl:template name="document-title">
+        <xsl:param name="type"/>
         <xsl:choose>
             <xsl:when test="//IdentificatieMetaData/Exploitatie">
                 <dcvalue element="title">
@@ -454,6 +540,10 @@
                     <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="AangifteType/text()"/>
+                    <xsl:if test="$type">
+                        <xsl:text> - </xsl:text>
+                        <xsl:value-of select="$type"/>
+                    </xsl:if>
                 </dcvalue>
             </xsl:when>
             <xsl:otherwise>
@@ -465,6 +555,10 @@
                     <xsl:value-of select="//IdentificatieMetaData/Exploitant/CBBExploitantNummer/text()"/>
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="AangifteType/text()"/>
+                    <xsl:if test="$type">
+                        <xsl:text> - </xsl:text>
+                        <xsl:value-of select="$type"/>
+                    </xsl:if>
                 </dcvalue>
             </xsl:otherwise>
         </xsl:choose>
