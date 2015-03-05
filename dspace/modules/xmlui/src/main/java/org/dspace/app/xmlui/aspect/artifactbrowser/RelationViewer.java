@@ -71,6 +71,7 @@ public class RelationViewer extends AbstractDSpaceTransformer
 
             relationListOut.setHead(rightlabel+":");
 
+            //alternative by name using http://www.davekoelle.com/files/AlphanumComparator.java
             Comparator<Relationship> sortByHandle = new Comparator<Relationship>() {
                 @Override
                 public int compare(Relationship relationship, Relationship t1) {
