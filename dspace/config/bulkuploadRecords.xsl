@@ -229,60 +229,70 @@
     <xsl:template name="aangiftePdf">
         <xsl:param name="aangifte-directory"/>
 
-        <redirect:write select="concat('aangiftePdf',position(), '/dublin_core.xml')">
-            <dublin_core schema="dc">
-                <xsl:call-template name="document-title">
-                    <xsl:with-param name="type">
-                        <xsl:text>Aangifte Pdf</xsl:text>
-                    </xsl:with-param>
-                </xsl:call-template>
-                <xsl:call-template name="document-date-issued"/>
-                <xsl:call-template name="document-publisher"/>
-                <xsl:call-template name="document-author"/>
-                <xsl:apply-templates mode="dc"/>
-                <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
-            </dublin_core>
-        </redirect:write>
+        <xsl:variable name="count">
+            <xsl:value-of select="position()"/>
+        </xsl:variable>
 
-        <redirect:write select="concat('aangiftePdf',position(), '/metadata_imjv.xml')">
-            <dublin_core schema="imjv">
-                <xsl:apply-templates mode="imjv"/>
-                <xsl:call-template name="document-dmsexportnotes"/>
-                <xsl:apply-templates select="//IdentificatieMetaData" mode="imjv"/>
-                <xsl:apply-templates select="//MilieuVerslagMetaData" mode="imjv"/>
-                <xsl:call-template name="imjv-type">
-                    <xsl:with-param name="type">
-                        <xsl:text>AangiftePdf</xsl:text>
-                    </xsl:with-param>
-                </xsl:call-template>
-            </dublin_core>
-        </redirect:write>
+        <xsl:for-each select="AangiftePdf">
+            <redirect:write select="concat('aangiftePdf',$count,'_',position(), '/dublin_core.xml')">
+                <dublin_core schema="dc">
+                    <xsl:call-template name="document-title">
+                        <xsl:with-param name="type">
+                            <xsl:text>Aangifte Pdf</xsl:text>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                    <xsl:call-template name="document-date-issued"/>
+                    <xsl:call-template name="document-publisher"/>
+                    <xsl:call-template name="document-author"/>
+                    <xsl:apply-templates mode="dc"/>
+                    <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
+                </dublin_core>
+            </redirect:write>
+
+            <redirect:write select="concat('aangiftePdf',$count,'_',position(), '/metadata_imjv.xml')">
+                <dublin_core schema="imjv">
+                    <xsl:apply-templates mode="imjv"/>
+                    <xsl:call-template name="document-dmsexportnotes"/>
+                    <xsl:apply-templates select="//IdentificatieMetaData" mode="imjv"/>
+                    <xsl:apply-templates select="//MilieuVerslagMetaData" mode="imjv"/>
+                    <xsl:call-template name="imjv-type">
+                        <xsl:with-param name="type">
+                            <xsl:text>AangiftePdf</xsl:text>
+                        </xsl:with-param>
+                    </xsl:call-template>
+                </dublin_core>
+            </redirect:write>
 
 
-        <redirect:write select="concat('aangiftePdf',position(), '/contents')">
-            <xsl:if test="AangiftePdf">
+            <redirect:write select="concat('aangiftePdf',$count,'_',position(), '/contents')">
                 <xsl:value-of select="$directory"/>
                 <xsl:text>/</xsl:text>
-                <xsl:value-of select="AangiftePdf" disable-output-escaping="yes"/>
+                <xsl:value-of select="." disable-output-escaping="yes"/>
                 <xsl:text>&#10;</xsl:text>
-            </xsl:if>
-        </redirect:write>
+            </redirect:write>
 
-        <redirect:write select="concat('aangiftePdf',position(),'/relations.xml')">
-            <dublin_core schema="relation">
-                <dcvalue element="hasParent">
-                    <xsl:value-of select="$aangifte-directory"/>
-                </dcvalue>
-            </dublin_core>
-        </redirect:write>
+            <redirect:write select="concat('aangiftePdf',$count,'_',position(),'/relations.xml')">
+                <dublin_core schema="relation">
+                    <dcvalue element="hasParent">
+                        <xsl:value-of select="$aangifte-directory"/>
+                    </dcvalue>
+                </dublin_core>
+            </redirect:write>
 
+        </xsl:for-each>
     </xsl:template>
 
     <xsl:template name="ProcesSchema">
         <!--2013/00112120000187-->
         <xsl:param name="root-directory"/>
 
-            <redirect:write select="concat('ProcesSchema',position(), '/dublin_core.xml')">
+        <xsl:variable name="count">
+            <xsl:value-of select="position()"/>
+        </xsl:variable>
+
+        <xsl:for-each select="ProcesSchema/Bestand">
+
+            <redirect:write select="concat('ProcesSchema',$count,'_',position(), '/dublin_core.xml')">
                 <dublin_core schema="dc">
                     <xsl:call-template name="document-title">
                         <xsl:with-param name="type">
@@ -296,7 +306,7 @@
                     <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
                 </dublin_core>
             </redirect:write>
-            <redirect:write select="concat('ProcesSchema',position(), '/metadata_imjv.xml')">
+            <redirect:write select="concat('ProcesSchema',$count,'_',position(), '/metadata_imjv.xml')">
                 <dublin_core schema="imjv">
                     <xsl:apply-templates mode="imjv"/>
                     <xsl:call-template name="document-dmsexportnotes"/>
@@ -309,15 +319,13 @@
                     </xsl:call-template>
                 </dublin_core>
             </redirect:write>
-            <redirect:write select="concat('ProcesSchema',position(), '/contents')">
-                <xsl:for-each select="ProcesSchema/Bestand">
-                    <xsl:value-of select="$directory"/>
-                    <xsl:text>/</xsl:text>
-                    <xsl:value-of select="." disable-output-escaping="yes"/>
-                    <xsl:text>&#10;</xsl:text>
-                </xsl:for-each>
+            <redirect:write select="concat('ProcesSchema',$count,'_',position(), '/contents')">
+                <xsl:value-of select="$directory"/>
+                <xsl:text>/</xsl:text>
+                <xsl:value-of select="." disable-output-escaping="yes"/>
+                <xsl:text>&#10;</xsl:text>
             </redirect:write>
-            <redirect:write select="concat('ProcesSchema',position(),'/relations.xml')">
+            <redirect:write select="concat('ProcesSchema',$count,'_',position(),'/relations.xml')">
                 <dublin_core schema="relation">
                     <dcvalue element="hasParent">
                         <xsl:value-of select="$root-directory"/>
@@ -325,13 +333,20 @@
                 </dublin_core>
             </redirect:write>
 
+        </xsl:for-each>
     </xsl:template>
 
     <xsl:template name="Bijlage">
         <!--2013/00112120000187-->
         <xsl:param name="root-directory"/>
 
-            <redirect:write select="concat('Bijlage',position(), '/dublin_core.xml')">
+        <xsl:variable name="count">
+            <xsl:value-of select="position()"/>
+        </xsl:variable>
+
+        <xsl:for-each select="AangifteGeneriek/Bijlagen/Bestand">
+
+            <redirect:write select="concat('Bijlage',$count,'_',position(), '/dublin_core.xml')">
                 <dublin_core schema="dc">
                     <xsl:call-template name="document-title">
                         <xsl:with-param name="type">
@@ -345,7 +360,7 @@
                     <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
                 </dublin_core>
             </redirect:write>
-            <redirect:write select="concat('Bijlage',position(), '/metadata_imjv.xml')">
+            <redirect:write select="concat('Bijlage',$count,'_',position(), '/metadata_imjv.xml')">
                 <dublin_core schema="imjv">
                     <xsl:apply-templates mode="imjv"/>
                     <xsl:call-template name="document-dmsexportnotes"/>
@@ -358,22 +373,20 @@
                     </xsl:call-template>
                 </dublin_core>
             </redirect:write>
-            <redirect:write select="concat('Bijlage',position(), '/contents')">
-                <xsl:for-each select="AangifteGeneriek/Bijlagen/Bestand">
-                    <xsl:value-of select="$directory"/>
-                    <xsl:text>/</xsl:text>
-                    <xsl:value-of select="." disable-output-escaping="yes"/>
-                    <xsl:text>&#10;</xsl:text>
-                </xsl:for-each>
+            <redirect:write select="concat('Bijlage',$count,'_',position(), '/contents')">
+                <xsl:value-of select="$directory"/>
+                <xsl:text>/</xsl:text>
+                <xsl:value-of select="." disable-output-escaping="yes"/>
+                <xsl:text>&#10;</xsl:text>
             </redirect:write>
-            <redirect:write select="concat('Bijlage',position(),'/relations.xml')">
+            <redirect:write select="concat('Bijlage',$count,'_',position(),'/relations.xml')">
                 <dublin_core schema="relation">
                     <dcvalue element="hasParent">
                         <xsl:value-of select="$root-directory"/>
                     </dcvalue>
                 </dublin_core>
             </redirect:write>
-
+        </xsl:for-each>
     </xsl:template>
 
 
