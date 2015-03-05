@@ -305,7 +305,15 @@
                 <dublin_core schema="dc">
                     <xsl:call-template name="document-title">
                         <xsl:with-param name="type">
-                            <xsl:text>Proces Schema</xsl:text>
+                            <xsl:choose>
+                                <xsl:when test="count(../../ProcesSchema/Bestand) &gt; 1">
+                                    <xsl:text>Proces Schema </xsl:text>
+                                    <xsl:value-of select="position()"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:text>Proces Schema</xsl:text>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:with-param>
                         <xsl:with-param name="level">
                             <xsl:text>2</xsl:text>
@@ -362,7 +370,15 @@
                 <dublin_core schema="dc">
                     <xsl:call-template name="document-title">
                         <xsl:with-param name="type">
-                            <xsl:text>Bijlage</xsl:text>
+                            <xsl:choose>
+                                <xsl:when test="count(../../../AangifteGeneriek/Bijlagen/Bestand) &gt; 1">
+                                    <xsl:text>Bijlage </xsl:text>
+                                    <xsl:value-of select="position()"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:text>Bijlage</xsl:text>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:with-param>
                         <xsl:with-param name="level">
                             <xsl:text>3</xsl:text>
