@@ -225,7 +225,7 @@ public class BulkUploadRecords extends ContextScript {
             Item item = importItem(outputFolder, archive, LneUtils.getRecordCollections(community));
                 createImportBundle(item, archive);
 
-                if (xmlCommunicatie.exists() && outputFolder.getName().startsWith("IdentificatieMetaData")) {
+                if (xmlCommunicatie.exists() && archive.getName().startsWith("IdentificatieMetaData")) {
                     createXmlCommunicatieBundle(item, xmlCommunicatie);
                 }
 
