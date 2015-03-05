@@ -71,7 +71,18 @@ public class RelationViewer extends AbstractDSpaceTransformer
 
             relationListOut.setHead(rightlabel+":");
 
+            Comparator<Relationship> sortByHandle = new Comparator<Relationship>() {
+                @Override
+                public int compare(Relationship relationship, Relationship t1) {
+                    try {
+                        return relationship.getRight().getHandle().compareTo(t1.getRight().getHandle());
+                    } catch (Exception e) {
+                        return 0;
+                    }
+                }
+            };
 
+            Collections.sort(children, sortByHandle);
             for (Relationship rls : children) {
                 relationListOut.addItemXref(contextPath + "/handle/" + rls.getRight().getHandle(), rls.getRight().getName());
             }
