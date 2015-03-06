@@ -190,6 +190,10 @@ public class BulkUploadRecords extends ContextScript {
                     String workingDirPath = subdir.getAbsolutePath() + File.separator + "IngediendeDocumentenOrigineel";
                     String outputFolderPath = outputDirectory + File.separator + File.separator + subdir.getName() + File.separator + "archive";
                     File workingDir = new File(workingDirPath);
+                    if (!workingDir.exists()) {
+                        System.err.println("Directory doesn't exist: " + subdir.getName());
+                        continue;
+                    }
                     File output = new File(outputFolderPath);
                     output.mkdirs();
 
