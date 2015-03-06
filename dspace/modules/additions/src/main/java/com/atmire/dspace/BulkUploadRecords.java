@@ -186,6 +186,7 @@ public class BulkUploadRecords extends ContextScript {
             File[] subdirs = dir.listFiles();
             for (File subdir : subdirs) {
                 if(subdir.isDirectory()) {
+                    System.out.println("Start Processing " + subdir.getName());
                     String workingDirPath = subdir.getAbsolutePath() + File.separator + "IngediendeDocumentenOrigineel";
                     String outputFolderPath = outputDirectory + File.separator + File.separator + subdir.getName() + File.separator + "archive";
                     File workingDir = new File(workingDirPath);
