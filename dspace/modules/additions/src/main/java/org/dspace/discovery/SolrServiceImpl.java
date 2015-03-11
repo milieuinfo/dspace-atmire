@@ -7,6 +7,8 @@
  */
 package org.dspace.discovery;
 
+import com.atmire.utils.multithreading.ItemFold;
+import com.atmire.utils.multithreading.ItemIdPayload;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.collections.Transformer;
@@ -332,6 +334,36 @@ public class SolrServiceImpl implements SearchService, IndexingService {
         updateIndex(context, false);
     }
 
+    protected class IndexItemPayload extends ItemIdPayload {
+
+        private boolean force;
+
+        public IndexItemPayload(boolean force) {
+            this.force = force;
+        }
+
+        public IndexItemPayload(Integer id, Context context, boolean force) {
+            super(id, context);
+            this.force = force;
+        }
+
+
+
+        @Override
+        protected void doRun(Item item) {
+            try {
+                indexContent(getContext(),item,force);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        @Override
+        public ItemIdPayload create(Integer id, Context context) {
+            return new IndexItemPayload(id,context,force);  //TODO: implement method
+        }
+    }
+
     /**
      * Iterates over all Items, Collections and Communities. And updates them in
      * the index. Uses decaching to control memory footprint. Uses indexContent
@@ -348,6 +380,11 @@ public class SolrServiceImpl implements SearchService, IndexingService {
     public void updateIndex(Context context, boolean force)
     {
         try {
+            ItemIdIterator items = ItemIdIterator.findAllUnfilteredItemIds(context);
+            ItemFold fold=new ItemFold(ConfigurationManager.getIntProperty("discovery", "index-threads", 4),new IndexItemPayload(force),items);
+            fold.execute(context);
+
+/*
             ItemIterator items = null;
             try {
                 for (items = Item.findAllUnfiltered(context); items.hasNext();)
@@ -362,6 +399,7 @@ public class SolrServiceImpl implements SearchService, IndexingService {
                     items.close();
                 }
             }
+*/
 
             Collection[] collections = Collection.findAll(context);
             for (Collection collection : collections)
