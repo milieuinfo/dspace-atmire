@@ -15,7 +15,7 @@ import java.util.Arrays;
 /**
  * Created by jonas on 09/04/15.
  */
-public class SolrIndexImpl implements SolrServiceIndexPlugin {
+public class SolrFileUrlIndexer implements SolrServiceIndexPlugin {
 
     public static final String[] bundleType = {"ORIGINAL", "IMPORT", "XML-Communicatie"};
 
@@ -36,7 +36,7 @@ public class SolrIndexImpl implements SolrServiceIndexPlugin {
         }
         Item item = (Item) dso;
         String dspaceDir = ConfigurationManager.getProperty(DSPACE_URL);
-        String preUrlPath = dspaceDir + File.separator + BITSREAM + File.separator + HANDLE + File.separator + item.getHandle() + File.separator;
+        String preUrlPath = dspaceDir + "/" + BITSREAM + "/" + HANDLE + "/" + item.getHandle() + "/";
         try {
             bundlesFromItem = item.getBundles();
         } catch (SQLException e) {
