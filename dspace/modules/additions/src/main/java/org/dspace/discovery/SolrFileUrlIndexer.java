@@ -1,5 +1,6 @@
 package org.dspace.discovery;
 
+import org.apache.log4j.Logger;
 import org.apache.solr.common.SolrInputDocument;
 import org.dspace.content.Bitstream;
 import org.dspace.content.Bundle;
@@ -26,6 +27,7 @@ public class SolrFileUrlIndexer implements SolrServiceIndexPlugin {
     private static final String HANDLE = "handle";
 
     private static final String DSPACE_URL = "dspace.url";
+    protected static Logger log = Logger.getLogger(SolrFileUrlIndexer.class);
 
     @Override
     public void additionalIndex(Context context, DSpaceObject dso, SolrInputDocument document) {
@@ -40,12 +42,12 @@ public class SolrFileUrlIndexer implements SolrServiceIndexPlugin {
         try {
             bundlesFromItem = item.getBundles();
         } catch (SQLException e) {
-            e.printStackTrace();
+            log.error("Error while retrieving bundles from item : ",e);
         }
         for (Bundle bundle : bundlesFromItem) {
             if (Arrays.asList(bundleType).contains(bundle.getName())) {
                 for (Bitstream bitstream : bundle.getBitstreams()) {
-                    document.addField(FIELD_NAME, preUrlPath + bitstream.getName());
+                    document.addField(FIELD_NAME, preUrlPath + bitstream.getName()+"?sequence="+bitstream.getSequenceID());
                 }
             }
         }
