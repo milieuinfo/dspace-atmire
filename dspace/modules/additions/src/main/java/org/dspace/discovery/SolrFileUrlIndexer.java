@@ -45,7 +45,7 @@ public class SolrFileUrlIndexer implements SolrServiceIndexPlugin {
         for (Bundle bundle : bundlesFromItem) {
             if (Arrays.asList(bundleType).contains(bundle.getName())) {
                 for (Bitstream bitstream : bundle.getBitstreams()) {
-                    document.addField(FIELD_NAME, preUrlPath + bitstream.getName()+"/?sequence="+bitstream.getSequenceID());
+                    document.addField(FIELD_NAME, preUrlPath + bitstream.getName()+"?sequence="+bitstream.getSequenceID());
                 }
             }
         }
