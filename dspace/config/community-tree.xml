@@ -16,7 +16,7 @@
         <copyright>None</copyright>
         <sidebar></sidebar>
         <collection>
-            <name>IMJV Dossiers</name>
+            <name>Records</name>
             <description>Dossiers van IMJV</description>
             <intro>Introductory text</intro>
             <copyright>Special copyright notice</copyright>
@@ -24,17 +24,10 @@
             <license>Special licence</license>
             <provenance>Provenance information</provenance>
         </collection>
-        <collection>
-            <name>IMJV Documenten</name>
-            <description>Documenten van IMJV</description>
-            <intro>Introductory text</intro>
-            <copyright>Special copyright notice</copyright>
-            <sidebar>Sidebar text</sidebar>
-            <license>Special licence</license>
-            <provenance>Provenance information</provenance>
-        </collection>
     </community>
-    <community>
+ <!--
+die van dba zijn toch nog niet klaar
+   <community>
         <name>DBA</name>
         <description>Digitale BouwAanvraag</description>
         <intro>Archief voor DBA</intro>
@@ -59,4 +52,5 @@
             <provenance>Provenance information</provenance>
         </collection>
     </community>
+-->
 </import_structure>

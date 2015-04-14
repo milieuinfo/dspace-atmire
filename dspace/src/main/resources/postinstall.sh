@@ -20,7 +20,8 @@ sed -i \
     ${tomcat_apps_dir}/cleanup.sh \
     ${tomcat_apps_dir}/setenv.sh \
     ${tomcat_apps_dir}/ansible.properties \
-    ${tomcat_apps_dir}/dspace/config/modules/authentication-openam.cfg
+    ${tomcat_apps_dir}/dspace/config/modules/authentication-openam.cfg \
+    ${tomcat_apps_dir}/dspace/bin/bulk/imjv-upload.sh
 
 # Add the ansible substituted properties file to the head of dspace.cfg
 cat ${tomcat_apps_dir}/ansible.properties | cat - ${tomcat_apps_dir}/dspace/config/dspace.cfg > ${tomcat_apps_dir}/dspace/config/dspace.cfg.tmp && mv -f ${tomcat_apps_dir}/dspace/config/dspace.cfg.tmp ${tomcat_apps_dir}/dspace/config/dspace.cfg
@@ -33,9 +34,8 @@ sed -i -e "s|^\(dspace.dir[[:blank:]]*=[[:blank:]]*\).*$|\1${tomcat_data_dir}/ds
 #ln -f -s ${tomcat_apps_dir}/jspui.xml ${tomcat_home_dir}/conf/Catalina/localhost/jspui.xml
 #ln -f -s ${tomcat_apps_dir}/lni.xml ${tomcat_home_dir}/conf/Catalina/localhost/lni.xml
 #ln -f -s ${tomcat_apps_dir}/sword.xml ${tomcat_home_dir}/conf/Catalina/localhost/sword.xml
-# TODO jalie add and test the following 2 wars
-#ln -f -s ${tomcat_apps_dir}/rest.xml ${tomcat_home_dir}/conf/Catalina/localhost/rest.xml
 #ln -f -s ${tomcat_apps_dir}/oai.xml ${tomcat_home_dir}/conf/Catalina/localhost/oai.xml
+ln -f -s ${tomcat_apps_dir}/rest.xml ${tomcat_home_dir}/conf/Catalina/localhost/rest.xml
 ln -f -s ${tomcat_apps_dir}/solr.xml ${tomcat_home_dir}/conf/Catalina/localhost/solr.xml
 ln -f -s ${tomcat_apps_dir}/swordv2.xml ${tomcat_home_dir}/conf/Catalina/localhost/swordv2.xml
 ln -f -s ${tomcat_apps_dir}/xmlui.xml ${tomcat_home_dir}/conf/Catalina/localhost/xmlui.xml
@@ -47,10 +47,12 @@ if [ ! -d "${tomcat_data_dir}/dspace/bin" ]; then
     cd ${tomcat_apps_dir}/dspace && ant init_installation init_configs test_database load_registries install_code update_webapps clean_backups
 
     # Create administrator
-    ${tomcat_data_dir}/dspace/bin/dspace create-administrator -e 'dspace@milieuinfo.be' -f 'admin' -l 'dspace' -c 'en' -p 'DspacE'
+    # TODO uncomment this before releasing and deploying in oefen/productie
+    #${tomcat_data_dir}/dspace/bin/dspace create-administrator -e 'dspace@milieuinfo.be' -f 'admin' -l 'dspace' -c 'en' -p 'DspacE'
 
     # (Create Communities, groups and policies)
-    ${tomcat_apps_dir}/import-structure-policies.py -x -b ${tomcat_apps_dir}/dspace/bin/dspace -f ${tomcat_apps_dir}/dspace/config/community-tree.xml
+    # TODO uncomment this before releasing and deploying in oefen/productie
+    #${tomcat_apps_dir}/import-structure-policies.py -x -b ${tomcat_apps_dir}/dspace/bin/dspace -f ${tomcat_apps_dir}/dspace/config/community-tree.xml
 else
     cd ${tomcat_apps_dir}/dspace && ant update clean_backups
 fi

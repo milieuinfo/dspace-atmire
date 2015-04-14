@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
    <modelVersion>4.0.0</modelVersion>
-   <groupId>org.dspace</groupId>
+   <groupId>be.milieuinfo.dspace</groupId>
    <artifactId>dspace-parent</artifactId>
    <packaging>pom</packaging>
-   <version>4.2</version>
+   <version>4.2.0-SNAPSHOT</version>
    <name>DSpace Parent Project</name>
    <description>
    	DSpace open source software is a turnkey institutional repository application.
@@ -35,6 +35,20 @@
              as it is used to reference the LICENSE_HEADER and *.properties file(s) in that directory. -->
         <root.basedir>${basedir}</root.basedir>
         <datamodel.version.number>4.2-1.14.8-0</datamodel.version.number>
+
+        <acd.issueManagement.system>Jira</acd.issueManagement.system>
+        <acd.issueManagement.url>https://www.milieuinfo.be/jira/</acd.issueManagement.url>
+        <acd.ciManagement.system>Bamboo</acd.ciManagement.system>
+        <acd.ciManagement.url>https://www.milieuinfo.be/bamboo</acd.ciManagement.url>
+        <acd.repository.url>https://www.milieuinfo.be/repository</acd.repository.url>
+        <acd.repository.replica.url>${acd.repository.url}/content/groups/replica</acd.repository.replica.url>
+        <acd.repository.snapshot.url>
+            dav:${acd.repository.url}/content/repositories/snapshot
+        </acd.repository.snapshot.url>
+        <acd.repository.release.url>dav:${acd.repository.url}/content/groups/release</acd.repository.release.url>
+        <acd.scm.maven-url>scm:svn:https://svn.milieuinfo.be/productie/svn</acd.scm.maven-url>
+        <acd.scm.maven-intern-url>scm:svn:https://svn.milieuinfo.be/productie/svn</acd.scm.maven-intern-url>
+
     </properties>
 
     <build>
@@ -596,8 +610,27 @@
             <maven.test.skip>true</maven.test.skip>
         </properties>
       </profile>
-    
+
    </profiles>
+
+    <distributionManagement>
+        <repository>
+            <id>release</id>
+            <url>${acd.repository.release.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshot</id>
+            <url>${acd.repository.snapshot.url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+    <issueManagement>
+        <system>${acd.issueManagement.system}</system>
+        <url>${acd.issueManagement.url}</url>
+    </issueManagement>
+    <ciManagement>
+        <system>${acd.ciManagement.system}</system>
+        <url>${acd.ciManagement.url}</url>
+    </ciManagement>
 
    <!--
       Dependency management provides a means to control which
@@ -615,9 +648,9 @@
             <version>4.2</version>
          </dependency>
          <dependency>
-            <groupId>org.dspace.modules</groupId>
+            <groupId>be.milieuinfo.dspace.modules</groupId>
             <artifactId>additions</artifactId>
-            <version>4.2</version>
+            <version>4.2.0-SNAPSHOT</version>
          </dependency>
 
          <dependency>
@@ -1121,10 +1154,10 @@
       </license>
     </licenses>
 
-   <issueManagement>
-      <system>JIRA</system>
-      <url>https://jira.duraspace.org/browse/DS</url>
-   </issueManagement>
+   <!--<issueManagement>-->
+      <!--<system>JIRA</system>-->
+      <!--<url>https://jira.duraspace.org/browse/DS</url>-->
+   <!--</issueManagement>-->
 
    <mailingLists>
       <mailingList>
@@ -1400,9 +1433,9 @@
         on release to deploy release versions to the repository by the
         release manager.
     -->
-    <distributionManagement>
+    <!--<distributionManagement>-->
         <!-- further distribution management is found upstream in the sonatype parent -->
-    </distributionManagement>
+    <!--</distributionManagement>-->
 
     <repositories>
         <repository>
