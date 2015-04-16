@@ -26,7 +26,7 @@
 VERSION=4.2.0-SNAPSHOT
 HERE=${PWD}
 TARGET_DIR=$HERE/dspace/target
-TOMCAT_DIR=~/Programs/apache-tomcat-7.0.55-dspace
+TOMCAT_DIR=/Users/lds/Projects/Dspace/run/tomcat
 
 # Get the Dspace install dir from lokaal.properties file
 DSPACE_DIR=$(cat ./lokaal.properties | grep "dspace.install.dir" | cut -d'=' -f2)
@@ -55,7 +55,7 @@ fi
 echo " ---------------------------------------------------------------------"
 echo " ---------------------- Building project! ----------------------------"
 echo " ---------------------------------------------------------------------"
-mvn clean package -Denv=lokaal
+#mvn clean package -Denv=lokaal
 
 if [ ! -d "$TARGET_DIR/dspace-$VERSION" ]; then
     echo " ---------------------------------------------------------------------"
@@ -78,7 +78,7 @@ echo " ---------------------------------------------------------------------"
 sed "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" $APPS_DIR/rest.xml > $TOMCAT_DIR/conf/Catalina/localhost/rest.xml
 sed "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" $APPS_DIR/solr.xml > $TOMCAT_DIR/conf/Catalina/localhost/solr.xml
 sed -e "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" -e "s#%db_username%#$DB_USERNAME#g" -e "s#%db_password%#$DB_PASSWORD#g" -e "s#url=\"[^\"]*#url=\"$DB_URL#g" $APPS_DIR/swordv2.xml > $TOMCAT_DIR/conf/Catalina/localhost/swordv2.xml
-sed -e "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" -e "s#%db_username%#$DB_USERNAME#g" -e "s#%db_password%#$DB_PASSWORD#g" -e "s#url=\"[^\"]*#url=\"$DB_URL#g" $APPS_DIR/xmlui.xml > $TOMCAT_DIR/conf/Catalina/localhost/xmlui.xml
+sed -e "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" -e "s#%db_username%#$DB_USERNAME#g" -e "s#%db_password%#$DB_PASSWORD#g" -e "s#url=\"[^\"]*#url=\"$DB_URL#g" $APPS_DIR/xmlui.xml > $TOMCAT_DIR/conf/Catalina/localhost/archief.xml
 
 echo " ---------------------------------------------------------------------"
 echo " ---------------- Overwrite Security settings! -----------------------"
@@ -102,7 +102,7 @@ if [ "$1" = "init" ]; then
     echo " ---------------------------------------------------------------------"
     echo " ----------- Importing communities, groups and policies! -------------"
     echo " ---------------------------------------------------------------------"
-    $APPS_DIR/import-structure-policies.py -x -b $APPS_DIR/dspace/bin/dspace -f $APPS_DIR/community.xml
+    $APPS_DIR/import-structure-policies.py -x -b $APPS_DIR/dspace/bin/dspace -f $APPS_DIR/community-tree.xml
 
     echo " ---------------------------------------------------------------------"
     echo " --------------------- Starting up Tomcat! ---------------------------"
