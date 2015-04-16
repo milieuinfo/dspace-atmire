@@ -87,6 +87,12 @@
         <dependency>
             <groupId>be.milieuinfo.dspace.modules</groupId>
             <artifactId>additions</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>be.milieuinfo.security</groupId>
+                    <artifactId>acd-openam-oauth-client</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
