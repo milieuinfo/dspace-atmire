@@ -29,14 +29,12 @@
     <bean id="relationshipTypeService" class="com.atmire.dspace.content.RelationshipTypeServiceImpl"/>
     <bean id="relationshipService" class="com.atmire.dspace.content.RelationshipServiceImpl"/>
 
-    <bean id="dossierService" class="com.atmire.dspace.content.DossierService"/>
-    <bean id="documentService" class="com.atmire.dspace.content.DocumentService"/>
+    <bean id="recordService" class="com.atmire.dspace.content.RecordService"/>
 
     <bean id="relationshipObjectServiceFactory" class="com.atmire.dspace.content.RelationshipObjectServiceFactory">
         <property name="mapping">
             <util:map key-type="java.lang.Class" value-type="com.atmire.dspace.content.RelationshipObjectService">
-                <entry key="com.atmire.dspace.content.Dossier" value-ref="dossierService"/>
-                <entry key="com.atmire.dspace.content.Document" value-ref="documentService"/>
+                <entry key="com.atmire.dspace.content.Record" value-ref="recordService"/>
             </util:map>
         </property>
     </bean>

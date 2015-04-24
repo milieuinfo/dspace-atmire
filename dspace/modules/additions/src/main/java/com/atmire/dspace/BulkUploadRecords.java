@@ -1,18 +1,27 @@
 package com.atmire.dspace;
 
+import com.atmire.dspace.content.Record;
+import com.atmire.dspace.content.RelationshipObjectService;
+import com.atmire.dspace.content.RelationshipObjectServiceFactory;
 import com.atmire.scripts.ContextScript;
+import com.atmire.util.LneUtils;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
+import org.apache.commons.io.FileUtils;
+import org.apache.xpath.XPathAPI;
 import org.dspace.app.itemimport.ItemImport;
 import org.dspace.authorize.AuthorizeException;
 import org.dspace.content.*;
 import org.dspace.core.ConfigurationManager;
+import org.dspace.core.Constants;
 import org.dspace.core.Context;
+import org.dspace.event.Event;
 import org.dspace.handle.HandleManager;
 import org.jdom.transform.XSLTransformException;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -29,32 +38,34 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.*;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 /**
  * Created by philip on 07/11/14.
  */
-public class BulkUploadIMJV extends ContextScript {
+public class BulkUploadRecords extends ContextScript {
 
     protected static DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
     protected static TransformerFactory transFactory = TransformerFactory.newInstance();
     protected static SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
     private Transformer transformer;
-//    private RelationshipObjectService<Dossier> dossierService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Dossier.class);
+    private RelationshipObjectService<Record> recordService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Record.class);
     private String directory;
+    private String outputDirectory;
     private String XSLPath;
     private String schemaString;
     private boolean validationEnabled;
     private Community community;
 
-    public BulkUploadIMJV(Context context) {
+    public BulkUploadRecords(Context context) {
         super(context);
     }
 
-    public BulkUploadIMJV() {
+    public BulkUploadRecords() {
     }
 
     public static void main(String[] args) {
-        BulkUploadIMJV script = new BulkUploadIMJV();
+        BulkUploadRecords script = new BulkUploadRecords();
         script.mainImpl(args);
     }
 
@@ -68,6 +79,13 @@ public class BulkUploadIMJV extends ContextScript {
         OptionBuilder.isRequired();
         Option inputDirectoryOption = OptionBuilder.create('d');
         options.addOption(inputDirectoryOption);
+
+        OptionBuilder.withArgName("output-directory");
+        OptionBuilder.hasArg();
+        OptionBuilder.withDescription("directory containing the outputted archives");
+        OptionBuilder.isRequired();
+        Option outputDirectoryOption = OptionBuilder.create('o');
+        options.addOption(outputDirectoryOption);
 
         OptionBuilder.withArgName("xsl");
         OptionBuilder.hasArg();
@@ -92,6 +110,13 @@ public class BulkUploadIMJV extends ContextScript {
         OptionBuilder.isRequired();
         Option communityOption = OptionBuilder.create('c');
         options.addOption(communityOption);
+
+        OptionBuilder.withArgName("consumer");
+        OptionBuilder.withDescription("override the consumer list");
+        OptionBuilder.hasArg();
+        Option consumerOption = OptionBuilder.create('r');
+        options.addOption(consumerOption);
+
         return options;
     }
 
@@ -100,6 +125,12 @@ public class BulkUploadIMJV extends ContextScript {
         boolean exit = false;
         if (line.hasOption('d')) {
             setDirectory(line.getOptionValue("d"));
+        } else {
+            exit = true;
+        }
+
+        if (line.hasOption('o')) {
+            setOutputDirectory(line.getOptionValue("o"));
         } else {
             exit = true;
         }
@@ -141,6 +172,10 @@ public class BulkUploadIMJV extends ContextScript {
             }
         }
 
+        if (line.hasOption('r')) {
+            context.setDispatcher(line.getOptionValue("r"));
+        }
+
         return exit;
     }
 
@@ -151,11 +186,16 @@ public class BulkUploadIMJV extends ContextScript {
             File[] subdirs = dir.listFiles();
             for (File subdir : subdirs) {
                 if(subdir.isDirectory()) {
+                    System.out.println("Start Processing " + subdir.getName());
                     String workingDirPath = subdir.getAbsolutePath() + File.separator + "IngediendeDocumentenOrigineel";
-                    String outputFolderPath = workingDirPath + File.separator + "archive";
+                    String outputFolderPath = outputDirectory + File.separator + File.separator + subdir.getName() + File.separator + "archive";
                     File workingDir = new File(workingDirPath);
+                    if (!workingDir.exists()) {
+                        System.err.println("Directory doesn't exist: " + subdir.getName());
+                        continue;
+                    }
                     File output = new File(outputFolderPath);
-                    output.mkdir();
+                    output.mkdirs();
 
                     String xmlCommunicatiePath = subdir.getAbsolutePath() + File.separator + "XML-Communicatie";
                     File xmlCommunicatie = new File(xmlCommunicatiePath);
@@ -172,64 +212,71 @@ public class BulkUploadIMJV extends ContextScript {
     }
 
     protected void importArchives(File outputFolder, File xmlCommunicatie) throws Exception {
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        Document doc = null;
 
-        File[] documentArchives = outputFolder.listFiles(new FilenameFilter() {
+        File[] archives = outputFolder.listFiles(new FilenameFilter() {
             @Override
-            public boolean accept(File dir, String name) {
-                return name.startsWith("aangifte");
+            public boolean accept(File current, String name) {
+                return new File(current, name).isDirectory();
             }
         });
 
-        File[] dossierArchives = outputFolder.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return name.startsWith("IdentificatieMetaData");
-            }
-        });
+            HashMap<String, Record> recordMap = new HashMap<String, Record>();
+            HashMap<Record, String> referenceMap = new HashMap<Record, String>();
 
-        if (dossierArchives.length != 1) {
-            throw new IllegalStateException(dossierArchives.length + " dossier archives found");
+            for (File archive : archives) {
+            Item item = importItem(outputFolder, archive, LneUtils.getRecordCollections(community));
+                createImportBundle(item, archive);
+
+                if (xmlCommunicatie.exists() && archive.getName().startsWith("IdentificatieMetaData")) {
+                    createXmlCommunicatieBundle(item, xmlCommunicatie);
+                }
+
+                Record record = new Record(item);
+                recordMap.put(archive.getName(), record);
+
+                File relations = new File(archive.getAbsolutePath() + File.separator + "relations.xml");
+
+                if (relations.exists()) {
+                    doc = builder.parse(relations);
+                    Node node = XPathAPI.selectSingleNode(doc, "/dublin_core/dcvalue");
+
+                    referenceMap.put(record, node.getTextContent());
+                }
+
+                item.decache();
+            }
+
+            for (Record record : referenceMap.keySet()) {
+                if (recordMap.containsKey(referenceMap.get(record))) {
+                    Record parentRecord = recordMap.get(referenceMap.get(record));
+                    parentRecord.addRecord(record);
+                    record.setRecord(parentRecord);
+                }
+            }
+
+            for (Record record : recordMap.values()) {
+                recordService.create(context, record);
+                context.addEvent(new Event(Event.MODIFY, Constants.ITEM, record.getItem().getID(), null));
+            }
         }
-        File dossierArchive = dossierArchives[0];
 
-//        List<Item> createdItems = new LinkedList<Item>();
-//        List<com.atmire.dspace.content.Document> documents = new LinkedList<com.atmire.dspace.content.Document>();
-//        for (File documentArchive : documentArchives) {
-//            Item documentItem = importItem(outputFolder, documentArchive, LneUtils.getDocumentCollections(community));
-//
-//            createImportBundle(documentItem, documentArchive);
-//
-//            com.atmire.dspace.content.Document document = new com.atmire.dspace.content.Document(documentItem);
-//            documents.add(document);
-//            createdItems.add(documentItem);
-//        }
-//
-//        Item dossierItem = importItem(outputFolder, dossierArchive, LneUtils.getDossierCollections(community));
-//
-//        createImportBundle(dossierItem, dossierArchive);
-//
-//        if(xmlCommunicatie.exists()) {
-//            createXmlCommunicatieBundle(dossierItem, xmlCommunicatie);
-//        }
-//
-//        Dossier dossier = new Dossier(dossierItem, documents);
-//        dossierService.create(context, dossier);
-
-//        createdItems.add(dossierItem);
-//        for (Item createdItem : createdItems) {
-//            createdItem.decache();
-//        }
-    }
 
     private void createImportBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
         Bundle bundle = item.createBundle("IMPORT");
-        InputStream inputstream = new FileInputStream(folder.getPath() + File.separator + "source.xml");
-        Bitstream bs = bundle.createBitstream(inputstream);
-        bs.setName("source.xml");
-        BitstreamFormat bf = FormatIdentifier.guessFormat(context, bs);
-        bs.setFormat(bf);
-        bs.update();
-        inputstream.close();
+        File source = new File(folder.getPath() + File.separator + "source.xml");
+
+        if(source.exists()) {
+            InputStream inputstream = new FileInputStream(source);
+            Bitstream bs = bundle.createBitstream(inputstream);
+            bs.setName("source.xml");
+            BitstreamFormat bf = FormatIdentifier.guessFormat(context, bs);
+            bs.setFormat(bf);
+            bs.update();
+            inputstream.close();
+        }
     }
 
     private void createXmlCommunicatieBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
@@ -263,6 +310,14 @@ public class BulkUploadIMJV extends ContextScript {
     }
 
     protected void makeArchives(String outputFolderPath, File dir) throws ParserConfigurationException, SAXException, IOException, XSLTransformException {
+        File output = new File(outputFolderPath);
+
+        if(output.exists()){
+            FileUtils.deleteDirectory(output);
+        }
+
+        output.mkdirs();
+
         File[] xmlFiles = dir.listFiles(new FilenameFilter() {
             public boolean accept(File dir, String name) {
                 return name.endsWith("METADATA.xml");
@@ -289,19 +344,20 @@ public class BulkUploadIMJV extends ContextScript {
     }
 
     protected void ValidateAgainstSchema(Document doc, String schemaString) throws IOException, SAXException {
-        Schema schema = schemaFactory.newSchema(new File(org.dspace.core.ConfigurationManager.getProperty("dspace.dir") + File.separator + "config" + File.separator + "schemas-imjv" + File.separator + "xsd" + File.separator + schemaString));
+        Schema schema = schemaFactory.newSchema(new File(ConfigurationManager.getProperty("dspace.dir") + File.separator + "config" + File.separator + "schemas-imjv" + File.separator + "xsd" + File.separator + schemaString));
 
         Validator validator = schema.newValidator();
         validator.validate(new DOMSource(doc));
     }
 
     protected boolean convertToArchive(File input, String outputPath, String xslPath) throws XSLTransformException {
-        javax.xml.transform.Source xmlSource = new javax.xml.transform.stream.StreamSource(input);
-        javax.xml.transform.Source xsltSource = new javax.xml.transform.stream.StreamSource(new File(xslPath));
+        Source xmlSource = new javax.xml.transform.stream.StreamSource(input);
+        Source xsltSource = new javax.xml.transform.stream.StreamSource(new File(xslPath));
         javax.xml.transform.Result result = new javax.xml.transform.stream.StreamResult(new File(outputPath));
 
         try {
             Transformer transformer = getTransformer(xsltSource, xslPath);
+            transformer.setParameter("directory", input.getParent());
             transformer.transform(xmlSource, result);
         } catch (Throwable t) {
             print("Error: couldn't convert the metadata file at '" + input.getAbsolutePath());
@@ -337,6 +393,14 @@ public class BulkUploadIMJV extends ContextScript {
 
     public void setDirectory(String directory) {
         this.directory = directory;
+    }
+
+    public String getOutputDirectory() {
+        return outputDirectory;
+    }
+
+    public void setOutputDirectory(String outputDirectory) {
+        this.outputDirectory = outputDirectory;
     }
 
     public String getXSLPath() {

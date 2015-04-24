@@ -3,6 +3,7 @@ package com.atmire.dspace.content;
 import org.dspace.content.Item;
 import org.dspace.core.Context;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -12,6 +13,8 @@ import java.util.List;
 public interface RelationshipObjectService<T extends RelationShipObject> {
 
     public T findByItem(Context context, Item item);
+
+    public Collection<Relationship> findRelationsByItem(Context context,Item leftItem, Item rightItem);
 
     public T findByItems(Context context, Item left, Item right);
 
