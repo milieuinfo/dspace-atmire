@@ -10,8 +10,10 @@ package org.dspace.authenticate;
 import be.milieuinfo.security.openam.api.OpenAMUserdetails;
 import be.milieuinfo.security.openam.oauth.JerseyBasedOAuthIdentityService;
 import be.milieuinfo.security.openam.oauth.OAuthTokenPair;
+
 import com.sun.jersey.api.client.ClientRequest;
 import com.sun.jersey.api.client.ClientResponse;
+
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.dspace.authorize.AuthorizeException;
@@ -24,9 +26,11 @@ import org.dspace.eperson.Group;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.core.UriBuilder;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public abstract class OpenAMAuthentication implements AuthenticationMethod {
@@ -65,14 +69,14 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
                             context.setIgnoreAuthorization(true);
                             final EPerson eperson = createEPerson(context, request, email, sn, givenName);
                             eperson.update();
-                            addToGroup(context, roles, eperson);
+                            fixGroups(context, roles, eperson);
                             context.commit();
                             context.setIgnoreAuthorization(false);
                             context.setCurrentUser(eperson);
                             log.info(LogManager.getHeader(context, "login", "type=openam-interactive"));
                             return SUCCESS;
                         } else {
-                            addToGroup(context, roles, knownEPerson);
+                        	fixGroups(context, roles, knownEPerson);
                             context.setCurrentUser(knownEPerson);
                             return SUCCESS;
                         }
@@ -103,13 +107,21 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
         return eperson;
     }
 
-    private void addToGroup(Context context, Collection<String> roles, EPerson eperson) throws SQLException, AuthorizeException {
-        for (String role : roles) {
+    
+
+    private void fixGroups(Context context, Collection<String> roles , EPerson ePerson) throws SQLException, AuthorizeException{
+    	
+    	ArrayList<Group> currentGroups = new ArrayList<Group>();
+    	
+    	for (String role : roles) {
             if(DSPACE_ADMIN_ROLE.equals(role)) {
                 final Group admins = Group.findByName(context, ADMINISTRATOR_GROUP);
                 if (admins != null) {
-                    admins.addMember(eperson);
+                    admins.addMember(ePerson);
                     admins.update();
+                    
+                    currentGroups.add(admins);
+                    
                 } else {
                     log.warn(LogManager.getHeader(context, "login", "Could not add user as administrator (group not found)!"));
                 }
@@ -117,15 +129,31 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
                 final String groupName = role.replaceAll(DSPACE_ROLE_PREFIX, "");
                 final Group group = Group.findByName(context, groupName);
                 if (group != null) {
-                    group.addMember(eperson);
+                    group.addMember(ePerson);
                     group.update();
+                    
+                    currentGroups.add(group);
+                    
                 } else {
                     log.warn(LogManager.getHeader(context, "login", "Could not add user to group:" + groupName + " (group not found)!"));
                 }
             }
         }
+    	
+    	
+    	Group[] dbGroups = Group.allMemberGroups(context, ePerson);
+    	for (Group dbGroup : dbGroups ){
+    		if (dbGroup.getID() == 0 ){
+    			log.debug("Everybody belongs to the anonymous group");
+    		}else if (!currentGroups.contains(dbGroup)){
+    			log.info(ePerson.getName() + " belongs to group: "+ dbGroup.getName() + " in the database but not in LDAP, removing person from group");
+    			dbGroup.removeMember(ePerson);
+    			dbGroup.update();
+    		}
+    	}
+       	
     }
-
+    
     protected class DSpaceJerseyBasedOAuthIdentityService extends JerseyBasedOAuthIdentityService {
 
         private static final String LOGIN_URL = BASE_PATH + "/login";

@@ -87,11 +87,23 @@
         <dependency>
             <groupId>be.milieuinfo.dspace.modules</groupId>
             <artifactId>additions</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>be.milieuinfo.security</groupId>
+                    <artifactId>acd-openam-oauth-client</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
             <groupId>be.milieuinfo.framework</groupId>
             <artifactId>core-log</artifactId>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.codehaus.jackson</groupId>
+            		<artifactId>jackson-core-asl</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
 
         <!-- DSpace REST Webapp -->
@@ -106,6 +118,24 @@
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <scope>provided</scope>
+        </dependency>
+        
+        <!-- Jersey, for RESTful web services -->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-server</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-servlet</artifactId>
+            <version>1.17.1</version>
+        </dependency>
+        <!-- JSON serialization, should I use jackson?-->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-json</artifactId>
+            <version>1.17.1</version>
         </dependency>
 
     </dependencies>
