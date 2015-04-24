@@ -1,46 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <relationships>
-    <!-- no id needed -->
     <type>
-        <leftType>com.atmire.dspace.content.Dossier</leftType>
-        <rightType>com.atmire.dspace.content.Document</rightType>
-        <leftLabel>Dossier</leftLabel>
-        <rightLabel>Document</rightLabel>
+        <leftType>com.atmire.dspace.content.Record</leftType>
+        <rightType>com.atmire.dspace.content.Record</rightType>
+        <leftLabel>Parent</leftLabel>
+        <rightLabel>Child</rightLabel>
         <leftCardinality>
             <min>0</min>
-            <!--<max></max>--><!--unbounded-->
+            <max>1</max>
         </leftCardinality>
         <rightCardinality>
             <min>0</min>
             <!--<max></max>-->
-        </rightCardinality>
-    </type>
-    <type>
-        <leftType>com.atmire.dspace.content.Dossier</leftType>
-        <rightType>com.atmire.dspace.content.Dossier</rightType>
-        <leftLabel>Dossier</leftLabel>
-        <rightLabel>Dossier</rightLabel>
-        <leftCardinality>
-            <min>1</min>
-            <max>1</max>
-        </leftCardinality>
-        <rightCardinality>
-            <min>1</min>
-            <max>1</max>
-        </rightCardinality>
-    </type>
-    <type>
-        <leftType>com.atmire.dspace.content.Document</leftType>
-        <rightType>com.atmire.dspace.content.Document</rightType>
-        <leftLabel>Document</leftLabel>
-        <rightLabel>Document</rightLabel>
-        <leftCardinality>
-            <min>1</min>
-            <max>1</max>
-        </leftCardinality>
-        <rightCardinality>
-            <min>1</min>
-            <max>1</max>
         </rightCardinality>
     </type>
 </relationships>

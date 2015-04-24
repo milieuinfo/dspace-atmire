@@ -24,6 +24,8 @@
 
     <bean id="solrServiceResourceIndexPlugin" class="org.dspace.discovery.SolrServiceResourceRestrictionPlugin" scope="prototype"/>
     <bean id="SolrServiceSpellIndexingPlugin" class="org.dspace.discovery.SolrServiceSpellIndexingPlugin" scope="prototype"/>
+    <bean id="SolrServiceRelationIndexPlugin" class="com.atmire.discovery.SolrServiceRelationIndexPlugin" scope="prototype"/>
+    <bean id="SolrFileUrlIndexer" class="org.dspace.discovery.SolrFileUrlIndexer" scope="prototype"/>
 
     <alias name="solrServiceResourceIndexPlugin" alias="org.dspace.discovery.SolrServiceResourceRestrictionPlugin"/>
 
@@ -102,6 +104,7 @@
                 <ref bean="searchFilterRapporteringsJaar" />
                 <ref bean="searchFilterExploitatieStad" />
                 <ref bean="searchFilterExploitatiePostCode" />
+                <ref bean="searchFilterType" />
             </list>
         </property>
         <!--The search filters which can be used on the discovery search page-->
@@ -115,6 +118,7 @@
                 <ref bean="searchFilterRapporteringsJaar" />
                 <ref bean="searchFilterExploitatieStad" />
                 <ref bean="searchFilterExploitatiePostCode" />
+                <ref bean="searchFilterType" />
             </list>
         </property>
         <!--The sort filters for the discovery search-->
@@ -356,6 +360,17 @@
         <property name="metadataFields">
             <list>
                 <value>imjv.ExploitatieLocatiePostcode</value>
+            </list>
+        </property>
+        <property name="facetLimit" value="10"/>
+        <property name="sortOrder" value="COUNT"/>
+    </bean>
+
+    <bean id="searchFilterType" class="org.dspace.discovery.configuration.DiscoverySearchFilterFacet">
+        <property name="indexFieldName" value="type"/>
+        <property name="metadataFields">
+            <list>
+                <value>imjv.type</value>
             </list>
         </property>
         <property name="facetLimit" value="10"/>

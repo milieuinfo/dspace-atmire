@@ -648,7 +648,27 @@
               </xsl:call-template>
           </xsl:when>
 
-          <xsl:when test="$clause = 25 and $ds_item_view_toggle_url != ''">
+          <!-- imjv.dmsexportnotes -->
+          <xsl:when test="$clause = 25 and (dim:field[@element='dmsexportnotes' and @mdschema='imjv'] and descendant::text())">
+              <div class="simple-item-view-other">
+                  <xsl:for-each select="dim:field[@element='dmsexportnotes' and @mdschema='imjv']">
+                      <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-dmsexportnotes</i18n:text>:</span>
+                      <span>
+                          <xsl:copy-of select="./node()"/>
+                      </span>
+                      <xsl:if test="count(following-sibling::dim:field[@element='dmsexportnotes' and @mdschema='imjv']) != 0">
+                          <br/>
+                      </xsl:if>
+                  </xsl:for-each>
+              </div>
+              <xsl:call-template name="itemSummaryView-DIM-fields">
+                  <xsl:with-param name="clause" select="($clause + 1)"/>
+                  <xsl:with-param name="phase" select="$otherPhase"/>
+              </xsl:call-template>
+          </xsl:when>
+
+
+          <xsl:when test="$clause = 26 and $ds_item_view_toggle_url != ''">
               <p class="ds-paragraph item-view-toggle item-view-toggle-bottom">
                   <a>
                       <xsl:attribute name="href"><xsl:value-of select="$ds_item_view_toggle_url"/></xsl:attribute>
@@ -660,7 +680,7 @@
           <!-- recurse without changing phase if we didn't output anything -->
           <xsl:otherwise>
             <!-- IMPORTANT: This test should be updated if clauses are added! -->
-            <xsl:if test="$clause &lt; 26">
+            <xsl:if test="$clause &lt; 27">
               <xsl:call-template name="itemSummaryView-DIM-fields">
                 <xsl:with-param name="clause" select="($clause + 1)"/>
                 <xsl:with-param name="phase" select="$phase"/>
