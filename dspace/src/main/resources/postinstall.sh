@@ -50,6 +50,7 @@ else
 fi
 
 if [ ! -d "${tomcat_data_dir}/dspace/bin" ]; then
+    echo "Complete install"
     # Install the dspace configs, code and webapps into the '${tomcat_data_dir}/dspace' location
     cd ${tomcat_apps_dir}/dspace && ant init_installation init_configs test_database load_registries install_code update_webapps clean_backups
 
@@ -61,6 +62,7 @@ if [ ! -d "${tomcat_data_dir}/dspace/bin" ]; then
     # TODO uncomment this before releasing and deploying in oefen/productie
     #${tomcat_apps_dir}/import-structure-policies.py -x -b ${tomcat_apps_dir}/dspace/bin/dspace -f ${tomcat_apps_dir}/dspace/config/community-tree.xml
 else
+    echo "Update install"
     cd ${tomcat_apps_dir}/dspace && ant update clean_backups
 fi
 
