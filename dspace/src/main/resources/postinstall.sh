@@ -42,6 +42,13 @@ ln -f -s ${tomcat_apps_dir}/xmlui.xml ${tomcat_home_dir}/conf/Catalina/localhost
 
 ln -f -s ${tomcat_apps_dir}/setenv.sh ${tomcat_home_dir}/bin/setenv.sh
 
+# TODO zorgen dat de DB init enkel gebeurd op node 1 
+if [ ${node_num} -eq 2 ]; then 
+    echo "Dit wordt enkel uitgevoerd op node 2"
+else
+    echo "Dit wordt enkel uitgevoerd op node 1"
+fi
+
 if [ ! -d "${tomcat_data_dir}/dspace/bin" ]; then
     # Install the dspace configs, code and webapps into the '${tomcat_data_dir}/dspace' location
     cd ${tomcat_apps_dir}/dspace && ant init_installation init_configs test_database load_registries install_code update_webapps clean_backups
