@@ -288,7 +288,7 @@
               <mail.admin>noreply@atmire.com</mail.admin>
               <alert.recipient>noreply@atmire.com</alert.recipient>
               <mail.server.disabled>true</mail.server.disabled>
-              <solr.server>http://localhost:8080/solr</solr.server>
+              <solr.server>http://localhost:8080/archief/solr</solr.server>
               <!--<sword.url>${dspace.baseUrl}/dspace-lne42-sword</sword.url>-->
               <sword.url>${dspace.baseUrl}/swordv2</sword.url>
               <assetstore.dir>/opt/tomcat/data/dspace/assetstore</assetstore.dir>
