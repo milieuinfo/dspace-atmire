@@ -75,10 +75,10 @@ echo " ---------------------------------------------------------------------"
 #    sed "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" $APPS_DIR/lni.xml > $TOMCAT_DIR/conf/Catalina/localhost/lni.xml
 #    sed "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" $APPS_DIR/oai.xml > $TOMCAT_DIR/conf/Catalina/localhost/oai.xml
 #    sed "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" $APPS_DIR/sword.xml > $TOMCAT_DIR/conf/Catalina/localhost/sword.xml
-sed "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" $APPS_DIR/rest.xml > $TOMCAT_DIR/conf/Catalina/localhost/rest.xml
-sed "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" $APPS_DIR/solr.xml > $TOMCAT_DIR/conf/Catalina/localhost/solr.xml
-sed -e "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" -e "s#%db_username%#$DB_USERNAME#g" -e "s#%db_password%#$DB_PASSWORD#g" -e "s#url=\"[^\"]*#url=\"$DB_URL#g" $APPS_DIR/swordv2.xml > $TOMCAT_DIR/conf/Catalina/localhost/swordv2.xml
-sed -e "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" -e "s#%db_username%#$DB_USERNAME#g" -e "s#%db_password%#$DB_PASSWORD#g" -e "s#url=\"[^\"]*#url=\"$DB_URL#g" $APPS_DIR/xmlui.xml > $TOMCAT_DIR/conf/Catalina/localhost/archief.xml
+sed "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" $APPS_DIR/rest.xml > $TOMCAT_DIR/conf/Catalina/localhost/archief#rest.xml
+sed "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" $APPS_DIR/solr.xml > $TOMCAT_DIR/conf/Catalina/localhost/archief#solr.xml
+sed -e "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" -e "s#%db_username%#$DB_USERNAME#g" -e "s#%db_password%#$DB_PASSWORD#g" -e "s#url=\"[^\"]*#url=\"$DB_URL#g" $APPS_DIR/swordv2.xml > $TOMCAT_DIR/conf/Catalina/localhost/archief#swordv2.xml
+sed -e "s#%tomcat_data_dir%/dspace#$DSPACE_DIR#g" -e "s#%db_username%#$DB_USERNAME#g" -e "s#%db_password%#$DB_PASSWORD#g" -e "s#url=\"[^\"]*#url=\"$DB_URL#g" $APPS_DIR/xmlui.xml > $TOMCAT_DIR/conf/Catalina/localhost/archief#xmlui.xml
 
 echo " ---------------------------------------------------------------------"
 echo " ---------------- Overwrite Security settings! -----------------------"
