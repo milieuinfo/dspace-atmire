@@ -42,6 +42,9 @@ ln -f -s ${tomcat_apps_dir}/xmlui.xml ${tomcat_home_dir}/conf/Catalina/localhost
 
 ln -f -s ${tomcat_apps_dir}/setenv.sh ${tomcat_home_dir}/bin/setenv.sh
 
+
+
+
 # TODO zorgen dat de DB init enkel gebeurd op node 1 
 if [ ${node_num} -eq 2 ]; then 
     echo "Dit wordt enkel uitgevoerd op node 2"
@@ -49,10 +52,20 @@ else
     echo "Dit wordt enkel uitgevoerd op node 1"
 fi
 
-if [ ! -d "${tomcat_data_dir}/dspace/bin" ]; then
-    echo "Complete install"
-    # Install the dspace configs, code and webapps into the '${tomcat_data_dir}/dspace' location
-    cd ${tomcat_apps_dir}/dspace && ant -v init_installation init_configs test_database load_registries install_code update_webapps clean_backups
+# Vermits er bij een ansible install alles wordt weg gesmeten moeten we er vanuit gaan dat er een clean install is
+echo "Installeer toepassing"
+cd ${tomcat_apps_dir}/dspace && ant -v init_installation init_configs install_code update_webapps clean_backups
+
+# Als er nog geen assetstore is en we op node1 zitten wil het zeggen dat het een brand new installatie is en we zitten 
+if [ ! -d "${tomcat_data_dir}/dspace/assetstore" && ${node_num} -eq 2  ]; then
+    echo "Volledig nieuwe installatie"
+
+    echo "Install van de db"
+#    cd ${tomcat_apps_dir}/dspace && ant -v test_database load_registries
+
+    echo "Creatie van data directories"
+ #   mkdir "${tomcat_data_dir}/solr2"
+ #   mkdir "${tomcat_data_dir}/assetstore"
 
     # Create administrator
     # TODO uncomment this before releasing and deploying in oefen/productie
@@ -61,9 +74,35 @@ if [ ! -d "${tomcat_data_dir}/dspace/bin" ]; then
     # (Create Communities, groups and policies)
     # TODO uncomment this before releasing and deploying in oefen/productie
     #${tomcat_apps_dir}/import-structure-policies.py -x -b ${tomcat_apps_dir}/dspace/bin/dspace -f ${tomcat_apps_dir}/dspace/config/community-tree.xml
-else
-    echo "Update install"
-    cd ${tomcat_apps_dir}/dspace && ant -v update clean_backups
+
 fi
+
+echo "Maken van symlinks naar de data folders"
+
+rm -rf ${tomcat_apps_dir}/dspace/solr
+
+ln ${tomcat_data_dir}/dspace/solr2 ${tomcat_apps_dir}/dspace/solr
+
+rm -rf ${tomcat_apps_dir}/dspace/assetstore
+
+ln ${tomcat_data_dir}/dspace/assetstore ${tomcat_apps_dir}/dspace/assetstore
+
+
+#if [ ! -d "${tomcat_data_dir}/dspace/bin" ]; then
+#    echo "Complete install"
+#    # Install the dspace configs, code and webapps into the '${tomcat_data_dir}/dspace' location
+#    cd ${tomcat_apps_dir}/dspace && ant -v init_installation init_configs test_database load_registries install_code update_webapps clean_backups
+#
+#    # Create administrator
+#    # TODO uncomment this before releasing and deploying in oefen/productie
+#    #${tomcat_data_dir}/dspace/bin/dspace create-administrator -e 'dspace@milieuinfo.be' -f 'admin' -l 'dspace' -c 'en' -p 'DspacE'
+#
+#    # (Create Communities, groups and policies)
+#    # TODO uncomment this before releasing and deploying in oefen/productie
+#    #${tomcat_apps_dir}/import-structure-policies.py -x -b ${tomcat_apps_dir}/dspace/bin/dspace -f ${tomcat_apps_dir}/dspace/config/community-tree.xml
+#else
+#    echo "Update install"
+#    cd ${tomcat_apps_dir}/dspace && ant -v update clean_backups
+#fi
 
 chown -R tomcat:tomcat ${tomcat_data_dir}
