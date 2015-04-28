@@ -66,6 +66,9 @@ if [ ! -d "${tomcat_data_dir}/dspace/assetstore" && ${node_num} -eq 2  ]; then
     echo "Creatie van data directories"
  #   mkdir "${tomcat_data_dir}/solr2"
  #   mkdir "${tomcat_data_dir}/assetstore"
+ #   chown -R tomcat:tomcat ${tomcat_data_dir}/solr2
+ #   chown -R tomcat:tomcat ${tomcat_data_dir}/assetstore
+ 
 
     # Create administrator
     # TODO uncomment this before releasing and deploying in oefen/productie
@@ -108,4 +111,26 @@ ln -s ${tomcat_data_dir}/dspace/assetstore ${tomcat_apps_dir}/dspace/assetstore
 #    cd ${tomcat_apps_dir}/dspace && ant -v update clean_backups
 #fi
 
-chown -R tomcat:tomcat ${tomcat_data_dir}
+echo "Chown dir naar tomcat user : ${tomcat_apps_dir}"
+
+chown -R tomcat:tomcat ${tomcat_apps_dir}
+
+echo "Write ansible vars"
+echo "-------------------"
+echo '${ZUILURL}='${ZUILURL}
+echo '${ZUIL}='${ZUIL}
+echo '${db_password}='${db_password}
+echo '${db_port}='${db_port}
+echo '${db_username}='${db_username}
+echo '${dspace_consumer_secret}='${dspace_consumer_secret}
+echo '${dspace_consumer_token}='${dspace_consumer_token}
+echo '${mailrelay_host}='${mailrelay_host}
+echo '${mailrelay_port}='${mailrelay_port}
+echo '${node_num}='${node_num}
+echo '${tomcat_apps_dir}='${tomcat_apps_dir}
+echo '${tomcat_data_dir}='${tomcat_data_dir}
+echo '${tomcat_home_dir}='${tomcat_home_dir}
+echo '${vlan}='${vlan}
+echo '${zuil}='${zuil}
+
+
