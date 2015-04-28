@@ -52,9 +52,14 @@ else
     echo "Dit wordt enkel uitgevoerd op node 1"
 fi
 
+# Een trukje omdat dspace met zijn eigen installer komt en we zeker willen zijn dat alles goed werkt
+mv ${tomcat_apps_dir}/dspace ${tomcat_apps_dir}/dspace_install
+
+
 # Vermits er bij een ansible install alles wordt weg gesmeten moeten we er vanuit gaan dat er een clean install is
 echo "Installeer toepassing"
-cd ${tomcat_apps_dir}/dspace && ant -v init_installation init_configs clean_backups
+cd ${tomcat_apps_dir}/dspace_install && ant -v init_installation init_configs install_code update_webapps clean_backups
+
 
 # Als er nog geen assetstore is en we op node1 zitten wil het zeggen dat het een brand new installatie is en we zitten 
 if [ ! -d "${tomcat_data_dir}/dspace/assetstore" && ${node_num} -eq 2  ]; then
@@ -111,26 +116,29 @@ ln -s ${tomcat_data_dir}/dspace/assetstore ${tomcat_apps_dir}/dspace/assetstore
 #    cd ${tomcat_apps_dir}/dspace && ant -v update clean_backups
 #fi
 
+echo "Wissen van de install dir"
+rm -rf ${tomcat_apps_dir}/dspace_install =
+
 echo "Chown dir naar tomcat user : ${tomcat_apps_dir}"
 
 chown -R tomcat:tomcat ${tomcat_apps_dir}
 
 echo "Write ansible vars"
 echo "-------------------"
-echo '${ZUILURL}='${ZUILURL}
-echo '${ZUIL}='${ZUIL}
-echo '${db_password}='${db_password}
-echo '${db_port}='${db_port}
-echo '${db_username}='${db_username}
-echo '${dspace_consumer_secret}='${dspace_consumer_secret}
-echo '${dspace_consumer_token}='${dspace_consumer_token}
-echo '${mailrelay_host}='${mailrelay_host}
-echo '${mailrelay_port}='${mailrelay_port}
-echo '${node_num}='${node_num}
-echo '${tomcat_apps_dir}='${tomcat_apps_dir}
-echo '${tomcat_data_dir}='${tomcat_data_dir}
-echo '${tomcat_home_dir}='${tomcat_home_dir}
-echo '${vlan}='${vlan}
-echo '${zuil}='${zuil}
+echo 'export ZUILURL='${ZUILURL}
+echo 'export ZUIL='${ZUIL}
+echo 'export db_password='${db_password}
+echo 'export db_port='${db_port}
+echo 'export db_username='${db_username}
+echo 'export dspace_consumer_secret='${dspace_consumer_secret}
+echo 'export dspace_consumer_token='${dspace_consumer_token}
+echo 'export mailrelay_host='${mailrelay_host}
+echo 'export mailrelay_port='${mailrelay_port}
+echo 'export node_num='${node_num}
+echo 'export tomcat_apps_dir='${tomcat_apps_dir}
+echo 'export tomcat_data_dir='${tomcat_data_dir}
+echo 'export tomcat_home_dir='${tomcat_home_dir}
+echo 'export vlan='${vlan}
+echo 'export zuil='${zuil}
 
 
