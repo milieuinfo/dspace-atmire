@@ -54,7 +54,7 @@ fi
 
 # Vermits er bij een ansible install alles wordt weg gesmeten moeten we er vanuit gaan dat er een clean install is
 echo "Installeer toepassing"
-cd ${tomcat_apps_dir}/dspace && ant -v init_installation init_configs install_code update_webapps clean_backups
+cd ${tomcat_apps_dir}/dspace && ant -v init_installation init_configs clean_backups
 
 # Als er nog geen assetstore is en we op node1 zitten wil het zeggen dat het een brand new installatie is en we zitten 
 if [ ! -d "${tomcat_data_dir}/dspace/assetstore" && ${node_num} -eq 2  ]; then
