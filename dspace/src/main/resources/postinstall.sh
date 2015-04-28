@@ -81,11 +81,14 @@ echo "Maken van symlinks naar de data folders"
 
 rm -rf ${tomcat_apps_dir}/dspace/solr
 
-ln ${tomcat_data_dir}/dspace/solr2 ${tomcat_apps_dir}/dspace/solr
+echo "Symlink voor solr source: ${tomcat_data_dir}/dspace/solr2 name: ${tomcat_apps_dir}/dspace/solr"
+
+ln -s ${tomcat_data_dir}/dspace/solr2 ${tomcat_apps_dir}/dspace/solr
 
 rm -rf ${tomcat_apps_dir}/dspace/assetstore
 
-ln ${tomcat_data_dir}/dspace/assetstore ${tomcat_apps_dir}/dspace/assetstore
+echo "Symlink voor assetstore source: ${tomcat_data_dir}/dspace/assetstore name: ${tomcat_apps_dir}/dspace/assetstore"
+ln -s ${tomcat_data_dir}/dspace/assetstore ${tomcat_apps_dir}/dspace/assetstore
 
 
 #if [ ! -d "${tomcat_data_dir}/dspace/bin" ]; then
