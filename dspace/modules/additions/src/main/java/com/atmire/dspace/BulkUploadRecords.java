@@ -228,7 +228,6 @@ public class BulkUploadRecords extends ContextScript {
 
             for (File archive : archives) {
             Item item = importItem(outputFolder, archive, LneUtils.getRecordCollections(community));
-                createImportBundle(item, archive);
 
                 if (xmlCommunicatie.exists() && archive.getName().startsWith("IdentificatieMetaData")) {
                     createXmlCommunicatieBundle(item, xmlCommunicatie);
@@ -262,22 +261,6 @@ public class BulkUploadRecords extends ContextScript {
                 context.addEvent(new Event(Event.MODIFY, Constants.ITEM, record.getItem().getID(), null));
             }
         }
-
-
-    private void createImportBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
-        Bundle bundle = item.createBundle("IMPORT");
-        File source = new File(folder.getPath() + File.separator + "source.xml");
-
-        if(source.exists()) {
-            InputStream inputstream = new FileInputStream(source);
-            Bitstream bs = bundle.createBitstream(inputstream);
-            bs.setName("source.xml");
-            BitstreamFormat bf = FormatIdentifier.guessFormat(context, bs);
-            bs.setFormat(bf);
-            bs.update();
-            inputstream.close();
-        }
-    }
 
     private void createXmlCommunicatieBundle(Item item, File folder) throws SQLException, IOException, AuthorizeException {
         Bundle bundle = item.createBundle("XML-Communicatie");
