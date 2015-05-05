@@ -53,9 +53,7 @@
         </xsl:call-template>
 
         <redirect:write select="concat('IdentificatieMetaData',position(), '/contents')">
-            <xsl:value-of select="$directory"/>
-            <xsl:text>/</xsl:text>
-            <xsl:value-of select="utils:getMetadataFilename($directory)" disable-output-escaping="yes"/>
+            <xsl:text></xsl:text>
         </redirect:write>
 
     </xsl:template>
@@ -174,10 +172,6 @@
                     <xsl:value-of select="AangiftePdf" disable-output-escaping="yes"/>
                     <xsl:text>&#10;</xsl:text>
                 </xsl:if>
-
-                <xsl:value-of select="$directory"/>
-                <xsl:text>/</xsl:text>
-                <xsl:value-of select="utils:getMetadataFilename($directory)" disable-output-escaping="yes"/>
             </redirect:write>
 
         </xsl:for-each>
@@ -350,10 +344,6 @@
                 <xsl:text>/</xsl:text>
                 <xsl:value-of select="." disable-output-escaping="yes"/>
                 <xsl:text>&#10;</xsl:text>
-
-                <xsl:value-of select="$directory"/>
-                <xsl:text>/</xsl:text>
-                <xsl:value-of select="utils:getMetadataFilename($directory)" disable-output-escaping="yes"/>
             </redirect:write>
             <redirect:write select="concat('ProcesSchema',$count,'_',position(),'/relations.xml')">
                 <dublin_core schema="relation">
@@ -419,10 +409,6 @@
                 <xsl:text>/</xsl:text>
                 <xsl:value-of select="." disable-output-escaping="yes"/>
                 <xsl:text>&#10;</xsl:text>
-
-                <xsl:value-of select="$directory"/>
-                <xsl:text>/</xsl:text>
-                <xsl:value-of select="utils:getMetadataFilename($directory)" disable-output-escaping="yes"/>
             </redirect:write>
             <redirect:write select="concat('Bijlage',$count,'_',position(),'/relations.xml')">
                 <dublin_core schema="relation">
