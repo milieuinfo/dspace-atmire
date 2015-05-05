@@ -33,7 +33,7 @@ public class LneUtils {
         File folder = new File(path);
 
         for (File file : folder.listFiles()) {
-            if(file.getName().matches(".*METADATA.xml")){
+            if(file.getName().matches(".*METADATA\\.xml")){
                 return file.getName();
             }
         }
