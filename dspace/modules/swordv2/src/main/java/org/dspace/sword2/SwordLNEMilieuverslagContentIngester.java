@@ -80,6 +80,7 @@ public class SwordLNEMilieuverslagContentIngester extends AbstractSwordContentIn
             BulkUploadRecords bulkUploadRecords = new BulkUploadRecords(context);
 
             bulkUploadRecords.setDirectory(mainDirectory.getPath());
+            bulkUploadRecords.setOutputDirectory(mainDirectory.getPath());
             bulkUploadRecords.setValidationEnabled(false);
             bulkUploadRecords.setCommunity((Community) collection.getParentObject());
             bulkUploadRecords.setXSLPath(ConfigurationManager.getProperty("imjv-import", "transformation.stylesheet"));
