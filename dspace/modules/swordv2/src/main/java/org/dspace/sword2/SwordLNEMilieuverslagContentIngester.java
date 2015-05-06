@@ -1,6 +1,7 @@
 package org.dspace.sword2;
 
 import com.atmire.dspace.BulkUploadIMJV;
+import com.atmire.dspace.BulkUploadRecords;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -76,14 +77,14 @@ public class SwordLNEMilieuverslagContentIngester extends AbstractSwordContentIn
             }
             context.turnOffAuthorisationSystem();
 
-            BulkUploadIMJV bulkUploadIMJV = new BulkUploadIMJV(context);
+            BulkUploadRecords bulkUploadRecords = new BulkUploadRecords(context);
 
-            bulkUploadIMJV.setDirectory(mainDirectory.getPath());
-            bulkUploadIMJV.setValidationEnabled(false);
-            bulkUploadIMJV.setCommunity((Community) collection.getParentObject());
-            bulkUploadIMJV.setXSLPath(ConfigurationManager.getProperty("imjv-import", "transformation.stylesheet"));
+            bulkUploadRecords.setDirectory(mainDirectory.getPath());
+            bulkUploadRecords.setValidationEnabled(false);
+            bulkUploadRecords.setCommunity((Community) collection.getParentObject());
+            bulkUploadRecords.setXSLPath(ConfigurationManager.getProperty("imjv-import", "transformation.stylesheet"));
 
-            bulkUploadIMJV.run();
+            bulkUploadRecords.run();
 
             context.restoreAuthSystemState();
 
