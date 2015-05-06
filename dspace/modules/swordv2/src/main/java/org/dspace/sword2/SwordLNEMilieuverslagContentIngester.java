@@ -92,7 +92,11 @@ public class SwordLNEMilieuverslagContentIngester extends AbstractSwordContentIn
             FileUtils.deleteDirectory(mainDirectory);
 
             result = new DepositResult();
-            result.setItem(collection.getAllItems().next());
+            if (bulkUploadRecords.lastItemId > 0) {
+                result.setItem(Item.find(context, bulkUploadRecords.lastItemId));
+            } else {
+                result.setItem(collection.getAllItems().next());
+            }
 
             return result;
         } catch (IOException e) {

@@ -56,6 +56,7 @@ public class BulkUploadRecords extends ContextScript {
     private String schemaString;
     private boolean validationEnabled;
     private Community community;
+    public int lastItemId;
 
     public BulkUploadRecords(Context context) {
         super(context);
@@ -227,7 +228,7 @@ public class BulkUploadRecords extends ContextScript {
             HashMap<Record, String> referenceMap = new HashMap<Record, String>();
 
             for (File archive : archives) {
-            Item item = importItem(outputFolder, archive, LneUtils.getRecordCollections(community));
+                Item item = importItem(outputFolder, archive, LneUtils.getRecordCollections(community));
 
                 if (xmlCommunicatie.exists() && archive.getName().startsWith("IdentificatieMetaData")) {
                     createXmlCommunicatieBundle(item, xmlCommunicatie);
@@ -245,6 +246,7 @@ public class BulkUploadRecords extends ContextScript {
                     referenceMap.put(record, node.getTextContent());
                 }
 
+                lastItemId = item.getID();
                 item.decache();
             }
 
