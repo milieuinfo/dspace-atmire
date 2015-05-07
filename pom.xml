@@ -54,86 +54,92 @@
     <build>
       <!-- Define Maven Plugin Settings that should be inherited to ALL submodule POMs.
            (NOTE: individual POMs can override specific settings). -->
-      <pluginManagement>
-          <plugins>
-	      <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-        	  <artifactId>maven-javadoc-plugin</artifactId>
-        	  <configuration>
-          	     <minmemory>128m</minmemory>
-          	     <maxmemory>1g</maxmemory>
-        	  </configuration>
-      	      </plugin>
-              <plugin>
-                  <artifactId>maven-compiler-plugin</artifactId>
-                  <version>2.3.2</version>
-                  <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                  </configuration>
-              </plugin>
-              <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <archive>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>jaxb2-maven-plugin</artifactId>
+                    <version>1.6</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <configuration>
+                        <minmemory>128m</minmemory>
+                        <maxmemory>1g</maxmemory>
+                    </configuration>
+                </plugin>
+                
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>2.3.2</version>
+                    <configuration>
+                        <archive>
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
                     </archive>
-                </configuration>
-              </plugin>
-              <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <!-- We'd rather this be an open-ended range of versions.
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <!-- We'd rather this be an open-ended range of versions.
                      But, because of a Maven bug, we must force a specific version:
                      http://jira.codehaus.org/browse/MNG-2742
                      Once the bug is fixed, we should put open-ended range in dspace-pom -->
-                <version>2.1.1</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
-                    <archive>
+                    <version>2.1.1</version>
+                    <configuration>
+                        <failOnMissingWebXml>false</failOnMissingWebXml>
+                        <archive>
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
                             <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
                     </archive>
-                </configuration>
-             </plugin>
-             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.6</version>
-                <!-- tests whose name starts by Abstract will be ignored -->
-                <configuration>
-                    <excludes>
-                        <exclude>**/Abstract*</exclude>
-                    </excludes>
-                    <systemPropertyVariables>
-                        <root.basedir>${root.basedir}</root.basedir>
-                    </systemPropertyVariables>
-                    <!--
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.6</version>
+                    <!-- tests whose name starts by Abstract will be ignored -->
+                    <configuration>
+                        <excludes>
+                            <exclude>**/Abstract*</exclude>
+                        </excludes>
+                        <systemPropertyVariables>
+                            <root.basedir>${root.basedir}</root.basedir>
+                        </systemPropertyVariables>
+                        <!--
                     Enable to debug Maven Surefire tests in remote proces
                     <debugForkedProcess>true</debugForkedProcess>
                     -->
-                    <!-- required when running JMockit under Java 1.5 -->
-                    <argLine>-javaagent:"${settings.localRepository}"/org/dspace/dependencies/jmockit/dspace-jmockit/0.999.4/dspace-jmockit-0.999.4.jar</argLine>
-                </configuration>
-             </plugin>
-             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.2.1</version>
-             </plugin>
-             <plugin>
-                <groupId>com.mycila.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
-                <version>1.9.0</version>
-             </plugin>
-          </plugins>
-      </pluginManagement>
+                        <!-- required when running JMockit under Java 1.5 -->
+                        <argLine>-javaagent:"${settings.localRepository}"/org/dspace/dependencies/jmockit/dspace-jmockit/0.999.4/dspace-jmockit-0.999.4.jar</argLine>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.2.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>com.mycila.maven-license-plugin</groupId>
+                    <artifactId>maven-license-plugin</artifactId>
+                    <version>1.9.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 
       <!-- These plugin settings only apply to this single POM and are not inherited
            to any submodules. -->
