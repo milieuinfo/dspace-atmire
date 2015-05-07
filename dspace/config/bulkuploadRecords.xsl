@@ -2,6 +2,7 @@
         version="1.0"
         xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         xmlns:redirect="http://xml.apache.org/xalan/redirect"
+        xmlns:utils="com.atmire.util.LneUtils"
         extension-element-prefixes="redirect" exclude-result-prefixes="redirect">
 
     <xsl:output encoding="UTF-8" indent="yes" omit-xml-declaration="yes"/>
@@ -37,9 +38,6 @@
                     </xsl:with-param>
                 </xsl:call-template>
             </dublin_core>
-        </redirect:write>
-        <redirect:write select="concat('IdentificatieMetaData',position(), '/contents')">
-            <xsl:text></xsl:text>
         </redirect:write>
 
         <xsl:call-template name="aangifte">
@@ -86,11 +84,6 @@
             </dublin_core>
         </redirect:write>
 
-        <redirect:write select="concat('source',position(),'/source.xml')">
-            <xsl:copy>
-                <xsl:apply-templates select="/" mode="copy"/>
-            </xsl:copy>
-        </redirect:write>
         <redirect:write select="concat('source',position(),'/relations.xml')">
             <dublin_core schema="relation">
                 <dcvalue element="hasParent">
@@ -100,7 +93,9 @@
         </redirect:write>
 
         <redirect:write select="concat('source',position(), '/contents')">
-            <xsl:text></xsl:text>
+            <xsl:value-of select="$directory"/>
+            <xsl:text>/</xsl:text>
+            <xsl:value-of select="utils:getMetadataFilename($directory)" disable-output-escaping="yes"/>
         </redirect:write>
 
     </xsl:template>
@@ -727,12 +722,6 @@
                 <xsl:value-of select="."/>
             </xsl:otherwise>
         </xsl:choose>
-    </xsl:template>
-
-    <xsl:template match="@*|node()" mode="copy">
-        <xsl:copy>
-            <xsl:apply-templates select="@*|node()" mode="copy"/>
-        </xsl:copy>
     </xsl:template>
 
 </xsl:stylesheet>

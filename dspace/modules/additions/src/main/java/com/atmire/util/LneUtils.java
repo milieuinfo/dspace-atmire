@@ -3,6 +3,7 @@ package com.atmire.util;
 import org.dspace.content.Collection;
 import org.dspace.content.Community;
 
+import java.io.File;
 import java.sql.SQLException;
 
 /**
@@ -26,5 +27,16 @@ public class LneUtils {
             }
         }
         return collections;
+    }
+
+    public static String getMetadataFilename(String path){
+        File folder = new File(path);
+
+        for (File file : folder.listFiles()) {
+            if(file.getName().matches(".*METADATA\\.xml")){
+                return file.getName();
+            }
+        }
+        return "";
     }
 }

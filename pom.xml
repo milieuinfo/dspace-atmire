@@ -264,6 +264,7 @@
               <sword.url>http://dev.atmire.com/dspace-lne42-sword</sword.url>
                <assetstore.dir>${dspace.dir}/assetstore</assetstore.dir>
                <log.dir>${dspace.dir}/log</log.dir>
+               <db.maxidle>1</db.maxidle>
            </properties>
        </profile>
 
