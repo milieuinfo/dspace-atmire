@@ -30,6 +30,9 @@ cat ${tomcat_apps_dir}/ansible.properties | cat - ${tomcat_apps_dir}/dspace/conf
 # The Ant script won't run properly as it loads this property through regexp property filtering.
 sed -i -e "s|^\(dspace.dir[[:blank:]]*=[[:blank:]]*\).*$|\1${tomcat_apps_dir}/dspace|g" ${tomcat_apps_dir}/dspace/config/dspace.cfg
 
+sed -i -e "s|\${sword.url}|http://${ZUIL}.milieuinfo.be:8080/archief/swordv2|g" ${tomcat_apps_dir}/dspace/config/modules/swordv2-server.cfg
+
+
 # Symlinks into tomcat
 #ln -f -s ${tomcat_apps_dir}/jspui.xml ${tomcat_home_dir}/conf/Catalina/localhost/jspui.xml
 #ln -f -s ${tomcat_apps_dir}/lni.xml ${tomcat_home_dir}/conf/Catalina/localhost/lni.xml
