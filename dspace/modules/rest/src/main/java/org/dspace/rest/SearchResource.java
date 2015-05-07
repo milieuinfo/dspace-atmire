@@ -73,6 +73,8 @@ public class SearchResource {
 	
 		org.dspace.core.Context context = new org.dspace.core.Context();
 		
+		context.turnOffAuthorisationSystem();
+		
 		DiscoverResult result = searchService.search(context, dq);
 		
 		List<DSpaceObject> dspaceObjects = result.getDspaceObjects();
