@@ -130,6 +130,59 @@
     <scope_note>type</scope_note>
   </dc-type>
 
+    <dc-type>
+        <schema>imjv</schema>
+        <element>exploitatie</element>
+        <qualifier>gemeente</qualifier>
+        <scope_note>Exploitatielocatie gemeente</scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>imjv</schema>
+        <element>exploitatie</element>
+        <qualifier>postcode</qualifier>
+        <scope_note>Exploitatielocatie postcode</scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>imjv</schema>
+        <element>exploitatie</element>
+        <qualifier>straat</qualifier>
+        <scope_note>Exploitatielocatie straat</scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>imjv</schema>
+        <element>exploitatie</element>
+        <qualifier>huisnummer</qualifier>
+        <scope_note>Exploitatielocatie huisnummer</scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>imjv</schema>
+        <element>exploitatie</element>
+        <qualifier>nummer</qualifier>
+        <scope_note>Exploitatie nummer</scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>imjv</schema>
+        <element>exploitatie</element>
+        <qualifier>naam</qualifier>
+        <scope_note>Exploitatie naam</scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>imjv</schema>
+        <element>dossiernummer</element>
+        <scope_note>Exploitatie dossiernummer</scope_note>
+    </dc-type>
+
+    <dc-type>
+        <schema>imjv</schema>
+        <element>aangiftetype</element>
+        <scope_note>Exploitatie dossiernummer</scope_note>
+    </dc-type>
 
 
 </dspace-dc-types>
