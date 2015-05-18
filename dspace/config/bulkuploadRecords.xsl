@@ -364,6 +364,7 @@
                     <xsl:apply-templates select="//IdentificatieMetaData" mode="imjv"/>
                     <xsl:apply-templates select="//MilieuVerslagMetaData" mode="imjv"/>
                     <xsl:call-template name="dossier-dossiernummer"/>
+                    <xsl:call-template name="document-file-title"/>
 
                     <dcvalue element="aangiftetype">
                         <xsl:value-of select="$aangifteType"/>
@@ -506,11 +507,11 @@
 
     </xsl:template>
 
-    <xsl:template match="IdentificatieMetaData/Exploitant/Naam" mode="dc">
-        <dcvalue element="contributor" qualifier="author">
-            <xsl:value-of select="text()"/>
-        </dcvalue>
-    </xsl:template>
+    <!--<xsl:template match="IdentificatieMetaData/Exploitant/Naam" mode="dc">-->
+        <!--<dcvalue element="contributor" qualifier="author">-->
+            <!--<xsl:value-of select="text()"/>-->
+        <!--</dcvalue>-->
+    <!--</xsl:template>-->
 
     <xsl:template match="IdentificatieMetaData/RapporteringsJaar" mode="imjv">
         <dcvalue element="Rapporteringsjaar">
@@ -730,11 +731,11 @@
         </dcvalue>
     </xsl:template>
 
-    <xsl:template match="Aangifte/AangifteType/Feiten/Feit[Actie/text()='Creatie']/Gebruiker" mode="dc">
-        <dcvalue element="contributor" qualifier="author">
-            <xsl:value-of select="text()"/>
-        </dcvalue>
-    </xsl:template>
+    <!--<xsl:template match="Aangifte/AangifteType/Feiten/Feit[Actie/text()='Creatie']/Gebruiker" mode="dc">-->
+        <!--<dcvalue element="contributor" qualifier="author">-->
+            <!--<xsl:value-of select="text()"/>-->
+        <!--</dcvalue>-->
+    <!--</xsl:template>-->
 
     <xsl:template name="dossier-dmsexportnotes">
         <xsl:if test="not(Exploitatie)">
@@ -831,11 +832,26 @@
                     <xsl:value-of select="../../../../AangifteType/text()"/>
                 </xsl:when>
             </xsl:choose>
-            <xsl:value-of select="text()"/>
+            <xsl:text>_</xsl:text>
+
+            <xsl:call-template name="substring-before-last">
+                <xsl:with-param name="list" select="substring-before(text(),'\.')"/>
+                <xsl:with-param name="delimiter" select="'_'"/>
+            </xsl:call-template>
+            <!--<xsl:text> _ </xsl:text>-->
+            <!--<xsl:value-of select="substring-after(substring-before(text(),'.'),'_')"/>-->
             <!--<xsl:value-of select="substring(text(),string-length(text())-4)"/>-->
         </dcvalue>
     </xsl:template>
 
+    <xsl:template name="document-file-title">
+        <dcvalue element="document" qualifier="title">
+            <xsl:call-template name="substring-before-last">
+                <xsl:with-param name="list" select="substring-before(text(),'\.')"/>
+                <xsl:with-param name="delimiter" select="'_'"/>
+            </xsl:call-template>
+        </dcvalue>
+    </xsl:template>
 
 
     <xsl:template match="//Rijksregisternummer" mode="dc"/>
@@ -859,6 +875,28 @@
             <xsl:otherwise>
                 <xsl:value-of select="."/>
             </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="substring-before-last">
+        <!--passed template parameter -->
+        <xsl:param name="list"/>
+        <xsl:param name="delimiter"/>
+        <xsl:choose>
+            <xsl:when test="contains($list, $delimiter)">
+                <!-- get everything in front of the first delimiter -->
+                <xsl:value-of select="substring-before($list,$delimiter)"/>
+                <xsl:choose>
+                    <xsl:when test="contains(substring-after($list,$delimiter),$delimiter)">
+                        <xsl:value-of select="$delimiter"/>
+                    </xsl:when>
+                </xsl:choose>
+                <xsl:call-template name="substring-before-last">
+                    <!-- store anything left in another variable -->
+                    <xsl:with-param name="list" select="substring-after($list,$delimiter)"/>
+                    <xsl:with-param name="delimiter" select="$delimiter"/>
+                </xsl:call-template>
+            </xsl:when>
         </xsl:choose>
     </xsl:template>
 
