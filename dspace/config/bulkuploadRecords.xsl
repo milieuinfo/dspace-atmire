@@ -364,7 +364,7 @@
                     <xsl:apply-templates select="//IdentificatieMetaData" mode="imjv"/>
                     <xsl:apply-templates select="//MilieuVerslagMetaData" mode="imjv"/>
                     <xsl:call-template name="dossier-dossiernummer"/>
-                    <xsl:call-template name="document-file-title"/>
+                    <!--<xsl:call-template name="document-file-title"/>-->
 
                     <dcvalue element="aangiftetype">
                         <xsl:value-of select="$aangifteType"/>
@@ -811,47 +811,47 @@
         <xsl:param name="level"/>
 
         <dcvalue element="identifier">
-            <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
-            <xsl:text>_</xsl:text>
-            <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
-            <xsl:text>_</xsl:text>
-            <xsl:choose>
-                <xsl:when test="$level='0'">
-                    <xsl:value-of select="AangifteType/text()"/>
-                </xsl:when>
-                <xsl:when test="$level='1'">
-                    <xsl:value-of select="../AangifteType/text()"/>
-                </xsl:when>
-                <xsl:when test="$level='2'">
-                    <xsl:value-of select="../../AangifteType/text()"/>
-                </xsl:when>
-                <xsl:when test="$level='3'">
-                    <xsl:value-of select="../../../AangifteType/text()"/>
-                </xsl:when>
-                <xsl:when test="$level='4'">
-                    <xsl:value-of select="../../../../AangifteType/text()"/>
-                </xsl:when>
-            </xsl:choose>
-            <xsl:text>_</xsl:text>
+            <!--<xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>-->
+            <!--<xsl:text>_</xsl:text>-->
+            <!--<xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>-->
+            <!--<xsl:text>_</xsl:text>-->
+            <!--<xsl:choose>-->
+                <!--<xsl:when test="$level='0'">-->
+                    <!--<xsl:value-of select="AangifteType/text()"/>-->
+                <!--</xsl:when>-->
+                <!--<xsl:when test="$level='1'">-->
+                    <!--<xsl:value-of select="../AangifteType/text()"/>-->
+                <!--</xsl:when>-->
+                <!--<xsl:when test="$level='2'">-->
+                    <!--<xsl:value-of select="../../AangifteType/text()"/>-->
+                <!--</xsl:when>-->
+                <!--<xsl:when test="$level='3'">-->
+                    <!--<xsl:value-of select="../../../AangifteType/text()"/>-->
+                <!--</xsl:when>-->
+                <!--<xsl:when test="$level='4'">-->
+                    <!--<xsl:value-of select="../../../../AangifteType/text()"/>-->
+                <!--</xsl:when>-->
+            <!--</xsl:choose>-->
+            <!--<xsl:text>_</xsl:text>-->
 
-            <xsl:call-template name="substring-before-last">
-                <xsl:with-param name="list" select="substring-before(text(),'\.')"/>
-                <xsl:with-param name="delimiter" select="'_'"/>
-            </xsl:call-template>
-            <!--<xsl:text> _ </xsl:text>-->
-            <!--<xsl:value-of select="substring-after(substring-before(text(),'.'),'_')"/>-->
+            <!--<xsl:call-template name="substring-before-last">-->
+                <!--<xsl:with-param name="list" select="substring-before(text(),'\.')"/>-->
+                <!--<xsl:with-param name="delimiter" select="'_'"/>-->
+            <!--</xsl:call-template>-->
+            <!--&lt;!&ndash;<xsl:text> _ </xsl:text>&ndash;&gt;-->
+            <xsl:value-of select="substring-before(text(),'.')"/>
             <!--<xsl:value-of select="substring(text(),string-length(text())-4)"/>-->
         </dcvalue>
     </xsl:template>
 
-    <xsl:template name="document-file-title">
-        <dcvalue element="document" qualifier="title">
-            <xsl:call-template name="substring-before-last">
-                <xsl:with-param name="list" select="substring-before(text(),'\.')"/>
-                <xsl:with-param name="delimiter" select="'_'"/>
-            </xsl:call-template>
-        </dcvalue>
-    </xsl:template>
+    <!--<xsl:template name="document-file-document-file-title">-->
+        <!--<dcvalue element="document" qualifier="title">-->
+            <!--<xsl:call-template name="substring-before-last">-->
+                <!--<xsl:with-param name="list" select="substring-before(text(),'\.')"/>-->
+                <!--<xsl:with-param name="delimiter" select="'_'"/>-->
+            <!--</xsl:call-template>-->
+        <!--</dcvalue>-->
+    <!--</xsl:template>-->
 
 
     <xsl:template match="//Rijksregisternummer" mode="dc"/>
