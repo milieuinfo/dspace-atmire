@@ -325,11 +325,11 @@
                         <xsl:with-param name="type">
                             <xsl:choose>
                                 <xsl:when test="count(../../ProcesSchema/Bestand) &gt; 1">
-                                    <xsl:text>Proces Schema </xsl:text>
+                                    <xsl:text>Processchema </xsl:text>
                                     <xsl:value-of select="position()"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:text>Proces Schema</xsl:text>
+                                    <xsl:text>Processchema</xsl:text>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </xsl:with-param>
@@ -348,7 +348,11 @@
                     <xsl:call-template name="document-date-issued"/>
                     <xsl:call-template name="document-publisher"/>
                     <xsl:call-template name="document-author"/>
-                    <xsl:call-template name="document-identifier"/>
+                    <xsl:call-template name="document-identifier">
+                        <xsl:with-param name="level">
+                            <xsl:text>2</xsl:text>
+                        </xsl:with-param>
+                    </xsl:call-template>
                     <xsl:apply-templates mode="dc"/>
                     <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
                 </dublin_core>
@@ -427,7 +431,11 @@
                     <xsl:call-template name="document-date-issued"/>
                     <xsl:call-template name="document-publisher"/>
                     <xsl:call-template name="document-author"/>
-                    <xsl:call-template name="document-identifier"/>
+                    <xsl:call-template name="document-identifier">
+                        <xsl:with-param name="level">
+                            <xsl:text>3</xsl:text>
+                        </xsl:with-param>
+                    </xsl:call-template>
                     <xsl:apply-templates mode="dc"/>
                     <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
                 </dublin_core>
@@ -468,9 +476,10 @@
         <xsl:choose>
             <xsl:when test="Exploitatie">
                 <dcvalue element="title">
-                    <xsl:value-of select="Exploitatie/Naam/text()"/>
-                    <xsl:text> - </xsl:text>
+                    <xsl:text>Integraal Milieu Jaarverslag - Dossier - </xsl:text>
                     <xsl:value-of select="RapporteringsJaar/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="Exploitatie/Naam/text()"/>
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
                     <xsl:if test="$type">
@@ -481,9 +490,10 @@
             </xsl:when>
             <xsl:otherwise>
                 <dcvalue element="title">
-                    <xsl:value-of select="Exploitant/Naam/text()"/>
-                    <xsl:text> - </xsl:text>
+                    <xsl:text>Integraal Milieu Jaarverslag - Dossier - </xsl:text>
                     <xsl:value-of select="RapporteringsJaar/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="Exploitant/Naam/text()"/>
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="Exploitant/CBBExploitantNummer/text()"/>
                     <xsl:if test="$type">
@@ -496,7 +506,7 @@
 
     </xsl:template>
 
-    <xsl:template match="IdentificatieMetaData/Exploitatie/Naam" mode="dc">
+    <xsl:template match="IdentificatieMetaData/Exploitant/Naam" mode="dc">
         <dcvalue element="contributor" qualifier="author">
             <xsl:value-of select="text()"/>
         </dcvalue>
@@ -617,12 +627,16 @@
         <xsl:choose>
             <xsl:when test="//IdentificatieMetaData/Exploitatie">
                 <dcvalue element="title">
-                    <xsl:value-of select="//IdentificatieMetaData/Exploitatie/Naam/text()"/>
-                    <xsl:text> - </xsl:text>
-                    <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
-                    <xsl:text> - </xsl:text>
-                    <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
-                    <xsl:text> - </xsl:text>
+                    <xsl:text>Integraal Milieu Jaarverslag - </xsl:text>
+                    <xsl:choose>
+                        <xsl:when test="$type">
+                            <xsl:value-of select="$type"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>Aangifte</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:text> </xsl:text>
                     <xsl:choose>
                         <xsl:when test="$level='0'">
                             <xsl:value-of select="AangifteType/text()"/>
@@ -640,20 +654,26 @@
                             <xsl:value-of select="../../../../AangifteType/text()"/>
                         </xsl:when>
                     </xsl:choose>
-                    <xsl:if test="$type">
-                        <xsl:text> - </xsl:text>
-                        <xsl:value-of select="$type"/>
-                    </xsl:if>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="//IdentificatieMetaData/Exploitatie/Naam/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
                 </dcvalue>
             </xsl:when>
             <xsl:otherwise>
                 <dcvalue element="title">
-                    <xsl:value-of select="//IdentificatieMetaData/Exploitant/Naam/text()"/>
-                    <xsl:text> - </xsl:text>
-                    <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
-                    <xsl:text> - </xsl:text>
-                    <xsl:value-of select="//IdentificatieMetaData/Exploitant/CBBExploitantNummer/text()"/>
-                    <xsl:text> - </xsl:text>
+                    <xsl:text>Integraal Milieu Jaarverslag - </xsl:text>
+                    <xsl:choose>
+                        <xsl:when test="$type">
+                            <xsl:value-of select="$type"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:text>Aangifte</xsl:text>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                    <xsl:text> </xsl:text>
                     <xsl:choose>
                         <xsl:when test="$level='0'">
                             <xsl:value-of select="AangifteType/text()"/>
@@ -671,26 +691,28 @@
                             <xsl:value-of select="../../../../AangifteType/text()"/>
                         </xsl:when>
                     </xsl:choose>
-                    <xsl:if test="$type">
-                        <xsl:text> - </xsl:text>
-                        <xsl:value-of select="$type"/>
-                    </xsl:if>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="//IdentificatieMetaData/Exploitant/Naam/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="//IdentificatieMetaData/Exploitant/CBBExploitantNummer/text()"/>
                 </dcvalue>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
     <xsl:template name="document-author">
-        <xsl:if test="//IdentificatieMetaData/Exploitatie/Naam">
+        <xsl:if test="//IdentificatieMetaData/Exploitant/Naam">
             <dcvalue element="contributor" qualifier="author">
-                <xsl:value-of select="//IdentificatieMetaData/Exploitatie/Naam" />
+                <xsl:value-of select="//IdentificatieMetaData/Exploitant/Naam" />
             </dcvalue>
         </xsl:if>
     </xsl:template>
 
     <xsl:template name="document-publisher">
         <dcvalue element="publisher">
-            <xsl:text>IMJV</xsl:text>
+            <xsl:text>Ministerie van de vlaamse gemeenschap</xsl:text>
         </dcvalue>
     </xsl:template>
 
@@ -740,7 +762,7 @@
     <xsl:template name="dossier-dossiernummer">
         <dcvalue element="dossiernummer">
             <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
-            <xsl:text> - </xsl:text>
+            <xsl:text>_</xsl:text>
             <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
         </dcvalue>
     </xsl:template>
@@ -776,17 +798,41 @@
 
     <xsl:template name="aangifte-identifier">
         <dcvalue element="identifier">
-            <xsl:value-of select="RapporteringsJaar/text()"/>
+            <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
             <xsl:text>_</xsl:text>
-            <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
+            <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
             <xsl:text>_</xsl:text>
             <xsl:value-of select="AangifteType/text()"/>
         </dcvalue>
     </xsl:template>
 
     <xsl:template name="document-identifier">
+        <xsl:param name="level"/>
+
         <dcvalue element="identifier">
-            <xsl:value-of select="substring(text(),string-length(text())-4)"/>
+            <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
+            <xsl:text>_</xsl:text>
+            <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
+            <xsl:text>_</xsl:text>
+            <xsl:choose>
+                <xsl:when test="$level='0'">
+                    <xsl:value-of select="AangifteType/text()"/>
+                </xsl:when>
+                <xsl:when test="$level='1'">
+                    <xsl:value-of select="../AangifteType/text()"/>
+                </xsl:when>
+                <xsl:when test="$level='2'">
+                    <xsl:value-of select="../../AangifteType/text()"/>
+                </xsl:when>
+                <xsl:when test="$level='3'">
+                    <xsl:value-of select="../../../AangifteType/text()"/>
+                </xsl:when>
+                <xsl:when test="$level='4'">
+                    <xsl:value-of select="../../../../AangifteType/text()"/>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:value-of select="text()"/>
+            <!--<xsl:value-of select="substring(text(),string-length(text())-4)"/>-->
         </dcvalue>
     </xsl:template>
 
