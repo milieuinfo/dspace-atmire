@@ -178,6 +178,12 @@
                 </xsl:with-param>
             </xsl:call-template>
 
+            <xsl:call-template name="Aanvulling">
+                <xsl:with-param name="root-directory">
+                    <xsl:value-of select="concat('aangifte',position())"/>
+                </xsl:with-param>
+            </xsl:call-template>
+
             <redirect:write select="concat('aangifte',position(), '/contents')">
                 <xsl:if test="AangiftePdf">
                     <xsl:value-of select="$directory"/>
@@ -470,7 +476,143 @@
         </xsl:for-each>
     </xsl:template>
 
+    <xsl:template name="Aanvulling">
+        <!--2013/00112120000187-->
+        <xsl:param name="root-directory"/>
 
+        <xsl:variable name="count">
+            <xsl:value-of select="position()"/>
+        </xsl:variable>
+
+        <xsl:variable name="aangifteType">
+            <xsl:value-of select="AangifteType"/>
+        </xsl:variable>
+
+        <xsl:variable name="jaar">
+            <xsl:value-of select="//RapporteringsJaar"/>
+        </xsl:variable>
+        <xsl:variable name="nummer">
+            <xsl:value-of select="//Exploitatie/CBBExploitatieNummer"/>
+        </xsl:variable>
+
+        <!-- TODO Change directory to non-fixed one-->
+        <xsl:variable name="fileCount">
+            <xsl:value-of select="utils:countAllAanvullingFiles($directory,$jaar,$nummer,$aangifteType)"/>
+        </xsl:variable>
+
+        <xsl:if test="$fileCount >0">
+
+                <xsl:call-template name="aanvullingLoop">
+                    <xsl:with-param name="root-directory">
+                        <xsl:value-of select="concat('aangifte',position())"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="fileCount">
+                        <xsl:value-of select="$fileCount"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="jaar">
+                        <xsl:value-of select="$jaar"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="nummer">
+                        <xsl:value-of select="$nummer"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="aangifteType">
+                        <xsl:value-of select="$aangifteType"/>
+                    </xsl:with-param>
+                    <xsl:with-param name="i">1</xsl:with-param>
+
+                </xsl:call-template>
+
+        </xsl:if>
+    </xsl:template>
+
+    <xsl:template name="aanvullingLoop">
+        <xsl:param name="root-directory"/>
+        <xsl:param name="fileCount"/>
+        <xsl:param name="i"/>
+        <xsl:param name="jaar"/>
+        <xsl:param name="nummer"/>
+        <xsl:param name="aangifteType"/>
+        <xsl:variable name="count">
+            <xsl:value-of select="position()"/>
+        </xsl:variable>
+
+        <redirect:write select="concat('Aanvulling',$count,'_',position(), '/dublin_core.xml')">
+            <dublin_core schema="dc">
+                <xsl:call-template name="document-title">
+                    <xsl:with-param name="type">
+                        <xsl:choose>
+                            <xsl:when test="$count &gt; 1">
+                                <xsl:text>Aanvulling </xsl:text>
+                                <xsl:value-of select="position()"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>Aanvulling</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:with-param>
+                    <xsl:with-param name="level">
+                        <xsl:text>3</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+                <xsl:call-template name="document-date-issued"/>
+                <xsl:call-template name="document-publisher"/>
+                <xsl:call-template name="document-author"/>
+
+                <dcvalue element="type">
+                    <xsl:text>aanvulling</xsl:text>
+                </dcvalue>
+
+                <xsl:apply-templates mode="dc"/>
+                <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
+            </dublin_core>
+        </redirect:write>
+
+        <redirect:write select="concat('Aanvulling',$count,'_',position(), '/metadata_imjv.xml')">
+            <dublin_core schema="imjv">
+                <xsl:apply-templates mode="imjv"/>
+                <xsl:call-template name="document-dmsexportnotes"/>
+                <xsl:apply-templates select="//IdentificatieMetaData" mode="imjv"/>
+                <xsl:apply-templates select="//MilieuVerslagMetaData" mode="imjv"/>
+
+            </dublin_core>
+        </redirect:write>
+
+                <redirect:write select="concat('Aanvulling',$count,'_',position(), '/contents')">
+                    <xsl:value-of select="$directory"/>
+                    <xsl:text>/</xsl:text>
+                    <xsl:value-of select="utils:getFileNameBasedOnIndex($directory,$jaar,$nummer,$aangifteType,$i)" disable-output-escaping="yes"/>
+                    <xsl:text>&#10;</xsl:text>
+                </redirect:write>
+
+        <redirect:write select="concat('Aanvulling',$count,'_',position(),'/relations.xml')">
+            <dublin_core schema="relation">
+                <dcvalue element="hasParent">
+                    <xsl:value-of select="$root-directory"/>
+                </dcvalue>
+            </dublin_core>
+        </redirect:write>
+
+        <xsl:if test="$i &lt; $fileCount">
+            <xsl:call-template name="aanvullingLoop">
+                <xsl:with-param name="i">
+                    <xsl:value-of select="$i + 1"/>
+                </xsl:with-param>
+                <xsl:with-param name="fileCount">
+                    <xsl:value-of select="$fileCount"/>
+                </xsl:with-param>
+                <xsl:with-param name="root-directory" select="$root-directory"/>
+                <xsl:with-param name="jaar">
+                    <xsl:value-of select="$jaar"/>
+                </xsl:with-param>
+                <xsl:with-param name="nummer">
+                    <xsl:value-of select="$nummer"/>
+                </xsl:with-param>
+                <xsl:with-param name="aangifteType">
+                    <xsl:value-of select="$aangifteType"/>
+                </xsl:with-param>
+            </xsl:call-template>
+        </xsl:if>
+    </xsl:template>
     <!-- Dossier metadata -->
 
     <xsl:template name="dossier-title">
