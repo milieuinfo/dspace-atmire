@@ -2381,12 +2381,18 @@
 
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-Rapporteringsjaar">Rapporterings Jaar</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieCBBNummer">Exploitatie CBB Nummer</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieNummer">Exploitatie Nummer</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieDossiernummer">Exploitatie Dossier Nummer</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitantCBBNummer">Exploitant CBB Nummer</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieNaam">Exploitatie Naam</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitantOndernemingsNummer">Exploitant Ondernemingsnummer</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieLocatie">Exploitatie Locatie</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieGemeente">Exploitatie Locatie Gemeente</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieLocatieStad">Exploitatie Locatie Stad</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitatiePostcode">Exploitatie Locatie Postcode</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieLocatiePostcode">Exploitatie Locatie Postcode</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieStraat">Exploitatie Locatie Straat</message>
+    <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitatieHuisnummer">Exploitatie Locatie Huisnummer</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitantAdres">Exploitant Adres</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitantAdresStad">Exploitant Adres Stad</message>
     <message key="xmlui.dri2xhtml.METS-1.0.imjv-ExploitantAdresPostcode">Exploitant Adres Postcode</message>
