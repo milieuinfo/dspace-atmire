@@ -78,15 +78,11 @@
             <dublin_core schema="dc">
                 <xsl:call-template name="dossier-source"/>
 
-                <xsl:call-template name="dossier-title">
-                    <xsl:with-param name="type">
-                        <xsl:text>Source</xsl:text>
-                    </xsl:with-param>
-                </xsl:call-template>
+                <xsl:call-template name="source-title"/>
 
                 <xsl:call-template name="dc-type">
                     <xsl:with-param name="type">
-                        <xsl:text>Source</xsl:text>
+                        <xsl:text>METADATA</xsl:text>
                     </xsl:with-param>
                 </xsl:call-template>
 
@@ -476,7 +472,10 @@
                 <xsl:call-template name="document-date-issued"/>
                 <xsl:call-template name="document-publisher"/>
                 <xsl:call-template name="document-author"/>
-                <xsl:call-template name="aangifte-identifier"/>
+                <!--<xsl:call-template name="aangifte-identifier"/>-->
+                <dcvalue element="identifier">
+                    <xsl:value-of select="utils:getFileNameBasedOnIndex($directory,$jaar,$nummer,$aangifteType,$i)"/>
+                </dcvalue>
                 <xsl:apply-templates mode="dc"/>
                 <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
             </dublin_core>
@@ -562,6 +561,32 @@
                         <xsl:text> - </xsl:text>
                         <xsl:value-of select="$type"/>
                     </xsl:if>
+                </dcvalue>
+            </xsl:otherwise>
+        </xsl:choose>
+
+    </xsl:template>
+
+    <xsl:template name="source-title">
+        <xsl:choose>
+            <xsl:when test="Exploitatie">
+                <dcvalue element="title">
+                    <xsl:text>Integraal Milieu Jaarverslag - METADATA - </xsl:text>
+                    <xsl:value-of select="RapporteringsJaar/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="Exploitatie/Naam/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
+                </dcvalue>
+            </xsl:when>
+            <xsl:otherwise>
+                <dcvalue element="title">
+                    <xsl:text>Integraal Milieu Jaarverslag - Dossier - </xsl:text>
+                    <xsl:value-of select="RapporteringsJaar/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="Exploitant/Naam/text()"/>
+                    <xsl:text> - </xsl:text>
+                    <xsl:value-of select="Exploitant/CBBExploitantNummer/text()"/>
                 </dcvalue>
             </xsl:otherwise>
         </xsl:choose>
