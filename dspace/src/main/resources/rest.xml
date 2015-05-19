@@ -7,4 +7,17 @@
     http://www.dspace.org/license/
 
 -->
-<Context path="/rest" docBase="%tomcat_apps_dir%/dspace/webapps/rest" debug="0" useHttpOnly="true" reloadable="true" cachingAllowed="true" />
+<Context path="/rest" docBase="%tomcat_apps_dir%/dspace/webapps/rest" debug="0" useHttpOnly="true" reloadable="true" cachingAllowed="true" >
+
+    <Resource name="jdbc/dspace"
+              auth="Container"
+              type="javax.sql.DataSource"
+              maxActive="20"
+              maxIdle="50"
+              maxWait="1000"
+              username="%db_username%"
+              password="%db_password%"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://postgres-%zuil%-%vlan%.mmis.be:%db_port%/dspace_%ZUIL%"/>
+
+</Context>

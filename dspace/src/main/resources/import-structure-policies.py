@@ -40,10 +40,15 @@ def main():
     # and add a group and policy for every community...
     if structure_builder_exit_code == 0:
         with open("community-output.xml", "r") as structure_file:
-            xml = structure_file.read()
+            import_structure = xmltodict.parse(structure_file.read())
 
-        import_structure = xmltodict.parse(xml)
-        for community in import_structure['imported_structure']['community']:
+        communities = import_structure['imported_structure']['community']
+        if isinstance(communities, list) == 0:
+            communities=list();
+            communities.append(import_structure['imported_structure']['community'])
+
+
+        for community in communities:
             print "Creating group for: " + community['name'] + " (" + community['@identifier'] + ")"
             community_id = community['@identifier']
             create_group = arguments.dspace_bin_file + ' create-group -n ' + community['name']

@@ -72,7 +72,7 @@ public class RestIndex {
 
                 "<h2>Search Api</h2>"+
                 "<dl>"+
-                  "<dt>Method: GET URL: "+ servletContext.getContextPath() + "/search/items Possible Query Params : fields=[csv(;) list of fields to search for], expand=[csv(;) list of fields to expand (default:all)], limit=[nb of results to return (defaul:10)] </dt>"+
+                  "<dt>Method: GET URL: "+ servletContext.getContextPath() + "/search/items Possible Query Params : fields=[csv(;) list of fields to search for], expand=[csv(;) list of fields to expand (default:all)], limit=[nb of results to return (default:10)] </dt>"+
                   "<dd>Search for items </dd>"+
                 "</dl>"+
                   
