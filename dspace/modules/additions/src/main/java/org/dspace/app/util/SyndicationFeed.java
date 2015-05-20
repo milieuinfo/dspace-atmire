@@ -121,7 +121,9 @@ public class SyndicationFeed
 
     // -------- Instance variables:
 
-    // the feed object we are building
+    private int currentPage = -1;
+
+  	// the feed object we are building
     private SyndFeed feed = null;
 
     // memory of UI that called us, "xmlui" or "jspui"
@@ -157,11 +159,7 @@ public class SyndicationFeed
     public void populate(HttpServletRequest request, DSpaceObject dso,
                          DSpaceObject items[], Map<String, String> labels)
     {
-    	
-    	String pageNumberParam= StringUtils.trimToNull(request.getParameter("page"));
-    	
-    	int pageNumber = StringUtils.isNumeric(pageNumberParam)?Integer.parseInt(pageNumberParam):0;
-    	
+         	
         String logoURL = null;
         String objectURL = null;
         String defaultTitle = null;
@@ -209,55 +207,62 @@ public class SyndicationFeed
         }
         feed.setTitle(labels.containsKey(MSG_FEED_TITLE) ?
                             localize(labels, MSG_FEED_TITLE) : defaultTitle);
-      // feed.setLink(objectURL);
         
         
-        
-        List<SyndLink> links = new ArrayList<SyndLink>();
-        
-        SyndLinkImpl selfLink= new SyndLinkImpl();
-        selfLink.setHref(objectURL);
-        selfLink.setRel("self");
-        links.add(selfLink);
-        
-        if (pageNumber > 0){
+        if (isPagingEnabled()){
+            List<SyndLink> links = new ArrayList<SyndLink>();
             
-            SyndLinkImpl prev = new SyndLinkImpl();
-            prev.setHref(objectURL+"page="+(pageNumber-1) );
-            prev.setRel("previous");    	
-            links.add(prev);
+            SyndLinkImpl selfLink= new SyndLinkImpl();
+            selfLink.setHref(objectURL);
+            selfLink.setRel("self");
+            links.add(selfLink);
+            
+            if (currentPage > 0){
+                
+                SyndLinkImpl prev = new SyndLinkImpl();
+                prev.setHref(objectURL+"page="+(currentPage-1) );
+                prev.setRel("previous");    	
+                links.add(prev);
+            }
+        
+            
+            
+            SyndLinkImpl nextLink = new SyndLinkImpl();
+            nextLink.setHref(objectURL+"page="+(currentPage+1) );
+            nextLink.setRel("next");      
+            links.add(nextLink);
+            
+            
+            // add first and last
+            
+            SyndLinkImpl firstLink = new SyndLinkImpl();
+            firstLink.setHref(objectURL+"page=0");
+            firstLink.setRel("first");      
+            links.add(firstLink);
+            
+            
+            // No way to get last link as we don't know how much items there are
+            // without breaking the api... Pitty I would be better to redesign 
+            // and take param object which is much more flexible...
+            /*
+            SyndLinkImpl lastLink = new SyndLinkImpl();
+            lastLink.setHref(objectURL+"page=0");
+            lastLink.setRel("last");      
+            links.add(lastLink);
+            */
+            
+            
+            
+            feed.setLinks(links);
+            
+        }else{
+        	feed.setLink(objectURL);
+        	
         }
-    
-        
-        
-        SyndLinkImpl nextLink = new SyndLinkImpl();
-        nextLink.setHref(objectURL+"page="+(pageNumber+1) );
-        nextLink.setRel("next");      
-        links.add(nextLink);
-        
-        
-        // add first and last
-        
-        SyndLinkImpl firstLink = new SyndLinkImpl();
-        firstLink.setHref(objectURL+"page=0");
-        firstLink.setRel("first");      
-        links.add(firstLink);
-        
-        
-        // No way to get last link as we don't know how much items there are
-        // without breaking the api... Pitty I would be better to redesign 
-        // and take param object which is much more flexible...
-        /*
-        SyndLinkImpl lastLink = new SyndLinkImpl();
-        lastLink.setHref(objectURL+"page=0");
-        lastLink.setRel("last");      
-        links.add(lastLink);
-        */
         
         
         
-        feed.setLinks(links);
-        
+   
         
         
         feed.setPublishedDate(new Date());
@@ -626,5 +631,19 @@ public class SyndicationFeed
         DCValue dcv[] = item.getMetadata(field);
         return (dcv.length > 0) ? dcv[0].value : null;
     }
+
+    public int getCurrentPage() {
+  		return currentPage;
+  	}
+
+  	public void setCurrentPage(int currentPage) {
+  		this.currentPage = currentPage;
+  	}
+
+ 	
+  	public boolean isPagingEnabled(){
+  		return currentPage == -1;
+  	}
+	
 }
 

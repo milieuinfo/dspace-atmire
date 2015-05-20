@@ -40,6 +40,7 @@ import org.dspace.authorize.AuthorizeManager;
 import org.dspace.browse.BrowseEngine;
 import org.dspace.browse.BrowseException;
 import org.dspace.browse.BrowseIndex;
+import org.dspace.browse.BrowseInfo;
 import org.dspace.browse.BrowserScope;
 import org.dspace.sort.SortException;
 import org.dspace.sort.SortOption;
@@ -244,8 +245,12 @@ public class DSpaceFeedGenerator extends AbstractGenerator
            
         	String pageNumberParam= StringUtils.trimToNull(request.getParameter("page"));
         	
-        	int pageNumber = StringUtils.isNumeric(pageNumberParam)?Integer.parseInt(pageNumberParam):0;
+        	int pageNumber = StringUtils.isNumeric(pageNumberParam)?Integer.parseInt(pageNumberParam):-1;
+        	
+        
+        	feed.setCurrentPage(pageNumber);
             
+        	        	
             feed.populate(request, dso, getRecentlySubmittedItems(context,dso,pageNumber), FeedUtils.i18nLabels);
             feed.setType(this.format);
             Document dom = feed.outputW3CDom();
@@ -295,7 +300,10 @@ public class DSpaceFeedGenerator extends AbstractGenerator
             scope.setCommunity((Community) dso);
         }
         scope.setResultsPerPage(ITEM_COUNT);
-        scope.setOffset(pageNumber);
+       
+        scope.setOffset(pageNumber*ITEM_COUNT);
+        
+        
         // FIXME Exception handling
         try
         {
@@ -311,7 +319,8 @@ public class DSpaceFeedGenerator extends AbstractGenerator
 
            
             BrowseEngine be = new BrowseEngine(context);
-            this.recentSubmissionItems = be.browseMini(scope).getItemResults(context);
+            BrowseInfo browseMini = be.browseMini(scope);
+            this.recentSubmissionItems = browseMini.getItemResults(context);
 
             // filter out Items that are not world-readable
             if (!includeRestrictedItems)
@@ -330,6 +339,7 @@ public class DSpaceFeedGenerator extends AbstractGenerator
                     }
                 }
                 this.recentSubmissionItems = result.toArray(new Item[result.size()]);
+     
             }
         }
         catch (BrowseException bex)
