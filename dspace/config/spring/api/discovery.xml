@@ -348,7 +348,7 @@
         <property name="indexFieldName" value="exploitatieLocatieStad"/>
         <property name="metadataFields">
             <list>
-                <value>imjv.ExploitatieLocatieStad</value>
+                <value>imjv.exploitatie.gemeente</value>
             </list>
         </property>
         <property name="facetLimit" value="10"/>
@@ -359,7 +359,7 @@
         <property name="indexFieldName" value="exploitatieLocatiePostcode"/>
         <property name="metadataFields">
             <list>
-                <value>imjv.ExploitatieLocatiePostcode</value>
+                <value>imjv.exploitatie.postcode</value>
             </list>
         </property>
         <property name="facetLimit" value="10"/>
@@ -370,7 +370,7 @@
         <property name="indexFieldName" value="type"/>
         <property name="metadataFields">
             <list>
-                <value>imjv.type</value>
+                <value>dc.type</value>
             </list>
         </property>
         <property name="facetLimit" value="10"/>
