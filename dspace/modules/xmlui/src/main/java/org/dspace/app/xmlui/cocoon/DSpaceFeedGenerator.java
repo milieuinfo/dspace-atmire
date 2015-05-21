@@ -123,7 +123,8 @@ public class DSpaceFeedGenerator extends AbstractGenerator
     
     /** The cache of recently submitted items */
     private Item recentSubmissionItems[];
-    
+
+   
     /**
      * Generate the unique caching key.
      * This key must be unique inside the space of this component.
@@ -245,13 +246,15 @@ public class DSpaceFeedGenerator extends AbstractGenerator
            
         	String pageNumberParam= StringUtils.trimToNull(request.getParameter("page"));
         	
-        	int pageNumber = StringUtils.isNumeric(pageNumberParam)?Integer.parseInt(pageNumberParam):-1;
+        	int pageNumber = StringUtils.isNumeric(pageNumberParam)?Integer.parseInt(pageNumberParam):0;
         	
         
         	feed.setCurrentPage(pageNumber);
             
-        	        	
-            feed.populate(request, dso, getRecentlySubmittedItems(context,dso,pageNumber), FeedUtils.i18nLabels);
+        	Item[] items = getRecentlySubmittedItems(context,dso,pageNumber);
+        	
+          	        	
+            feed.populate(request, dso, items, FeedUtils.i18nLabels);
             feed.setType(this.format);
             Document dom = feed.outputW3CDom();
             FeedUtils.unmangleI18N(dom);
@@ -320,6 +323,9 @@ public class DSpaceFeedGenerator extends AbstractGenerator
            
             BrowseEngine be = new BrowseEngine(context);
             BrowseInfo browseMini = be.browseMini(scope);
+            
+
+            
             this.recentSubmissionItems = browseMini.getItemResults(context);
 
             // filter out Items that are not world-readable

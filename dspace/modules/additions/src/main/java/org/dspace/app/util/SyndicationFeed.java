@@ -122,6 +122,7 @@ public class SyndicationFeed
     // -------- Instance variables:
 
     private int currentPage = -1;
+  
 
   	// the feed object we are building
     private SyndFeed feed = null;
@@ -220,36 +221,34 @@ public class SyndicationFeed
             if (currentPage > 0){
                 
                 SyndLinkImpl prev = new SyndLinkImpl();
-                prev.setHref(objectURL+"page="+(currentPage-1) );
+                prev.setHref(objectURL+"?page="+(currentPage-1) );
                 prev.setRel("previous");    	
                 links.add(prev);
             }
         
             
             
-            SyndLinkImpl nextLink = new SyndLinkImpl();
-            nextLink.setHref(objectURL+"page="+(currentPage+1) );
-            nextLink.setRel("next");      
-            links.add(nextLink);
-            
+        //    if (currentPage+1<=lastPage){
+            	SyndLinkImpl nextLink = new SyndLinkImpl();
+            	nextLink.setHref(objectURL+"?page="+(currentPage+1) );
+            	nextLink.setRel("next");      
+            	links.add(nextLink);
+          //  }            
             
             // add first and last
             
             SyndLinkImpl firstLink = new SyndLinkImpl();
-            firstLink.setHref(objectURL+"page=0");
+            firstLink.setHref(objectURL+"?page=0");
             firstLink.setRel("first");      
             links.add(firstLink);
             
             
-            // No way to get last link as we don't know how much items there are
-            // without breaking the api... Pitty I would be better to redesign 
-            // and take param object which is much more flexible...
-            /*
-            SyndLinkImpl lastLink = new SyndLinkImpl();
-            lastLink.setHref(objectURL+"page=0");
-            lastLink.setRel("last");      
-            links.add(lastLink);
-            */
+            
+            //SyndLinkImpl lastLink = new SyndLinkImpl();
+            //lastLink.setHref(objectURL+"?page="+this.lastPage);
+            //lastLink.setRel("last");      
+            //links.add(lastLink);
+            
             
             
             
@@ -300,9 +299,28 @@ public class SyndicationFeed
                 entries.add(entry);
              
                 String entryURL = resolveURL(request, item);
-                entry.setLink(entryURL);
                 entry.setUri(entryURL);
-             
+                entry.setLink(entryURL);    
+                
+                
+                List<SyndLink> links = new ArrayList<SyndLink>();
+                
+                
+                
+                SyndLink normalLink = new SyndLinkImpl();
+                normalLink.setHref(entryURL);
+                normalLink.setRel("alternate");
+                
+                links.add(normalLink);
+                
+                SyndLink restLink = new SyndLinkImpl();
+                restLink.setHref(resolveRestURL(request, item));
+                restLink.setRel("rest");
+                
+                links.add(restLink);
+                                
+                entry.setLinks(links);
+                                            
                 String title = getOneDC(item, titleField);
                 entry.setTitle(title == null ? localize(labels, MSG_UNTITLED) : title);
              
@@ -583,6 +601,12 @@ public class SyndicationFeed
      */
     private String baseURL = null;  // cache the result for null
 
+    private String resolveRestURL(HttpServletRequest request, DSpaceObject dso)
+    {
+    	return resolveURL(request, null).replace("xmlui", "rest") + "/items/" + dso.getID() + "?expand=all";
+    }
+    
+    
     private String resolveURL(HttpServletRequest request, DSpaceObject dso)
     {
         // If no object given then just link to the whole repository,
@@ -597,8 +621,8 @@ public class SyndicationFeed
                 }
                 else
                 {
-                    baseURL = (request.isSecure()) ? "https://" : "http://";
-                    baseURL += ConfigurationManager.getProperty("dspace.hostname");
+                    baseURL = request.getScheme() + "://";
+                    baseURL += request.getServerName();
                     baseURL += ":" + request.getServerPort();
                     baseURL += request.getContextPath();
                 }
@@ -642,8 +666,10 @@ public class SyndicationFeed
 
  	
   	public boolean isPagingEnabled(){
-  		return currentPage == -1;
+  		return currentPage != -1;
   	}
+
+
 	
 }
 
