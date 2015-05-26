@@ -37,7 +37,9 @@
                     <xsl:with-param name="title" select="'IMJV'"/>
                 </xsl:call-template>
 
-                <xsl:call-template name="dossier-identifier"/>
+                <xsl:call-template name="dossier-identifier">
+                    <xsl:with-param name="type"/>
+                </xsl:call-template>
                 <xsl:call-template name="document-author"/>
                 <xsl:call-template name="document-publisher"/>
                 <xsl:call-template name="dossier-date-issued"/>
@@ -90,7 +92,9 @@
                     <xsl:with-param name="title" select="'IMJV'"/>
                 </xsl:call-template>
 
-                <xsl:call-template name="dossier-identifier"/>
+                <xsl:call-template name="dossier-identifier">
+                    <xsl:with-param name="type">METADATA</xsl:with-param>
+                </xsl:call-template>
                 <xsl:call-template name="document-author"/>
                 <xsl:call-template name="document-publisher"/>
                 <!--<xsl:call-template name="dossier-date-issued"/>-->
@@ -820,11 +824,11 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="Aangifte/AangifteType" mode="imjv">
-        <dcvalue element="AangifteType">
-            <xsl:value-of select="text()"/>
-        </dcvalue>
-    </xsl:template>
+    <!--<xsl:template match="Aangifte/AangifteType" mode="imjv">-->
+        <!--<dcvalue element="AangifteType">-->
+            <!--<xsl:value-of select="text()"/>-->
+        <!--</dcvalue>-->
+    <!--</xsl:template>-->
 
     <!--<xsl:template match="Aangifte/AangifteType/Feiten/Feit[Actie/text()='Creatie']/Gebruiker" mode="dc">-->
         <!--<dcvalue element="contributor" qualifier="author">-->
@@ -877,11 +881,17 @@
     </xsl:template>
 
     <xsl:template name="dossier-identifier">
-            <dcvalue element="identifier">
-                <xsl:value-of select="RapporteringsJaar/text()"/>
+        <xsl:param name="type"/>
+
+        <dcvalue element="identifier">
+            <xsl:value-of select="RapporteringsJaar/text()"/>
+            <xsl:text>_</xsl:text>
+            <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
+            <xsl:if test="$type">
                 <xsl:text>_</xsl:text>
-                <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
-            </dcvalue>
+                <xsl:value-of select="$type"/>
+            </xsl:if>
+        </dcvalue>
     </xsl:template>
 
     <xsl:template name="dossier-date-issued">

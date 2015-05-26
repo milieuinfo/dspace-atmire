@@ -16,8 +16,10 @@ import org.dspace.app.xmlui.wing.element.Body;
 import org.dspace.app.xmlui.wing.element.Division;
 import org.dspace.app.xmlui.wing.element.List;
 import org.dspace.authorize.AuthorizeException;
+import org.dspace.content.DCValue;
 import org.dspace.content.DSpaceObject;
 import org.dspace.content.Item;
+import org.dspace.core.ConfigurationManager;
 import org.xml.sax.SAXException;
 
 import java.io.IOException;
@@ -60,7 +62,13 @@ public class RelationViewer extends AbstractDSpaceTransformer
 
 
             for (Relationship rls : parents) {
-                relationListOut.addItemXref(contextPath + "/handle/" + rls.getLeft().getHandle(), rls.getLeft().getName());
+                String label = rls.getLeft().getName();
+                if (ConfigurationManager.getProperty("relation-metadata", "relationviewer.fieldname") != null) {
+                    DCValue[] metadata = item.getMetadata(ConfigurationManager.getProperty("relationviewer.fieldname"));
+                    if (metadata.length > 0)
+                        label = metadata[0].value;
+                }
+                relationListOut.addItemXref(contextPath + "/handle/" + rls.getLeft().getHandle(), label);
             }
         }
 
