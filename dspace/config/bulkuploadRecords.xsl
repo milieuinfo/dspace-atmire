@@ -789,35 +789,45 @@
             <xsl:when test="$level='0'">
                 <xsl:if test="Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()">
                     <dcvalue element="date" qualifier="issued">
-                        <xsl:value-of select="Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()" />
+                        <xsl:call-template name="format-date">
+                            <xsl:with-param name="date" select="Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()"/>
+                        </xsl:call-template>
                     </dcvalue>
                 </xsl:if>
             </xsl:when>
             <xsl:when test="$level='1'">
                 <xsl:if test="../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()">
                     <dcvalue element="date" qualifier="issued">
-                        <xsl:value-of select="../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()" />
+                        <xsl:call-template name="format-date">
+                            <xsl:with-param name="date" select="../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()"/>
+                        </xsl:call-template>
                     </dcvalue>
                 </xsl:if>
             </xsl:when>
             <xsl:when test="$level='2'">
                 <xsl:if test="../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()">
                     <dcvalue element="date" qualifier="issued">
-                        <xsl:value-of select="../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()" />
+                        <xsl:call-template name="format-date">
+                            <xsl:with-param name="date" select="../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()"/>
+                        </xsl:call-template>
                     </dcvalue>
                 </xsl:if>
             </xsl:when>
             <xsl:when test="$level='3'">
                 <xsl:if test="../../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()">
                     <dcvalue element="date" qualifier="issued">
-                        <xsl:value-of select="../../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()" />
+                        <xsl:call-template name="format-date">
+                            <xsl:with-param name="date" select="../../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()"/>
+                        </xsl:call-template>
                     </dcvalue>
                 </xsl:if>
             </xsl:when>
             <xsl:when test="$level='4'">
                 <xsl:if test="../../../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()">
                     <dcvalue element="date" qualifier="issued">
-                        <xsl:value-of select="../../../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()" />
+                        <xsl:call-template name="format-date">
+                            <xsl:with-param name="date" select="../../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()"/>
+                        </xsl:call-template>
                     </dcvalue>
                 </xsl:if>
             </xsl:when>
@@ -909,12 +919,13 @@
         <xsl:param name="date"/>
         <xsl:choose>
             <xsl:when test="string-length($date) = 19">
-                <xsl:value-of select="substring($date, 0, 10)"/>
+                <xsl:value-of select="substring($date, 0, 11)"/>
                 <xsl:text>T</xsl:text>
                 <xsl:value-of select="substring($date, 12)"/>
                 <xsl:text>Z</xsl:text>
             </xsl:when>
             <xsl:otherwise>
+                <!--<xsl:value-of select="string-length($date)"/>-->
                 <xsl:value-of select="$date"/>
             </xsl:otherwise>
         </xsl:choose>
