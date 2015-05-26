@@ -93,7 +93,13 @@ public class RelationViewer extends AbstractDSpaceTransformer
 
             Collections.sort(children, sortByHandle);
             for (Relationship rls : children) {
-                relationListOut.addItemXref(contextPath + "/handle/" + rls.getRight().getHandle(), rls.getRight().getName());
+                String label = rls.getRight().getName();
+                if (ConfigurationManager.getProperty("relation-metadata", "relationviewer.fieldname") != null) {
+                    DCValue[] metadata = rls.getRight().getMetadata(ConfigurationManager.getProperty("relation-metadata", "relationviewer.fieldname"));
+                    if (metadata.length > 0)
+                        label = metadata[0].value;
+                }
+                relationListOut.addItemXref(contextPath + "/handle/" + rls.getRight().getHandle(), label);
             }
         }
     }
