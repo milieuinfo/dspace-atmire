@@ -94,12 +94,25 @@ rm -rf ${tomcat_apps_dir}/dspace/solr
 
 echo "Symlink voor solr source: ${tomcat_data_dir}/dspace/solr2 name: ${tomcat_apps_dir}/dspace/solr"
 
-ln -s ${tomcat_data_dir}/dspace/solr2 ${tomcat_apps_dir}/dspace/solr
+### TODO FIX THIS ENKEL OMDAT IK NIET GENOEG RECHTEN HEB OM IETS TE DOEN :-(
+
+if [ ${node_num} -eq 2 ]; then 
+    ln -s ${tomcat_data_dir}/dspace/solr2 ${tomcat_apps_dir}/dspace/solr
+else
+    ln -s ${tomcat_data_dir}/dspace/test-solr ${tomcat_apps_dir}/dspace/solr
+fi
 
 rm -rf ${tomcat_apps_dir}/dspace/assetstore
 
 echo "Symlink voor assetstore source: ${tomcat_data_dir}/dspace/assetstore name: ${tomcat_apps_dir}/dspace/assetstore"
-ln -s ${tomcat_data_dir}/dspace/assetstore ${tomcat_apps_dir}/dspace/assetstore
+if [ ${node_num} -eq 2 ]; then 
+    ln -s ${tomcat_data_dir}/dspace/assetstore ${tomcat_apps_dir}/dspace/assetstore
+else
+    ln -s ${tomcat_data_dir}/dspace/test-assetstore ${tomcat_apps_dir}/dspace/assetstore
+fi
+
+
+
 
 
 #if [ ! -d "${tomcat_data_dir}/dspace/bin" ]; then
