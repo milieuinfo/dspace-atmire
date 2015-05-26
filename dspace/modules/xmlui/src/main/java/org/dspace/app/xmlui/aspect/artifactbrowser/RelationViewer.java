@@ -64,7 +64,7 @@ public class RelationViewer extends AbstractDSpaceTransformer
             for (Relationship rls : parents) {
                 String label = rls.getLeft().getName();
                 if (ConfigurationManager.getProperty("relation-metadata", "relationviewer.fieldname") != null) {
-                    DCValue[] metadata = item.getMetadata(ConfigurationManager.getProperty("relationviewer.fieldname"));
+                    DCValue[] metadata = item.getMetadata(ConfigurationManager.getProperty("relation-metadata", "relationviewer.fieldname"));
                     if (metadata.length > 0)
                         label = metadata[0].value;
                 }

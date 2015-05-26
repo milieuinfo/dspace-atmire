@@ -897,9 +897,27 @@
     <xsl:template name="dossier-date-issued">
         <xsl:if test="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']">
             <dcvalue element="date" qualifier="issued">
-                <xsl:value-of select="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']/Tijdstip" />
+                <xsl:call-template name="format-date">
+                    <xsl:with-param name="date" select="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']/Tijdstip"/>
+                </xsl:call-template>
+                <!--<xsl:value-of select="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']/Tijdstip" />-->
             </dcvalue>
         </xsl:if>
+    </xsl:template>
+
+    <xsl:template name="format-date">
+        <xsl:param name="date"/>
+        <xsl:choose>
+            <xsl:when test="string-length($date) = 19">
+                <xsl:value-of select="substring($date, 0, 10)"/>
+                <xsl:text>T</xsl:text>
+                <xsl:value-of select="substring($date, 12)"/>
+                <xsl:text>Z</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="$date"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template name="aangifte-identifier">
