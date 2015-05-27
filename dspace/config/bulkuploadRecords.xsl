@@ -496,7 +496,7 @@
                 <xsl:call-template name="document-author"/>
                 <!--<xsl:call-template name="aangifte-identifier"/>-->
                 <dcvalue element="identifier">
-                    <xsl:value-of select="utils:getFileNameBasedOnIndex($directory,$jaar,$nummer,$aangifteType,$i)"/>
+                    <xsl:value-of select="substring-before(utils:getFileNameBasedOnIndex($directory,$jaar,$nummer,$aangifteType,$i),'.')"/>
                 </dcvalue>
                 <xsl:apply-templates mode="dc"/>
                 <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
