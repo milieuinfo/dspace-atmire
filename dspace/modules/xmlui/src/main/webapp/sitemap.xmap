@@ -241,18 +241,27 @@
 
 
 
-                    <map:match pattern="xfeed/*/**">
-                        <map:generate type="DSpaceFeedGenerator">
-                            <map:parameter name="feedFormat" value="{1}"/>
-                            <map:parameter name="handle" value="{2}"/>
-                        </map:generate>
-                        <map:act type="locale">
-                            <map:transform type="i18n">
-                                    <map:parameter name="locale" value="{locale}"/>
-                            </map:transform>
-                        </map:act>
-                        <map:serialize type="xml"/>
-                    </map:match>
+
+                     <map:match pattern="feed/*/**">
+                             <map:select type="AuthenticatedSelector">
+                                     <map:when test="eperson">
+                                     <map:generate type="DSpaceFeedGenerator">
+                                         <map:parameter name="feedFormat" value="{1}"/>
+                                         <map:parameter name="handle" value="{2}"/>
+                                     </map:generate>
+                                     <map:act type="locale">
+                                         <map:transform type="i18n">
+                                                 <map:parameter name="locale" value="{locale}"/>
+                                         </map:transform>
+                                     </map:act>
+                                     <map:serialize type="xml"/>
+                                 </map:when>
+                                     <map:otherwise>
+                                     <map:act type="StartAuthentication"/>
+                                 </map:otherwise>
+                             </map:select>
+                     </map:match>
+                    
                         <!--
                                 Bitstreams for items that have a handle assigned. If the
                                 sequence parameter is given then that will be used to resolve the
@@ -533,19 +542,7 @@
                         </map:match>
                     </map:match>
 
-                    <!-- Syndication feeds for whole repo or community/collection -->
-                    <map:match pattern="feed/*/**">
-                        <map:generate type="DSpaceFeedGenerator">
-                            <map:parameter name="feedFormat" value="{1}"/>
-                            <map:parameter name="handle" value="{2}"/>
-                        </map:generate>
-                        <map:act type="locale">
-                            <map:transform type="i18n">
-                                    <map:parameter name="locale" value="{locale}"/>
-                            </map:transform>
-                        </map:act>
-                        <map:serialize type="xml"/>
-                    </map:match>
+
 
 
                     <!-- OpenSearch description document for whole repo or community/collection -->

@@ -162,7 +162,10 @@ public class SyndicationFeed
     {
          	
         String logoURL = null;
-        String objectURL = null;
+      //  String objectURL = null;
+        
+        String feedURL = resolveFeedURL(request);
+        
         String defaultTitle = null;
         boolean podcastFeed = false;
         this.request = request;
@@ -172,7 +175,7 @@ public class SyndicationFeed
         {
             defaultTitle = ConfigurationManager.getProperty("dspace.name");
             feed.setDescription(localize(labels, MSG_FEED_DESCRIPTION));
-            objectURL = resolveURL(request, null);
+          
             logoURL = ConfigurationManager.getProperty("webui.feed.logo.url");
         }
         else
@@ -200,7 +203,7 @@ public class SyndicationFeed
                     podcastFeed = true;
                 }
             }
-            objectURL = resolveURL(request, dso);
+            
             if (logo != null)
             {
                 logoURL = urlOfBitstream(request, logo);
@@ -214,14 +217,14 @@ public class SyndicationFeed
             List<SyndLink> links = new ArrayList<SyndLink>();
             
             SyndLinkImpl selfLink= new SyndLinkImpl();
-            selfLink.setHref(objectURL);
+            selfLink.setHref(feedURL);
             selfLink.setRel("self");
             links.add(selfLink);
             
             if (currentPage > 0){
                 
                 SyndLinkImpl prev = new SyndLinkImpl();
-                prev.setHref(objectURL+"?page="+(currentPage-1) );
+                prev.setHref(feedURL+"?page="+(currentPage-1) );
                 prev.setRel("previous");    	
                 links.add(prev);
             }
@@ -230,7 +233,7 @@ public class SyndicationFeed
             
         //    if (currentPage+1<=lastPage){
             	SyndLinkImpl nextLink = new SyndLinkImpl();
-            	nextLink.setHref(objectURL+"?page="+(currentPage+1) );
+            	nextLink.setHref(feedURL+"?page="+(currentPage+1) );
             	nextLink.setRel("next");      
             	links.add(nextLink);
           //  }            
@@ -238,14 +241,14 @@ public class SyndicationFeed
             // add first and last
             
             SyndLinkImpl firstLink = new SyndLinkImpl();
-            firstLink.setHref(objectURL+"?page=0");
+            firstLink.setHref(feedURL+"?page=0");
             firstLink.setRel("first");      
             links.add(firstLink);
             
             
             
             //SyndLinkImpl lastLink = new SyndLinkImpl();
-            //lastLink.setHref(objectURL+"?page="+this.lastPage);
+            //lastLink.setHref(feedURL+"?page="+this.lastPage);
             //lastLink.setRel("last");      
             //links.add(lastLink);
             
@@ -255,7 +258,7 @@ public class SyndicationFeed
             feed.setLinks(links);
             
         }else{
-        	feed.setLink(objectURL);
+        	feed.setLink(feedURL);
         	
         }
         
@@ -265,7 +268,7 @@ public class SyndicationFeed
         
         
         feed.setPublishedDate(new Date());
-        feed.setUri(objectURL);
+        feed.setUri(feedURL);
 
         // add logo if we found one:
         if (logoURL != null)
@@ -273,7 +276,7 @@ public class SyndicationFeed
             // we use the path to the logo for this, the logo itself cannot
             // be contained in the rdf. Not all RSS-viewers show this logo.
             SyndImage image = new SyndImageImpl();
-            image.setLink(objectURL);
+            image.setLink(feedURL);
             if (StringUtils.isNotBlank(feed.getTitle())) {
                 image.setTitle(feed.getTitle());
             } else {
@@ -604,6 +607,21 @@ public class SyndicationFeed
     private String resolveRestURL(HttpServletRequest request, DSpaceObject dso)
     {
     	return resolveURL(request, null).replace("xmlui", "rest") + "/items/" + dso.getID() + "?expand=all";
+    }
+    
+    private String resolveFeedURL(HttpServletRequest request){
+    	 if (request == null)
+         {
+    		 return ConfigurationManager.getProperty("dspace.url");
+         }
+    	 else 
+    	 {
+    	  String feedURL = request.getScheme() + "://";
+    	  feedURL += request.getServerName();
+    	  feedURL += ":" + request.getServerPort();
+    	  feedURL += request.getRequestURI();
+    	  return feedURL;
+         }
     }
     
     
