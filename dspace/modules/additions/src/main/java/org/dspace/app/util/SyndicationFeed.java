@@ -604,15 +604,34 @@ public class SyndicationFeed
      */
     private String baseURL = null;  // cache the result for null
 
+    private String getBaseURL(HttpServletRequest request){
+        if (baseURL == null)
+        {
+            if (request == null)
+            {
+                baseURL = ConfigurationManager.getProperty("dspace.url");
+            }
+            else
+            {
+                baseURL = request.getScheme() + "://";
+                baseURL += request.getServerName();
+                baseURL += ":" + request.getServerPort();
+                baseURL += request.getContextPath();
+            }
+        }
+        return baseURL;
+    }
+    
+    
     private String resolveRestURL(HttpServletRequest request, DSpaceObject dso)
     {
-    	return resolveURL(request, null).replace("xmlui", "rest") + "/items/" + dso.getID() + "?expand=all";
+    	return getBaseURL(request).replace("xmlui", "rest") + "/items/" + dso.getID() + "?expand=all";
     }
     
     private String resolveFeedURL(HttpServletRequest request){
     	 if (request == null)
          {
-    		 return ConfigurationManager.getProperty("dspace.url");
+    		 return getBaseURL(null);
          }
     	 else 
     	 {
@@ -631,21 +650,7 @@ public class SyndicationFeed
         // since no offical handle exists so we have to use local resolution.
         if (dso == null)
         {
-            if (baseURL == null)
-            {
-                if (request == null)
-                {
-                    baseURL = ConfigurationManager.getProperty("dspace.url");
-                }
-                else
-                {
-                    baseURL = request.getScheme() + "://";
-                    baseURL += request.getServerName();
-                    baseURL += ":" + request.getServerPort();
-                    baseURL += request.getContextPath();
-                }
-            }
-            return baseURL;
+           return getBaseURL(request);
         }
 
         // return a link to handle in repository

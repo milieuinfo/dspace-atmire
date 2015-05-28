@@ -207,6 +207,7 @@
                         <map:action name="StartAuthentication" src="org.dspace.app.xmlui.aspect.eperson.StartAuthenticationAction"/>
                         <map:action name="DSpacePropertyFileReader" src="org.dspace.app.xmlui.cocoon.DSpacePropertyFileReader" />
                         <map:action name="PropertyFileReader" src="org.dspace.app.xmlui.cocoon.PropertyFileReader" />
+                        <map:action name="LoginImplicitIfPossibleAction" src="org.dspace.app.xmlui.aspect.eperson.LoginImplicitIfPossibleAction" />
                 </map:actions>
                 <map:pipes default="caching">
                         <map:pipe name="noncaching" src="org.apache.cocoon.components.pipeline.impl.NonCachingProcessingPipeline">
@@ -243,23 +244,17 @@
 
 
                      <map:match pattern="feed/*/**">
-                             <map:select type="AuthenticatedSelector">
-                                     <map:when test="eperson">
-                                     <map:generate type="DSpaceFeedGenerator">
-                                         <map:parameter name="feedFormat" value="{1}"/>
-                                         <map:parameter name="handle" value="{2}"/>
-                                     </map:generate>
-                                     <map:act type="locale">
-                                         <map:transform type="i18n">
-                                                 <map:parameter name="locale" value="{locale}"/>
-                                         </map:transform>
-                                     </map:act>
-                                     <map:serialize type="xml"/>
-                                 </map:when>
-                                     <map:otherwise>
-                                     <map:act type="StartAuthentication"/>
-                                 </map:otherwise>
-                             </map:select>
+                     	<map:act type="LoginImplicitIfPossibleAction"/>
+						<map:generate type="DSpaceFeedGenerator">
+                        	<map:parameter name="feedFormat" value="{1}"/>
+							<map:parameter name="handle" value="{2}"/>
+                        </map:generate>
+                        <map:act type="locale">
+                        	<map:transform type="i18n">
+                            	<map:parameter name="locale" value="{locale}"/>
+							</map:transform>
+                        </map:act>
+                        <map:serialize type="xml"/>
                      </map:match>
                     
                         <!--
