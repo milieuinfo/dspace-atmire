@@ -42,26 +42,14 @@ public class LoginImplicitIfPossibleAction extends AbstractAction {
 				context = AuthenticationUtil.authenticateImplicit(objectModel);
 				eperson = context.getCurrentUser();
 				// implicit login success 
-				if (eperson != null){
-					if (AuthenticationUtil.isInterupptedRequest(objectModel)) {
-						// Resume the request and set the redirect target URL to
-						// that of the originaly interrupted request.
-						redirectURL += AuthenticationUtil.resumeInterruptedRequest(objectModel);
-					}
-				}else{
+				if (eperson == null){
 					redirectURL+="/login";
+					final HttpServletResponse httpResponse = (HttpServletResponse) objectModel.get(HttpEnvironment.HTTP_RESPONSE_OBJECT);
+					httpResponse.sendRedirect(redirectURL);
+					context.setCurrentUser(null);
 				}
-				final HttpServletResponse httpResponse = (HttpServletResponse) objectModel.get(HttpEnvironment.HTTP_RESPONSE_OBJECT);
-				httpResponse.sendRedirect(redirectURL);
-
-				context.setCurrentUser(null);
-
-				
 			}
-			
 			return new HashMap();
-
-			
 		} catch (Exception ex) {
 			throw new PatternException("Unable to preform authentication", ex);
 		}
