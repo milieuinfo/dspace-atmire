@@ -261,13 +261,7 @@ public class SyndicationFeed
         	feed.setLink(feedURL);
         	
         }
-        
-        
-        
-   
-        
-        
-        feed.setPublishedDate(new Date());
+       	feed.setPublishedDate(new Date());
         feed.setUri(feedURL);
 
         // add logo if we found one:
@@ -625,7 +619,7 @@ public class SyndicationFeed
     
     private String resolveRestURL(HttpServletRequest request, DSpaceObject dso)
     {
-    	return getBaseURL(request).replace("xmlui", "rest") + "/items/" + dso.getID() + "?expand=all";
+    	return getBaseURL(request).replace("xmlui", "rest") + "/items/" + dso.getID() ;
     }
     
     private String resolveFeedURL(HttpServletRequest request){
