@@ -93,3 +93,7 @@ button {  width: auto; overflow: visible; }
 #aspect_artifactbrowser_RelationViewer_div_relation_Child {
     margin-top: 15px;
 }
+
+#ds-footer-right{
+    display : none;
+}
