@@ -37,7 +37,9 @@
                     <xsl:with-param name="title" select="'IMJV'"/>
                 </xsl:call-template>
 
-                <xsl:call-template name="dossier-identifier"/>
+                <xsl:call-template name="dossier-identifier">
+                    <xsl:with-param name="type"/>
+                </xsl:call-template>
                 <xsl:call-template name="document-author"/>
                 <xsl:call-template name="document-publisher"/>
                 <xsl:call-template name="dossier-date-issued"/>
@@ -90,10 +92,12 @@
                     <xsl:with-param name="title" select="'IMJV'"/>
                 </xsl:call-template>
 
-                <xsl:call-template name="dossier-identifier"/>
+                <xsl:call-template name="dossier-identifier">
+                    <xsl:with-param name="type">METADATA</xsl:with-param>
+                </xsl:call-template>
                 <xsl:call-template name="document-author"/>
                 <xsl:call-template name="document-publisher"/>
-                <xsl:call-template name="dossier-date-issued"/>
+                <!--<xsl:call-template name="dossier-date-issued"/>-->
 
                 <xsl:apply-templates select="." mode="dc"/>
             </dublin_core>
@@ -145,7 +149,11 @@
                     <xsl:call-template name="title-alternative">
                         <xsl:with-param name="title" select="'IMJV'"/>
                     </xsl:call-template>
-                    <xsl:call-template name="document-date-issued"/>
+                    <xsl:call-template name="document-date-issued">
+                        <xsl:with-param name="level">
+                            <xsl:text>0</xsl:text>
+                        </xsl:with-param>
+                    </xsl:call-template>
                     <xsl:call-template name="document-publisher"/>
                     <xsl:call-template name="document-author"/>
                     <xsl:apply-templates mode="dc"/>
@@ -258,7 +266,12 @@
                     <xsl:call-template name="title-alternative">
                         <xsl:with-param name="title" select="'IMJV'"/>
                     </xsl:call-template>
-                    <xsl:call-template name="document-date-issued"/>
+
+                    <xsl:call-template name="document-date-issued">
+                        <xsl:with-param name="level">
+                            <xsl:text>2</xsl:text>
+                        </xsl:with-param>
+                    </xsl:call-template>
                     <xsl:call-template name="document-publisher"/>
                     <xsl:call-template name="document-author"/>
                     <xsl:call-template name="document-identifier">
@@ -342,7 +355,12 @@
                     <xsl:call-template name="title-alternative">
                         <xsl:with-param name="title" select="'IMJV'"/>
                     </xsl:call-template>
-                    <xsl:call-template name="document-date-issued"/>
+
+                    <xsl:call-template name="document-date-issued">
+                        <xsl:with-param name="level">
+                            <xsl:text>3</xsl:text>
+                        </xsl:with-param>
+                    </xsl:call-template>
                     <xsl:call-template name="document-publisher"/>
                     <xsl:call-template name="document-author"/>
                     <xsl:call-template name="document-identifier">
@@ -469,12 +487,16 @@
                     <xsl:call-template name="title-alternative">
                         <xsl:with-param name="title" select="'IMJV'"/>
                     </xsl:call-template>
-                <xsl:call-template name="document-date-issued"/>
+                <xsl:call-template name="document-date-issued">
+                    <xsl:with-param name="level">
+                        <xsl:text>0</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
                 <xsl:call-template name="document-publisher"/>
                 <xsl:call-template name="document-author"/>
                 <!--<xsl:call-template name="aangifte-identifier"/>-->
                 <dcvalue element="identifier">
-                    <xsl:value-of select="utils:getFileNameBasedOnIndex($directory,$jaar,$nummer,$aangifteType,$i)"/>
+                    <xsl:value-of select="substring-before(utils:getFileNameBasedOnIndex($directory,$jaar,$nummer,$aangifteType,$i),'.')"/>
                 </dcvalue>
                 <xsl:apply-templates mode="dc"/>
                 <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
@@ -761,18 +783,62 @@
     </xsl:template>
 
     <xsl:template name="document-date-issued">
-        <xsl:if test="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']">
-            <dcvalue element="date" qualifier="issued">
-                <xsl:value-of select="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']/Tijdstip" />
-            </dcvalue>
-        </xsl:if>
+        <xsl:param name="level"/>
+
+        <xsl:choose>
+            <xsl:when test="$level='0'">
+                <xsl:if test="Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()">
+                    <dcvalue element="date" qualifier="issued">
+                        <xsl:call-template name="format-date">
+                            <xsl:with-param name="date" select="Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()"/>
+                        </xsl:call-template>
+                    </dcvalue>
+                </xsl:if>
+            </xsl:when>
+            <xsl:when test="$level='1'">
+                <xsl:if test="../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()">
+                    <dcvalue element="date" qualifier="issued">
+                        <xsl:call-template name="format-date">
+                            <xsl:with-param name="date" select="../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()"/>
+                        </xsl:call-template>
+                    </dcvalue>
+                </xsl:if>
+            </xsl:when>
+            <xsl:when test="$level='2'">
+                <xsl:if test="../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()">
+                    <dcvalue element="date" qualifier="issued">
+                        <xsl:call-template name="format-date">
+                            <xsl:with-param name="date" select="../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()"/>
+                        </xsl:call-template>
+                    </dcvalue>
+                </xsl:if>
+            </xsl:when>
+            <xsl:when test="$level='3'">
+                <xsl:if test="../../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()">
+                    <dcvalue element="date" qualifier="issued">
+                        <xsl:call-template name="format-date">
+                            <xsl:with-param name="date" select="../../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()"/>
+                        </xsl:call-template>
+                    </dcvalue>
+                </xsl:if>
+            </xsl:when>
+            <xsl:when test="$level='4'">
+                <xsl:if test="../../../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()">
+                    <dcvalue element="date" qualifier="issued">
+                        <xsl:call-template name="format-date">
+                            <xsl:with-param name="date" select="../../../Feiten/Feit[Actie='Statuswijziging (ONTV)']/Tijdstip/text()"/>
+                        </xsl:call-template>
+                    </dcvalue>
+                </xsl:if>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="Aangifte/AangifteType" mode="imjv">
-        <dcvalue element="AangifteType">
-            <xsl:value-of select="text()"/>
-        </dcvalue>
-    </xsl:template>
+    <!--<xsl:template match="Aangifte/AangifteType" mode="imjv">-->
+        <!--<dcvalue element="AangifteType">-->
+            <!--<xsl:value-of select="text()"/>-->
+        <!--</dcvalue>-->
+    <!--</xsl:template>-->
 
     <!--<xsl:template match="Aangifte/AangifteType/Feiten/Feit[Actie/text()='Creatie']/Gebruiker" mode="dc">-->
         <!--<dcvalue element="contributor" qualifier="author">-->
@@ -825,19 +891,44 @@
     </xsl:template>
 
     <xsl:template name="dossier-identifier">
-            <dcvalue element="identifier">
-                <xsl:value-of select="RapporteringsJaar/text()"/>
+        <xsl:param name="type"/>
+
+        <dcvalue element="identifier">
+            <xsl:value-of select="RapporteringsJaar/text()"/>
+            <xsl:text>_</xsl:text>
+            <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
+            <xsl:if test="$type">
                 <xsl:text>_</xsl:text>
-                <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
-            </dcvalue>
+                <xsl:value-of select="$type"/>
+            </xsl:if>
+        </dcvalue>
     </xsl:template>
 
     <xsl:template name="dossier-date-issued">
         <xsl:if test="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']">
             <dcvalue element="date" qualifier="issued">
-                <xsl:value-of select="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']/Tijdstip" />
+                <xsl:call-template name="format-date">
+                    <xsl:with-param name="date" select="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']/Tijdstip"/>
+                </xsl:call-template>
+                <!--<xsl:value-of select="//MilieuVerslagMetaData/Feiten/Feit[Actie/text()='StatusWijziging (ONTV)']/Tijdstip" />-->
             </dcvalue>
         </xsl:if>
+    </xsl:template>
+
+    <xsl:template name="format-date">
+        <xsl:param name="date"/>
+        <xsl:choose>
+            <xsl:when test="string-length($date) = 19">
+                <xsl:value-of select="substring($date, 0, 11)"/>
+                <xsl:text>T</xsl:text>
+                <xsl:value-of select="substring($date, 12)"/>
+                <xsl:text>Z</xsl:text>
+            </xsl:when>
+            <xsl:otherwise>
+                <!--<xsl:value-of select="string-length($date)"/>-->
+                <xsl:value-of select="$date"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
 
     <xsl:template name="aangifte-identifier">
