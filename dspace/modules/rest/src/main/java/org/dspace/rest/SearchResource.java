@@ -50,11 +50,7 @@ public class SearchResource {
 		dq.setDSpaceObjectFilter(org.dspace.core.Constants.ITEM);
 	
 		String cleanFields = StringUtils.trimToNull(fields);
-		String cleanExpand = StringUtils.trimToNull(expand);
 		
-		if (null == cleanExpand){
-			cleanExpand = "all";
-		}
 
 		if (null != cleanFields) {
 			String[] splitFields = StringUtils.split(cleanFields, ';');
@@ -82,7 +78,7 @@ public class SearchResource {
 		List<org.dspace.rest.common.Item> toReturn = new ArrayList<org.dspace.rest.common.Item>();
 		for (DSpaceObject obj : dspaceObjects){
 			Item it = (Item) obj;
-			toReturn.add(new org.dspace.rest.common.Item(it,cleanExpand,context));
+			toReturn.add(new org.dspace.rest.common.Item(it,expand,context));
 		}
 
 		
