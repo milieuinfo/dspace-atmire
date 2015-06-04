@@ -244,15 +244,15 @@
                     <xsl:call-template name="dossier-source"/>
                     <xsl:call-template name="document-title">
                         <xsl:with-param name="type">
-                            <xsl:choose>
-                                <xsl:when test="count(../../ProcesSchema/Bestand) &gt; 1">
-                                    <xsl:text>Processchema </xsl:text>
-                                    <xsl:value-of select="position()"/>
-                                </xsl:when>
-                                <xsl:otherwise>
+                            <!--<xsl:choose>-->
+                                <!--<xsl:when test="count(../../ProcesSchema/Bestand) &gt; 1">-->
+                                    <!--<xsl:text>Processchema </xsl:text>-->
+                                    <!--<xsl:value-of select="position()"/>-->
+                                <!--</xsl:when>-->
+                                <!--<xsl:otherwise>-->
                                     <xsl:text>Processchema</xsl:text>
-                                </xsl:otherwise>
-                            </xsl:choose>
+                                <!--</xsl:otherwise>-->
+                            <!--</xsl:choose>-->
                         </xsl:with-param>
                         <xsl:with-param name="level">
                             <xsl:text>2</xsl:text>
@@ -333,15 +333,15 @@
                     <xsl:call-template name="dossier-source"/>
                     <xsl:call-template name="document-title">
                         <xsl:with-param name="type">
-                            <xsl:choose>
-                                <xsl:when test="count(../../../AangifteGeneriek/Bijlagen/Bestand) &gt; 1">
-                                    <xsl:text>Bijlage </xsl:text>
-                                    <xsl:value-of select="position()"/>
-                                </xsl:when>
-                                <xsl:otherwise>
+                            <!--<xsl:choose>-->
+                                <!--<xsl:when test="count(../../../AangifteGeneriek/Bijlagen/Bestand) &gt; 1">-->
+                                    <!--<xsl:text>Bijlage </xsl:text>-->
+                                    <!--<xsl:value-of select="position()"/>-->
+                                <!--</xsl:when>-->
+                                <!--<xsl:otherwise>-->
                                     <xsl:text>Bijlage</xsl:text>
-                                </xsl:otherwise>
-                            </xsl:choose>
+                                <!--</xsl:otherwise>-->
+                            <!--</xsl:choose>-->
                         </xsl:with-param>
                         <xsl:with-param name="level">
                             <xsl:text>3</xsl:text>
@@ -465,15 +465,15 @@
                 <xsl:call-template name="dossier-source"/>
                 <xsl:call-template name="document-title">
                     <xsl:with-param name="type">
-                        <xsl:choose>
-                            <xsl:when test="$fileCount &gt; 1">
-                                <xsl:text>Aanvulling </xsl:text>
-                                <xsl:value-of select="$i"/>
-                            </xsl:when>
-                            <xsl:otherwise>
+                        <!--<xsl:choose>-->
+                            <!--<xsl:when test="$fileCount &gt; 1">-->
+                                <!--<xsl:text>Aanvulling </xsl:text>-->
+                                <!--<xsl:value-of select="$i"/>-->
+                            <!--</xsl:when>-->
+                            <!--<xsl:otherwise>-->
                                 <xsl:text>Aanvulling</xsl:text>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                            <!--</xsl:otherwise>-->
+                        <!--</xsl:choose>-->
                     </xsl:with-param>
                     <xsl:with-param name="level">
                         <xsl:text>0</xsl:text>
