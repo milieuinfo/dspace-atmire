@@ -50,7 +50,7 @@ public class LneUtils {
         // LuchtEmissie (type) <> Luchtemissie (fileName)
         String syntaxStart = jaar + "_" + nummer + "_" + type + "_Aanvulling_";
         for (File file : new File(path).listFiles()) {
-            if (FilenameUtils.getName(file.getName()).startsWith(syntaxStart)) {
+            if (FilenameUtils.getName(file.getName().toLowerCase()).startsWith(syntaxStart.toLowerCase())) {
                 aanvullingFiles.add(file);
             }
         }
