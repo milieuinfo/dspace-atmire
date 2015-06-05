@@ -735,6 +735,24 @@
               </xsl:call-template>
           </xsl:when>
 
+          <xsl:when test="$clause = 31 and (dim:field[@element='document' and @mdschema='imjv' and @qualifier='title'])">
+              <div class="simple-item-view-other">
+                  <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.document-title</i18n:text>:</span>
+                  <xsl:for-each select="dim:field[@element='document' and @mdschema='imjv' and @qualifier='title']">
+                      <span>
+                          <xsl:copy-of select="./node()"/>
+                      </span>
+                      <xsl:if test="count(following-sibling::dim:field[@element='document' and @mdschema='imjv' and @qualifier='title']) != 0">
+                          <br/>
+                      </xsl:if>
+                  </xsl:for-each>
+              </div>
+              <xsl:call-template name="itemSummaryView-DIM-fields">
+                  <xsl:with-param name="clause" select="($clause + 1)"/>
+                  <xsl:with-param name="phase" select="$otherPhase"/>
+              </xsl:call-template>
+          </xsl:when>
+
           <!-- Abstract row -->
           <xsl:when test="$clause = 31 and (dim:field[@element='description' and @qualifier='abstract' and descendant::text()])">
                     <div class="simple-item-view-description">
