@@ -97,7 +97,7 @@
                 </xsl:call-template>
                 <xsl:call-template name="document-author"/>
                 <xsl:call-template name="document-publisher"/>
-                <!--<xsl:call-template name="dossier-date-issued"/>-->
+                <xsl:call-template name="dossier-date-issued"/>
 
                 <xsl:apply-templates select="." mode="dc"/>
             </dublin_core>
