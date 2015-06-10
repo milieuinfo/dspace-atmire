@@ -97,7 +97,7 @@
                 </xsl:call-template>
                 <xsl:call-template name="document-author"/>
                 <xsl:call-template name="document-publisher"/>
-                <!--<xsl:call-template name="dossier-date-issued"/>-->
+                <xsl:call-template name="dossier-date-issued"/>
 
                 <xsl:apply-templates select="." mode="dc"/>
             </dublin_core>
@@ -107,7 +107,9 @@
                 <xsl:apply-templates select="." mode="imjv"/>
                 <xsl:call-template name="dossier-dossiernummer"/>
                 <xsl:apply-templates select="//MilieuVerslagMetaData" mode="imjv"/>
-                <!--<xsl:call-template name="dossier-dmsexportnotes"/>-->
+                <dcvalue element="document" qualifier="title">
+                    <xsl:text>METADATA</xsl:text>
+                </dcvalue>
             </dublin_core>
         </redirect:write>
 
@@ -244,15 +246,15 @@
                     <xsl:call-template name="dossier-source"/>
                     <xsl:call-template name="document-title">
                         <xsl:with-param name="type">
-                            <xsl:choose>
-                                <xsl:when test="count(../../ProcesSchema/Bestand) &gt; 1">
-                                    <xsl:text>Processchema </xsl:text>
-                                    <xsl:value-of select="position()"/>
-                                </xsl:when>
-                                <xsl:otherwise>
+                            <!--<xsl:choose>-->
+                                <!--<xsl:when test="count(../../ProcesSchema/Bestand) &gt; 1">-->
+                                    <!--<xsl:text>Processchema </xsl:text>-->
+                                    <!--<xsl:value-of select="position()"/>-->
+                                <!--</xsl:when>-->
+                                <!--<xsl:otherwise>-->
                                     <xsl:text>Processchema</xsl:text>
-                                </xsl:otherwise>
-                            </xsl:choose>
+                                <!--</xsl:otherwise>-->
+                            <!--</xsl:choose>-->
                         </xsl:with-param>
                         <xsl:with-param name="level">
                             <xsl:text>2</xsl:text>
@@ -295,6 +297,12 @@
                     <dcvalue element="aangiftetype">
                         <xsl:value-of select="$aangifteType"/>
                     </dcvalue>
+                    <xsl:call-template name="aangifte-document-title">
+                        <xsl:with-param name="aangiftetype" select="$aangifteType"/>
+                        <xsl:with-param name="identifier">
+                            <xsl:call-template name="document-identifier-internal"/>
+                        </xsl:with-param>
+                    </xsl:call-template>
                 </dublin_core>
             </redirect:write>
             <redirect:write select="concat('ProcesSchema',$count,'_',position(), '/contents')">
@@ -333,15 +341,15 @@
                     <xsl:call-template name="dossier-source"/>
                     <xsl:call-template name="document-title">
                         <xsl:with-param name="type">
-                            <xsl:choose>
-                                <xsl:when test="count(../../../AangifteGeneriek/Bijlagen/Bestand) &gt; 1">
-                                    <xsl:text>Bijlage </xsl:text>
-                                    <xsl:value-of select="position()"/>
-                                </xsl:when>
-                                <xsl:otherwise>
+                            <!--<xsl:choose>-->
+                                <!--<xsl:when test="count(../../../AangifteGeneriek/Bijlagen/Bestand) &gt; 1">-->
+                                    <!--<xsl:text>Bijlage </xsl:text>-->
+                                    <!--<xsl:value-of select="position()"/>-->
+                                <!--</xsl:when>-->
+                                <!--<xsl:otherwise>-->
                                     <xsl:text>Bijlage</xsl:text>
-                                </xsl:otherwise>
-                            </xsl:choose>
+                                <!--</xsl:otherwise>-->
+                            <!--</xsl:choose>-->
                         </xsl:with-param>
                         <xsl:with-param name="level">
                             <xsl:text>3</xsl:text>
@@ -382,6 +390,12 @@
                     <dcvalue element="aangiftetype">
                         <xsl:value-of select="$aangifteType"/>
                     </dcvalue>
+                    <xsl:call-template name="aangifte-document-title">
+                        <xsl:with-param name="aangiftetype" select="$aangifteType"/>
+                        <xsl:with-param name="identifier">
+                            <xsl:call-template name="document-identifier-internal"/>
+                        </xsl:with-param>
+                    </xsl:call-template>
                 </dublin_core>
             </redirect:write>
             <redirect:write select="concat('Bijlage',$count,'_',position(), '/contents')">
@@ -465,15 +479,15 @@
                 <xsl:call-template name="dossier-source"/>
                 <xsl:call-template name="document-title">
                     <xsl:with-param name="type">
-                        <xsl:choose>
-                            <xsl:when test="$fileCount &gt; 1">
-                                <xsl:text>Aanvulling </xsl:text>
-                                <xsl:value-of select="$i"/>
-                            </xsl:when>
-                            <xsl:otherwise>
+                        <!--<xsl:choose>-->
+                            <!--<xsl:when test="$fileCount &gt; 1">-->
+                                <!--<xsl:text>Aanvulling </xsl:text>-->
+                                <!--<xsl:value-of select="$i"/>-->
+                            <!--</xsl:when>-->
+                            <!--<xsl:otherwise>-->
                                 <xsl:text>Aanvulling</xsl:text>
-                            </xsl:otherwise>
-                        </xsl:choose>
+                            <!--</xsl:otherwise>-->
+                        <!--</xsl:choose>-->
                     </xsl:with-param>
                     <xsl:with-param name="level">
                         <xsl:text>0</xsl:text>
@@ -496,7 +510,12 @@
                 <xsl:call-template name="document-author"/>
                 <!--<xsl:call-template name="aangifte-identifier"/>-->
                 <dcvalue element="identifier">
-                    <xsl:value-of select="substring-before(utils:getFileNameBasedOnIndex($directory,$jaar,$nummer,$aangifteType,$i),'.')"/>
+                    <xsl:call-template name="aanvulling-identifier-internal">
+                        <xsl:with-param name="jaar" select="$jaar"/>
+                        <xsl:with-param name="nummer" select="$nummer"/>
+                        <xsl:with-param name="aangifteType" select="$aangifteType"/>
+                        <xsl:with-param name="i" select="$i"/>
+                    </xsl:call-template>
                 </dcvalue>
                 <xsl:apply-templates mode="dc"/>
                 <xsl:apply-templates select="//IdentificatieMetaData" mode="dc"/>
@@ -513,6 +532,17 @@
                 <dcvalue element="aangiftetype">
                     <xsl:value-of select="$aangifteType"/>
                 </dcvalue>
+                <xsl:call-template name="aangifte-document-title">
+                    <xsl:with-param name="aangiftetype" select="$aangifteType"/>
+                    <xsl:with-param name="identifier">
+                        <xsl:call-template name="aanvulling-identifier-internal">
+                            <xsl:with-param name="jaar" select="$jaar"/>
+                            <xsl:with-param name="nummer" select="$nummer"/>
+                            <xsl:with-param name="aangifteType" select="$aangifteType"/>
+                            <xsl:with-param name="i" select="$i"/>
+                        </xsl:call-template>
+                    </xsl:with-param>
+                </xsl:call-template>
             </dublin_core>
         </redirect:write>
 
@@ -871,10 +901,14 @@
 
     <xsl:template name="dossier-dossiernummer">
         <dcvalue element="dossiernummer">
-            <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
-            <xsl:text>_</xsl:text>
-            <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
+            <xsl:call-template name="dossier-dossiernummer-internal"/>
         </dcvalue>
+    </xsl:template>
+
+    <xsl:template name="dossier-dossiernummer-internal">
+        <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
+        <xsl:text>_</xsl:text>
+        <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
     </xsl:template>
 
     <xsl:template name="title-alternative">
@@ -945,37 +979,34 @@
         <xsl:param name="level"/>
 
         <dcvalue element="identifier">
-            <!--<xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>-->
-            <!--<xsl:text>_</xsl:text>-->
-            <!--<xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>-->
-            <!--<xsl:text>_</xsl:text>-->
-            <!--<xsl:choose>-->
-                <!--<xsl:when test="$level='0'">-->
-                    <!--<xsl:value-of select="AangifteType/text()"/>-->
-                <!--</xsl:when>-->
-                <!--<xsl:when test="$level='1'">-->
-                    <!--<xsl:value-of select="../AangifteType/text()"/>-->
-                <!--</xsl:when>-->
-                <!--<xsl:when test="$level='2'">-->
-                    <!--<xsl:value-of select="../../AangifteType/text()"/>-->
-                <!--</xsl:when>-->
-                <!--<xsl:when test="$level='3'">-->
-                    <!--<xsl:value-of select="../../../AangifteType/text()"/>-->
-                <!--</xsl:when>-->
-                <!--<xsl:when test="$level='4'">-->
-                    <!--<xsl:value-of select="../../../../AangifteType/text()"/>-->
-                <!--</xsl:when>-->
-            <!--</xsl:choose>-->
-            <!--<xsl:text>_</xsl:text>-->
-
-            <!--<xsl:call-template name="substring-before-last">-->
-                <!--<xsl:with-param name="list" select="substring-before(text(),'\.')"/>-->
-                <!--<xsl:with-param name="delimiter" select="'_'"/>-->
-            <!--</xsl:call-template>-->
-            <!--&lt;!&ndash;<xsl:text> _ </xsl:text>&ndash;&gt;-->
-            <xsl:value-of select="substring-before(text(),'.')"/>
-            <!--<xsl:value-of select="substring(text(),string-length(text())-4)"/>-->
+            <xsl:call-template name="document-identifier-internal"/>
         </dcvalue>
+    </xsl:template>
+
+    <xsl:template name="document-identifier-internal">
+        <xsl:value-of select="substring-before(text(),'.')"/>
+    </xsl:template>
+
+    <xsl:template name="aangifte-document-title">
+        <xsl:param name="aangiftetype"/>
+        <xsl:param name="identifier"/>
+        <xsl:variable name="dossiernummer">
+            <xsl:call-template name="dossier-dossiernummer-internal"/>
+        </xsl:variable>
+        <xsl:if test="string-length($identifier) &gt; string-length($dossiernummer) + string-length($aangiftetype) + 2">
+            <dcvalue element="document" qualifier="title">
+                <xsl:value-of select="substring($identifier, string-length($dossiernummer) + string-length($aangiftetype) + 3)"/>
+            </dcvalue>
+        </xsl:if>
+    </xsl:template>
+
+    <xsl:template name="aanvulling-identifier-internal">
+        <xsl:param name="jaar"/>
+        <xsl:param name="nummer"/>
+        <xsl:param name="aangifteType"/>
+        <xsl:param name="i"/>
+        <xsl:value-of
+                select="substring-before(utils:getFileNameBasedOnIndex($directory,$jaar,$nummer,$aangifteType,$i),'.')"/>
     </xsl:template>
 
     <xsl:template match="//Rijksregisternummer" mode="dc"/>

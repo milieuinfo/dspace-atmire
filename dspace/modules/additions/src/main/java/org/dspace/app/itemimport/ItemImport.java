@@ -1499,7 +1499,7 @@ public class ItemImport
             IOException, AuthorizeException
     {
         String fullpath = FilenameUtils.concat(path, fileName);
-        fileName = fileName.substring(fileName.lastIndexOf(File.separator));
+        fileName = fileName.substring(fileName.lastIndexOf(File.separator)+1);
 //        String fullpath = path + File.separatorChar + fileName;
 
         // get an input stream
