@@ -166,12 +166,16 @@ public class Item extends DSpaceObject {
             }
         }
 
-        Bundle[] bundles = item.getBundles("ORIGINAL");
-        for (Bundle bundle : bundles) {
-            Bitstream[] bitstreams = bundle.getBitstreams();
-            for (Bitstream bitstream : bitstreams) {
-                restMetadata.add(new MetadataEntry("dc.relation.isbasedon", bitstream.getName()));
+        try {
+            Bundle[] bundles = item.getBundles("ORIGINAL");
+            for (Bundle bundle : bundles) {
+                Bitstream[] bitstreams = bundle.getBitstreams();
+                for (Bitstream bitstream : bitstreams) {
+                    restMetadata.add(new MetadataEntry("dc.relation.isbasedon", bitstream.getName()));
+                }
             }
+        } catch (SQLException e) {
+            log.error("Execption in retrieving bitstreams", e);
         }
     }
 
