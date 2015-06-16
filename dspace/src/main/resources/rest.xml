@@ -12,12 +12,17 @@
     <Resource name="jdbc/dspace"
               auth="Container"
               type="javax.sql.DataSource"
-              maxActive="20"
-              maxIdle="50"
+              maxActive="10"
+              maxIdle="2"
+              minIdle="1"
               maxWait="1000"
               username="%db_username%"
               password="%db_password%"
               driverClassName="org.postgresql.Driver"
+              validationQuery="select 1;"
+              testOnBorrow="true"
+              testOnReturn="false"
+              testWhileIdle="false"
               url="jdbc:postgresql://postgres-%zuil%-%vlan%.mmis.be:%db_port%/dspace_%ZUIL%"/>
 
 </Context>
