@@ -53,7 +53,7 @@ public class SearchResource {
 		String cleanExpand = StringUtils.trimToNull(expand);
 		
 		if (null == cleanExpand){
-			cleanExpand = "all";
+			cleanExpand = "metadata";
 		}
 
 		if (null != cleanFields) {
@@ -85,6 +85,7 @@ public class SearchResource {
 			toReturn.add(new org.dspace.rest.common.Item(it,cleanExpand,context));
 		}
 
+		
 		
 		return toReturn;
 	}
