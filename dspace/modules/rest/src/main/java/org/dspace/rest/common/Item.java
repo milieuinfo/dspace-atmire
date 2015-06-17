@@ -7,7 +7,7 @@
  */
 package org.dspace.rest.common;
 
-import com.atmire.dspace.content.*;
+
 import org.apache.log4j.Logger;
 import org.dspace.app.util.MetadataExposure;
 import org.dspace.authorize.AuthorizeManager;
@@ -16,21 +16,23 @@ import org.dspace.content.DCValue;
 import org.dspace.core.ConfigurationManager;
 import org.dspace.core.Context;
 
+import com.atmire.dspace.content.Record;
+import com.atmire.dspace.content.Relationship;
+import com.atmire.dspace.content.RelationshipObjectService;
+import com.atmire.dspace.content.RelationshipObjectServiceFactory;
+
 import javax.ws.rs.WebApplicationException;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: peterdietz
- * Date: 9/19/13
- * Time: 4:50 PM
- * To change this template use File | Settings | File Templates.
- */
 @XmlRootElement(name = "item")
 public class Item extends DSpaceObject {
     Logger log = Logger.getLogger(Item.class);
@@ -69,7 +71,7 @@ public class Item extends DSpaceObject {
                     metadata.add(new MetadataEntry(dcv.getField(), dcv.value));
                 }
             }
-            renderRelations(item, context, metadata);
+            renderRelations(item, metadata, context);
         } else {
             this.addExpand("metadata");
         }
@@ -125,11 +127,11 @@ public class Item extends DSpaceObject {
         }
     }
 
-    private void renderRelations(org.dspace.content.Item item, Context context, List<MetadataEntry> restMetadata) {
+    private void renderRelations(org.dspace.content.Item item,  List<MetadataEntry> restMetadata, Context context) {
         RelationshipObjectService<Record> recordService = RelationshipObjectServiceFactory.getInstance().getRelationshipObjectService(Record.class);
 
-        java.util.List<Relationship> children = findRelationsByItem(item,null,recordService);
-        java.util.List<Relationship> parents = findRelationsByItem(null,item,recordService);
+        java.util.List<Relationship> children = findRelationsByItem(item,null,recordService,context);
+        java.util.List<Relationship> parents = findRelationsByItem(null,item,recordService,context);
 
         if(parents.size()>0){
             for (Relationship rls : parents) {
@@ -170,8 +172,8 @@ public class Item extends DSpaceObject {
         try {
             Bundle[] bundles = item.getBundles("ORIGINAL");
             for (Bundle bundle : bundles) {
-                Bitstream[] bitstreams = bundle.getBitstreams();
-                for (Bitstream bitstream : bitstreams) {
+                org.dspace.content.Bitstream[] bitstreams = bundle.getBitstreams();
+                for ( org.dspace.content.Bitstream bitstream : bitstreams) {
                     restMetadata.add(new MetadataEntry("dc.relation.isbasedon", bitstream.getName()));
                 }
             }
@@ -180,9 +182,9 @@ public class Item extends DSpaceObject {
         }
     }
 
-    private java.util.List<Relationship> findRelationsByItem(org.dspace.content.Item left, org.dspace.content.Item right, RelationshipObjectService<Record> recordService){
+    private java.util.List<Relationship> findRelationsByItem(org.dspace.content.Item left, org.dspace.content.Item right, RelationshipObjectService<Record> recordService, Context context){
         java.util.List<Relationship> relationList = new ArrayList<Relationship>();
-        Collection<Relationship>  relations = recordService.findRelationsByItem(context, left, right);
+        java.util.Collection<Relationship>  relations = recordService.findRelationsByItem(context, left, right);
         Iterator<Relationship> iterator = relations.iterator();
 
         while(iterator.hasNext()) {
