@@ -12,7 +12,7 @@
 
   <dc-type>
 	<schema>imjv</schema>
-    <element>Rapporteringsjaar</element>
+    <element>rapporteringsjaar</element>
     <scope_note>Rapporterings Jaar</scope_note>
   </dc-type>
 
