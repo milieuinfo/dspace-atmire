@@ -652,7 +652,7 @@
     <!--</xsl:template>-->
 
     <xsl:template match="IdentificatieMetaData/RapporteringsJaar" mode="imjv">
-        <dcvalue element="Rapporteringsjaar">
+        <dcvalue element="rapporteringsjaar">
             <xsl:value-of select="text()"/>
         </dcvalue>
     </xsl:template>
