@@ -938,6 +938,7 @@ public class ItemImport
                 myhandle = HandleManager.findHandle(c, myitem);
 
                 mapOutput = itemname + " " + myhandle;
+                System.out.println("Assigned handle: " + myhandle);
             }
 
             // set permissions if specified in contents file
