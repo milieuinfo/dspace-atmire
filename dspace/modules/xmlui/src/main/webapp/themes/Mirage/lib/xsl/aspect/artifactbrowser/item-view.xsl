@@ -232,14 +232,14 @@
           </xsl:when>
 
           <!-- imjv.Rapporteringsjaar row -->
-          <xsl:when test="$clause = 5 and (dim:field[@element='Rapporteringsjaar' and @mdschema='imjv'] and descendant::text())">
+          <xsl:when test="$clause = 5 and (dim:field[@element='rapporteringsjaar' and @mdschema='imjv'] and descendant::text())">
               <div class="simple-item-view-other">
-                      <xsl:for-each select="dim:field[@element='Rapporteringsjaar' and @mdschema='imjv']">
+                      <xsl:for-each select="dim:field[@element='rapporteringsjaar' and @mdschema='imjv']">
                           <span class="bold"><i18n:text>xmlui.dri2xhtml.METS-1.0.imjv-Rapporteringsjaar</i18n:text>:</span>
                           <span>
                               <xsl:copy-of select="./node()"/>
                           </span>
-                          <xsl:if test="count(following-sibling::dim:field[@element='Rapporteringsjaar' and @mdschema='imjv']) != 0">
+                          <xsl:if test="count(following-sibling::dim:field[@element='rapporteringsjaar' and @mdschema='imjv']) != 0">
                               <br/>
                           </xsl:if>
                       </xsl:for-each>

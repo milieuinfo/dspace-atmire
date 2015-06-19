@@ -337,7 +337,7 @@
         <property name="indexFieldName" value="rapporteringsJaar"/>
         <property name="metadataFields">
             <list>
-                <value>imjv.Rapporteringsjaar</value>
+                <value>imjv.rapporteringsjaar</value>
             </list>
         </property>
         <property name="type" value="date"/>
