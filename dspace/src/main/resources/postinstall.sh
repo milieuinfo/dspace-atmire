@@ -139,22 +139,5 @@ echo "Chown dir naar tomcat user : ${tomcat_apps_dir}"
 
 chown -R tomcat:tomcat ${tomcat_apps_dir}
 
-echo "Write ansible vars"
-echo "-------------------"
-echo 'export ZUILURL='${ZUILURL}
-echo 'export ZUIL='${ZUIL}
-echo 'export db_password='${db_password}
-echo 'export db_port='${db_port}
-echo 'export db_username='${db_username}
-echo 'export dspace_consumer_secret='${dspace_consumer_secret}
-echo 'export dspace_consumer_token='${dspace_consumer_token}
-echo 'export mailrelay_host='${mailrelay_host}
-echo 'export mailrelay_port='${mailrelay_port}
-echo 'export node_num='${node_num}
-echo 'export tomcat_apps_dir='${tomcat_apps_dir}
-echo 'export tomcat_data_dir='${tomcat_data_dir}
-echo 'export tomcat_home_dir='${tomcat_home_dir}
-echo 'export vlan='${vlan}
-echo 'export zuil='${zuil}
 
 

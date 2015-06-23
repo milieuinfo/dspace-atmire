@@ -1,0 +1,25 @@
+<dspace-dc-types>
+
+  <dspace-header>
+    <title>KBO Types Registry</title>
+  </dspace-header>
+
+  <dc-schema>
+      <name>kbo</name>
+      <namespace>http://www.milieuinfo.be/kbo</namespace>
+  </dc-schema>
+
+
+  <dc-type>
+    <schema>kbo</schema>
+    <element>Ondernemingsnummer</element>
+    <scope_note>Unieke id van de onderneming</scope_note>
+  </dc-type>
+  <dc-type>
+    <schema>kbo</schema>
+    <element>Vestigingsnummer</element>
+    <scope_note>Unique id van de vestiging</scope_note>
+  </dc-type>
+
+
+</dspace-dc-types>
