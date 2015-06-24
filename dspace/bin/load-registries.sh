@@ -1,6 +1,6 @@
 #!/bin/sh
 #JAVA_OPTS="-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=4000,suspend=y -Dlogging.dir=/Users/lds/Projects/Dspace/run/tomcat/logs"
-JAVA_OPTS="-Dlogging.dir=/Users/lds/Projects/Dspace/run/tomcat/logs"
+#JAVA_OPTS="-Dlogging.dir=/Users/lds/Projects/Dspace/run/tomcat/logs"
 ###########################################################################
 #
 # dspace
@@ -83,7 +83,6 @@ EXTRA_OPTIONS="-Dlog4j.configuration=$DSPACEDIR/config/log4j.properties -Ddspace
 JAVA_OPTS="$JAVA_OPTS $EXTRA_OPTIONS"
 
 java $JAVA_OPTS -classpath $FULLPATH org.dspace.administer.RegistryLoader -bitstream $DSPACEDIR/config/registries/bitstream-formats.xml
-
 
 java $JAVA_OPTS -classpath $FULLPATH org.dspace.administer.MetadataImporter -f $DSPACEDIR/config/registries/dublin-core-types.xml
 
