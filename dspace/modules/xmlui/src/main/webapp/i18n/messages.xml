@@ -24,19 +24,19 @@
 		-->
 
 	<!-- General keys -->
-	<message key="xmlui.general.dspace_home">DSpace Home</message>
-	<message key="xmlui.general.search">Search</message>
-	<message key="xmlui.general.go">Go</message>
-	<message key="xmlui.general.go_home">Go to DSpace home</message>
-	<message key="xmlui.general.save">Save</message>
-	<message key="xmlui.general.cancel">Cancel</message>
-	<message key="xmlui.general.return">Return</message>
-	<message key="xmlui.general.update">Update</message>
-	<message key="xmlui.general.delete">Delete</message>
-	<message key="xmlui.general.next">Next</message>
-	<message key="xmlui.general.untitled">Untitled</message>
-        <message key="xmlui.general.perform">Perform</message>
-        <message key="xmlui.general.queue">Queue</message>
+	<message key="xmlui.general.dspace_home">DSpace thuispagina</message>
+	<message key="xmlui.general.search">Zoeken</message>
+	<message key="xmlui.general.go">Ga</message>
+	<message key="xmlui.general.go_home">Ga naar de DSpace thuispagina</message>
+	<message key="xmlui.general.save">Opslaan</message>
+	<message key="xmlui.general.cancel">Annuleer</message>
+	<message key="xmlui.general.return">Terug</message>
+	<message key="xmlui.general.update">Bijwerken</message>
+	<message key="xmlui.general.delete">Verwijderen</message>
+	<message key="xmlui.general.next">Volgende</message>
+	<message key="xmlui.general.untitled">Naamloos</message>
+        <message key="xmlui.general.perform">Voer uit</message>
+        <message key="xmlui.general.queue">Zet in watchrij</message>
 
 	<!--
 		Page not found keys
@@ -44,31 +44,31 @@
 		This is a special component that is not part of any aspect but is added
 		by manakin to all aspect chains.
 		-->
-	<message key="xmlui.PageNotFound.title">Page not found</message>
-	<message key="xmlui.PageNotFound.head">Page not found</message>
-	<message key="xmlui.PageNotFound.para1">We can't find the page you asked for.</message>
+	<message key="xmlui.PageNotFound.title">Pagina niet gevonden</message>
+	<message key="xmlui.PageNotFound.head">Pagina niet gevonden</message>
+	<message key="xmlui.PageNotFound.para1">We hebben uw pagina niet gevonden.</message>
 
 
 	<!--
 	   The "utils" non-aspect
        -->
-    <message key="xmlui.utils.AuthenticationUtil.onlyAdmins">Only site administrators may assume login as another user.</message>
-    <message key="xmlui.utils.AuthenticationUtil.onlyAuthenticatedAdmins">Only authenticated users who are administrators may assume the login as another user.</message>
-    <message key="xmlui.utils.AuthenticationUtil.notAnotherAdmin">You may not assume the login as another administrator.</message>
+    <message key="xmlui.utils.AuthenticationUtil.onlyAdmins">Enkel beheerders kunnen zich als andere gebruikers voordoen.</message>
+    <message key="xmlui.utils.AuthenticationUtil.onlyAuthenticatedAdmins">Enkel beheerders kunnen zich als andere gebruikers voordoen.</message>
+    <message key="xmlui.utils.AuthenticationUtil.notAnotherAdmin">U kan zich niet als andere beheerder voordoen.</message>
 
 
 	<!--
 		This section is for feed syndications (RSS, atom, etc)
 	-->
-	<message key="xmlui.feed.general_description">The DSpace digital repository system captures, stores, indexes, preserves, and distributes digital research material.</message>
+	<message key="xmlui.feed.general_description">Het DSpace digitale repository systeem registreert, bewaart, indexeert, conserveert en distribueert digitaal onderzoeksmateriaal.</message>
     <message key="xmlui.feed.header">RSS Feeds</message>
-	<message key="xmlui.feed.logo_title">The Channel Image</message>
-	<message key="xmlui.feed.untitled">Untitled</message>
+	<message key="xmlui.feed.logo_title">De Kanaal Afbeelding</message>
+	<message key="xmlui.feed.untitled">Naamloos</message>
 
 	<!--
 		Default notice header
 	 	-->
-	<message key="xmlui.general.notice.default_head">Notice</message>
+	<message key="xmlui.general.notice.default_head">Kennisgeving</message>
 
 
 
@@ -85,211 +85,211 @@
 
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.AbstractSearch.java -->
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_community">Search Results for Community: {0}</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_collection">Search Results for Collection: {0}</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_none">Search Results</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.result_query">Your query "{0}" produced {1} result(s).</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.head2">Communities or Collections matching your query</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.head3">Items matching your query</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.no_results">Search produced no results.</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.all_of_dspace">All of DSpace</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_community">Zoekresultaten voor gemeenschap: {0}</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_collection">Zoekresultaten voor verzameling: {0}</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_none">Zoekresultaten</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.result_query">Uw zoekopdracht "{0}" geeft {1} resulta(a)t(en).</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.head2">Gemeenschappen of Verzamelingen die aan uw zoekopdracht voldoen.</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.head3">Resultaten die aan uw zoekopdracht voldoen.</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.no_results">Uw zoekopdracht leverde geen resultaten op.</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.all_of_dspace">Heel DSpace</message>
 
-   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.title">title</message>
-   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.dateissued">issue date</message>
-   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.dateaccessioned">submit date</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.relevance">relevance</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by">Sort items by</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.order">in order</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.order.asc">ascending</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.order.desc">descending</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.rpp">Results/page</message>
+   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.title">titel</message>
+   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.dateissued">uitgiftedatum</message>
+   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.dateaccessioned">indiendatum</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.relevance">relevantie</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by">Sorteer resultaten volgens</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.order">in volgorde</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.order.asc">stijgend</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.order.desc">dalende</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.rpp">Resultaten/pagina</message>
 
     <!-- org.dspace.app.xmlui.artifactbrowser.AdvancedSearch.java -->
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.title">Advanced Search</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.trail">Advanced Search</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.head">Advanced Search</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_scope">Search scope</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_scope_help">Limit your search to a community or collection.</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.conjunction">Conjunction</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_type">Search type</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_for">Search for</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_author">Author</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_title">Title</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject">Subject</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_abstract">Abstract</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_series">Series</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.title">Uitgebreid Zoeken</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.trail">Uitgebreid Zoeken</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.head">Uitgebreid Zoeken</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_scope">Zoekbereik</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_scope_help">Beperk je zoekopdracht tot een gemeenschap of verzameling.</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.conjunction">Combinatie</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_type">Zoekwijze</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_for">Zoek voor</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_author">Auteur</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_title">Titel</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject">Onderwerp</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_abstract">Samenvatting</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_series">Reeksen</message>
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_sponsor">Sponsor</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_identifier">Identifier</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_language">Language (ISO)</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_keyword">Keyword</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_identifier">Identificatiecode</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_language">Taal (ISO)</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_keyword">Kernwoord</message>
 
    <!--  some common other possibilities for Advanced Search Fields -->
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_contributor">Contributor</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_creator">Creator</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject">Subject</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_description">Description</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_relation">Relation</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_contributor">Bijdrager</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_creator">Auteur</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject">Onderwerp</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_description">Beschrijving</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_relation">Relatie</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_mime">Mime-Type</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_other">Other Contributor</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_advisor">Advisor</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_department">Department</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_other">Andere Bijdrager</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_advisor">Adviseur</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_department">Departement</message>
 
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_ANY">Full Text</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.and">AND</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.or">OR</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.not">NOT</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_ANY">Volledige Tekst</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.and">EN</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.or">OF</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.not">NIET</message>
 
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.ConfigureableBrowse.java -->
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.starts_with">Or enter first few letters:</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.starts_with_help">Browse for items that begin with these letters</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_select">Jump to a point in the index:</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_month">(Choose month)</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_year">(Choose year)</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_year">Or type in a year: </message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_year_help">Browse for items that are from the given year.</message>
-        <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.no_results">Sorry, there are no results for this browse.</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.sort_by"> Sort by: </message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.order"> Order: </message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.rpp"> Results: </message><!-- /Page -->
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.etal"> Authors/Item: </message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.starts_with">Of enkel de eerste letters:</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.starts_with_help">Blader naar items die beginnen met deze letters</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_select">Spring naar een bepaald punt in de index:</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_month">(Kies maand)</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_year">(Kees jaar)</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_year">Of geef een jaar in: </message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_year_help">Blader naar items voor het gegeven jaar.</message>
+        <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.no_results">Sorry, er zijn geen resultaten om te doorbladeren.</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.sort_by"> Sorteer resultaten volgens: </message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.order"> Volgorde: </message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.rpp"> Resultaten: </message><!-- /Page -->
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.etal"> Auteurs/Item: </message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.etal.all">All</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.etal.all">Alle</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.title">title</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.dateissued">issue date</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.dateaccessioned">submit date</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.title">titel</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.dateissued">uitgiftedatum</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.dateaccessioned">indiendatum</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.order.asc">ascending</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.order.desc">descending</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.order.asc">stijgend</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.order.desc">dalende</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.author.column_heading">Authors Name</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.subject.column_heading">Subject</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.author.column_heading">Auteur Naam</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.subject.column_heading">Onderwerp</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.author">Browsing {0} by Author {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.author">Browsing {0} by Author</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.author">Bladeren {0} volgens auteur {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.author">Bladeren {0} volgens auteur</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.subject">Browsing {0} by Subject {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.subject">Browsing {0} by Subject</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.subject">Bladeren {0} volgens onderwerp {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.subject">Bladeren {0} volgens onderwerp</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.title">Browsing {0} by Title {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.title">Browsing {0} by Title</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.title">Bladeren {0} volgens title {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.title">Bladeren {0} volgens title</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.dateissued">Browsing {0} by Issue Date {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.dateissued">Browsing {0} by Issue Date</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.dateissued">Bladeren {0} volgens uitgiftedatum {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.dateissued">Bladeren {0} volgens uitgiftedatum</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.dateaccessioned">Browsing {0} by Submit Date {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.dateaccessioned">Browsing {0} by Submit Date</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.dateaccessioned">Bladeren {0} volgens indiendatum {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.dateaccessioned">Bladeren {0} olgens indiendatum</message>
 
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.CollectionViewer.java -->
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.search_scope">Search Scope</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.all_of_dspace">All of DSpace</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.full_text_search">Search within this collection:</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.head_browse">Browse by</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_titles">Titles</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_authors">Authors</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_dates">Dates</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.advanced_search_link">Advanced Search</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.head_recent_submissions">Recent Submissions</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.search_scope">Zoekbereik</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.all_of_dspace">Heel DSpace</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.full_text_search">Zoeken binnen deze verzameling:</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.head_browse">Blader volgens</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_titles">Titels</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_authors">Auteurs</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_dates">Data</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.advanced_search_link">Uitgebreid zoeken</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.head_recent_submissions">Recente inzendingen</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.CommunityBrowser.java -->
-	<message key="xmlui.ArtifactBrowser.CommunityBrowser.title">Community List</message>
-	<message key="xmlui.ArtifactBrowser.CommunityBrowser.trail">Community List</message>
-	<message key="xmlui.ArtifactBrowser.CommunityBrowser.head">Communities in DSpace</message>
-	<message key="xmlui.ArtifactBrowser.CommunityBrowser.select">Select a community to browse its collections.</message>
+	<message key="xmlui.ArtifactBrowser.CommunityBrowser.title">Gemeenschapslijst</message>
+	<message key="xmlui.ArtifactBrowser.CommunityBrowser.trail">Gemeenschapslijst</message>
+	<message key="xmlui.ArtifactBrowser.CommunityBrowser.head">Gemeenschappen in DSpace</message>
+	<message key="xmlui.ArtifactBrowser.CommunityBrowser.select">Kies een gemeenschap om zijn verzamelingen te doorbladeren.</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.CommunityViewer.java -->
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.search_scope">Search Scope</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.all_of_dspace">All of DSpace</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.full_text_search">Search within this community and its collections:</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_browse">Browse by</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_titles">Titles</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_authors">Authors</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_dates">Dates</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.advanced_search_link">Advanced Search</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_sub_communities">Sub-communities within this community</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_sub_collections">Collections in this community</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_recent_submissions">Recent Submissions</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.search_scope">Zoekbereik</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.all_of_dspace">Heel DSpace</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.full_text_search">Zoeken in een gemeenschap en zijn verzamelingen:</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_browse">Blader volgens</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_titles">Titels</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_authors">Auteurs</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_dates">Data</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.advanced_search_link">Uitgebreid zoeken</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_sub_communities">Deel-gemeenschappen van deze gemeenschap</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_sub_collections">Verzamelingen van deze gemeenschap</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_recent_submissions">Recente inzendingen</message>
 
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.Contact.java -->
-	<message key="xmlui.ArtifactBrowser.Contact.title">Contact us</message>
-	<message key="xmlui.ArtifactBrowser.Contact.trail">Contact us</message>
-	<message key="xmlui.ArtifactBrowser.Contact.head">Contact us</message>
-	<message key="xmlui.ArtifactBrowser.Contact.para1">{0} administrators may be contacted at:</message>
-	<message key="xmlui.ArtifactBrowser.Contact.feedback_label">On-line form</message>
+	<message key="xmlui.ArtifactBrowser.Contact.title">Contacteer ons</message>
+	<message key="xmlui.ArtifactBrowser.Contact.trail">Contacteer ons</message>
+	<message key="xmlui.ArtifactBrowser.Contact.head">Contacteer ons</message>
+	<message key="xmlui.ArtifactBrowser.Contact.para1">{0} beheerders kunnen gecontacteerd worden op:</message>
+	<message key="xmlui.ArtifactBrowser.Contact.feedback_label">On-line formulier</message>
 	<message key="xmlui.ArtifactBrowser.Contact.feedback_link">Feedback</message>
 	<message key="xmlui.ArtifactBrowser.Contact.email">Email</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.FeedbackForm.java -->
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.title">Give feedback</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.trail">Give feedback</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.head">Give feedback</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.para1">Thanks for sharing your feedback about the DSpace system. Your comments are appreciated!</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.email">Your Email</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.title">Geef feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.trail">Geef feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.head">Geef feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.para1">Dank u voor uw feedback over het DSpace systeem. Uw opmerkingen worden op prijs gesteld!</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.email">Uw Email</message>
 	<message key="xmlui.ArtifactBrowser.FeedbackForm.email_help">This address will be used to follow up on your feedback.</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.comments">Comments</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.submit">Send Feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.comments">Opmerkingen</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.submit">Verzend Feedback</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.FeedbackSent.java -->
-	<message key="xmlui.ArtifactBrowser.FeedbackSent.title">Give feedback</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackSent.trail">Give feedback</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackSent.head">Feedback sent</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackSent.para1">Your comments have been received.</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackSent.title">Geef feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackSent.trail">Geef feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackSent.head">Feedback verzonden</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackSent.para1">Je opmerkingen zijn ontvangen.</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.ItemViewer.java -->
-	<message key="xmlui.ArtifactBrowser.ItemViewer.trail">View Item</message>
-	<message key="xmlui.ArtifactBrowser.ItemViewer.head_parent_collections">This item appears in the following Collection(s)</message>
-	<message key="xmlui.ArtifactBrowser.ItemViewer.show_simple">Show simple item record</message>
-	<message key="xmlui.ArtifactBrowser.ItemViewer.show_full">Show full item record</message>
+	<message key="xmlui.ArtifactBrowser.ItemViewer.trail">Bekijk Item</message>
+	<message key="xmlui.ArtifactBrowser.ItemViewer.head_parent_collections">Dit item komt voor in volgende gemeenschap(pen)</message>
+	<message key="xmlui.ArtifactBrowser.ItemViewer.show_simple">Toon eenvoudige record</message>
+	<message key="xmlui.ArtifactBrowser.ItemViewer.show_full">Toon volledig record</message>
 
-        <message key="xmlui.ArtifactBrowser.ItemViewer.withdrawn">This item has been withdrawn and is no longer available.</message>
+    <message key="xmlui.ArtifactBrowser.ItemViewer.withdrawn">Dit item is verwijderd en is niet langer beschikbaar.</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.Navigation.java -->
-	<message key="xmlui.ArtifactBrowser.Navigation.head_browse">Browse</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.head_all_of_dspace">All of DSpace</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.head_browse">Bladeren</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.head_all_of_dspace">Heel DSpace</message>
 	<message key="xmlui.ArtifactBrowser.Navigation.communities_and_collections">Communities &amp; Collections</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_title">Titles</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_author">Authors</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_subject">Subjects</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_dateissued">By Issue Date</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_dateaccessioned">By Submit Date</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.head_this_collection">This Collection</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.head_this_community">This Community</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_title">Titels</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_author">Auteurs</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_subject">Onderwerepen</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_dateissued">Volgens uitgiftedatum</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_dateaccessioned">Volgens indiendatum</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.head_this_collection">Deze verzameling</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.head_this_community">Deze gemeenschap</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.SimpleSearch.java -->
-	<message key="xmlui.ArtifactBrowser.SimpleSearch.title">Search</message>
-	<message key="xmlui.ArtifactBrowser.SimpleSearch.trail">Search</message>
-	<message key="xmlui.ArtifactBrowser.SimpleSearch.head">Search</message>
-	<message key="xmlui.ArtifactBrowser.SimpleSearch.search_scope">Search Scope</message>
-	<message key="xmlui.ArtifactBrowser.SimpleSearch.full_text_search">Full Text Search</message>
+	<message key="xmlui.ArtifactBrowser.SimpleSearch.title">Zoeken</message>
+	<message key="xmlui.ArtifactBrowser.SimpleSearch.trail">Zoeken</message>
+	<message key="xmlui.ArtifactBrowser.SimpleSearch.head">Zoeken</message>
+	<message key="xmlui.ArtifactBrowser.SimpleSearch.search_scope">Zoekbereik</message>
+	<message key="xmlui.ArtifactBrowser.SimpleSearch.full_text_search">Volledige tekst doorzoeken</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.RestrictedItem.java -->
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.title">This resource is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.trail">Restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_resource">This resource is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_community">This community is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_collection">This collection is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_item">This item is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_bitstream">This bitstream is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_resource">You do not have the credentials to access the restricted resource.</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_community">You do not have the credentials to access the restricted community <b>{0}</b>.</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_collection">You do not have the credentials to access the restricted collection <b>{0}</b>.</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_item">You do not have the credentials to access the restricted item <b>{0}</b>.</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_bitstream">You do not have the credentials to access the restricted bitstream <b>{0}</b>.</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_collection">collection</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_community">community</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.title">Toegang tot deze bron is beperkt</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.trail">Beperkt</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_resource">Toegang tot deze bron is beperkt</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_community">Toegang tot deze gemeenschap is beperkt</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_collection">Toegang tot deze verzameling is beperkt</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_item">Toegang tot dit item is beperkt</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_bitstream">Toegang tot deze bitstream is beperkt</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_resource">U beschikt niet over voldoende rechten om deze bron te raadplegen.</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_community">U beschikt niet over voldoende rechten om deze gemeenschap te raadplegen <b>{0}</b>.</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_collection"U beschikt niet over voldoende rechten om deze verzameling te raadplegen <b>{0}</b>.</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_item">U beschikt niet over voldoende rechten om dit item te raadplegen <b>{0}</b>.</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_bitstream">U beschikt niet over voldoende rechten om deze bitstream te raadplegen <b>{0}</b>.</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_collection">verzameling</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_community">gemeenschap</message>
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_bitstream">bitstream</message>
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_item">item</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_resource">resource</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.unknown">unknown</message>
-        <message key="xmlui.ArtifactBrowser.RestrictedItem.login">Proceed to login screen</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_resource">bron</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.unknown">onbekend</message>
+    <message key="xmlui.ArtifactBrowser.RestrictedItem.login">Ga naar het login-scherm</message>
 
-        <message key="xmlui.ArtifactBrowser.RestrictedItem.head_item_withdrawn">This item is withdrawn</message>
-        <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_withdrawn">The selected item is withdrawn and is no longer available.</message>
-        <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_restricted_auth">The selected item is access restricted and requires credentials to view. Please login to access the item.</message>
-        <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_restricted">Your user account does not have the credentials to view this item. Please contact the system administrator if you have any questions.</message>
+    <message key="xmlui.ArtifactBrowser.RestrictedItem.head_item_withdrawn">This item is withdrawn</message>
+    <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_withdrawn">The selected item is withdrawn and is no longer available.</message>
+    <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_restricted_auth">The selected item is access restricted and requires credentials to view. Please login to access the item.</message>
+    <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_restricted">Your user account does not have the credentials to view this item. Please contact the system administrator if you have any questions.</message>
 
 	<!-- Authentication messages used at the top of the login page:  -->
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.auth_header">The item is restricted</message>
@@ -2078,7 +2078,7 @@
 	<message key="xmlui.dri2xhtml.structural.login">Login</message>
 
 	<message key="xmlui.dri2xhtml.structural.search">Search DSpace</message>
-	<message key="xmlui.dri2xhtml.structural.search-advanced">Advanced Search</message>
+	<message key="xmlui.dri2xhtml.structural.search-advanced">Uitgebreid zoeken</message>
 	<message key="xmlui.dri2xhtml.structural.search-in-community">This Community</message>
 	<message key="xmlui.dri2xhtml.structural.search-in-collection">This Collection</message>
 

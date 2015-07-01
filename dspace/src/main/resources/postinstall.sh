@@ -133,7 +133,7 @@ fi
 #fi
 
 echo "Wissen van de install dir"
-rm -rf ${tomcat_apps_dir}/dspace_install =
+rm -rf ${tomcat_apps_dir}/dspace_install 
 
 echo "Chown dir naar tomcat user : ${tomcat_apps_dir}"
 

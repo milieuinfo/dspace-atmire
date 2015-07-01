@@ -1017,6 +1017,10 @@
             <xsl:value-of select="$cbbnr"/>
             <xsl:text>_</xsl:text>
             <xsl:value-of select="AangifteType/text()"/>
+            <xsl:if test="Volgnummer">
+                <xsl:text>_</xsl:text>
+                <xsl:value-of select="Volgnummer/text()"/>
+            </xsl:if>
         </dcvalue>
     </xsl:template>
 

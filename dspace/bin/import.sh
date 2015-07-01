@@ -8,7 +8,7 @@ THREADS_FILE="/tmp/threads.txt"
 DMS_EXPORT_DIR="/opt/tomcat/dms-export"
 OUTPUT_DIR="/opt/tomcat/data/dms-export/output"
 LOG_DIR="/opt/tomcat/data/import-logs/"
-HANDLE="123456789/1"
+HANDLE="acd/1"
 
 cd
 
@@ -21,7 +21,9 @@ date
 
 sudo -u tomcat $DSPACE_BIN_DIR/dspace-high-mem dsrun com.atmire.dspace.BulkUploadRecords -d "$DMS_EXPORT_DIR/$year" -v -c $HANDLE -x "$DSPACE_CONF_DIR/bulkuploadRecords.xsl" -o "$OUTPUT_DIR/$year" -r noindex > /tmp/import-$year.log 2>&1
 
-sudo mv /tmp/import-$year.log $LOG_DIR
+sudo cp /tmp/import-$year.log $LOG_DIR
+rm /tmp/import-$year.log
+
 
 sleep $(( $year - 2000 ))
 echo "end $year"
@@ -45,3 +47,5 @@ do
 	(process_year $i; threads=`cat $THREADS_FILE`; threads=$(( $threads - 1 )); echo $threads > $THREADS_FILE; ) &
 	sleep .3
 done
+
+rm $THREADS_FILE
