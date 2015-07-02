@@ -467,6 +467,7 @@
 	<message key="xmlui.EPerson.PasswordLogin.error_bad_login">Het opgegeven emailadres en/of wachtwoord zijn ongeldig.</message>
 	<message key="xmlui.EPerson.PasswordLogin.password">Wachtwoord</message>
 	<message key="xmlui.EPerson.PasswordLogin.forgot_link"> Wachtwoord vergeten?</message>
+	<message key="xmlui.EPerson.PasswordLogin.token_eid_link"> Log in met Token of eID</message>
 	<message key="xmlui.EPerson.PasswordLogin.submit">Inloggen</message>
 	<message key="xmlui.EPerson.PasswordLogin.head2">Nieuwe gebruiker registreren</message>
 	<message key="xmlui.EPerson.PasswordLogin.para1">Maak een account om nieuwe items in DSpace te kunnen toevoegen, en om u te kunnen abonneren op collecties voor email updates.</message>
