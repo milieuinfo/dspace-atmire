@@ -51,7 +51,7 @@ public class SearchResource {
 	
 		String cleanFields = StringUtils.trimToNull(fields);
 		String cleanExpand = StringUtils.trimToNull(expand);
-		
+		// test comment
 		if (null == cleanExpand){
 			cleanExpand = "metadata";
 		}
