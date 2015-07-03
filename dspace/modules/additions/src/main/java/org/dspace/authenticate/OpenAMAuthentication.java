@@ -66,12 +66,12 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
                         final EPerson knownEPerson = EPerson.findByEmail(context, email);
                         if (knownEPerson == null) {
                             // TEMPORARILY turn off authorisation
-                            context.setIgnoreAuthorization(true);
+                            context.turnOffAuthorisationSystem();
                             final EPerson eperson = createEPerson(context, request, email, sn, givenName);
                             eperson.update();
                             fixGroups(context, roles, eperson);
                             context.commit();
-                            context.setIgnoreAuthorization(false);
+                            context.restoreAuthSystemState();
                             context.setCurrentUser(eperson);
                             log.info(LogManager.getHeader(context, "login", "type=openam-interactive"));
                             return SUCCESS;
@@ -95,7 +95,7 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
         }
     }
 
-    private EPerson createEPerson(Context context, HttpServletRequest request, String email, String sn, String givenName) throws SQLException, AuthorizeException {
+    protected EPerson createEPerson(Context context, HttpServletRequest request, String email, String sn, String givenName) throws SQLException, AuthorizeException {
         final EPerson eperson = EPerson.create(context);
         eperson.setFirstName(sn);
         eperson.setLastName(givenName);
@@ -109,7 +109,7 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
 
     
 
-    private void fixGroups(Context context, Collection<String> roles , EPerson ePerson) throws SQLException, AuthorizeException{
+    protected void fixGroups(Context context, Collection<String> roles , EPerson ePerson) throws SQLException, AuthorizeException{
     	
     	ArrayList<Group> currentGroups = new ArrayList<Group>();
     	
