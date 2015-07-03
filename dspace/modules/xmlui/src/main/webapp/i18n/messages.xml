@@ -961,37 +961,37 @@
 	<!-- org.dspace.app.xmlui.administrative.Navigation -->
 	<!-- contextual menu items -->
 	<message key="xmlui.administrative.Navigation.context_head">Context</message>
-	<message key="xmlui.administrative.Navigation.context_edit_item">Edit this item</message>
-	<message key="xmlui.administrative.Navigation.context_edit_collection">Edit Collection</message>
+	<message key="xmlui.administrative.Navigation.context_edit_item">Bewerk dit item</message>
+	<message key="xmlui.administrative.Navigation.context_edit_collection">Bewerk Collection</message>
 	<message key="xmlui.administrative.Navigation.context_item_mapper">Item Mapper</message>
-	<message key="xmlui.administrative.Navigation.context_edit_community">Edit Community</message>
-	<message key="xmlui.administrative.Navigation.context_create_collection">Create Collection</message>
-	<message key="xmlui.administrative.Navigation.context_create_subcommunity">Create Sub-community</message>
-	<message key="xmlui.administrative.Navigation.context_create_community">Create Community</message>
-	<message key="xmlui.administrative.Navigation.context_export_item">Export Item</message>
-        <message key="xmlui.administrative.Navigation.context_export_collection">Export Collection</message>
-        <message key="xmlui.administrative.Navigation.context_export_community">Export Community</message>
-        <message key="xmlui.administrative.Navigation.context_export_metadata">Export Metadata</message>
+	<message key="xmlui.administrative.Navigation.context_edit_community">Bewerk Community</message>
+	<message key="xmlui.administrative.Navigation.context_create_collection">Maak Collectie</message>
+	<message key="xmlui.administrative.Navigation.context_create_subcommunity">Maak Sub-community</message>
+	<message key="xmlui.administrative.Navigation.context_create_community">Maak Community</message>
+	<message key="xmlui.administrative.Navigation.context_export_item">Exporteer Item</message>
+        <message key="xmlui.administrative.Navigation.context_export_collection">Exporteer Collectie</message>
+        <message key="xmlui.administrative.Navigation.context_export_community">Exporteer Community</message>
+        <message key="xmlui.administrative.Navigation.context_export_metadata">Exporteer Metadata</message>
 
 	<!-- Site administrator options -->
-	<message key="xmlui.administrative.Navigation.administrative_head">Administrative</message>
-	<message key="xmlui.administrative.Navigation.administrative_access_control">Access Control</message>
-	<message key="xmlui.administrative.Navigation.administrative_people">People</message>
-	<message key="xmlui.administrative.Navigation.administrative_groups">Groups</message>
-	<message key="xmlui.administrative.Navigation.administrative_authorizations">Authorizations</message>
-	<message key="xmlui.administrative.Navigation.administrative_registries">Registries</message>
+	<message key="xmlui.administrative.Navigation.administrative_head">Administratief</message>
+	<message key="xmlui.administrative.Navigation.administrative_access_control">Toegangscontrole</message>
+	<message key="xmlui.administrative.Navigation.administrative_people">Gebruikers</message>
+	<message key="xmlui.administrative.Navigation.administrative_groups">Groepen</message>
+	<message key="xmlui.administrative.Navigation.administrative_authorizations">Rechten</message>
+	<message key="xmlui.administrative.Navigation.administrative_registries">Registers</message>
 	<message key="xmlui.administrative.Navigation.administrative_metadata">Metadata</message>
-	<message key="xmlui.administrative.Navigation.administrative_format">Format</message>
+	<message key="xmlui.administrative.Navigation.administrative_format">Formaat</message>
 	<message key="xmlui.administrative.Navigation.administrative_items">Items</message>
-    <message key="xmlui.administrative.Navigation.administrative_withdrawn">Withdrawn Items</message>
+    <message key="xmlui.administrative.Navigation.administrative_withdrawn">Verwijderde Items</message>
     <message key="xmlui.administrative.Navigation.administrative_private">Private Items</message>
-    <message key="xmlui.administrative.Navigation.administrative_control_panel">Control Panel</message>
-    <message key="xmlui.administrative.Navigation.statistics">Statistics</message>
-        <message key="xmlui.administrative.Navigation.administrative_import_metadata">Import Metadata</message>
-        <message key="xmlui.administrative.Navigation.administrative_curation">Curation Tasks</message>
+    <message key="xmlui.administrative.Navigation.administrative_control_panel">Configuratiescherm</message>
+    <message key="xmlui.administrative.Navigation.statistics">Statistieken</message>
+        <message key="xmlui.administrative.Navigation.administrative_import_metadata">Importeer Metadata</message>
+        <message key="xmlui.administrative.Navigation.administrative_curation">Beheerstaken</message>
 
     <!-- my account items -->
-	<message key="xmlui.administrative.Navigation.account_export">My Exports</message>
+	<message key="xmlui.administrative.Navigation.account_export">Mijn Exports</message>
 
 
 	<!-- export item -->
@@ -1026,7 +1026,7 @@
 	<message key="xmlui.administrative.eperson.ManageEPeopleMain.search_column3">Name</message>
 	<message key="xmlui.administrative.eperson.ManageEPeopleMain.search_column4">Email</message>
 	<message key="xmlui.administrative.eperson.ManageEPeopleMain.submit_delete">Delete E-People</message>
-	<message key="xmlui.administrative.eperson.ManageEPeopleMain.no_results">Your search found no results...</message>
+	<message key="xmlui.administrative.eperson.ManageEPeopleMain.no_results">Uw zoekopdracht leverde geen resultaten...</message>
 
 
 	<!-- org.dspace.app.xmlui.administrative.eperson.AddEPersonForm -->
@@ -1086,75 +1086,75 @@
 	<message key="xmlui.administrative.group.general.group_trail">Manage Groups</message>
 
 	<!-- org.dspace.app.xmlui.administrative.group.ManageGroupsMain -->
-	<message key="xmlui.administrative.group.ManageGroupsMain.title">Manage Groups</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.main_head">Group management</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_head">Actions</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_create">Create a new group</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_create_link">Click here to add a new Group.</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_browse">Browse groups</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_browse_link">Click here to browse all Groups.</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_search">Search for groups</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.search_help">Groups are searched by any partial match on their name</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.search_head">Search results</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.title">Beheer Groepen</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.main_head">Groepen beheer</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_head">Acties</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_create">Maak een nieuwe groep aan</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_create_link">Klik hier om een nieuwe groep aan te maken.</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_browse">Groepen doorbladeren</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_browse_link">Klik hier om alle groepen te doorbladeren.</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_search">Zoeken naar groepen</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.search_help">Groepen worden gezocht op basis van een deel van hun naam.</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.search_head">Zoek resultaten</message>
 	<message key="xmlui.administrative.group.ManageGroupsMain.search_column1"></message>
 	<message key="xmlui.administrative.group.ManageGroupsMain.search_column2">ID</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.search_column3">Name</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.search_column4">Members</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.search_column5">Community / Collection</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.collection_link">View</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.submit_delete">Delete groups</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.no_results">Your search found no results...</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.search_column3">Naam</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.search_column4">Leden</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.search_column5">Community / Collectie</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.collection_link">Bekijken</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.submit_delete">Gropen verwijderen</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.no_results">Uw zoekopdracht leverde geen resultaten...</message>
 
 	<!-- org.dspace.app.xmlui.administrative.group.EditGroupForm -->
-	<message key="xmlui.administrative.group.EditGroupForm.title">Group Editor</message>
-	<message key="xmlui.administrative.group.EditGroupForm.trail">Edit group</message>
-	<message key="xmlui.administrative.group.EditGroupForm.main_head">Group Editor: {0} (id: {1})</message>
-	<message key="xmlui.administrative.group.EditGroupForm.main_head_new">Group Editor: new group</message>
-	<message key="xmlui.administrative.group.EditGroupForm.submit_clear">Clear search</message>
-	<message key="xmlui.administrative.group.EditGroupForm.member">Member</message>
+	<message key="xmlui.administrative.group.EditGroupForm.title">Groep Editor</message>
+	<message key="xmlui.administrative.group.EditGroupForm.trail">Bewerk groep</message>
+	<message key="xmlui.administrative.group.EditGroupForm.main_head">Groep Editor: {0} (id: {1})</message>
+	<message key="xmlui.administrative.group.EditGroupForm.main_head_new">Groep Editor: nieuwe groep</message>
+	<message key="xmlui.administrative.group.EditGroupForm.submit_clear">Wis zoekopdracht</message>
+	<message key="xmlui.administrative.group.EditGroupForm.member">Lid</message>
 	<message key="xmlui.administrative.group.EditGroupForm.cycle">Cycle</message>
-	<message key="xmlui.administrative.group.EditGroupForm.pending">Pending</message>
-	<message key="xmlui.administrative.group.EditGroupForm.pending_warn">Note, pending changes are not saved until you click the save button.</message>
-	<message key="xmlui.administrative.group.EditGroupForm.submit_add">Add</message>
-	<message key="xmlui.administrative.group.EditGroupForm.submit_remove">Remove</message>
-	<message key="xmlui.administrative.group.EditGroupForm.collection_para">This group is associated with collection: </message>
-	<message key="xmlui.administrative.group.EditGroupForm.community_para">This group is associated with community: </message>
-	<message key="xmlui.administrative.group.EditGroupForm.label_name">Change group name: </message>
-	<message key="xmlui.administrative.group.EditGroupForm.label_instructions">This group is associated with a specific collection or community and the name cannot be modified.</message>
-	<message key="xmlui.administrative.group.EditGroupForm.label_search">Search members to add: </message>
-	<message key="xmlui.administrative.group.EditGroupForm.submit_search_people">E-People...</message>
-	<message key="xmlui.administrative.group.EditGroupForm.submit_search_groups">Groups...</message>
-	<message key="xmlui.administrative.group.EditGroupForm.no_results">Your search found no results...</message>
+	<message key="xmlui.administrative.group.EditGroupForm.pending">In behandeling</message>
+	<message key="xmlui.administrative.group.EditGroupForm.pending_warn">Opmereking, operaties in behandeling, zullen enkel worden opgeslagen nadat u op bewaren heeft geklikt.</message>
+	<message key="xmlui.administrative.group.EditGroupForm.submit_add">Toevoegen</message>
+	<message key="xmlui.administrative.group.EditGroupForm.submit_remove">Verwijderen</message>
+	<message key="xmlui.administrative.group.EditGroupForm.collection_para">Deze groep is geassocieerd met een collectie: </message>
+	<message key="xmlui.administrative.group.EditGroupForm.community_para">Deze groep is geassocieerd met een community: </message>
+	<message key="xmlui.administrative.group.EditGroupForm.label_name">Wijzig groepnaam: </message>
+	<message key="xmlui.administrative.group.EditGroupForm.label_instructions">Deze groep is geassocieerd met een collectie of community en de naam kan niet worden gewijzigd.</message>
+	<message key="xmlui.administrative.group.EditGroupForm.label_search">Zoek leden om toe te voegen: </message>
+	<message key="xmlui.administrative.group.EditGroupForm.submit_search_people">Gebruikers...</message>
+	<message key="xmlui.administrative.group.EditGroupForm.submit_search_groups">Groepen...</message>
+	<message key="xmlui.administrative.group.EditGroupForm.no_results">Uw zoekopdracht leverde geen resultaten...</message>
 	<message key="xmlui.administrative.group.EditGroupForm.epeople_column1">ID</message>
-	<message key="xmlui.administrative.group.EditGroupForm.epeople_column2">Name</message>
+	<message key="xmlui.administrative.group.EditGroupForm.epeople_column2">Naam</message>
 	<message key="xmlui.administrative.group.EditGroupForm.epeople_column3">Email</message>
 	<message key="xmlui.administrative.group.EditGroupForm.epeople_column4"></message>
 	<message key="xmlui.administrative.group.EditGroupForm.groups_column1">ID</message>
-	<message key="xmlui.administrative.group.EditGroupForm.groups_column2">Name</message>
-	<message key="xmlui.administrative.group.EditGroupForm.groups_column3">Members</message>
-	<message key="xmlui.administrative.group.EditGroupForm.groups_column4">Collection</message>
+	<message key="xmlui.administrative.group.EditGroupForm.groups_column2">Naam</message>
+	<message key="xmlui.administrative.group.EditGroupForm.groups_column3">Leden</message>
+	<message key="xmlui.administrative.group.EditGroupForm.groups_column4">Collecties</message>
 	<message key="xmlui.administrative.group.EditGroupForm.groups_column5"></message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.groups_collection_link">view</message>
-	<message key="xmlui.administrative.group.EditGroupForm.members_head">Members</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.groups_collection_link">bekijken</message>
+	<message key="xmlui.administrative.group.EditGroupForm.members_head">Leden</message>
 	<message key="xmlui.administrative.group.EditGroupForm.members_column1">ID</message>
-	<message key="xmlui.administrative.group.EditGroupForm.members_column2">Name</message>
+	<message key="xmlui.administrative.group.EditGroupForm.members_column2">Naam</message>
 	<message key="xmlui.administrative.group.EditGroupForm.members_column3">Email</message>
 	<message key="xmlui.administrative.group.EditGroupForm.members_column4"></message>
-	<message key="xmlui.administrative.group.EditGroupForm.members_group_name">group: {0}</message>
-	<message key="xmlui.administrative.group.EditGroupForm.members_none">This group has no members.</message>
-	<message key="xmlui.administrative.group.EditGroupForm.members_pending">[pending]</message>
-	<message key="xmlui.administrative.group.EditGroupForm.instructions_para">Remove members</message>
-	<message key="xmlui.administrative.group.EditGroupForm.collection_link_para">Remove members</message>
+	<message key="xmlui.administrative.group.EditGroupForm.members_group_name">groep: {0}</message>
+	<message key="xmlui.administrative.group.EditGroupForm.members_none">Deze groep heeft geen leden.</message>
+	<message key="xmlui.administrative.group.EditGroupForm.members_pending">[In behandeling]</message>
+	<message key="xmlui.administrative.group.EditGroupForm.instructions_para">Verwijder leden</message>
+	<message key="xmlui.administrative.group.EditGroupForm.collection_link_para">Verwijder members</message>
 
 	<!-- org.dspace.app.xmlui.administrative.group.DeleteGroupsConfirm -->
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.title">Confirm Group Deletion</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.trail">Confirm Delete</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.head">Confirm Deletion</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.para">The following Groups will be deleted:</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.title">Bevestig Verwijdering Groep</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.trail">Bevestig Verwijdering</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.head">Bevestig Verwijdering</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.para">Volgende groepen zullen worden verwijderd:</message>
 	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column1">ID</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column2">Name</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column3">E-People</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column4">Groups</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column2">Naam</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column3">Gebruikers</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column4">Groepen</message>
 
 	<!-- general items for all of the registries classes -->
 	<message key="xmlui.administrative.registries.general.format_registry_trail">Format registry</message>
@@ -1980,9 +1980,9 @@
 
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
     <message key="xmlui.statistics.title">Statistieken</message>
-    <message key="xmlui.statistics.search.title">Search Statistics</message>
-    <message key="xmlui.statistics.search.head">Search Statistics</message>
-    <message key="xmlui.statistics.search.head-dso">Search Statistics for {0}</message>
+    <message key="xmlui.statistics.search.title">Zoek Statistieken</message>
+    <message key="xmlui.statistics.search.head">Zoek Statistieken</message>
+    <message key="xmlui.statistics.search.head-dso">Zoek Statistieken voor {0}</message>
     <message key="xmlui.statistics.search.error">There was an error while generating the search statistics, please try again later.</message>
     <message key="xmlui.statistics.search.no-results">No search statistics available for the selected period.</message>
     <message key="xmlui.statistics.workflow.title">Workflow Statistics</message>
@@ -1994,8 +1994,9 @@
     <message key="xmlui.statistics.visits.bitstreams">Bekeken bestanden</message>
     <message key="xmlui.statistics.Navigation.title">Statistieken</message>
     <message key="xmlui.statistics.Navigation.view">Bekijk statistieken</message>
-    <message key="xmlui.statistics.Navigation.search.view">View Search Statistics</message>
-    <message key="xmlui.statistics.Navigation.workflow.view">View Workflow Statistics</message>
+ 	<message key="xmlui.statistics.Navigation.usage.view">Toon Gebruik Statistieken</message>
+    <message key="xmlui.statistics.Navigation.search.view">Toon Zoek Statistieken</message>
+    <message key="xmlui.statistics.Navigation.workflow.view">Toon Workflow Statistieken</message>
     <message key="xmlui.statistics.trail">Statistieken</message>
     <message key="xmlui.statistics.trail-search">Search Statistics</message>
     <message key="xmlui.statistics.trail-workflow">Workflow Statistics</message>
@@ -2071,8 +2072,8 @@
 			<a href="http://dspace.org">http://dspace.org</a>
 		</p>
 	</message>
-	<message key="xmlui.dri2xhtml.structural.contact-link">Contact Us</message>
-	<message key="xmlui.dri2xhtml.structural.feedback-link">Send Feedback</message>
+	<message key="xmlui.dri2xhtml.structural.contact-link">Neem contact op</message>
+	<message key="xmlui.dri2xhtml.structural.feedback-link">Geef Feedback</message>
 
 	<message key="xmlui.dri2xhtml.structural.head-subtitle">DSpace Repository</message>
 
@@ -2080,14 +2081,14 @@
 	<message key="xmlui.dri2xhtml.structural.logout">Logout</message>
 	<message key="xmlui.dri2xhtml.structural.login">Login</message>
 
-	<message key="xmlui.dri2xhtml.structural.search">Search DSpace</message>
+	<message key="xmlui.dri2xhtml.structural.search">DSpace Doorzoeken</message>
 	<message key="xmlui.dri2xhtml.structural.search-advanced">Uitgebreid zoeken</message>
 	<message key="xmlui.dri2xhtml.structural.search-in-community">This Community</message>
 	<message key="xmlui.dri2xhtml.structural.search-in-collection">This Collection</message>
 
-	<message key="xmlui.dri2xhtml.structural.pagination-previous">Previous Page</message>
-	<message key="xmlui.dri2xhtml.structural.pagination-info">Now showing items {0}-{1} of {2}</message>
-	<message key="xmlui.dri2xhtml.structural.pagination-next">Next Page</message>
+	<message key="xmlui.dri2xhtml.structural.pagination-previous">Vorige Pagina</message>
+	<message key="xmlui.dri2xhtml.structural.pagination-info">Items {0}-{1} van de {2}</message>
+	<message key="xmlui.dri2xhtml.structural.pagination-next">Volgende Pagina</message>
 
 	<message key="xmlui.dri2xhtml.structural.link_cc">Creative Commons</message>
 	<message key="xmlui.dri2xhtml.structural.link_original_license">Original License</message>
@@ -2116,16 +2117,16 @@
 	<message key="xmlui.dri2xhtml.METS-1.0.item-publisher">Publisher</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-subject">Subject</message>
 
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-head">Files in this item</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-file">Files</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-name">Name</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-size">Size</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-format">Format</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-view">View</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-description">Description</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-viewOpen">View/<wbr/>Open</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-head">Bestanden in dit item</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-file">Bestanden</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-name">Naam</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-size">Grootte</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-format">Formaat</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-view">Bekijken</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-description">Bescrhijving</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-viewOpen">Bekijken/<wbr/>Openen</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-files-access-rights">Read access available for</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-no-files">There are no files associated with this item.</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-no-files">Er zijn geen bestanden aan dit item gerelateerd.</message>
 
 	<message key="xmlui.dri2xhtml.METS-1.0.size-bytes">bytes</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.size-kilobytes">Kb</message>

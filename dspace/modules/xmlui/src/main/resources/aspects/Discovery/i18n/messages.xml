@@ -148,7 +148,7 @@
    	<message key="xmlui.Discovery.AbstractSearch.head1_collection">{0}  resultaten van in totaal {1} resultaten voor collectie: {2}. <span class="searchTime">({3} seconden)</span></message>
    	<message key="xmlui.Discovery.AbstractSearch.head1_none">{0} resultaten van in totaal {1} resultaten. <span class="searchTime">({2} seconden)</span></message>
 
-    <message key="xmlui.Discovery.AbstractSearch.head2">Communities or Collecties die aan je zoekopdracht voldoen</message>
+    <message key="xmlui.Discovery.AbstractSearch.head2">Communities of Collecties die aan je zoekopdracht voldoen</message>
    	<message key="xmlui.Discovery.AbstractSearch.head3">Items die aan je zoekopdracht voldoen</message>
 
    	<message key="xmlui.Discovery.SimpleSearch.did_you_mean">Bedoel je: </message>
