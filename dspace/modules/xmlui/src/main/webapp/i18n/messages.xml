@@ -1414,7 +1414,7 @@
 	<message key="xmlui.administrative.item.general.option_bitstreams">Item Bitstreams</message>
 	<message key="xmlui.administrative.item.general.option_metadata">Item Metadata</message>
 	<message key="xmlui.administrative.item.general.option_view">View Item</message>
-        <message key="xmlui.administrative.item.general.option_curate">Curate</message>
+        <message key="xmlui.administrative.item.general.option_curate">Cureer</message>
         <message key="xmlui.administrative.item.general.option_queue">Queue</message>
 
 	<!-- org.dspace.app.xmlui.administrative.item.AddBitstreamForm -->
@@ -1560,10 +1560,10 @@
 	<message key="xmlui.administrative.item.ViewItem.title">View Item</message>
 	<message key="xmlui.administrative.item.ViewItem.trail">View Item</message>
         <!-- org.dspace.app.xmlui.administrative.item.CurateItemForm.java -->
-        <message key="xmlui.administrative.item.CurateItemForm.main_head">Curate Item: {0}</message>
-        <message key="xmlui.administrative.item.CurateItemForm.title">Curate Item</message>
+        <message key="xmlui.administrative.item.CurateItemForm.main_head">Cureer Item: {0}</message>
+        <message key="xmlui.administrative.item.CurateItemForm.title">Cureer Item</message>
         <message key="xmlui.administrative.item.CurateItemForm.trail">Curator</message>
-        <message key="xmlui.administrative.item.CurateItemForm.label_name">Task</message>
+        <message key="xmlui.administrative.item.CurateItemForm.label_name">Taak</message>
 
 	<!-- org.dspace.app.xmlui.administrative.item.FindItemForm -->
 	<message key="xmlui.administrative.item.FindItemForm.title">Find Item</message>
@@ -1655,9 +1655,9 @@
 
 	<!-- General tags for collection management -->
 	<message key="xmlui.administrative.collection.general.collection_trail">Collections</message>
-	<message key="xmlui.administrative.collection.general.options_metadata">Edit Metadata</message>
-	<message key="xmlui.administrative.collection.general.options_roles">Assign Roles</message>
-        <message key="xmlui.administrative.collection.general.options_curate">Curate</message>
+	<message key="xmlui.administrative.collection.general.options_metadata">Bewerk Metadata</message>
+	<message key="xmlui.administrative.collection.general.options_roles">Wijs rollen toe</message>
+        <message key="xmlui.administrative.collection.general.options_curate">Cureer</message>
         <message key="xmlui.administrative.collection.general.options_queue">Queue</message>
 
 	<!-- org.dspace.app.xmlui.administrative.collection.AssignCollectionRoles.java -->
@@ -1682,8 +1682,8 @@
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_admins">Administrators</message>
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf">Workflow steps</message>
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf_step1">Accept/Reject Step</message>
-	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf_step2">Accept/Reject/Edit Metadata Step</message>
-	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf_step3">Edit Metadata Step</message>
+	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf_step2">Accept/Reject/Bewerk Metadata Step</message>
+	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf_step3">Bewerk Metadata Step</message>
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_submitters">Submitters</message>
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_default_read">Default read access</message>
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.sysadmins_only"><nobr>(system administrators only)</nobr></message>
@@ -1691,10 +1691,10 @@
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.not_allowed"><nobr>(you are not allowed to configure this)</nobr></message>
 
         <!-- org.dspace.app.xmlui.administrative.collection.CurateCollectionForm.java -->
-        <message key="xmlui.administrative.collection.CurateCollectionForm.main_head">Curate Collection: {0}</message>
-        <message key="xmlui.administrative.collection.CurateCollectionForm.title">Curate Collection</message>
+        <message key="xmlui.administrative.collection.CurateCollectionForm.main_head">Cureer Collection: {0}</message>
+        <message key="xmlui.administrative.collection.CurateCollectionForm.title">Cureer Collection</message>
         <message key="xmlui.administrative.collection.CurateCollectionForm.trail">Curator</message>
-        <message key="xmlui.administrative.collection.CurateCollectionForm.label_name">Task</message>
+        <message key="xmlui.administrative.collection.CurateCollectionForm.label_name">Taak</message>
 
 	<!-- org.dspace.app.xmlui.administrative.collection.DeleteCollectionConfirm.java -->
 	<message key="xmlui.administrative.collection.DeleteCollectionConfirm.title">Confirm Deletion</message>
@@ -1717,11 +1717,11 @@
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.trail">Metadata</message>
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.main_head">Edit Collection: {0}</message>
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_name">Name</message>
-	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_short_description">Short Description</message>
-	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_introductory_text">Introductory text (HTML)</message>
-	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_copyright_text">Copyright text (HTML)</message>
-	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_side_bar_text">News (HTML)</message>
-	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_license">License</message>
+	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_short_description">Korte beschrijving</message>
+	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_introductory_text">Inleidende tekst (HTML)</message>
+	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_copyright_text">Copyright tekst (HTML)</message>
+	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_side_bar_text">Nieuws (HTML)</message>
+	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_license">Licentie</message>
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_provenance_description">Provenance</message>
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_logo">Upload new logo</message>
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_existing_logo">Current logo</message>
@@ -1807,9 +1807,9 @@
 
 	<!-- General tags for community management -->
 	<message key="xmlui.administrative.community.general.community_trail">Communities</message>
-	<message key="xmlui.administrative.community.general.options_metadata">Edit Metadata</message>
-	<message key="xmlui.administrative.community.general.options_roles">Assign Roles</message>
-        <message key="xmlui.administrative.community.general.options_curate">Curate</message>
+	<message key="xmlui.administrative.community.general.options_metadata">Bewerk Metadata</message>
+	<message key="xmlui.administrative.community.general.options_roles">Wijs rollen toe</message>
+        <message key="xmlui.administrative.community.general.options_curate">Cureer</message>
         <message key="xmlui.administrative.community.general.options_queue">Queue</message>
 
 	<!-- org.dspace.app.xmlui.administrative.community.AssignCommunityRoles.java -->
@@ -1829,10 +1829,10 @@
 	<message key="xmlui.administrative.community.AssignCommunityRoles.sysadmins_only"><nobr>(system administrators only)</nobr></message>
 
         <!-- org.dspace.app.xmlui.administrative.community.CurateCommunityForm.java -->
-        <message key="xmlui.administrative.community.CurateCommunityForm.main_head">Curate Community: {0}</message>
-        <message key="xmlui.administrative.community.CurateCommunityForm.title">Curate Community</message>
+        <message key="xmlui.administrative.community.CurateCommunityForm.main_head">Cureer Community: {0}</message>
+        <message key="xmlui.administrative.community.CurateCommunityForm.title">Cureer Community</message>
         <message key="xmlui.administrative.community.CurateCommunityForm.trail">Curator</message>
-        <message key="xmlui.administrative.community.CurateCommunityForm.label_name">Task</message>
+        <message key="xmlui.administrative.community.CurateCommunityForm.label_name">Taak</message>
 
 	<!-- org.dspace.app.xmlui.administrative.community.DeleteCommunityConfirm.java -->
 	<message key="xmlui.administrative.community.DeleteCommunityConfirm.title">Confirm Deletion</message>
@@ -1851,26 +1851,26 @@
 	<message key="xmlui.administrative.community.DeleteCommunityRoleConfirm.main_para">Are you sure you want to delete this role? All changes and customizations made to the {0} group will be lost and would have to be created anew.</message>
 
 	<!-- org.dspace.app.xmlui.administrative.community.EditCommunityMetadataForm.java -->
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.title">Edit Community Metadata</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.title">Bewerk Community Metadata</message>
 	<message key="xmlui.administrative.community.EditCommunityMetadataForm.trail">Metadata</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.main_head">Edit Metadata for Community {0}</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.edit_authorizations">Edit authorization policies</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_name">Name</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_short_description">Short Description</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_introductory_text">Introductory text (HTML)</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_copyright_text">Copyright text (HTML)</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.main_head">Bewerk Metadata varn Community {0}</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.edit_authorizations">Bewerk authorizatie policies</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_name">Naam</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_short_description">Korte beschrijving</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_introductory_text">Inleidende tekst (HTML)</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_copyright_text">Copyright tekst (HTML)</message>
 	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_side_bar_text">News (HTML)</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_logo">Upload new logo</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_existing_logo">Current logo</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.submit_delete_logo">Remove logo</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.submit_delete">Delete community</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_logo">Upload een logo</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_existing_logo">Huidig logo</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.submit_delete_logo">Verwijder logo</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.submit_delete">Verwijder community</message>
 
 	<!-- org.dspace.app.xmlui.administrative.community.CreateCommunityForm.java -->
-	<message key="xmlui.administrative.community.CreateCommunityForm.title">Create Community</message>
-	<message key="xmlui.administrative.community.CreateCommunityForm.trail">Create Community</message>
-	<message key="xmlui.administrative.community.CreateCommunityForm.main_head_sub">Enter Metadata for a New Sub-Community of {0}</message>
-	<message key="xmlui.administrative.community.CreateCommunityForm.main_head_top">Edit Metadata for a New Top-Level Community</message>
-	<message key="xmlui.administrative.community.CreateCommunityForm.submit_save">Create</message>
+	<message key="xmlui.administrative.community.CreateCommunityForm.title">Maak een Community</message>
+	<message key="xmlui.administrative.community.CreateCommunityForm.trail">Maak een Community</message>
+	<message key="xmlui.administrative.community.CreateCommunityForm.main_head_sub">Geef de metadata in voor een nieuwe Sub-Community van {0}</message>
+	<message key="xmlui.administrative.community.CreateCommunityForm.main_head_top">Geef de metadata in voor een nieuwe Community</message>
+	<message key="xmlui.administrative.community.CreateCommunityForm.submit_save">Aanmaken</message>
 
 
 	<!-- org.dspace.app.xmlui.administrative.ControlPanel.java -->
@@ -1965,11 +1965,11 @@
 	<message key="xmlui.administrative.NotAuthorized.para2">Login as another user</message>
 
         <!-- System-wide Curation Tasks form (org.dspace.app.xmlui.aspect.administrative.CurateForm) -->
-        <message key="xmlui.administrative.CurateForm.title">System Curation Tasks</message>
-        <message key="xmlui.administrative.CurateForm.trail">Curation Tasks</message>
+        <message key="xmlui.administrative.CurateForm.title">Systeem Curator Taken</message>
+        <message key="xmlui.administrative.CurateForm.trail">Curator Taken</message>
         <message key="xmlui.administrative.CurateForm.object_label_name">Handle of DSpace Object</message>
         <message key="xmlui.administrative.CurateForm.object_hint">Hint: Enter [your-handle-prefix]/0 to run a task across entire site (not all tasks may support this capability)</message>
-        <message key="xmlui.administrative.CurateForm.task_label_name">Task</message>
+        <message key="xmlui.administrative.CurateForm.task_label_name">Taak</message>
     <!-- Used by Curate<DSO>Form classes also -->
         <message key="xmlui.administrative.CurateForm.taskgroup_label_name">Choose from the following groups</message>
 
@@ -2023,17 +2023,17 @@
     <message key="xmlui.statistics.display.table.column-label.average">Average</message>
     <message key="xmlui.statistics.display.table.workflow.step.STEP1POOL">Accept/Reject Step Pool</message>
     <message key="xmlui.statistics.display.table.workflow.step.STEP1">Accept/Reject Step</message>
-    <message key="xmlui.statistics.display.table.workflow.step.STEP2POOL">Accept/Reject/Edit Metadata Step Pool</message>
-    <message key="xmlui.statistics.display.table.workflow.step.STEP2">Accept/Reject/Edit Metadata Step</message>
-    <message key="xmlui.statistics.display.table.workflow.step.STEP3POOL">Edit Metadata Step Pool</message>
-    <message key="xmlui.statistics.display.table.workflow.step.STEP3">Edit Metadata Step</message>
+    <message key="xmlui.statistics.display.table.workflow.step.STEP2POOL">Accept/Reject/Bewerk Metadata Step Pool</message>
+    <message key="xmlui.statistics.display.table.workflow.step.STEP2">Accept/Reject/Bewerk Metadata Step</message>
+    <message key="xmlui.statistics.display.table.workflow.step.STEP3POOL">Bewerk Metadata Step Pool</message>
+    <message key="xmlui.statistics.display.table.workflow.step.STEP3">Bewerk Metadata Step</message>
     <message key="xmlui.statistics.display.table.workflow.step.default.reviewstep.claimaction">Accept/Reject Step Pool</message>
     <message key="xmlui.statistics.display.table.workflow.step.default.reviewstep.reviewaction">Accept/Reject Step</message>
-    <message key="xmlui.statistics.display.table.workflow.step.default.editstep.claimaction">Accept/Reject/Edit Metadata Step Pool</message>
-    <message key="xmlui.statistics.display.table.workflow.step.default.editstep.editaction">Accept/Reject/Edit Metadata Step</message>
-    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.claimaction">Edit Metadata Step Pool</message>
-    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.finaleditaction">Edit Metadata Step</message>
-    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.finaleditaction">Edit Metadata Step</message>
+    <message key="xmlui.statistics.display.table.workflow.step.default.editstep.claimaction">Accept/Reject/Bewerk Metadata Step Pool</message>
+    <message key="xmlui.statistics.display.table.workflow.step.default.editstep.editaction">Accept/Reject/Bewerk Metadata Step</message>
+    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.claimaction">Bewerk Metadata Step Pool</message>
+    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.finaleditaction">Bewerk Metadata Step</message>
+    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.finaleditaction">Bewerk Metadata Step</message>
     <message key="xmlui.statistics.display.table.workflow.step.scoreReview.scoreReviewStep.claimaction">Score Review Pool</message>
     <message key="xmlui.statistics.display.table.workflow.step.scoreReview.scoreReviewStep.scorereviewaction">Score Review</message>
     <message key="xmlui.statistics.display.table.workflow.step.scoreReview.evaluationStep.evaluationaction">Score Review Evaluation</message>
@@ -2256,7 +2256,7 @@
   <message key="xmlui.authority.confidence.description.cf_notfound">There are no matching answers in the authority</message>
   <message key="xmlui.authority.confidence.description.cf_ambiguous">There are multiple matching authority values of equal validity</message>
   <message key="xmlui.authority.confidence.description.cf_uncertain">Value is singular and valid but has not been seen and accepted by a human so it is still uncertain</message>
-  <message key="xmlui.authority.confidence.description.cf_accepted">This authority value has been confirmed as accurate by an interactive user</message>
+  <message key="xmlui.authority.confidence.description.cf_accepted">This authority value has been confirmed as acCureer by an interactive user</message>
   <!-- help message on "unlock" button in EditItemMetadata display -->
   <message key="xmlui.authority.confidence.unlock.help">Unlock the authority key value for manual editing, or toggle it locked again</message>
 
