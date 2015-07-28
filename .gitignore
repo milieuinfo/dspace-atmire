@@ -14,6 +14,8 @@ overlays/*
 
 .DS_Store?
 
+.sass-cache/
+
 ._*
 
 .Spotlight-V100
