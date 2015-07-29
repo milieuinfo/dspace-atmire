@@ -71,7 +71,37 @@
                </execution>
             </executions>
          </plugin>
-
+         <plugin>
+             <groupId>nl.geodienstencentrum.maven</groupId>
+             <artifactId>sass-maven-plugin</artifactId>
+             <executions>
+                 <execution>
+                     <goals>
+                         <goal>update-stylesheets</goal>
+                         <goal>scss-lint</goal>
+                     </goals>
+                 </execution>
+             </executions>
+             <configuration>
+                 <sassOptions>
+                     <always_update>true</always_update>
+                 </sassOptions>
+                 <useCompass>true</useCompass>
+                 <compassConfigFile>${basedir}/src/main/scss/config.rb</compassConfigFile>
+                 <resources>
+                     <resource>
+                         <source>
+                             <directory>${basedir}/src/main/scss</directory>
+                             <includes>
+                                 <include>*.scss</include>
+                             </includes>
+                             <excludes />
+                         </source>
+                         <destination>${project.build.directory}/outputcss</destination>
+                     </resource>
+                 </resources>
+             </configuration>
+         </plugin>
       </plugins>
    </build>
 
