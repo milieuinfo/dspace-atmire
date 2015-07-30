@@ -211,7 +211,8 @@
                     </xsl:attribute>
                 </link>
             </xsl:if>
-
+            <script type="text/javascript" src="//widgets.vlaanderen.be/widget/live/5499d8dc0848446e91022c6dba9db343?mtime=1421237274">&#160;</script>
+ 			<script type="text/javascript" src="//widgets.vlaanderen.be/widget/live/79a9f632dc8e45aa884f7924ee16f7bf?mtime=1421237274">&#160;</script>
             <!-- The following javascript removes the default text of empty text areas when they are focused on or submitted -->
             <!-- There is also javascript to disable submitting a form when the 'enter' key is pressed. -->
                         <script type="text/javascript">
@@ -278,8 +279,6 @@
                     <xsl:text>/lib/js/modernizr-1.7.min.js</xsl:text>
                 </xsl:attribute>&#160;</script>
 
-
-
             <!-- Add the title in -->
             <xsl:variable name="page_title" select="/dri:document/dri:meta/dri:pageMeta/dri:metadata[@element='title']" />
             <title>
@@ -313,14 +312,11 @@
         </head>
     </xsl:template>
 
-    
+
     <!-- The header (distinct from the HTML head element) contains the title, subtitle, login box and various
         placeholders for header images -->
     <xsl:template name="buildHeader">
-            <script type="text/javascript">
-                <xsl:attribute name="src">
-                    <xsl:text>http://widgets.vlaanderen.be/widget/live/5499d8dc0848446e91022c6dba9db343?mtime=1421237274</xsl:text>
-                </xsl:attribute>&#160;</script>
+
             <!-- header -->
 
             <!-- embed -->
@@ -652,10 +648,6 @@
                     </div> -->
                 </div>
             </footer>
-            <script type="text/javascript">
-                <xsl:attribute name="src">
-                    <xsl:text>http://widgets.vlaanderen.be/widget/live/79a9f632dc8e45aa884f7924ee16f7bf?mtime=1421237274</xsl:text>
-                </xsl:attribute>&#160;</script>   
         </div>
     </xsl:template>
 
