@@ -23,12 +23,12 @@
 
 
 // Allows the use of rem-calc() or lower-bound() in your settings
-@import "foundation/functions";
+@import 'foundation/functions';
 
 $base-font-size: 100%;
 
 // The $base-font-size is 100% while $base-line-height is 10%
- $base-line-height: 140%;
+$base-line-height: 140%;
 
 // We use this to control whether or not CSS classes come through in the gem files.
 $include-html-classes: true;
@@ -47,47 +47,47 @@ $column-gutter: rem-calc(30);
 // c. Global
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-$font-family-light-serif: "Flanders Art Sans Light", Arial, sans-serif !default;
-$font-family-bold-serif: "Flanders Art Sans Bold", Arial, sans-serif !default;
-$font-family-sans-serif: "Flanders Art Sans", Arial, sans-serif !default;
-$font-family-medium-serif: "Flanders Art Sans Medium", Arial, sans-serif !default;
-$font-family-serif: Calibri, Georgia,serif !default;
-$font-family-monospace: Consolas, "Liberation Mono", Courier, monospace !default;
+$font-family-light-serif: 'Flanders Art Sans Light', Arial, sans-serif !default;
+$font-family-bold-serif: 'Flanders Art Sans Bold', Arial, sans-serif !default;
+$font-family-sans-serif: 'Flanders Art Sans', Arial, sans-serif !default;
+$font-family-medium-serif: 'Flanders Art Sans Medium', Arial, sans-serif !default;
+$font-family-serif: Calibri, Georgia, serif !default;
+$font-family-monospace: Consolas, 'Liberation Mono', Courier, monospace !default;
 $font-weight-normal: normal !default;
 $font-weight-bold: bold !default;
 
 
 // We use these as default colors throughout
 
-$primary-color: #3F7868 !default;  
+$primary-color: #3f7868 !default;
 $secondary-color: #e7e7e7 !default;
-$alert-color: #FF0000 !default;    
-$success-color: #43AC6A !default;  
-$warning-color: #f08a24 !default;  
-$info-color: #a0d3e8 !default;   
-$custom-color:#FFFFCC !default; 
+$alert-color: #f00 !default;
+$success-color: #43ac6a !default;
+$warning-color: #f08a24 !default;
+$info-color: #a0d3e8 !default;
+$custom-color: #ffc !default;
 
 
-$dark-purple    : rgb(117,63,127); 	// #753F7F  
-$mid-purple     : rgb(148,78,161); 	// #944EA1
-$light-purple   : rgb(176,93,191); 	// #B05DBF
-$white          : rgb(255,255,255); // #FFFFFF
+$dark-purple    : rgb(117, 63, 127); 	// #753F7F
+$mid-purple     : rgb(148, 78, 161); 	// #944EA1
+$light-purple   : rgb(176, 93, 191); 	// #B05DBF
+$white          : rgb(255, 255, 255); // #FFFFFF
 $black          : rgb(0, 0, 0);		// #000000
-$dark-gray      : rgb(63,56,64); 	// #3F3840
-$mid-gray       : rgb(229,229,229); // #E5E5E5
-$light-gray     : rgb(237,237,237); // #EDEDED
-$gray           : rgb(213,213,213); // #D5D5D5
-$silver         : rgb(152,152,152); // #989898
-$steel          : #666666 !default;
-$jet            : #333333 !default;
-$ghost          : #FAFAFA;
+$dark-gray      : rgb(63, 56, 64); 	// #3F3840
+$mid-gray       : rgb(229, 229, 229); // #E5E5E5
+$light-gray     : rgb(237, 237, 237); // #EDEDED
+$gray           : rgb(213, 213, 213); // #D5D5D5
+$silver         : rgb(152, 152, 152); // #989898
+$steel          : #666 !default;
+$jet            : #333 !default;
+$ghost          : #fafafa;
 $aluminum       : #efefef;
-$white-gray     : #fbfbfb; // hover color 
-$jumbo       	: #888888;
+$white-gray     : #fbfbfb; // hover color
+$jumbo       	: #888;
 $dark-green   : #335b50;
-$mid-green     : #3F7868;
+$mid-green     : #3f7868;
 $light-green  : #71d3b8;
-// social 
+// social
 
 $soc-twitter 	: #2da5da;
 $soc-facebook 	: #3567a6;
@@ -105,7 +105,7 @@ $gray-blue      : #86abbe;
 
 
 // We use these to control various global styles
-$body-bg: #F5F5F5;
+$body-bg: #f5f5f5;
 $body-font-color: $silver;
 $body-font-family: $font-family-sans-serif;
 $body-font-weight: $font-weight-normal;
@@ -115,7 +115,7 @@ $body-font-style: normal;
 $font-smoothing: antialiased;
 
 // Overwrite font-awesome font dir
-$fa-font-path: "../bower_components/font-awesome/fonts";
+$fa-font-path: '../bower_components/font-awesome/fonts';
 
 // Overwrite border bottom and font-weight for tooltip fields
 $has-tip-border-bottom: none;
@@ -128,7 +128,7 @@ $has-tip-font-weight: none;
 
 // OE Query Ranges
 
-$small-range: (0em, 36.125em) !default;
+$small-range: (0, 36.125em) !default;
 $medium-range: (36.128em, 55.500em) !default;
 $large-range: (55.503em, 73.125em) !default;
 $xlarge-range: (73.128em, 120em) !default;
@@ -166,7 +166,7 @@ $crumb-font-size: rem-calc(13);
 $crumb-font-color-current: $dark-gray;
 $crumb-font-color-unavailable: $silver;
 // We use these to control the slash between breadcrumbs
-$crumb-slash: "›";
+$crumb-slash: '›';
 // We use these to style the fieldset border and spacing.
 $fieldset-border-color: $mid-gray;
 
@@ -174,13 +174,13 @@ $fieldset-border-color: $mid-gray;
 $legend-bg: none;
 
 // We use these to style the error states for inputs and labels
- $input-error-message-padding: rem-calc(3 6 6);
- $input-error-message-top: -1px;
- $input-error-message-font-size: rem-calc(12);
- $input-error-message-font-weight: $font-weight-normal;
- $input-error-message-font-style: normal;
- $input-error-message-font-color: $alert-color;
- $input-error-message-font-color-alt: $light-green;
+$input-error-message-padding: rem-calc(3 6 6);
+$input-error-message-top: -1px;
+$input-error-message-font-size: rem-calc(12);
+$input-error-message-font-weight: $font-weight-normal;
+$input-error-message-font-style: normal;
+$input-error-message-font-color: $alert-color;
+$input-error-message-font-color-alt: $light-green;
 
 
 // Select variables
@@ -231,12 +231,12 @@ $switch-font-size-lrg: 17px;
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
 $tabs-navigation-padding: rem-calc(12);
-$tabs-navigation-bg-color: $mid-green  ;
+$tabs-navigation-bg-color: $mid-green;
 $tabs-navigation-active-bg-color: $dark-green;
 $tabs-navigation-font-color: $white;
 $tabs-navigation-font-size: rem-calc(14);
-.tabs-content {background:$light-gray;padding:5px 10px;margin-top:1px;}
-.tabs dd {margin-right:1px !important}
+.tabs-content {background: $light-gray;margin-top: 1px;padding: 5px 10px;}
+.tabs dd {margin-right: 1px !important;}
 
 // 34. Top Bar
 // - - - - - - - - - - - - - - - - - - - - - - - - -

@@ -211,8 +211,7 @@
                     </xsl:attribute>
                 </link>
             </xsl:if>
-            <script type="text/javascript" src="//widgets.vlaanderen.be/widget/live/5499d8dc0848446e91022c6dba9db343?mtime=1421237274">&#160;</script>
- 			<script type="text/javascript" src="//widgets.vlaanderen.be/widget/live/79a9f632dc8e45aa884f7924ee16f7bf?mtime=1421237274">&#160;</script>
+            <script type="text/javascript" src="//widgets.vlaanderen.be/widget/live/e33860e66ce8482e8a5484e780c61ba5">&#160;</script>
             <!-- The following javascript removes the default text of empty text areas when they are focused on or submitted -->
             <!-- There is also javascript to disable submitting a form when the 'enter' key is pressed. -->
                         <script type="text/javascript">
@@ -592,16 +591,6 @@
         <div id="footerContainer">
             <footer id="footer-bottom" role="contentinfo">
                 <div class="footer-bottom-inner inner">
-                    <nav class="footer-doormat clearfix">
-                        <ul>
-                        <li>
-                        <a href="https://www.onroerenderfgoed.be/toegankelijkheid">Toegankelijkheid</a>
-                        </li>
-                        <li>
-                        <a href="https://www.onroerenderfgoed.be/nl/juridisch">Juridische Informatie</a>
-                        </li>
-                        </ul>
-                    </nav>
                     <div style='float:right;'>
                         copyright&#160;&#169;&#160;2002-2012&#160; <a href="http://www.duraspace.org/" target="_blank">Duraspace</a> (<a href="http://www.dspace.org/" target="_blank">DSpace software</a>)
                     </div>
@@ -648,6 +637,7 @@
                     </div> -->
                 </div>
             </footer>
+            <script type="text/javascript" src="//widgets.vlaanderen.be/widget/live/958c795ce33343eaaa00d1d52d47e10a">&#160;</script>
         </div>
     </xsl:template>
 
