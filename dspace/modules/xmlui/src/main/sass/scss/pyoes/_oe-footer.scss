@@ -1,7 +1,7 @@
 
 // fix for sticky footer
 .container { min-height: 100%; height: auto !important; height: 100%; margin: 0 auto -100px; }
-#footerContainer { height: 55px;}
+#footerContainer { height: 55px; padding-top: 90px;}
 .push { height: 100px; }
 
 footer#footer-bottom {clear: both;overflow: hidden;background:$white;border-top:5px solid $dark-green;}

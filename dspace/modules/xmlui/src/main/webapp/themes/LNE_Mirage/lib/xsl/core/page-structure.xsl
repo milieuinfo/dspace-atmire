@@ -327,10 +327,7 @@
             <div class="wrapper clearfix"> <xsl:comment></xsl:comment>
                 <div class="main-navigation-inner clearfix inner">
 
-                    <!-- service-navigation vlaanderen-->
-                    <ul id="service-navigation" class="clearfix">
-                        <li><a href="http://www.lne.be/">Home LNE</a></li>
-                    </ul>
+            
                     <!-- logo -->
                     <div class="logo-block">
                       <a href="/">

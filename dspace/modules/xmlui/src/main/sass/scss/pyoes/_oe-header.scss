@@ -3,7 +3,7 @@
 
 .logo-block { width:410px; background: url(../img/pyoes/header-logo-bg.png) no-repeat; height:127px; position:relative; z-index:40; padding:0 25px 0 13px; }
 .logo-block .logo-block-title { width: 165px; height: 127px; float: left; }
-.logo-block h1 { font-family: $bold-font-family; font-size:35px; color:$default-text-color; float:$default-float; text-transform: uppercase; }
+.logo-block h1 { font-family: $default-font-family; font-size:35px; color:$default-text-color; float:$default-float; text-transform: uppercase; }
 .logo-block h1::first-letter { font-weight: bold;}
 .logo-block h2 { font-size:18px; color:$default-text-color !important; float:$default-float; padding:0;margin:0; text-transform: uppercase;}
 .departement-name { width:400px; font-weight: bold;}
