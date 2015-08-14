@@ -5,11 +5,12 @@
 
 // fonts are defined > oe-settings.scss c. Global
 
-h1,h2,h3,h4,h5,h6 {line-height: 1.2em;font-weight:200;font-family: $font-family-medium-serif;}
-h4,h5,h6 {font-family: $font-family-light-serif;font-weight:200;}
-h1{font-size:2.19em;color:$dark-green !important}
-h2{font-size:1.88em;color:$jet !important;padding:10px 0 0 0}
-h3{font-size:1.56em;color:$dark-green !important}
+h1 {line-height: 1.2em;font-weight:200;}
+h1 {font-family: $default-font-family;}
+h2,h3,h4,h5,h6 {font-family: $alternate-font-family;font-weight:200;}
+h1{font-size:35px;color:$default-text-color !important}
+h2{font-size:20px;color:$dark-green !important;padding:10px 0 0 0}
+h3{font-size:18px;color:$brown !important}
 h4{font-size:1.25em;color:$light-green !important}
 h5{font-size:1.13em;color:$mid-green !important}
 h6{font-size:1em;color:$steel !important;padding:5px 0}
@@ -59,7 +60,7 @@ $small-font-color: scale-color($header-font-color, $lightness: 35%) !default;
 // We use these to style paragraphs
 $paragraph-font-family: inherit !default;
 $paragraph-font-weight: $font-weight-normal !default;
-$paragraph-font-size: 1rem !default;
+$paragraph-font-size: 15px !default;
 $paragraph-line-height: 1.6 !default;
 $paragraph-margin-bottom: rem-calc(20) !default;
 $paragraph-aside-font-size: rem-calc(14) !default;

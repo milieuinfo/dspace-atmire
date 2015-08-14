@@ -133,10 +133,10 @@
             <!--  Mobile Viewport Fix
                   j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
             device-width : Occupy full width of the screen in its current orientation
-            initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
-            maximum-scale = 1.0 retains dimensions instead of zooming in if page width < device width
+            initial-scale = 1 retains dimensions instead of zooming out if page height > device height
+            maximum-scale = 1 retains dimensions instead of zooming in if page width < device width
             -->
-            <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
             <link rel="shortcut icon">
                 <xsl:attribute name="href">
@@ -211,7 +211,7 @@
                     </xsl:attribute>
                 </link>
             </xsl:if>
-            <script type="text/javascript" src="//widgets.vlaanderen.be/widget/live/e33860e66ce8482e8a5484e780c61ba5">&#160;</script>
+            <script type="text/javascript" src="//widgets.vlaanderen.be/widget/live/393c7f08dc9e4d7b8a044b3b56361516">&#160;</script>
             <!-- The following javascript removes the default text of empty text areas when they are focused on or submitted -->
             <!-- There is also javascript to disable submitting a form when the 'enter' key is pressed. -->
                         <script type="text/javascript">
@@ -334,10 +334,11 @@
                     <!-- logo -->
                     <div class="logo-block">
                       <a href="/">
-                        <div class="logo-block-title"><h1>Dspace</h1></div>
-                        <img src="{$theme-path}/lib/img/pyoes/LNE-vlaanderen-logo.png" width="65"></img>
-                        <h2>Vlaanderen</h2>
-                        <h4>is milieubewust</h4>
+                          <div class="logo-block-title">
+                              <h1>Dspace</h1>
+                              <h2>Departement</h2>
+                              <h2 class="departement-name">LEEFMILIEU, NATUUR EN ENERGIE</h2>
+                          </div>
                       </a>
                     </div>
                 </div>
@@ -637,7 +638,13 @@
                     </div> -->
                 </div>
             </footer>
-            <script type="text/javascript" src="//widgets.vlaanderen.be/widget/live/958c795ce33343eaaa00d1d52d47e10a">&#160;</script>
+            <script type="text/javascript" src="//widgets.vlaanderen.be/widget/live/702ba471ac164186a5066e3a409a4364">&#160;</script>
+            <script type="text/javascript">
+                        window.WidgetApi = window.WidgetApi || {};
+                        window.WidgetApi.Language = window.WidgetApi.Language || {};
+                        window.WidgetApi.Language.getCurrentLanguage = function() { return "nl"; };
+                        window.WidgetApi.Language.getDefaultLanguage = function() { return "nl"; }; 
+            </script>
         </div>
     </xsl:template>
 

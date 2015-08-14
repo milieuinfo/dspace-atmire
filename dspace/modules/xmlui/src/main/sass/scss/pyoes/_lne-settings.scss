@@ -57,9 +57,22 @@ $font-weight-normal: normal !default;
 $font-weight-bold: bold !default;
 
 
+$default-font-family: "Flanders Art Sans Light", "Lucida Sans Unicode", "Lucida Grande", sans-serif !default;
+$alternate-font-family: "Flanders Art Sans", "Lucida Sans Unicode", "Lucida Grande", sans-serif !default;
+$bold-font-family: "Flanders Art Sans Bold", "Lucida Sans Unicode", "Lucida Grande", sans-serif !default;
+
 // We use these as default colors throughout
 
-$primary-color: #3f7868 !default;
+
+$dark-green   : #417868;
+$mid-green     : #3f7868;
+$light-green  : #4da692;
+$brown : #825315;
+$default-text-color: #494949;
+
+
+
+$primary-color: #417868 !default;
 $secondary-color: #e7e7e7 !default;
 $alert-color: #f00 !default;
 $success-color: #43ac6a !default;
@@ -84,9 +97,6 @@ $ghost          : #fafafa;
 $aluminum       : #efefef;
 $white-gray     : #fbfbfb; // hover color
 $jumbo       	: #888;
-$dark-green   : #335b50;
-$mid-green     : #3f7868;
-$light-green  : #71d3b8;
 // social
 
 $soc-twitter 	: #2da5da;
@@ -106,8 +116,8 @@ $gray-blue      : #86abbe;
 
 // We use these to control various global styles
 $body-bg: #f5f5f5;
-$body-font-color: $silver;
-$body-font-family: $font-family-sans-serif;
+$body-font-color: $default-text-color;
+$body-font-family: $default-font-family;
 $body-font-weight: $font-weight-normal;
 $body-font-style: normal;
 
@@ -241,11 +251,11 @@ $tabs-navigation-font-size: rem-calc(14);
 // 34. Top Bar
 // - - - - - - - - - - - - - - - - - - - - - - - - -
 
-$topbar-bg-color: $mid-green;
+$topbar-bg-color: $light-green;
 $topbar-bg: $topbar-bg-color;
 $topbar-margin-bottom: 30px;
-$topbar-dropdown-bg: $mid-green;
-$topbar-dropdown-link-bg: $mid-green;
+$topbar-dropdown-bg: $dark-green;
+$topbar-dropdown-link-bg: $dark-green;
 
 // Set the link colors and styles for top-level nav
 
