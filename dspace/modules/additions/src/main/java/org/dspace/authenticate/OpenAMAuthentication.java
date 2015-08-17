@@ -57,9 +57,12 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
         if (!StringUtils.isBlank(ssoId)) {
             final OpenAMUserdetails userDetails = this.openAMIdentityService.getUserDetails(ssoId);
             if (userDetails != null) {
-                final String email = userDetails.getAttributeValue("mail");
-                final String sn = userDetails.getAttributeValue("sn");
-                final String givenName = userDetails.getAttributeValue("givenName");
+                final String userName = userDetails.getUsername();
+            	
+            	final String email = userDetails.getAttributeValue("mail") == null ? userName : userDetails.getAttributeValue("mail");
+                final String sn = userDetails.getAttributeValue("sn") == null ? userName : userDetails.getAttributeValue("sn");
+                final String givenName = userDetails.getAttributeValue("givenName") ==null ? userName : userDetails.getAttributeValue("givenName");
+                
                 final Collection<String> roles = userDetails.getRoles();
                 if (!StringUtils.isBlank(email)) {
                     try {
