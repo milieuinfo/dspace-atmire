@@ -609,6 +609,8 @@
                             </map:read>
                     </map:match>
 
+                    
+
                     <!-- handle static js and css -->
                     <map:match pattern="static/**.js">
                             <map:read type="ConcatenationReader" src="static/{1}.js">
@@ -626,6 +628,10 @@
                             </map:read>
                     </map:match>
 
+                    <!-- handle common theme resources, such as dri2xhtml -->
+                    <map:match pattern="webjars/*/**">
+                        <map:read src="{0}"/>
+                    </map:match>
 
                     <!-- handle common theme resources, such as dri2xhtml -->
                     <map:match pattern="themes/*">

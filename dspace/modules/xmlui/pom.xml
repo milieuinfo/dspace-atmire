@@ -19,6 +19,7 @@
    <properties>
        <!-- This is the path to the root [dspace-src] directory. -->
        <root.basedir>${basedir}/../../..</root.basedir>
+       <huisstijl.version>0.0.1-SNAPSHOT</huisstijl.version>
    </properties>
 
    <build>
@@ -77,6 +78,7 @@
          <plugin>
              <groupId>nl.geodienstencentrum.maven</groupId>
              <artifactId>sass-maven-plugin</artifactId>
+             <version>2.10</version>
              <executions>
                  <execution>
                      <goals>
@@ -91,13 +93,12 @@
                  </sassOptions>
                  <useCompass>true</useCompass>
                  <compassConfigFile>${basedir}/src/main/sass/config.rb</compassConfigFile>
-               
                  <resources>
                      <resource>
                          <source>
                              <directory>${basedir}/src/main/sass/scss</directory>
                              <includes>
-                                 <include>app.scss</include>
+                                 <include>lne_custom.scss</include>
                              </includes>
                              <excludes />
                          </source>
@@ -105,7 +106,6 @@
                          <destination>${project.build.directory}/scssoutput/themes/LNE_Mirage/lib/css</destination>
                      </resource>
                  </resources>
-                 
              </configuration>
          </plugin>
       </plugins>
@@ -130,6 +130,12 @@
    </profiles>
 
    <dependencies>
+
+      <dependency>
+         <groupId>be.milieuinfo.webjars</groupId>
+         <artifactId>huisstijl</artifactId>
+         <version>${huisstijl.version}</version>
+      </dependency>
 
       <dependency>
          <groupId>be.milieuinfo.dspace.modules</groupId>
