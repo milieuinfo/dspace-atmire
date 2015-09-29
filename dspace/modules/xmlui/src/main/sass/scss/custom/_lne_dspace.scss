@@ -23,7 +23,7 @@ $primary-color: #417868 !default;
   }
   ul.ds-simple-list li:before {
     color: $primary-color;
-    content: '•';
+    content: '\2022';
     left: 0;
     position: absolute;
   }
