@@ -5,7 +5,7 @@ $primary-color: #417868 !default;
   .ds-trail-link, .ds-trail-arrow{
     color:#fff;
     line-height: 45px;
-    padding: 0 15px;
+    padding: 0;
     display: block;
   }
 }
@@ -74,9 +74,9 @@ $primary-color: #417868 !default;
       text-align: center;
       text-decoration: none;
       transition: background-color 300ms ease-out 0s;
-      padding: 8px 10px;
+      padding: 9px 10px;
       position: absolute;
-      right: 0;
+      right: -9px;
       top: 0;
     }
   }
@@ -95,6 +95,7 @@ $primary-color: #417868 !default;
       margin-bottom: 0rem;
       height: 37px;
       display: block;
+      width: 150px;
     }
     select.multiple {
       display: block;
@@ -166,6 +167,24 @@ $primary-color: #417868 !default;
       transition: background-color 300ms ease-out 0s;
       padding: 8px 10px;
       position: relative;
+    }
+  }
+  table.discovery-filters {
+    input.ds-text-field {
+        margin-top:10px;
+    }
+    tr.search-filter {
+      input.filter-add {
+        visibility:visible;
+      }
+    }
+    tr.apply-filter {
+      input {
+        height:35px;
+      }
+    }
+    input.filter-control {
+      margin:0px;
     }
   }
 }

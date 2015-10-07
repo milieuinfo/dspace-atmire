@@ -142,7 +142,7 @@
                     <map:parameter name="theme.path" value="{global:theme-path}"/>
                     <map:parameter name="theme.name" value="{global:theme-name}"/>
                     <map:parameter name="stylesheet.all#1" value="lib/css/lne_custom.css"/>
-                    <map:parameter name="stylesheet.all#2" value="../../webjars/huisstijl/0.0.1-SNAPSHOT/css/app.css"/>
+                    <map:parameter name="stylesheet.all#2" value="../../webjars/huisstijl/${huisstijl.version}/css/app.css"/>
 
                 </map:transform>
 

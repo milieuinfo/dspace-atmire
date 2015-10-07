@@ -19,7 +19,7 @@
    <properties>
        <!-- This is the path to the root [dspace-src] directory. -->
        <root.basedir>${basedir}/../../..</root.basedir>
-       <huisstijl.version>0.0.1-SNAPSHOT</huisstijl.version>
+       <huisstijl.version>0.0.2</huisstijl.version>
    </properties>
 
    <build>
@@ -39,6 +39,7 @@
                      <directory>${basedir}/src/main/webapp</directory>
                      <includes>
                         <include>WEB-INF/web.xml</include>
+                        <include>themes/LNE_Mirage/sitemap.xmap</include>
                      </includes>
                   </resource>
                    <resource>

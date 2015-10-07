@@ -332,8 +332,8 @@
                     <div class="logo-block">
                       <a href="/">
                           <div class="logo-block-title">
-                              <h1>Dspace</h1>
-                              <h2>Departement</h2>
+                              <h1>Archief</h1>
+                              <h2>Beleidsdomein</h2>
                               <h2 class="departement-name">LEEFMILIEU, NATUUR EN ENERGIE</h2>
                           </div>
                       </a>
