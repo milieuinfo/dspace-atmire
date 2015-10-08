@@ -4,7 +4,7 @@
    <groupId>be.milieuinfo.dspace</groupId>
    <artifactId>dspace-parent</artifactId>
    <packaging>pom</packaging>
-   <version>4.2.0</version>
+   <version>4.2.1-SNAPSHOT</version>
    <name>DSpace Parent Project</name>
    <description>
    	DSpace open source software is a turnkey institutional repository application.
@@ -653,7 +653,7 @@
          <dependency>
             <groupId>be.milieuinfo.dspace.modules</groupId>
             <artifactId>additions</artifactId>
-            <version>4.2.0</version>
+            <version>4.2.1-SNAPSHOT</version>
          </dependency>
 
          <dependency>
@@ -1422,7 +1422,7 @@
     <connection>scm:git:ssh://git@stash-pr-3255.mmis.be/dspac/dspace-atmire.git</connection>
     <developerConnection>scm:git:ssh://git@stash-pr-3255.mmis.be/dspac/dspace-atmire.git</developerConnection>
     <url>scm:git:ssh://git@stash-pr-3255.mmis.be/dspac/dspace-atmire.git</url>
-    <tag>DSPACE-LNE-4.2.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
     <!--
