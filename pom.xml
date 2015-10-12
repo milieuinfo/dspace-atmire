@@ -57,7 +57,6 @@
                     <configuration>
                         <minmemory>128m</minmemory>
                         <maxmemory>1g</maxmemory>
-                        <additionalparam>-Xdoclint:none</additionalparam>
                     </configuration>
                 </plugin>
                 <plugin>
