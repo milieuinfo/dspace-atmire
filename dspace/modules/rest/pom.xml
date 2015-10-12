@@ -11,7 +11,7 @@
     <parent>
         <groupId>be.milieuinfo.dspace</groupId>
         <artifactId>modules</artifactId>
-        <version>4.2.1-SNAPSHOT</version>
+        <version>4.2.0</version>
         <relativePath>..</relativePath>
     </parent>
 
@@ -110,13 +110,13 @@
         <dependency>
             <groupId>be.milieuinfo.dspace</groupId>
             <artifactId>dspace-rest-base</artifactId>
-            <version>4.2.1-SNAPSHOT</version>
+            <version>4.2.0</version>
             <type>war</type>
         </dependency>
         <dependency>
             <groupId>be.milieuinfo.dspace</groupId>
             <artifactId>dspace-rest-base</artifactId>
-            <version>4.2.1-SNAPSHOT</version>
+            <version>4.2.0</version>
             <classifier>classes</classifier>
         </dependency>
 
