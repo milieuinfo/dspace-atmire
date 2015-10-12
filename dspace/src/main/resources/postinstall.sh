@@ -82,7 +82,7 @@ fi
 echo "Maken van symlinks naar de data folders"
 
 
-cp -r ${tomcat_apps_dir}/dspace/solr/ ${tomcat_data_dir}/solr/
+cp -r ${tomcat_apps_dir}/dspace/solr/* ${tomcat_data_dir}/solr/
 
 chown -R tomcat:tomcat ${tomcat_data_dir}/solr/
 
