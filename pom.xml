@@ -64,8 +64,13 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>2.3.2</version>
                     <configuration>
+                        <minmemory>128m</minmemory>
+                        <maxmemory>1g</maxmemory>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
+                        <compilerArgs>
+                            <arg>-XX:MaxPermSize=256m</arg>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
                 <plugin>
