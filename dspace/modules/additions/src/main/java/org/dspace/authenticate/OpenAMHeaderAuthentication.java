@@ -13,9 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 
 public class OpenAMHeaderAuthentication extends OpenAMImplicitAuthentication {
 
-    @Override
-    protected String retrieveOpenAMToken(HttpServletRequest request) {
-        return request.getHeader(OpenAMTokenManager.OPENAM_SSO_ID_HEADER);
-    }
+	@Override
+	protected String retrieveOpenAMToken(HttpServletRequest request) {
+		if (null == request) {
+			return null;
+		} else {
+			return request.getHeader(OpenAMTokenManager.OPENAM_SSO_ID_HEADER);
+		}
+	}
 
 }
