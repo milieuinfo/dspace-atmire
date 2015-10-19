@@ -212,7 +212,7 @@ public class BulkUploadRecords extends ContextScript {
         }
     }
 
-    protected void importArchives(File outputFolder, File xmlCommunicatie) throws Exception {
+    public void importArchives(File outputFolder, File xmlCommunicatie) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = null;
@@ -294,7 +294,7 @@ public class BulkUploadRecords extends ContextScript {
         return myloader.addItem(context, collections, path, itemFolder, mapOut, useTemplate);
     }
 
-    protected void makeArchives(String outputFolderPath, File dir) throws ParserConfigurationException, SAXException, IOException, XSLTransformException {
+    public void makeArchives(String outputFolderPath, File dir) throws ParserConfigurationException, SAXException, IOException, XSLTransformException {
         File output = new File(outputFolderPath);
 
         if(output.exists()){

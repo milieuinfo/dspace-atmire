@@ -28,4 +28,19 @@ Thumbs.db
 
 dspace/modules/additions/src/main/java/com/atmire/dspace/TestTransformatie.java
 
+dspace/modules/jspui/bin/
+
+dspace/modules/lni/bin/
+
+dspace/modules/oai/bin/
+
+dspace/modules/rest/bin/
+
+dspace/modules/solr/bin/
+
+dspace/modules/sword/bin/
+
+dspace/modules/swordv2/bin/
+
+dspace/modules/xmlui/bin/
 
