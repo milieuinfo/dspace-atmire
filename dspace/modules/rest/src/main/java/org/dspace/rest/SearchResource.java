@@ -84,7 +84,7 @@ public class SearchResource {
 			toReturn.add(new org.dspace.rest.common.Item(it,cleanExpand,context));
 		}
 
-		
+		context.complete();
 		
 		return toReturn;
 	}
