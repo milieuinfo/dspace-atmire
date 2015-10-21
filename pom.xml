@@ -29,7 +29,7 @@
     <!--Force UTF-8 encoding during build on all platforms-->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.6</java.version> <!-- DSpace requires Java 1.6 or higher -->		
+        <java.version>1.7</java.version> <!-- DSpace requires Java 1.6 or higher -->		
         <lucene.version>4.4.0</lucene.version>
         <solr.version>4.4.0</solr.version>
         <slf4j.version>1.6.1</slf4j.version>
@@ -38,18 +38,6 @@
         <root.basedir>${basedir}</root.basedir>
         <datamodel.version.number>4.2-1.14.8-0</datamodel.version.number>
 
-        <acd.issueManagement.system>Jira</acd.issueManagement.system>
-        <acd.issueManagement.url>https://www.milieuinfo.be/jira/</acd.issueManagement.url>
-        <acd.ciManagement.system>Bamboo</acd.ciManagement.system>
-        <acd.ciManagement.url>https://www.milieuinfo.be/bamboo</acd.ciManagement.url>
-        <acd.repository.url>https://www.milieuinfo.be/repository</acd.repository.url>
-        <acd.repository.replica.url>${acd.repository.url}/content/groups/replica</acd.repository.replica.url>
-        <acd.repository.snapshot.url>
-            dav:${acd.repository.url}/content/repositories/snapshot
-        </acd.repository.snapshot.url>
-        <acd.repository.release.url>dav:${acd.repository.url}/content/groups/release</acd.repository.release.url>
-        <acd.scm.maven-url>scm:svn:https://svn.milieuinfo.be/productie/svn</acd.scm.maven-url>
-        <acd.scm.maven-intern-url>scm:svn:https://svn.milieuinfo.be/productie/svn</acd.scm.maven-intern-url>
 
     </properties>
 
@@ -75,8 +63,13 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>2.3.2</version>
                     <configuration>
+                        <minmemory>128m</minmemory>
+                        <maxmemory>1g</maxmemory>
                         <source>${java.version}</source>
                         <target>${java.version}</target>
+                        <compilerArgs>
+                            <arg>-XX:MaxPermSize=256m</arg>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -184,19 +177,19 @@
            </dependencies>
          </plugin>
 
+         <!-- Dit geeft weer nest!!
          <plugin>
             <artifactId>maven-release-plugin</artifactId>
             <version>2.3.2</version>
             <configuration>
-                <!-- During release:perform, enable the "release" profile (see below) -->
                 <releaseProfiles>release</releaseProfiles>
                 <goals>deploy</goals>
-                <!-- Suggest tagging the release in SCM as "dspace-[version]" -->
                 <tagNameFormat>dspace-@{project.version}</tagNameFormat>
-                <!-- Auto-Version all modules the same as the parent module -->
                 <autoVersionSubmodules>true</autoVersionSubmodules>
             </configuration>
          </plugin>
+         -->
+
          <plugin>
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
@@ -418,6 +411,18 @@
            source module is in the local file system, correctly located
            relative to this file.
         -->
+       <!-- REST Jersey -->
+       <profile>
+           <id>dspace-rest</id>
+           <activation>
+               <file>
+                   <exists>dspace-rest/pom.xml</exists>
+               </file>
+           </activation>
+           <modules>
+               <module>dspace-rest</module>
+           </modules>
+       </profile>
 
         <!--
            Builds DSpace "Assembly & Configuration" project
@@ -493,19 +498,6 @@
                 <module>dspace-jspui</module>
             </modules>
         </profile>
-
-       <!-- REST Jersey -->
-       <profile>
-           <id>dspace-rest</id>
-           <activation>
-               <file>
-                   <exists>dspace-rest/pom.xml</exists>
-               </file>
-           </activation>
-           <modules>
-               <module>dspace-rest</module>
-           </modules>
-       </profile>
 
 
         <!--
@@ -589,14 +581,13 @@
       <!--
          The 'release' profile is used by the 'maven-release-plugin' (see above)
          to actually perform a DSpace software release to Maven central.
-       -->
+
+         Dit geeft nest als we willen releasen
       <profile>
          <id>release</id>
          <activation>
             <activeByDefault>false</activeByDefault>
          </activation>
-         <!-- Activate all modules *except* for the 'dspace' module,
-              as it does not include any Java source code to release. -->
          <modules>
             <module>dspace-api</module>
             <module>dspace-jspui</module>
@@ -608,6 +599,7 @@
             <module>dspace-swordv2</module>
          </modules>
       </profile>
+       -->
 
       <!-- Skip Unit Tests by default, but allow override on command line
            by setting property "-Dmaven.test.skip=false" -->
