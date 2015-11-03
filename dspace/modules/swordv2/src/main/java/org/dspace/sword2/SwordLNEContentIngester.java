@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -24,87 +26,119 @@ import org.swordapp.server.SwordError;
 import org.swordapp.server.SwordServerException;
 
 import com.atmire.dspace.BulkUploadRecords;
+import com.atmire.dspace.content.Record;
 
 /**
  * Created by philip on 05/12/14.
  */
 public class SwordLNEContentIngester extends AbstractSwordContentIngester {
-    /** Log4j logger */
-    public static final Logger log = Logger.getLogger(SwordLNEContentIngester.class);
+	/** Log4j logger */
+	public static final Logger log = Logger.getLogger(SwordLNEContentIngester.class);
 
-    public static final String TEMP_DIR = ConfigurationManager.getProperty("org.dspace.app.itemexport.work.dir");
+	public static final String TEMP_DIR = ConfigurationManager.getProperty("org.dspace.app.itemexport.work.dir");
 
-    @Override
-    public DepositResult ingestToCollection(Context context, Deposit deposit, Collection collection, VerboseDescription verboseDescription, DepositResult result) throws DSpaceSwordException, SwordError, SwordAuthException, SwordServerException {
-        try {
-            File mainDirectory = new File(TEMP_DIR + File.separator + "MilieuVerslagen");
-            File directory = new File(mainDirectory.getPath() + File.separator + "Milieuverslag");
+	@Override
+	public DepositResult ingestToCollection(Context context, Deposit deposit, Collection collection,
+			VerboseDescription verboseDescription, DepositResult result)
+					throws DSpaceSwordException, SwordError, SwordAuthException, SwordServerException {
+		HashMap<String, Record> recordMap = new HashMap<>();
 
-            if (!directory.exists()) {
-                directory.mkdir();
-            }
+		try {
+			File mainDirectory = new File(TEMP_DIR + File.separator + "MilieuVerslagen");
+			File directory = new File(mainDirectory.getPath() + File.separator + "Milieuverslag" + System.nanoTime());
 
-            List<File> directories = new ArrayList<File>();
-            List<Bitstream> derivedResources = new ArrayList<Bitstream>();
+			if (!directory.exists()) {
+				directory.mkdir();
+			}
 
-            File depositFile = deposit.getFile();
-            ZipFile zip = new ZipFile(depositFile);
+			List<File> directories = new ArrayList<File>();
+			List<Bitstream> derivedResources = new ArrayList<Bitstream>();
 
-            Enumeration zenum = zip.entries();
-            while (zenum.hasMoreElements()) {
-                ZipEntry entry = (ZipEntry) zenum.nextElement();
+			File depositFile = deposit.getFile();
+			ZipFile zip = new ZipFile(depositFile);
 
-                File file = new File(directory, entry.getName());
-                if (entry.isDirectory()) {
-                    file.mkdirs();
-                    directories.add(file);
-                } else {
-                    file.getParentFile().mkdirs();
-                    InputStream in = zip.getInputStream(entry);
-                    try {
-                        OutputStream out = new FileOutputStream(file);
-                        byte[] buffer = new byte[1024];
-                        while (true) {
-                            int readCount = in.read(buffer);
-                            if (readCount < 0) {
-                                break;
-                            }
-                            out.write(buffer, 0, readCount);
-                        }
-                    } finally {
-                        in.close();
-                    }
-                }
-            }
-            context.turnOffAuthorisationSystem();
+			Enumeration zenum = zip.entries();
+			while (zenum.hasMoreElements()) {
+				ZipEntry entry = (ZipEntry) zenum.nextElement();
 
-            BulkUploadRecords bulkUploadRecords = new BulkUploadRecords(context);
-            bulkUploadRecords.setCommunity((Community) collection.getParentObject());
-            
-            
-            bulkUploadRecords.importArchives(directory, new File("non_existing_files"+System.currentTimeMillis()));
+				File file = new File(directory, entry.getName());
+				if (entry.isDirectory()) {
+					file.mkdirs();
+					directories.add(file);
+				} else {
+					file.getParentFile().mkdirs();
+					InputStream in = zip.getInputStream(entry);
+					try {
+						OutputStream out = new FileOutputStream(file);
+						byte[] buffer = new byte[1024];
+						while (true) {
+							int readCount = in.read(buffer);
+							if (readCount < 0) {
+								break;
+							}
+							out.write(buffer, 0, readCount);
+						}
+					} finally {
+						in.close();
+					}
+				}
+			}
+			context.turnOffAuthorisationSystem();
 
-            context.restoreAuthSystemState();
+			BulkUploadRecords bulkUploadRecords = new BulkUploadRecords(context);
+			bulkUploadRecords.setCommunity((Community) collection.getParentObject());
 
-            FileUtils.deleteDirectory(mainDirectory);
+			bulkUploadRecords.importArchives(directory, new File("non_existing_files" + System.currentTimeMillis()),
+					recordMap);
 
-            result = new DepositResult();
-            if (bulkUploadRecords.lastItemId > 0) {
-                result.setItem(Item.find(context, bulkUploadRecords.lastItemId));
-            } else {
-                result.setItem(collection.getAllItems().next());
-            }
+			FileUtils.deleteDirectory(directory);
 
-            return result;
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            throw new DSpaceSwordException(e);
-        } 
-    }
+			result = new DepositResult();
+			if (bulkUploadRecords.lastItemId > 0) {
+				result.setItem(Item.find(context, bulkUploadRecords.lastItemId));
+			} else {
+				result.setItem(collection.getAllItems().next());
+			}
 
-    @Override
-    public DepositResult ingestToItem(Context context, Deposit deposit, Item item, VerboseDescription verboseDescription, DepositResult result) throws DSpaceSwordException, SwordError, SwordAuthException, SwordServerException {
-        log.info("SwordLNEMilieuverslagContentIngester ingestToItem parameters: deposit: " + deposit + ", item: " + item + ", verboseDescription: " + verboseDescription + ", result: " + result );
-        return null;
-    }
+			return result;
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			try {
+				// As the code here is not very transactional we need to do the
+				// cleanup ourselves.
+				java.util.Collection<Record> records = recordMap.values();
+				for (Record record : records) {
+					Item item = record.getItem();
+					Collection[] collections = item.getCollections();
+					// normally only 1 collection
+					collections[0].removeItem(item);
+				}
+				// commit remove because afterwards there will be a row back and
+				// the added rows will not be removed...
+				// It would have been nice if we could rollback the tansaction
+				// in the first place so we don't need to
+				// do the cleanup ourselves (2 times work for the database).
+				context.commit();
+
+			} catch (Exception ex) {
+				log.error("Error while cleanup...", e);
+			}
+
+			throw new DSpaceSwordException(e);
+		} finally {
+
+			context.restoreAuthSystemState();
+
+			// Do not close connection here as it will be used afterwards...
+		}
+	}
+
+	@Override
+	public DepositResult ingestToItem(Context context, Deposit deposit, Item item,
+			VerboseDescription verboseDescription, DepositResult result)
+					throws DSpaceSwordException, SwordError, SwordAuthException, SwordServerException {
+		log.info("SwordLNEMilieuverslagContentIngester ingestToItem parameters: deposit: " + deposit + ", item: " + item
+				+ ", verboseDescription: " + verboseDescription + ", result: " + result);
+		return null;
+	}
 }
