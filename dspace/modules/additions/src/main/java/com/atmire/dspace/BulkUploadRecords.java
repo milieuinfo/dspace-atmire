@@ -233,7 +233,6 @@ public class BulkUploadRecords extends ContextScript {
 			}
 		});
 
-		HashMap<String, Record> recordMap = new HashMap<String, Record>();
 		HashMap<Record, String> referenceMap = new HashMap<Record, String>();
 
 		for (File archive : archives) {
