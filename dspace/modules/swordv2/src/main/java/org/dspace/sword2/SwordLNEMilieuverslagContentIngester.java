@@ -1,6 +1,5 @@
 package org.dspace.sword2;
 
-import com.atmire.dspace.BulkUploadIMJV;
 import com.atmire.dspace.BulkUploadRecords;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;

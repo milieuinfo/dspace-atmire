@@ -1,0 +1,194 @@
+
+$primary-color: #417868 !default;
+
+.top-bar {
+  .ds-trail-link, .ds-trail-arrow{
+    color:#fff;
+    line-height: 45px;
+    padding: 0;
+    display: block;
+  }
+}
+
+.panel {
+  word-wrap: break-word;
+  .ds-option-set-head {
+    background-color:#fff;
+    border: 0;
+    color: $primary-color;
+    font-size: 1.56em;
+  }
+  ul.ds-simple-list {
+    list-style: outside none none;
+  }
+  ul.ds-simple-list li:before {
+    color: $primary-color;
+    content: '\2022';
+    left: 0;
+    position: absolute;
+  }
+
+  ul.ds-simple-list li {
+    padding-left: 1em;
+    position: relative;
+  }
+  div.ds-option-set {
+    border: 0;
+  }
+  fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0; 
+    position: relative;
+    #aspect_discovery_SimpleSearch_field_query, .ds-text-field {
+      box-sizing: border-box;
+      padding: 0 0 0 10px;
+      width: 100%;
+    }
+    #aspect_discovery_SimpleSearch_field_query {
+      height:34px;
+    }
+    .ds-button-field:before {
+      content: '';
+      display: block;
+      height: 44px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 0;
+    }
+    .ds-button-field {
+      display: inline-block;
+      background-color: $primary-color;  
+      border-color: $primary-color;
+      border-style: solid;
+      border-width: 0;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: 'Flanders Art Sans', Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: normal;
+      margin: 0 0 1.25rem;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 300ms ease-out 0s;
+      padding: 9px 10px;
+      position: absolute;
+      right: -9px;
+      top: 0;
+    }
+  }
+  fieldset#aspect_eperson_EditProfile_list_subscriptions, fieldset#aspect_submission_StepTransformer_list_submit-describe, fieldset#aspect_submission_StepTransformer_list_submit-upload-new, fieldset#aspect_submission_StepTransformer_list_submit-review, fieldset.ds-form-list, table {
+
+    .ds-text-field {
+      margin-bottom: 0rem;
+    }
+    .ds-button-field {
+      position:relative;
+    }
+    select {
+      padding: 0 0 0 10px;
+      box-sizing: border-box;
+      margin-top: 10px;
+      margin-bottom: 0rem;
+      height: 37px;
+      display: block;
+      width: 150px;
+    }
+    select.multiple {
+      display: block;
+      padding: 6px 4px;
+      box-sizing: content-box;
+      height: 75px;
+    }
+    input {
+      margin-top: 10px;
+    }
+
+    .ds-form-label {
+      margin-bottom: 15px;
+      padding-top: 25px;
+    }
+
+    li.ds-form-item {
+      margin-bottom: 15px;
+      margin-top: 15px;
+    }
+
+  }
+
+  fieldset#aspect_eperson_EditProfile_list_form,fieldset#aspect_submission_StepTransformer_list_submit-review {
+    ol, li {
+      list-style: none;
+    }
+  }
+
+  ul#aspect_submission_StepTransformer_list_submit-progress {
+    .button {
+      background:none;
+    }
+  }
+
+  #aspect_eperson_PasswordLogin_div_login li {
+    input {
+      width: 250px;
+    }
+  }
+
+  .ds-interactive-div {
+    ul {
+      li:before, li {
+        content: '';
+      }
+    }
+  }
+  .pane {
+    background: #fff;
+  }
+
+  table,p {
+    .ds-button-field {
+      display: inline-block;
+      background-color: $primary-color;
+      border-color: $primary-color;
+      border-style: solid;
+      border-width: 0;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: 'Flanders Art Sans', Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: normal;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 300ms ease-out 0s;
+      padding: 8px 10px;
+      position: relative;
+    }
+  }
+  table.discovery-filters {
+    input.ds-text-field {
+        margin-top:10px;
+    }
+    tr.search-filter {
+      input.filter-add {
+        visibility:visible;
+      }
+    }
+    tr.apply-filter {
+      input {
+        height:35px;
+      }
+    }
+    input.filter-control {
+      margin:0px;
+    }
+  }
+}
+
+.iwgf2-site-info-header.iw2-branded > h2 {
+  color: #fff !important;
+}

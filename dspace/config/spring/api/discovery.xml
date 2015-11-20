@@ -99,7 +99,6 @@
             <list>
                 <ref bean="searchFilterAuthor" />
                 <ref bean="searchFilterSubject" />
-                <ref bean="searchFilterIssued" />
                 <ref bean="searchFilterAangifteType" />
                 <ref bean="searchFilterRapporteringsJaar" />
                 <ref bean="searchFilterExploitatieStad" />
@@ -337,10 +336,9 @@
         <property name="indexFieldName" value="rapporteringsJaar"/>
         <property name="metadataFields">
             <list>
-                <value>imjv.Rapporteringsjaar</value>
+                <value>imjv.rapporteringsjaar</value>
             </list>
         </property>
-        <property name="type" value="date"/>
         <property name="sortOrder" value="COUNT"/>
     </bean>
 

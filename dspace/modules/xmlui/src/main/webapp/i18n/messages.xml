@@ -25,18 +25,18 @@
 
 	<!-- General keys -->
 	<message key="xmlui.general.dspace_home">DSpace Home</message>
-	<message key="xmlui.general.search">Search</message>
-	<message key="xmlui.general.go">Go</message>
-	<message key="xmlui.general.go_home">Go to DSpace home</message>
-	<message key="xmlui.general.save">Save</message>
-	<message key="xmlui.general.cancel">Cancel</message>
-	<message key="xmlui.general.return">Return</message>
+	<message key="xmlui.general.search">Zoek</message>
+	<message key="xmlui.general.go">Ga</message>
+	<message key="xmlui.general.go_home">Ga naar DSpace home</message>
+	<message key="xmlui.general.save">Bewaar</message>
+	<message key="xmlui.general.cancel">Annuleer</message>
+	<message key="xmlui.general.return">Terug</message>
 	<message key="xmlui.general.update">Update</message>
-	<message key="xmlui.general.delete">Delete</message>
-	<message key="xmlui.general.next">Next</message>
-	<message key="xmlui.general.untitled">Untitled</message>
-        <message key="xmlui.general.perform">Perform</message>
-        <message key="xmlui.general.queue">Queue</message>
+	<message key="xmlui.general.delete">Verwijder</message>
+	<message key="xmlui.general.next">Volgende</message>
+	<message key="xmlui.general.untitled">Geen titel</message>
+        <message key="xmlui.general.perform">Uitvoeren</message>
+        <message key="xmlui.general.queue">Wachtrij</message>
 
 	<!--
 		Page not found keys
@@ -44,31 +44,31 @@
 		This is a special component that is not part of any aspect but is added
 		by manakin to all aspect chains.
 		-->
-	<message key="xmlui.PageNotFound.title">Page not found</message>
-	<message key="xmlui.PageNotFound.head">Page not found</message>
-	<message key="xmlui.PageNotFound.para1">We can't find the page you asked for.</message>
+	<message key="xmlui.PageNotFound.title">Pagina niet gevonden</message>
+	<message key="xmlui.PageNotFound.head">Pagina niet gevonden</message>
+	<message key="xmlui.PageNotFound.para1">We kunnen de pagina waar om gevraagd is niet vinden.</message>
 
 
 	<!--
 	   The "utils" non-aspect
        -->
-    <message key="xmlui.utils.AuthenticationUtil.onlyAdmins">Only site administrators may assume login as another user.</message>
-    <message key="xmlui.utils.AuthenticationUtil.onlyAuthenticatedAdmins">Only authenticated users who are administrators may assume the login as another user.</message>
-    <message key="xmlui.utils.AuthenticationUtil.notAnotherAdmin">You may not assume the login as another administrator.</message>
+    <message key="xmlui.utils.AuthenticationUtil.onlyAdmins">Alleen site administrators kunnen als andere gebruiker inloggen.</message>
+    <message key="xmlui.utils.AuthenticationUtil.onlyAuthenticatedAdmins">Enkel geauthenticeerde gebruikers die administrator zijn kunnen als andere gebruiker inloggen.</message>
+    <message key="xmlui.utils.AuthenticationUtil.notAnotherAdmin">U kunt niet als een andere administrator inloggen.</message>
 
 
 	<!--
 		This section is for feed syndications (RSS, atom, etc)
 	-->
-	<message key="xmlui.feed.general_description">The DSpace digital repository system captures, stores, indexes, preserves, and distributes digital research material.</message>
+	<message key="xmlui.feed.general_description">Het DSpace digitale repository systeem registreert, bewaart, indexeert, conserveert en distribueert digitaal onderzoeksmateriaal.</message>
     <message key="xmlui.feed.header">RSS Feeds</message>
-	<message key="xmlui.feed.logo_title">The Channel Image</message>
-	<message key="xmlui.feed.untitled">Untitled</message>
+	<message key="xmlui.feed.logo_title">De Kanaal Afbeelding</message>
+	<message key="xmlui.feed.untitled">Naamloos</message>
 
 	<!--
 		Default notice header
 	 	-->
-	<message key="xmlui.general.notice.default_head">Notice</message>
+	<message key="xmlui.general.notice.default_head">Kennisgeving</message>
 
 
 
@@ -85,229 +85,230 @@
 
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.AbstractSearch.java -->
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_community">Search Results for Community: {0}</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_collection">Search Results for Collection: {0}</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_none">Search Results</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.result_query">Your query "{0}" produced {1} result(s).</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.head2">Communities or Collections matching your query</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.head3">Items matching your query</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.no_results">Search produced no results.</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.all_of_dspace">All of DSpace</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_community">Zoekresultaten voor Community: {0}</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_collection">Zoekresultaten voor Collectie: {0}</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.head1_none">Zoekresultaten</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.result_query">Uw zoekactie "{0}" produceerde {1} resultaten.</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.head2">Communities of Collecties die voldoen aan uw zoekopdracht</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.head3">Items die voldoen aan uw zoekopdracht</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.no_results">Zoekopdracht gaf geen resultaat.</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.all_of_dspace">Geheel DSpace</message>
 
-   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.title">title</message>
-   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.dateissued">issue date</message>
-   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.dateaccessioned">submit date</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.relevance">relevance</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by">Sort items by</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.order">in order</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.order.asc">ascending</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.order.desc">descending</message>
-	<message key="xmlui.ArtifactBrowser.AbstractSearch.rpp">Results/page</message>
+   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.title">titel</message>
+   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.dateissued">datum uitgave</message>
+   <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.dateaccessioned">datum invoer</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.relevance">relevantie</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by">Sorteer items op</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.order">in volgorde</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.order.asc">oplopend</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.order.desc">aflopend</message>
+	<message key="xmlui.ArtifactBrowser.AbstractSearch.rpp">Resultaten/pagina</message>
 
     <!-- org.dspace.app.xmlui.artifactbrowser.AdvancedSearch.java -->
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.title">Advanced Search</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.trail">Advanced Search</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.head">Advanced Search</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.title">Geavanceerd zoeken</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.trail">Geavanceerd zoeken</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.head">Geavanceerd zoeken</message>
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_scope">Search scope</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_scope_help">Limit your search to a community or collection.</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_scope_help">Beperk uw zoekopdracht tot een community of collectie.</message>
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.conjunction">Conjunction</message>
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_type">Search type</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_for">Search for</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_author">Author</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_title">Title</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject">Subject</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_abstract">Abstract</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_series">Series</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.search_for">Zoek naar</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_author">Auteur</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_title">Titel</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject">Onderwerp</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_abstract">Samenvatting</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_series">Serie</message>
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_sponsor">Sponsor</message>
 	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_identifier">Identifier</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_language">Language (ISO)</message>
-	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_keyword">Keyword</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_language">Taal (ISO)</message>
+	<message key="xmlui.ArtifactBrowser.AdvancedSearch.type_keyword">Trefwoord</message>
 
    <!--  some common other possibilities for Advanced Search Fields -->
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_contributor">Contributor</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_creator">Creator</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject">Subject</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_description">Description</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_relation">Relation</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_contributor">Bijdrager</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_creator">Auteur</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_subject">Onderwerp</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_description">Beschrijving</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_relation">Relatie</message>
    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_mime">Mime-Type</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_other">Other Contributor</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_advisor">Advisor</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_department">Department</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_other">Andere Bijdrager</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_advisor">Adviseur</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_department">Departement</message>
 
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_ANY">Full Text</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.and">AND</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.or">OR</message>
-   <message key="xmlui.ArtifactBrowser.AdvancedSearch.not">NOT</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_ANY">Volledige Tekst</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.and">EN</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.or">OF</message>
+   <message key="xmlui.ArtifactBrowser.AdvancedSearch.not">NIET</message>
 
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.ConfigureableBrowse.java -->
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.starts_with">Or enter first few letters:</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.starts_with_help">Browse for items that begin with these letters</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_select">Jump to a point in the index:</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_month">(Choose month)</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_year">(Choose year)</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_year">Or type in a year: </message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_year_help">Browse for items that are from the given year.</message>
-        <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.no_results">Sorry, there are no results for this browse.</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.sort_by"> Sort by: </message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.order"> Order: </message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.rpp"> Results: </message><!-- /Page -->
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.etal"> Authors/Item: </message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.starts_with">Of type de eerste paar letters:</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.starts_with_help">Browse naar items die met deze letters beginnen</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_select">Spring naar een plek in de index:</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_month">(Kies maand)</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.choose_year">(Kies jaar)</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_year">Of type een jaartal: </message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.jump_year_help">Browse naar items in het opgegeven jaar.</message>
+        <message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.no_results">Sorry, er zijn geen resultaten voor deze browse-actie.</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.sort_by"> Sorteer op: </message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.order"> Volgorde: </message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.rpp"> Resultaten: </message><!-- /Page -->
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.general.etal"> Auteurs/Item: </message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.etal.all">All</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.etal.all">Alles</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.title">title</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.dateissued">issue date</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.dateaccessioned">submit date</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.title">titel</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.dateissued">datum uitgave</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.sort_by.dateaccessioned">datum invoer</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.order.asc">ascending</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.order.desc">descending</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.order.asc">oplopend</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.order.desc">aflopend</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.author.column_heading">Authors Name</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.subject.column_heading">Subject</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.author.column_heading">Naam van auteur</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.subject.column_heading">Onderwerp</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.author">Browsing {0} by Author {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.author">Browsing {0} by Author</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.author">Browse {0} op Auteur {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.author">Browse {0} op Auteur</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.subject">Browsing {0} by Subject {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.subject">Browsing {0} by Subject</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.metadata.subject">Browse {0} op Onderwerp {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.metadata.subject">Browse {0} op Onderwerp</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.title">Browsing {0} by Title {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.title">Browsing {0} by Title</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.title">Browse {0} op Titel {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.title">Browse {0} op Titel</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.dateissued">Browsing {0} by Issue Date {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.dateissued">Browsing {0} by Issue Date</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.dateissued">Browse {0} op Datum uitgave {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.dateissued">Browse {0} op Datum uitgave</message>
 
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.dateaccessioned">Browsing {0} by Submit Date {1}</message>
-	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.dateaccessioned">Browsing {0} by Submit Date</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.title.item.dateaccessioned">Browse {0} op Datum toegevoegd {1}</message>
+	<message key="xmlui.ArtifactBrowser.ConfigurableBrowse.trail.item.dateaccessioned">Browse {0} op Datum toegevoegd</message>
+
 
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.CollectionViewer.java -->
 	<message key="xmlui.ArtifactBrowser.CollectionViewer.search_scope">Search Scope</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.all_of_dspace">All of DSpace</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.full_text_search">Search within this collection:</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.head_browse">Browse by</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_titles">Titles</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_authors">Authors</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_dates">Dates</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.advanced_search_link">Advanced Search</message>
-	<message key="xmlui.ArtifactBrowser.CollectionViewer.head_recent_submissions">Recent Submissions</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.all_of_dspace">Geheel DSpace</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.full_text_search">Zoek binnen deze collectie:</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.head_browse">Browse op</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_titles">Titels</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_authors">Auteurs</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.browse_dates">Data</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.advanced_search_link">Geavanceerd zoeken</message>
+	<message key="xmlui.ArtifactBrowser.CollectionViewer.head_recent_submissions">Recente bijdragen</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.CommunityBrowser.java -->
-	<message key="xmlui.ArtifactBrowser.CommunityBrowser.title">Community List</message>
-	<message key="xmlui.ArtifactBrowser.CommunityBrowser.trail">Community List</message>
+	<message key="xmlui.ArtifactBrowser.CommunityBrowser.title">Lijst van communities</message>
+	<message key="xmlui.ArtifactBrowser.CommunityBrowser.trail">Lijst van communities</message>
 	<message key="xmlui.ArtifactBrowser.CommunityBrowser.head">Communities in DSpace</message>
-	<message key="xmlui.ArtifactBrowser.CommunityBrowser.select">Select a community to browse its collections.</message>
+	<message key="xmlui.ArtifactBrowser.CommunityBrowser.select">Selecteer een community om in haar collecties te bladeren.</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.CommunityViewer.java -->
 	<message key="xmlui.ArtifactBrowser.CommunityViewer.search_scope">Search Scope</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.all_of_dspace">All of DSpace</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.full_text_search">Search within this community and its collections:</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_browse">Browse by</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_titles">Titles</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_authors">Authors</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_dates">Dates</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.advanced_search_link">Advanced Search</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_sub_communities">Sub-communities within this community</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_sub_collections">Collections in this community</message>
-	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_recent_submissions">Recent Submissions</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.all_of_dspace">Geheel DSpace</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.full_text_search">Zoek binnen deze community en haar collecties:</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_browse">Browse op</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_titles">Titels</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_authors">Auteurs</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.browse_dates">Data</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.advanced_search_link">Geavanceerd zoeken</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_sub_communities">Sub-communities binnen deze community</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_sub_collections">Collecties binnen deze community</message>
+	<message key="xmlui.ArtifactBrowser.CommunityViewer.head_recent_submissions">Recente bijdragen</message>
 
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.Contact.java -->
-	<message key="xmlui.ArtifactBrowser.Contact.title">Contact us</message>
-	<message key="xmlui.ArtifactBrowser.Contact.trail">Contact us</message>
-	<message key="xmlui.ArtifactBrowser.Contact.head">Contact us</message>
-	<message key="xmlui.ArtifactBrowser.Contact.para1">{0} administrators may be contacted at:</message>
-	<message key="xmlui.ArtifactBrowser.Contact.feedback_label">On-line form</message>
+	<message key="xmlui.ArtifactBrowser.Contact.title">Neem contact op</message>
+	<message key="xmlui.ArtifactBrowser.Contact.trail">Neem contact op</message>
+	<message key="xmlui.ArtifactBrowser.Contact.head">Neem contact op</message>
+	<message key="xmlui.ArtifactBrowser.Contact.para1">{0} administrators zijn te bereiken via:</message>
+	<message key="xmlui.ArtifactBrowser.Contact.feedback_label">On-line formulier</message>
 	<message key="xmlui.ArtifactBrowser.Contact.feedback_link">Feedback</message>
 	<message key="xmlui.ArtifactBrowser.Contact.email">Email</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.FeedbackForm.java -->
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.title">Give feedback</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.trail">Give feedback</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.head">Give feedback</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.para1">Thanks for sharing your feedback about the DSpace system. Your comments are appreciated!</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.email">Your Email</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.email_help">This address will be used to follow up on your feedback.</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.comments">Comments</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackForm.submit">Send Feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.title">Geef feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.trail">Geef feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.head">Geef feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.para1">Dank voor uw feedback over het DSpace systeem. Uw opmerkingen worden zeer gewaardeerd!</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.email">Uw email</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.email_help">Dit adres zal worden gebruikt om op uw feedback te reageren.</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.comments">Opmerkingen</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackForm.submit">Verstuur feedback</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.FeedbackSent.java -->
-	<message key="xmlui.ArtifactBrowser.FeedbackSent.title">Give feedback</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackSent.trail">Give feedback</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackSent.head">Feedback sent</message>
-	<message key="xmlui.ArtifactBrowser.FeedbackSent.para1">Your comments have been received.</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackSent.title">Geef feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackSent.trail">Geef feedback</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackSent.head">Feedback verstuurd</message>
+	<message key="xmlui.ArtifactBrowser.FeedbackSent.para1">Uw opmerkingen zijn ontvangen.</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.ItemViewer.java -->
-	<message key="xmlui.ArtifactBrowser.ItemViewer.trail">View Item</message>
-	<message key="xmlui.ArtifactBrowser.ItemViewer.head_parent_collections">This item appears in the following Collection(s)</message>
-	<message key="xmlui.ArtifactBrowser.ItemViewer.show_simple">Show simple item record</message>
-	<message key="xmlui.ArtifactBrowser.ItemViewer.show_full">Show full item record</message>
+	<message key="xmlui.ArtifactBrowser.ItemViewer.trail">Bekijk item</message>
+	<message key="xmlui.ArtifactBrowser.ItemViewer.head_parent_collections">Dit item bevindt zich in de volgende collectie(s)</message>
+	<message key="xmlui.ArtifactBrowser.ItemViewer.show_simple">Toon vereenvoudigd item record</message>
+	<message key="xmlui.ArtifactBrowser.ItemViewer.show_full">Toon volledig item record</message>
 
-        <message key="xmlui.ArtifactBrowser.ItemViewer.withdrawn">This item has been withdrawn and is no longer available.</message>
+        <message key="xmlui.ArtifactBrowser.ItemViewer.withdrawn">Dit item is niet langer beschikbaar.</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.Navigation.java -->
 	<message key="xmlui.ArtifactBrowser.Navigation.head_browse">Browse</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.head_all_of_dspace">All of DSpace</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.communities_and_collections">Communities &amp; Collections</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_title">Titles</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_author">Authors</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_subject">Subjects</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_dateissued">By Issue Date</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.browse_dateaccessioned">By Submit Date</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.head_this_collection">This Collection</message>
-	<message key="xmlui.ArtifactBrowser.Navigation.head_this_community">This Community</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.head_all_of_dspace">Geheel DSpace</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.communities_and_collections">Communities &amp; Collecties</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_title">Titels</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_author">Auteurs</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_subject">Onderwerpen</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_dateissued">Op datum uitgave</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.browse_dateaccessioned">Op datum toegevoegd</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.head_this_collection">Deze collectie</message>
+	<message key="xmlui.ArtifactBrowser.Navigation.head_this_community">Deze community</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.SimpleSearch.java -->
-	<message key="xmlui.ArtifactBrowser.SimpleSearch.title">Search</message>
-	<message key="xmlui.ArtifactBrowser.SimpleSearch.trail">Search</message>
-	<message key="xmlui.ArtifactBrowser.SimpleSearch.head">Search</message>
+	<message key="xmlui.ArtifactBrowser.SimpleSearch.title">Zoek</message>
+	<message key="xmlui.ArtifactBrowser.SimpleSearch.trail">Zoek</message>
+	<message key="xmlui.ArtifactBrowser.SimpleSearch.head">Zoek</message>
 	<message key="xmlui.ArtifactBrowser.SimpleSearch.search_scope">Search Scope</message>
-	<message key="xmlui.ArtifactBrowser.SimpleSearch.full_text_search">Full Text Search</message>
+	<message key="xmlui.ArtifactBrowser.SimpleSearch.full_text_search">Full Text zoeken</message>
 
 	<!-- org.dspace.app.xmlui.artifactbrowser.RestrictedItem.java -->
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.title">This resource is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.trail">Restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_resource">This resource is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_community">This community is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_collection">This collection is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_item">This item is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_bitstream">This bitstream is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_resource">You do not have the credentials to access the restricted resource.</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_community">You do not have the credentials to access the restricted community <b>{0}</b>.</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_collection">You do not have the credentials to access the restricted collection <b>{0}</b>.</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_item">You do not have the credentials to access the restricted item <b>{0}</b>.</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_bitstream">You do not have the credentials to access the restricted bitstream <b>{0}</b>.</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_collection">collection</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.title">Deze bron is beperkt toegankelijk</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.trail">Beperkte toegang</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_resource">Deze hulpbron is beperkt toegankelijk</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_community">Deze community is beperkt toegankelijk</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_collection">Deze collectie is beperkt toegankelijk</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_item">Dit item is beperkt toegankelijk</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.head_bitstream">Deze bitstream is beperkt toegankelijk</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_resource">U hebt onvoldoende bevoegdheden om deze beperkte hulpbron te kunnen bekijken </message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_community">U hebt onvoldoende bevoegdheden om deze beperkte community te kunnen bekijken <b>{0}</b>.</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_collection">U hebt onvoldoende bevoegdheden om deze beperkte collectie te kunnen bekijken <b>{0}</b>.</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_item">U hebt onvoldoende bevoegdheden om dit beperkte item te kunnen bekijken <b>{0}</b>.</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.para_bitstream">U hebt onvoldoende bevoegdheden om deze beperkte bitstream te kunnen bekijken <b>{0}</b>.</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_collection">collectie</message>
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_community">community</message>
 	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_bitstream">bitstream</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_item">item</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_resource">resource</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.unknown">unknown</message>
-        <message key="xmlui.ArtifactBrowser.RestrictedItem.login">Proceed to login screen</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_item">item</message>.
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.type_resource">hulpbron</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.unknown">onbekend</message>
+        <message key="xmlui.ArtifactBrowser.RestrictedItem.login">Ga naar het login scherm</message>
 
-        <message key="xmlui.ArtifactBrowser.RestrictedItem.head_item_withdrawn">This item is withdrawn</message>
-        <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_withdrawn">The selected item is withdrawn and is no longer available.</message>
-        <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_restricted_auth">The selected item is access restricted and requires credentials to view. Please login to access the item.</message>
-        <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_restricted">Your user account does not have the credentials to view this item. Please contact the system administrator if you have any questions.</message>
+    <message key="xmlui.ArtifactBrowser.RestrictedItem.head_item_withdrawn">Dit item is teruggetrokken</message>
+    <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_withdrawn">Het gekozen item is niet langer beschikbaar.</message>
+    <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_restricted_auth">Het gekozen item is beperkt toegankelijk en vereist bevoegdheden om het te kunnen bekijken. Log in om dit item te kunnen bekijken.</message>
+    <message key="xmlui.ArtifactBrowser.RestrictedItem.para_item_restricted">Uw gebruikersaccount heeft onvoldoende bevoegdheden om dit item te kunnen bekijken. Neem contact op met de systeemadministrator als u hierover vragen hebt.</message>
 
 	<!-- Authentication messages used at the top of the login page:  -->
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.auth_header">The item is restricted</message>
-	<message key="xmlui.ArtifactBrowser.RestrictedItem.auth_message">The item you are attempting to access is a restricted item and requires credentials to view. Please login below to access the item.</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.auth_header">Dit item is beperkt toegankelijk</message>
+	<message key="xmlui.ArtifactBrowser.RestrictedItem.auth_message">Het gekozen item is beperkt toegankelijk en vereist bevoegdheden om het te kunnen bekijken. Log in om dit item te kunnen bekijken.</message>
 
-    <message key="xmlui.ArtifactBrowser.StatisticsViewer.choose_month">Monthly Reports</message>
-    <message key="xmlui.ArtifactBrowser.StatisticsViewer.report.title">Statistical Summary</message>
+    <message key="xmlui.ArtifactBrowser.StatisticsViewer.choose_month">Maandelijkse rapportages</message>
+    <message key="xmlui.ArtifactBrowser.StatisticsViewer.report.title">Statistische samenvatting</message>
 
-    <message key="xmlui.ArtifactBrowser.StatisticsViewer.no_report.title">No reports currently available</message>
-    <message key="xmlui.ArtifactBrowser.StatisticsViewer.no_report.text">There are currently no reports available for this service.  Please check back later.</message>
+    <message key="xmlui.ArtifactBrowser.StatisticsViewer.no_report.title">Op dit moment zijn er geen rapporten beschikbaar</message>
+    <message key="xmlui.ArtifactBrowser.StatisticsViewer.no_report.text">Er zijn op dit moment geen rapporten beschikbaar voor deze dienst. Probeer het later nog eens.</message>
 
     <!-- Authentication messages used for bitstream authentication -->
-	<message key="xmlui.BitstreamReader.auth_header">The file is restricted</message>
-	<message key="xmlui.BitstreamReader.auth_message">The file you are attempting to access is a restricted file and requires credentials to view. Please login below to access the file.</message>
+	<message key="xmlui.BitstreamReader.auth_header">Toegang tot dit bestand is beperkt.</message>
+	<message key="xmlui.BitstreamReader.auth_message">Uw heeft bepaalde rechten nodig om dit bestand te raadplegen. Gelieve in te loggen.</message>
 
 	<!-- Export Archive download messages -->
-	<message key="xmlui.ItemExportDownloadReader.auth_header">This export archive is restricted.</message>
-	<message key="xmlui.ItemExportDownloadReader.auth_message">The export archive you are attempting to access is a restricted resource and requires credentials to view. Please login below to access the export archive.</message>
+	<message key="xmlui.ItemExportDownloadReader.auth_header">Dit export archief is beperkt toegankelijk.</message>
+	<message key="xmlui.ItemExportDownloadReader.auth_message">Het export archief dat u probeert te benaderen is beperkt toegenkelijk en vereist bevoegdheden. Log in om dit export archief te kunnen benaderen.</message>
 
 
 	<!-- REQUEST COPY -->
@@ -394,166 +395,168 @@
 
 
 	<!-- General keys used by the EPerson aspect -->
-	<message key="xmlui.EPerson.trail_new_registration">New user registration</message>
-	<message key="xmlui.EPerson.trail_forgot_password">Forgot Password</message>
+	<message key="xmlui.EPerson.trail_new_registration">Nieuwe gebruiker registreren</message>
+	<message key="xmlui.EPerson.trail_forgot_password">Wachtwoord vergeten</message>
 
 	<!-- org.dspace.app.xmlui.eperson.CannotRegister.java -->
-	<message key="xmlui.EPerson.CannotRegister.title">Registration unavailable</message>
-	<message key="xmlui.EPerson.CannotRegister.head">Registration unavailable</message>
-	<message key="xmlui.EPerson.CannotRegister.para1">The configuration of this DSpace repository does not allow registration in this context. Please contact the <a href="../contact">site administrator</a> with questions or comments.</message>
+	<message key="xmlui.EPerson.CannotRegister.title">Registratie niet beschikbaar</message>
+	<message key="xmlui.EPerson.CannotRegister.head">Registratie niet beschikbaar</message>
+	<message key="xmlui.EPerson.CannotRegister.para1">De configuratie van deze DSpace repository staat registratie in deze context niet toe. Neem contact op met de <a href="../contact">site administrator</a> met vragen of opmerkingen.</message>
 
 	<!-- org.dspace.app.xmlui.eperson.EditProfile.java -->
-	<message key="xmlui.EPerson.EditProfile.title_update">Update Profile</message>
-	<message key="xmlui.EPerson.EditProfile.title_create">Create Profile</message>
-	<message key="xmlui.EPerson.EditProfile.trail_update">Update Profile</message>
-	<message key="xmlui.EPerson.EditProfile.head_update">Update Profile</message>
-	<message key="xmlui.EPerson.EditProfile.head_create">Create Profile</message>
-	<message key="xmlui.EPerson.EditProfile.email_address">Email Address</message>
-	<message key="xmlui.EPerson.EditProfile.first_name">First Name</message>
-	<message key="xmlui.EPerson.EditProfile.last_name">Last Name</message>
-	<message key="xmlui.EPerson.EditProfile.telephone">Contact Telephone</message>
-        <message key="xmlui.EPerson.EditProfile.Language">Language</message>
-	<message key="xmlui.EPerson.EditProfile.subscriptions">Subscriptions</message>
-	<message key="xmlui.EPerson.EditProfile.subscriptions_help">You may subscribe to collections to receive daily e-mail alerts of new items added. You can subscribe to as many or as few collections as you wish. Another alternative to daily e-mail alerts is to use the RSS feeds available for all collections.</message>
-	<message key="xmlui.EPerson.EditProfile.email_subscriptions">Email Subscriptions</message>
-	<message key="xmlui.EPerson.EditProfile.select_collection">( Select Collection )</message>
-	<message key="xmlui.EPerson.EditProfile.update_password_instructions">Optionally, you can enter a new password in the box below, and confirm it by typing it again into the second box. It should be at least six characters long.</message>
-	<message key="xmlui.EPerson.EditProfile.create_password_instructions">Please enter a password in the box below, and confirm it by typing it again into the second box. It should be at least six characters long.</message>
-	<message key="xmlui.EPerson.EditProfile.password">Password</message>
-	<message key="xmlui.EPerson.EditProfile.confirm_password">Retype to confirm</message>
-	<message key="xmlui.EPerson.EditProfile.submit_update">Complete Registration</message>
-	<message key="xmlui.EPerson.EditProfile.submit_create">Update Profile</message>
-	<message key="xmlui.EPerson.EditProfile.error_required">This field is required</message>
-	<message key="xmlui.EPerson.EditProfile.error_invalid_password">Choose a password at least 6 characters long</message>
-	<message key="xmlui.EPerson.EditProfile.error_unconfirmed_password">Please retype your password to confirm</message>
-	<message key="xmlui.EPerson.EditProfile.head_auth">Authorization groups you belong to</message>
-	<message key="xmlui.EPerson.EditProfile.head_identify">Identify</message>
+	<message key="xmlui.EPerson.EditProfile.title_update">Update profiel</message>
+	<message key="xmlui.EPerson.EditProfile.title_create">Maak profiel</message>
+	<message key="xmlui.EPerson.EditProfile.trail_update">Update profiel</message>
+	<message key="xmlui.EPerson.EditProfile.head_update">Update profiel</message>
+	<message key="xmlui.EPerson.EditProfile.head_create">Maak profiel</message>
+	<message key="xmlui.EPerson.EditProfile.email_address">Emailadres</message>
+	<message key="xmlui.EPerson.EditProfile.first_name">Voornaam</message>
+	<message key="xmlui.EPerson.EditProfile.last_name">Achternaam</message>
+	<message key="xmlui.EPerson.EditProfile.telephone">Telefoon</message>
+        <message key="xmlui.EPerson.EditProfile.Language">Taal</message>
+	<message key="xmlui.EPerson.EditProfile.subscriptions">Abonnementen</message>
+	<message key="xmlui.EPerson.EditProfile.subscriptions_help">U kunt zich abonneren op eenn collectie om dagelijks e-mail alerts over nieuw toegevoegde items te krijgen. U kunt zich op zoveel collecties abonneren als u wenst. Een alternatief voor dagelijkse e-mail alerts is het gebruik van RSS feeds die voor alle collecties beschikbaar zijn.</message>
+	<message key="xmlui.EPerson.EditProfile.email_subscriptions">Email abonnementen</message>
+	<message key="xmlui.EPerson.EditProfile.select_collection">( Kies collectie )</message>
+	<message key="xmlui.EPerson.EditProfile.update_password_instructions">Eventueel kunt u in onderstaande box een wachtwoord opgeven, en dit bevestigen door het in de tweede box nogmaals te typen. Het wachtwoord moet minstens 6 tekens lang zijn.</message>
+	<message key="xmlui.EPerson.EditProfile.create_password_instructions">Geef aub een wachtwoord op in onderstaande box, en bevestig dit door het in de tweede box nogmaals te typen. Het wachtwoord moet minstens 6 tekens lang zijn..</message>
+	<message key="xmlui.EPerson.EditProfile.password">Wachtwoord</message>
+	<message key="xmlui.EPerson.EditProfile.confirm_password">Type nogmaals om te bevestigen</message>
+	<message key="xmlui.EPerson.EditProfile.submit_update">Voltooi de registratie</message>
+	<message key="xmlui.EPerson.EditProfile.submit_create">Update Profiel</message>
+	<message key="xmlui.EPerson.EditProfile.error_required">Dit veld is verplicht</message>
+	<message key="xmlui.EPerson.EditProfile.error_invalid_password">Kies een wachtwoord van minstens 6 tekens lang</message>
+	<message key="xmlui.EPerson.EditProfile.error_unconfirmed_password">Bevestig het wachtwoord</message>
+	<message key="xmlui.EPerson.EditProfile.head_auth">Authorisatiegroepen waartoe u behoort</message>
+	<message key="xmlui.EPerson.EditProfile.head_identify">Identificeer</message>
 	<message key="xmlui.EPerson.EditProfile.head_security">Security</message>
 
 	<!-- org.dspace.app.xmlui.eperson.EPersonUtils.java -->
-	<message key="xmlui.EPerson.EPersonUtils.register_verify_email">Verify Email</message>
-	<message key="xmlui.EPerson.EPersonUtils.register_create_profile">Create Profile</message>
-	<message key="xmlui.EPerson.EPersonUtils.register_finished">Finished</message>
-	<message key="xmlui.EPerson.EPersonUtils.forgot_verify_email">Verify Email</message>
-	<message key="xmlui.EPerson.EPersonUtils.forgot_reset_password">Reset Password</message>
-	<message key="xmlui.EPerson.EPersonUtils.forgot_finished">Finished</message>
+	<message key="xmlui.EPerson.EPersonUtils.register_verify_email">Controleer email</message>
+	<message key="xmlui.EPerson.EPersonUtils.register_create_profile">Maak profiel</message>
+	<message key="xmlui.EPerson.EPersonUtils.register_finished">Klaar</message>
+	<message key="xmlui.EPerson.EPersonUtils.forgot_verify_email">Controleer email</message>
+	<message key="xmlui.EPerson.EPersonUtils.forgot_reset_password">Reset wachtwoord</message>
+	<message key="xmlui.EPerson.EPersonUtils.forgot_finished">Klaar</message>
 
 	<!-- org.dspace.app.xmlui.eperson.ForgotPasswordFinished.java -->
-	<message key="xmlui.EPerson.ForgotPasswordFinished.title">Password reset</message>
-	<message key="xmlui.EPerson.ForgotPasswordFinished.head">Password reset</message>
-	<message key="xmlui.EPerson.ForgotPasswordFinished.para1">Your password has been reset.</message>
+	<message key="xmlui.EPerson.ForgotPasswordFinished.title">Reset wachtwoord</message>
+	<message key="xmlui.EPerson.ForgotPasswordFinished.head">Wachtwoord reset</message>
+	<message key="xmlui.EPerson.ForgotPasswordFinished.para1">Uw wachtwoord is gereset.</message>
 
 	<!-- org.dspace.app.xmlui.eperson.InvalidToken.java -->
-	<message key="xmlui.EPerson.InvalidToken.title">Invalid token</message>
-	<message key="xmlui.EPerson.InvalidToken.trail">Invalid token</message>
-	<message key="xmlui.EPerson.InvalidToken.head">Invalid token</message>
-	<message key="xmlui.EPerson.InvalidToken.para1">The URL you provided is invalid. The URL may have been broken across multiple lines in your email client, like this:</message>
-	<message key="xmlui.EPerson.InvalidToken.para2">If so, copy and paste the entire URL directly into your browser's address bar, rather than simply clicking on the link. The address bar should then contain something like:</message>
+	<message key="xmlui.EPerson.InvalidToken.title">Ongeldig token</message>
+	<message key="xmlui.EPerson.InvalidToken.trail">Ongeldig token</message>
+	<message key="xmlui.EPerson.InvalidToken.head">Ongeldig token</message>
+	<message key="xmlui.EPerson.InvalidToken.para1">De URL die u hebt opgegeven is ongeldig. De URL kan door uw email client in meerdere regels gesplitst zijn, bijvoorbeeld zo:</message>
+	<message key="xmlui.EPerson.InvalidToken.para2">Kopieer en plak in dat geval de gehele URL rechtstreeks in de adresregel van uw browser, in plaats van op de link te klikken. De adresregel moet er dan ongeveer zo uitzien:</message>
 
 	<!-- org.dspace.app.xmlui.eperson.Navigation.java -->
-	<message key="xmlui.EPerson.Navigation.my_account">My Account</message>
-	<message key="xmlui.EPerson.Navigation.profile">Profile</message>
-	<message key="xmlui.EPerson.Navigation.logout">Logout</message>
-	<message key="xmlui.EPerson.Navigation.login">Login</message>
-	<message key="xmlui.EPerson.Navigation.register">Register</message>
+	<message key="xmlui.EPerson.Navigation.my_account">Mijn account</message>
+	<message key="xmlui.EPerson.Navigation.profile">Profiel</message>
+	<message key="xmlui.EPerson.Navigation.logout">Uitloggen</message>
+	<message key="xmlui.EPerson.Navigation.login">Inloggen</message>
+	<message key="xmlui.EPerson.Navigation.register">Registreren</message>
 
 	<!-- org.dspace.app.xmlui.eperson.PasswordLogin.java -->
-	<message key="xmlui.EPerson.PasswordLogin.title">Sign in</message>
-	<message key="xmlui.EPerson.PasswordLogin.trail">Sign in</message>
-	<message key="xmlui.EPerson.PasswordLogin.head1">Sign in to DSpace</message>
-	<message key="xmlui.EPerson.PasswordLogin.title">Sign in</message>
-	<message key="xmlui.EPerson.PasswordLogin.email_address">Username</message>
-	<message key="xmlui.EPerson.PasswordLogin.error_bad_login">The username and/or password supplied were not valid.</message>
-	<message key="xmlui.EPerson.PasswordLogin.password">Password</message>
-	<message key="xmlui.EPerson.PasswordLogin.token_eid_link"> Log in using Token or eID</message>
-	<message key="xmlui.EPerson.PasswordLogin.submit">Sign in</message>
-	<message key="xmlui.EPerson.PasswordLogin.head2">Register new user</message>
-	<message key="xmlui.EPerson.PasswordLogin.para1">Register an account to subscribe to collections for email updates, and submit new items to DSpace.</message>
-	<message key="xmlui.EPerson.PasswordLogin.register_link">Click here to register.</message>
+	<message key="xmlui.EPerson.PasswordLogin.title">Inloggen</message>
+	<message key="xmlui.EPerson.PasswordLogin.trail">Inloggen</message>
+	<message key="xmlui.EPerson.PasswordLogin.head1">Inloggen in DSpace</message>
+	<message key="xmlui.EPerson.PasswordLogin.title">Inloggen</message>
+	<message key="xmlui.EPerson.PasswordLogin.email_address">Emailadres</message>
+	<message key="xmlui.EPerson.PasswordLogin.error_bad_login">Het opgegeven emailadres en/of wachtwoord zijn ongeldig.</message>
+	<message key="xmlui.EPerson.PasswordLogin.password">Wachtwoord</message>
+	<message key="xmlui.EPerson.PasswordLogin.forgot_link"> Wachtwoord vergeten?</message>
+	<message key="xmlui.EPerson.PasswordLogin.token_eid_link"> Log in met Token of eID</message>
+	<message key="xmlui.EPerson.PasswordLogin.submit">Inloggen</message>
+	<message key="xmlui.EPerson.PasswordLogin.head2">Nieuwe gebruiker registreren</message>
+	<message key="xmlui.EPerson.PasswordLogin.para1">Maak een account om nieuwe items in DSpace te kunnen toevoegen, en om u te kunnen abonneren op collecties voor email updates.</message>
+	<message key="xmlui.EPerson.PasswordLogin.register_link">Klik hier om te registreren.</message>
 
 	<!-- org.dspace.app.xmlui.eperson.LDAPLogin.java -->
-	<message key="xmlui.EPerson.LDAPLogin.title">Sign in</message>
-	<message key="xmlui.EPerson.LDAPLogin.trail">Sign in</message>
-	<message key="xmlui.EPerson.LDAPLogin.head1">Sign in to DSpace</message>
-	<message key="xmlui.EPerson.LDAPLogin.title">Sign in</message>
-	<message key="xmlui.EPerson.LDAPLogin.username">User Name</message>
-	<message key="xmlui.EPerson.LDAPLogin.error_bad_login">The user name and/or password supplied were not valid.</message>
-	<message key="xmlui.EPerson.LDAPLogin.password">Password</message>
-	<message key="xmlui.EPerson.LDAPLogin.submit">Sign in</message>
+	<message key="xmlui.EPerson.LDAPLogin.title">Inloggen</message>
+	<message key="xmlui.EPerson.LDAPLogin.trail">Inloggen</message>
+	<message key="xmlui.EPerson.LDAPLogin.head1">Inloggen in DSpace</message>
+	<message key="xmlui.EPerson.LDAPLogin.title">Inloggen</message>
+	<message key="xmlui.EPerson.LDAPLogin.username">Gebruikersnaam</message>
+	<message key="xmlui.EPerson.LDAPLogin.error_bad_login">Het opgegeven emailadres en/of wachtwoord zijn ongeldig.</message>
+	<message key="xmlui.EPerson.LDAPLogin.password">Wachtwoord</message>
+	<message key="xmlui.EPerson.LDAPLogin.submit">Inloggen</message>
 
 	<!-- org.dspace.app.xmlui.eperson.LoginChooser.java -->
-	<message key="xmlui.EPerson.LoginChooser.title">Choose a Login Method</message>
-	<message key="xmlui.EPerson.LoginChooser.trail">Choose Login</message>
-	<message key="xmlui.EPerson.LoginChooser.head1">Choose a Login Method</message>
+	<message key="xmlui.EPerson.LoginChooser.title">Kies een loginmethode</message>
+	<message key="xmlui.EPerson.LoginChooser.trail">Kies login</message>
+	<message key="xmlui.EPerson.LoginChooser.head1">Kies een loginmethode</message>
 	<message key="xmlui.EPerson.LoginChooser.para1">Log in via:</message>
-	<message key="org.dspace.authenticate.ShibAuthentication.title">Shibboleth Authentication</message>
-	<message key="org.dspace.eperson.LDAPAuthentication.title">LDAP Authentication</message>
-	<message key="org.dspace.eperson.PasswordAuthentication.title">Password Authentication</message>
-	<message key="org.dspace.eperson.X509Authentication.title">Web Certificate Authentication</message>
+	<message key="org.dspace.authenticate.ShibAuthentication.title">Shibboleth authenticatie</message>
+	<message key="org.dspace.eperson.LDAPAuthentication.title">LDAP authenticatie</message>
+	<message key="org.dspace.eperson.PasswordAuthentication.title">Wachtwoord authenticatie</message>
+	<message key="org.dspace.eperson.X509Authentication.title">Webcertificaat authenticatie</message>
+
     <message key="org.dspace.eperson.OpenAMPasswordAuthentication.title">OpenAM Authentication</message>
 
 	<!-- org.dspace.app.xmlui.eperson.FailedAuthentication -->
-	<message key="xmlui.EPerson.FailedAuthentication.BadCreds">The credentials provided are invalid.</message>
-	<message key="xmlui.EPerson.FailedAuthentication.BadArgs">Unable to authenticate due to invalid arguments received.</message>
-	<message key="xmlui.EPerson.FailedAuthentication.NoSuchUser">A user was not found with the credentials provided.</message>
-	<message key="xmlui.EPerson.FailedAuthentication.title">Authentication Failed</message>
-    <message key="xmlui.EPerson.FailedAuthentication.trail">Failed Authentication</message>
-    <message key="xmlui.EPerson.FailedAuthentication.h1">Authentication Failed</message>
+	<message key="xmlui.EPerson.FailedAuthentication.BadCreds">De ingevoerde authenticatiegegevens zijn ongeldig.</message>
+	<message key="xmlui.EPerson.FailedAuthentication.BadArgs">Geen authenticatie mogelijk als gevolg van ongeldige gegevens.</message>
+	<message key="xmlui.EPerson.FailedAuthentication.NoSuchUser">Geen gebruker gevonden met deze authentiecatiegegevens.</message>
+	<message key="xmlui.EPerson.FailedAuthentication.title">Authenticatie mislukt</message>
+    <message key="xmlui.EPerson.FailedAuthentication.trail">Mislukte authentication</message>
+    <message key="xmlui.EPerson.FailedAuthentication.h1">Authenticatie mislukt</message>
 
 	<!-- Login xml files -->
-	<message key="xmlui.eperson.noAuthMethod.head">No Authentication Method Found</message>
-	<message key="xmlui.eperson.noAuthMethod.p1">No authentication method was found.  Please contact the site administrator.</message>
-	<message key="xmlui.eperson.shibbLoginFailure.head">Shibboleth Login Failed</message>
-	<message key="xmlui.eperson.shibbLoginFailure.p1">Shibboleth authentication not available at this time. Please contact the site administrator.</message>
+	<message key="xmlui.eperson.noAuthMethod.head">Geen authenticatiemethode gevonden</message>
+	<message key="xmlui.eperson.noAuthMethod.p1">Geen authenticatiemethode gevonden. Neem aub contact op met de site administrator.</message>
+	<message key="xmlui.eperson.shibbLoginFailure.head">Shibboleth login mislukt</message>
+	<message key="xmlui.eperson.shibbLoginFailure.p1">Shibboleth authenticatie op dit moment niet beschikbaar. Neem aub contact op met de site administrator.</message>
 
 	<!-- org.dspace.app.xmlui.eperson.ProfileUpdated.java -->
-	<message key="xmlui.EPerson.ProfileUpdated.title">Profile updated</message>
-	<message key="xmlui.EPerson.ProfileUpdated.trail">Update profile</message>
-	<message key="xmlui.EPerson.ProfileUpdated.head">Profile updated</message>
-	<message key="xmlui.EPerson.ProfileUpdated.para1">Your profile information has been updated.</message>
+	<message key="xmlui.EPerson.ProfileUpdated.title">Profiel bijgewerkt</message>
+	<message key="xmlui.EPerson.ProfileUpdated.trail">Update profiel</message>
+	<message key="xmlui.EPerson.ProfileUpdated.head">Profile bijgewerkt</message>
+	<message key="xmlui.EPerson.ProfileUpdated.para1">Uw profielinformatie is bijgewerkt.</message>
 
 	<!-- org.dspace.app.xmlui.eperson.RegistrationFinished.java -->
-	<message key="xmlui.EPerson.RegistrationFinished.title">Registration finished</message>
-	<message key="xmlui.EPerson.RegistrationFinished.head">Registration Finished</message>
-	<message key="xmlui.EPerson.RegistrationFinished.para1">You're now registered to use the DSpace system.  You can subscribe to collections to receive email updates about new items.</message>
+	<message key="xmlui.EPerson.RegistrationFinished.title">Registratie voltooid</message>
+	<message key="xmlui.EPerson.RegistrationFinished.head">Registratie voltooid</message>
+	<message key="xmlui.EPerson.RegistrationFinished.para1">U bent nu geregistreerd in het DSpace systeem.  U kunt zich abonneren op collecties om email updates over nieuw toegevoegde items te ontvangen.</message>
 
 	<!-- org.dspace.app.xmlui.eperson.ResetPassword.java -->
-	<message key="xmlui.EPerson.ResetPassword.title">Reset password</message>
-	<message key="xmlui.EPerson.ResetPassword.head">Reset password</message>
-	<message key="xmlui.EPerson.ResetPassword.para1">Please enter a new password into the box below, and confirm it by typing it again into the second box. It should be at least six characters long.</message>
-	<message key="xmlui.EPerson.ResetPassword.email_address">Email Address</message>
-	<message key="xmlui.EPerson.ResetPassword.new_password">New password</message>
-	<message key="xmlui.EPerson.ResetPassword.confirm_password">Retype to Confirm</message>
-	<message key="xmlui.EPerson.ResetPassword.submit">Reset password</message>
-	<message key="xmlui.EPerson.ResetPassword.error_invalid_password">Choose a password at least 6 characters long</message>
-	<message key="xmlui.EPerson.ResetPassword.error_unconfirmed_password">Please retype your password to confirm</message>
+	<message key="xmlui.EPerson.ResetPassword.title">Reset wachtwoord</message>
+	<message key="xmlui.EPerson.ResetPassword.head">Reset wachtwoord</message>
+	<message key="xmlui.EPerson.ResetPassword.para1">Vul aub een nieuw wachtwoord in in onderstaande box, en bevestig dit door het in de tweede box nogmaals te typen. Het wachtwoord moet minstens 6 tekens lang zijn.</message>
+	<message key="xmlui.EPerson.ResetPassword.email_address">Emailadres</message>
+	<message key="xmlui.EPerson.ResetPassword.new_password">Nieuw wachtwoord</message>
+	<message key="xmlui.EPerson.ResetPassword.confirm_password">Type nogmaals om te bevestigen</message>
+	<message key="xmlui.EPerson.ResetPassword.submit">Reset wachtwoord</message>
+	<message key="xmlui.EPerson.ResetPassword.error_invalid_password">Kies een wachtwoord van minstens 6 tekens</message>
+	<message key="xmlui.EPerson.ResetPassword.error_unconfirmed_password">Type uw wachtwoord nogmaal om te bevestigen</message>
 
 	<!-- org.dspace.app.xmlui.eperson.StartForgotPassword.java -->
-	<message key="xmlui.EPerson.StartForgotPassword.title">Forgot Password</message>
-	<message key="xmlui.EPerson.StartForgotPassword.head">Forgot Password</message>
-	<message key="xmlui.EPerson.StartForgotPassword.para1">Enter the email address you provided when you registered with DSpace. An email will be sent to that address with further instructions.</message>
-	<message key="xmlui.EPerson.StartForgotPassword.email_address">Email Address</message>
-	<message key="xmlui.EPerson.StartForgotPassword.email_address_help">Enter the same address used when registering.</message>
-	<message key="xmlui.EPerson.StartForgotPassword.error_not_found">Email address not found.</message>
-	<message key="xmlui.EPerson.StartForgotPassword.submit">Send info</message>
+	<message key="xmlui.EPerson.StartForgotPassword.title">Wachtwoord vergeten</message>
+	<message key="xmlui.EPerson.StartForgotPassword.head">Wachtwoord vergeten</message>
+	<message key="xmlui.EPerson.StartForgotPassword.para1">Geef het emailadres op dat u bij uw DSpace-registratie gebruikt hebt. U ontvangt op dat adres een email met verdere instructies.</message>
+	<message key="xmlui.EPerson.StartForgotPassword.email_address">Emailadres</message>
+	<message key="xmlui.EPerson.StartForgotPassword.email_address_help">Geef hetzelfde emailadres op als tijdens uw registratie.</message>
+	<message key="xmlui.EPerson.StartForgotPassword.error_not_found">Emailadres niet gevonden.</message>
+	<message key="xmlui.EPerson.StartForgotPassword.submit">Verstuur info</message>
 
 	<!-- org.dspace.app.xmlui.eperson.StartRegistration.java -->
-	<message key="xmlui.EPerson.StartRegistration.title">New user registration</message>
-	<message key="xmlui.EPerson.StartRegistration.head1">Email already in use</message>
-	<message key="xmlui.EPerson.StartRegistration.para1">That email address is already in use by another account. If you want to reset the password for this account, click the reset password button below.</message>
-	<message key="xmlui.EPerson.StartRegistration.reset_password_for">Reset password for</message>
-	<message key="xmlui.EPerson.StartRegistration.submit_reset">Reset password</message>
-	<message key="xmlui.EPerson.StartRegistration.head2">New user registration</message>
-	<message key="xmlui.EPerson.StartRegistration.para2">Register an account to subscribe to collections for email updates, and submit new items to DSpace.</message>
-	<message key="xmlui.EPerson.StartRegistration.email_address">Email Address</message>
-	<message key="xmlui.EPerson.StartRegistration.email_address_help">This address will be verified and used as your login name.</message>
-	<message key="xmlui.EPerson.StartRegistration.error_bad_email">Unable to send email to this address.</message>
-	<message key="xmlui.EPerson.StartRegistration.submit_register">Register</message>
+	<message key="xmlui.EPerson.StartRegistration.title">Registratie nieuwe gebruiker</message>
+	<message key="xmlui.EPerson.StartRegistration.head1">Email reeds in gebruik</message>
+	<message key="xmlui.EPerson.StartRegistration.para1">Dit emailadres is al in gebruik door een ander account. Als u het wachtwoord voor dit account wil resetten, klik dan op onderstaande reset wachtwoord knop.</message>
+	<message key="xmlui.EPerson.StartRegistration.reset_password_for">Reset wachtwoord voor</message>
+	<message key="xmlui.EPerson.StartRegistration.submit_reset">Reset wachtwoord</message>
+	<message key="xmlui.EPerson.StartRegistration.head2">Registratie nieuwe gebruiker</message>
+	<message key="xmlui.EPerson.StartRegistration.para2">Maak een account om nieuwe items in DSpace te kunnen toevoegen, en om u te kunnen abonneren op collecties voor email updates.</message>
+	<message key="xmlui.EPerson.StartRegistration.email_address">Emailadres</message>
+	<message key="xmlui.EPerson.StartRegistration.email_address_help">Dit adres zal geverifieerd worden en zal als uw login naam dienen.</message>
+	<message key="xmlui.EPerson.StartRegistration.error_bad_email">Kan geen mail naar dit adres sturen.</message>
+	<message key="xmlui.EPerson.StartRegistration.submit_register">Registreer</message>
 
 	<!-- org.dspace.app.xmlui.eperson.VerifyEmail.java -->
-	<message key="xmlui.EPerson.VerifyEmail.title">Verification email sent</message>
-	<message key="xmlui.EPerson.VerifyEmail.head">Verification email sent</message>
-	<message key="xmlui.EPerson.VerifyEmail.para">An email has been sent to {0} containing a special URL and further instructions.</message>
+	<message key="xmlui.EPerson.VerifyEmail.title">Verificatiemail gestuurd</message>
+	<message key="xmlui.EPerson.VerifyEmail.head">Verificatiemail gestuurd</message>
+	<message key="xmlui.EPerson.VerifyEmail.para">Er is een email gestuurd naar {0} met een URL en verdere instructies.</message>
 
 
 
@@ -574,147 +577,147 @@
 
 	<!-- general submission aspect messages -->
 	<message key="xmlui.Submission.general.mydspace_home">MyDSpace Home</message>
-	<message key="xmlui.Submission.general.go_mydspace">Go to MyDSpace Home</message>
-	<message key="xmlui.Submission.general.submission.title">Item submission</message>
-	<message key="xmlui.Submission.general.submission.trail">Item submission</message>
-	<message key="xmlui.Submission.general.submission.head">Item submission</message>
-	<message key="xmlui.Submission.general.submission.previous">&lt; Previous</message>
-	<message key="xmlui.Submission.general.submission.save">Save &amp; Exit</message>
-	<message key="xmlui.Submission.general.submission.next">Next &gt;</message>
-	<message key="xmlui.Submission.general.submission.complete">Complete submission</message>
-	<message key="xmlui.Submission.general.workflow.title">Item submission</message>
-	<message key="xmlui.Submission.general.workflow.trail">Item submission</message>
-	<message key="xmlui.Submission.general.workflow.head">Item submission</message>
-	<message key="xmlui.Submission.general.showfull">Show full item record</message>
-	<message key="xmlui.Submission.general.showsimple">Show simple item record</message>
-	<message key="xmlui.Submission.general.default.title">Submission</message>
-	<message key="xmlui.Submission.general.default.trail">Submission</message>
+	<message key="xmlui.Submission.general.go_mydspace">Ga naar MyDSpace Home</message>
+	<message key="xmlui.Submission.general.submission.title">Item invoer</message>
+	<message key="xmlui.Submission.general.submission.trail">Item invoer</message>
+	<message key="xmlui.Submission.general.submission.head">Item invoer</message>
+	<message key="xmlui.Submission.general.submission.previous">&lt; Vorige</message>
+	<message key="xmlui.Submission.general.submission.save">Bewaar &amp; Exit</message>
+	<message key="xmlui.Submission.general.submission.next">Volgende &gt;</message>
+	<message key="xmlui.Submission.general.submission.complete">Voltooi invoer</message>
+	<message key="xmlui.Submission.general.workflow.title">Item invoer</message>
+	<message key="xmlui.Submission.general.workflow.trail">Item invoer</message>
+	<message key="xmlui.Submission.general.workflow.head">Item invoer</message>
+	<message key="xmlui.Submission.general.showfull">Toon volledig item record</message>
+	<message key="xmlui.Submission.general.showsimple">Toon vereenvoudigd item record</message>
+	<message key="xmlui.Submission.general.default.title">Invoer</message>
+	<message key="xmlui.Submission.general.default.trail">Invoer</message>
 
 	<!-- org.dspace.app.xmlui.submission.CollectiovViewer -->
-	<message key="xmlui.Submission.CollectionViewer.link1">Submit a new item to this collection</message>
+	<message key="xmlui.Submission.CollectionViewer.link1">Voer een nieuw item in in deze collectie</message>
 
 	<!-- org.dspace.app.xmlui.submission.Navigation -->
-	<message key="xmlui.Submission.Navigation.submissions">Submissions</message>
+	<message key="xmlui.Submission.Navigation.submissions">Bijdragen</message>
 
 
 	<!-- org.dspace.app.xmlui.Submission.submissions -->
-	<message key="xmlui.Submission.Submissions.title">Submissions &amp; Workflow</message>
-	<message key="xmlui.Submission.Submissions.trail">Submissions</message>
-	<message key="xmlui.Submission.Submissions.head">Submissions &amp; Workflow tasks</message>
-	<message key="xmlui.Submission.Submissions.untitled"><i>Untitled</i></message>
+	<message key="xmlui.Submission.Submissions.title">Bijdragen &amp; Workflow</message>
+	<message key="xmlui.Submission.Submissions.trail">Bijdragen</message>
+	<message key="xmlui.Submission.Submissions.head">Bijdragen &amp; workflow taken</message>
+	<message key="xmlui.Submission.Submissions.untitled"><i>Ongetiteld</i></message>
 	<message key="xmlui.Submission.Submissions.email">email: </message>
 	<!-- Same transformer, workflow section -->
-	<message key="xmlui.Submission.Submissions.workflow_head1">Workflow tasks</message>
-	<message key="xmlui.Submission.Submissions.workflow_info1">These tasks are items that are awaiting approval before they are added to the repository. There are two task queues, one for tasks which you have chosen to accept and another for tasks which have not been taken by anyone yet.</message>
-	<message key="xmlui.Submission.Submissions.workflow_head2">Tasks you own</message>
+	<message key="xmlui.Submission.Submissions.workflow_head1">Workflow taken</message>
+	<message key="xmlui.Submission.Submissions.workflow_info1">Deze taken zijn items die wachten op goedkeuring voordat ze worden toegevoegd aan de repository. Er zijn twee wachtrijen voor taken. Een voor taken die u hebt geaccepteerd, en een voor taken die nog door niemand zijn aangenomen .</message>
+	<message key="xmlui.Submission.Submissions.workflow_head2">Uw taken</message>
 	<message key="xmlui.Submission.Submissions.workflow_column1"></message>
-	<message key="xmlui.Submission.Submissions.workflow_column2">Task</message>
+	<message key="xmlui.Submission.Submissions.workflow_column2">Taak</message>
 	<message key="xmlui.Submission.Submissions.workflow_column3">Item</message>
-	<message key="xmlui.Submission.Submissions.workflow_column4">Collection</message>
-	<message key="xmlui.Submission.Submissions.workflow_column5">Submitter</message>
-	<message key="xmlui.Submission.Submissions.workflow_submit_return">Return selected tasks to the pool</message>
-	<message key="xmlui.Submission.Submissions.workflow_info2">No tasks are assigned to you</message>
-	<message key="xmlui.Submission.Submissions.workflow_head3">Tasks in the pool</message>
-	<message key="xmlui.Submission.Submissions.workflow_submit_take">Take selected tasks</message>
-	<message key="xmlui.Submission.Submissions.workflow_info3">No tasks are in the pool</message>
+	<message key="xmlui.Submission.Submissions.workflow_column4">Collectie</message>
+	<message key="xmlui.Submission.Submissions.workflow_column5">Indiener</message>
+	<message key="xmlui.Submission.Submissions.workflow_submit_return">Zet geselecteerde taken terug in de pool</message>
+	<message key="xmlui.Submission.Submissions.workflow_info2">Er zijn geen taken aan u toegewezen</message>
+	<message key="xmlui.Submission.Submissions.workflow_head3">Taken in de pool</message>
+	<message key="xmlui.Submission.Submissions.workflow_submit_take">Neem geselecteerde taken</message>
+	<message key="xmlui.Submission.Submissions.workflow_info3">Er zijn geen taken in de pool</message>
 	<!-- Same transformer, submissions section -->
-	<message key="xmlui.Submission.Submissions.submit_head1">Submissions</message>
-	<message key="xmlui.Submission.Submissions.submit_info1a">You may </message>
-	<message key="xmlui.Submission.Submissions.submit_info1b">start a new submission.</message>
-	<message key="xmlui.Submission.Submissions.submit_info1c">The submission process includes describing the item and uploading the file(s) comprising it. Each community or collection may set its own submission policy.</message>
-	<message key="xmlui.Submission.Submissions.submit_head2">Unfinished submissions</message>
-	<message key="xmlui.Submission.Submissions.submit_info2a">These are incomplete item submissions. You may also </message>
-	<message key="xmlui.Submission.Submissions.submit_info2b">start another submission</message>
+	<message key="xmlui.Submission.Submissions.submit_head1">Bijdragen</message>
+	<message key="xmlui.Submission.Submissions.submit_info1a">U kunt </message>
+	<message key="xmlui.Submission.Submissions.submit_info1b">Een nieuw invoer starten</message>
+	<message key="xmlui.Submission.Submissions.submit_info1c">Het invoerproces omvat het beschrijven van het item, en het uploaden van bijbehorende bestanden. Elke community of collectie kan eigen invoerbeleid hebben.</message>
+	<message key="xmlui.Submission.Submissions.submit_head2">Onvoltooide invoer</message>
+	<message key="xmlui.Submission.Submissions.submit_info2a">Dit zijn niet complete items. U kunt ook </message>
+	<message key="xmlui.Submission.Submissions.submit_info2b">Een nieuwe invoer starten</message>
 	<message key="xmlui.Submission.Submissions.submit_info2c">.</message>
 	<message key="xmlui.Submission.Submissions.submit_column1"></message>
 	<message key="xmlui.Submission.Submissions.submit_column2">Title</message>
-	<message key="xmlui.Submission.Submissions.submit_column3">Collection</message>
-	<message key="xmlui.Submission.Submissions.submit_column4">Submitter</message>
+	<message key="xmlui.Submission.Submissions.submit_column3">Collectie</message>
+	<message key="xmlui.Submission.Submissions.submit_column4">Indiener</message>
 	<message key="xmlui.Submission.Submissions.submit_head3">Authoring:</message>
-	<message key="xmlui.Submission.Submissions.submit_info3">No submissions left unfinished.</message>
+	<message key="xmlui.Submission.Submissions.submit_info3">Geen incomplete invoer meer.</message>
 	<message key="xmlui.Submission.Submissions.submit_head4">Supervising:</message>
-	<message key="xmlui.Submission.Submissions.submit_submit_remove">Remove selected submissions</message>
+	<message key="xmlui.Submission.Submissions.submit_submit_remove">Verwijder geselecteerde invoer</message>
 	<!-- Same transformer, inprogress section -->
-	<message key="xmlui.Submission.Submissions.progress_head1">Submissions being reviewed</message>
-	<message key="xmlui.Submission.Submissions.progress_info1">These are your completed submissions which are currently being reviewed by collection curators.</message>
-	<message key="xmlui.Submission.Submissions.progress_column1">Title</message>
-	<message key="xmlui.Submission.Submissions.progress_column2">Collection</message>
+	<message key="xmlui.Submission.Submissions.progress_head1">Bijdragen die gereviewed worden</message>
+	<message key="xmlui.Submission.Submissions.progress_info1">Dit zijn uw voltooide bijdragen die momenteel door collectiebeheerders worden gereviewed.</message>
+	<message key="xmlui.Submission.Submissions.progress_column1">Titel</message>
+	<message key="xmlui.Submission.Submissions.progress_column2">Collectie</message>
 	<message key="xmlui.Submission.Submissions.progress_column3">Status</message>
 	<!-- Same transformer, workflow status -->
-	<message key="xmlui.Submission.Submissions.status_0">Submitted</message>
-	<message key="xmlui.Submission.Submissions.status_1">Awaiting reviewer's attention</message>
-	<message key="xmlui.Submission.Submissions.status_2">Submission being reviewed</message>
-	<message key="xmlui.Submission.Submissions.status_3">Awaiting editor's attention</message>
-	<message key="xmlui.Submission.Submissions.status_4">Submission being edited</message>
-	<message key="xmlui.Submission.Submissions.status_5">Awaiting final editor's attention</message>
-	<message key="xmlui.Submission.Submissions.status_6">Submission being edited</message>
-	<message key="xmlui.Submission.Submissions.status_7">Submission has been archived</message>
-	<message key="xmlui.Submission.Submissions.status_unknown">Unknown state</message>
+	<message key="xmlui.Submission.Submissions.status_0">Ingediend</message>
+	<message key="xmlui.Submission.Submissions.status_1">Wachtend op reviewer</message>
+	<message key="xmlui.Submission.Submissions.status_2">Bijdrage wordt gereviewed</message>
+	<message key="xmlui.Submission.Submissions.status_3">Wachtend op redacteur</message>
+	<message key="xmlui.Submission.Submissions.status_4">Bijdrage wordt geredigeerd</message>
+	<message key="xmlui.Submission.Submissions.status_5">Wachtend op eindredacteur</message>
+	<message key="xmlui.Submission.Submissions.status_6">Bijdrage wordt geredigeerd</message>
+	<message key="xmlui.Submission.Submissions.status_7">Bijdrage is gearchiveerd</message>
+	<message key="xmlui.Submission.Submissions.status_unknown">Onbekende status</message>
         <!-- Same transformer, completed submissions section -->
-        <message key="xmlui.Submission.Submissions.completed.head">Archived Submissions</message>
-        <message key="xmlui.Submission.Submissions.completed.info">These are your completed submissions which have been accepted into DSpace.</message>
-        <message key="xmlui.Submission.Submissions.completed.column1">Date accepted</message>
-        <message key="xmlui.Submission.Submissions.completed.column2">Title</message>
-        <message key="xmlui.Submission.Submissions.completed.column3">Collection</message>
-        <message key="xmlui.Submission.Submissions.completed.limit">We've only listed 50 of your archived submissions above. </message>
-        <message key="xmlui.Submission.Submissions.completed.displayall">Display all my archived submissions.</message>
+        <message key="xmlui.Submission.Submissions.completed.head">Gearchiveerde bijdragen</message>
+        <message key="xmlui.Submission.Submissions.completed.info">Dit zijn uw voltooide bijdragen die in DSpace geaccepteerd zijn.</message>
+        <message key="xmlui.Submission.Submissions.completed.column1">Datum geaccepteerd</message>
+        <message key="xmlui.Submission.Submissions.completed.column2">Titel</message>
+        <message key="xmlui.Submission.Submissions.completed.column3">Collectie</message>
+        <message key="xmlui.Submission.Submissions.completed.limit">Slechts 50 van uw gearchiveerde bijdragen worden hierboven getoond. </message>
+        <message key="xmlui.Submission.Submissions.completed.displayall">Toon al mijn gearchiveerde bijdragen.</message>
 
 	<!-- submission progress bar messages -->
-	<message key="xmlui.Submission.submit.progressbar.initial-questions">Initial Questions</message>
-	<message key="xmlui.Submission.submit.progressbar.describe">Describe</message>
+	<message key="xmlui.Submission.submit.progressbar.initial-questions">Initiële vragen</message>
+	<message key="xmlui.Submission.submit.progressbar.describe">Beschrijf</message>
     <message key="xmlui.Submission.submit.progressbar.access">Access</message>
-    <message key="xmlui.Submission.submit.progressbar.upload">Upload</message>
+	<message key="xmlui.Submission.submit.progressbar.upload">Upload</message>
 	<message key="xmlui.Submission.submit.progressbar.verify">Review</message>
 	<message key="xmlui.Submission.submit.progressbar.creative-commons">Creative Commons</message>
-	<message key="xmlui.Submission.submit.progressbar.CClicense">CC License</message>
-    <message key="xmlui.Submission.submit.progressbar.license">License</message>
-	<message key="xmlui.Submission.submit.progressbar.complete">Complete</message>
+	<message key="xmlui.Submission.submit.progressbar.CClicense">CC Licentie</message>
+    <message key="xmlui.Submission.submit.progressbar.license">Licentie</message>
+	<message key="xmlui.Submission.submit.progressbar.complete">Voltooid</message>
 
 	<!-- org.dspace.app.xmlui.Submission.submit.ResumeStep -->
-	<message key="xmlui.Submission.submit.ResumeStep.submit_resume">Resume</message>
+	<message key="xmlui.Submission.submit.ResumeStep.submit_resume">Hervat</message>
 
 	<!-- org.dspace.app.xmlui.Submission.submit.SelectCollection -->
-	<message key="xmlui.Submission.submit.SelectCollection.head">Select a collection</message>
-	<message key="xmlui.Submission.submit.SelectCollection.collection">Collection</message>
-	<message key="xmlui.Submission.submit.SelectCollection.collection_help">Select the collection you wish to submit an item to.</message>
-	<message key="xmlui.Submission.submit.SelectCollection.collection_default">Select a collection...</message>
+	<message key="xmlui.Submission.submit.SelectCollection.head">Selecteer een collectie</message>
+	<message key="xmlui.Submission.submit.SelectCollection.collection">Collectie</message>
+	<message key="xmlui.Submission.submit.SelectCollection.collection_help">Selecteer de collectie waarin u het item wilt plaatsen.</message>
+	<message key="xmlui.Submission.submit.SelectCollection.collection_default">Selecteer een collectie...</message>
 
 	<!-- org.dspace.app.xmlui.Submission.submit.SaveOrRemoveStep -->
-	<message key="xmlui.Submission.submit.SaveOrRemoveStep.head">Save or cancel your submission?</message>
-	<message key="xmlui.Submission.submit.SaveOrRemoveStep.info1">Do you want the submission removed, or do you want to carry on working on it later?  You may return to the submission process if you clicked Exit by accident.</message>
-	<message key="xmlui.Submission.submit.SaveOrRemoveStep.submit_back">Oops, continue submission</message>
-	<message key="xmlui.Submission.submit.SaveOrRemoveStep.submit_save">Save it, I'll work on it later</message>
-	<message key="xmlui.Submission.submit.SaveOrRemoveStep.submit_remove">Remove the submission</message>
+	<message key="xmlui.Submission.submit.SaveOrRemoveStep.head">Bewaar of annuleer uw bijdrage?</message>
+	<message key="xmlui.Submission.submit.SaveOrRemoveStep.info1">Wilt u de bijdrage verwijderen, of wilt u er later aan verder werken?  U kunt naar het bijdrageproces terugkeren als u per ongeluk op Uitgang geklikt hebt.</message>
+	<message key="xmlui.Submission.submit.SaveOrRemoveStep.submit_back">Oeps, ga verder met bijdrage</message>
+	<message key="xmlui.Submission.submit.SaveOrRemoveStep.submit_save">Bewaar, ik werk er later verder aan</message>
+	<message key="xmlui.Submission.submit.SaveOrRemoveStep.submit_remove">Verwijder de bijdrage</message>
 
 
 	<!-- org.dpspace.app.xmlui.Submission.submit.InitialQuestionsStep -->
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.head">Initial Questions</message>
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.important_note">Important Note: </message>
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.and"> and </message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.head">Initiële vragen</message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.important_note">Belangrijk: </message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.and"> en </message>
 	<message key="xmlui.Submission.submit.InitialQuestionsStep.separator">, </message>
 	<message key="xmlui.Submission.submit.InitialQuestionsStep.open_set"> (</message>
 	<message key="xmlui.Submission.submit.InitialQuestionsStep.close_set">)</message>
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.multiple_titles">Multiple titles</message>
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.multiple_titles_help">The item has more than one title, <i>e.g. a translated title</i></message>
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.multiple_titles_note">If the checkbox above is unchecked then the following title(s) will be removed from the item: </message>
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.published_before">Published</message>
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.published_before_help">The item has been published or publicly distributed before</message>
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.published_before_note">If the checkbox above is unchecked then the following will be removed from the item:</message>
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.date_issued">Date Issued</message>
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.citation">Citation</message>
-	<message key="xmlui.Submission.submit.InitialQuestionsStep.publisher">Publisher</message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.multiple_titles">Meerdere titels</message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.multiple_titles_help">Dit item heeft meer dan één titel, <i>bv. een vertallde titel</i></message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.multiple_titles_note">Als de checkbox hierboven niet is aangevinkt, word(t)(en) de volgende titel(s)verwijderd uit het item: </message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.published_before">Gepubliceerd</message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.published_before_help">Dit item is eerder gepubliceerd of gedistibueerd</message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.published_before_note">Als de checkbox hierboven niet is aangevinkt wordt het navolgende uit het item verwijderd:</message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.date_issued">Datum uitgave</message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.citation">Citatie</message>
+	<message key="xmlui.Submission.submit.InitialQuestionsStep.publisher">Uitgever</message>
 
 	<!-- org.dspace.app.xmlui.Submission.submit.DescribeStep -->
-	<message key="xmlui.Submission.submit.DescribeStep.head">Describe Item</message>
-	<message key="xmlui.Submission.submit.DescribeStep.unknown_field">Error: Unknown field type</message>
-	<message key="xmlui.Submission.submit.DescribeStep.required_field">This field is required</message>
-	<message key="xmlui.Submission.submit.DescribeStep.last_name_help">Last name, <i>e.g. Smith</i></message>
-	<message key="xmlui.Submission.submit.DescribeStep.first_name_help">First name(s) + "Jr", <i>e.g. Donald Jr</i></message>
-	<message key="xmlui.Submission.submit.DescribeStep.year">Year</message>
-	<message key="xmlui.Submission.submit.DescribeStep.month">Month</message>
-	<message key="xmlui.Submission.submit.DescribeStep.day">Day</message>
-	<message key="xmlui.Submission.submit.DescribeStep.series_name">Series Name</message>
-	<message key="xmlui.Submission.submit.DescribeStep.report_no">Report or paper No.</message>
+	<message key="xmlui.Submission.submit.DescribeStep.head">Beschrijf Item</message>
+	<message key="xmlui.Submission.submit.DescribeStep.unknown_field">Fout: Onbekend veldtype</message>
+	<message key="xmlui.Submission.submit.DescribeStep.required_field">Dit veld is verplicht</message>
+	<message key="xmlui.Submission.submit.DescribeStep.last_name_help">Achternaam, <i>bv. Janssen</i></message>
+	<message key="xmlui.Submission.submit.DescribeStep.first_name_help">Voorna(a)m(en) + "Jr", <i>bv. Donald Jr</i></message>
+	<message key="xmlui.Submission.submit.DescribeStep.year">Jaar</message>
+	<message key="xmlui.Submission.submit.DescribeStep.month">Maand</message>
+	<message key="xmlui.Submission.submit.DescribeStep.day">Dag</message>
+	<message key="xmlui.Submission.submit.DescribeStep.series_name">Naam van de serie</message>
+	<message key="xmlui.Submission.submit.DescribeStep.report_no">Report of paper Nr.</message>
 	<message key="xmlui.Submission.submit.DescribeStep.controlledvocabulary.link">Subject Categories</message>
 	<message key="xmlui.Submission.submit.DescribeStep.controlledvocabulary.title">Subject Categories</message>
 	<message key="xmlui.Submission.submit.DescribeStep.controlledvocabulary.filter.label">Filter subjects</message>
@@ -763,33 +766,33 @@
     <!-- org.dspace.app.xmlui.Submission.submit.EditPolicyStep -->
     <message key="xmlui.Submission.submit.EditPolicyStep.head">Edit Policy</message>
 
-    <!-- org.dspace.app.xmlui.Submission.submit.UploadStep -->
-	<message key="xmlui.Submission.submit.UploadStep.head">Upload File(s)</message>
-	<message key="xmlui.Submission.submit.UploadStep.file">File</message>
-	<message key="xmlui.Submission.submit.UploadStep.file_help">Please enter the full path of the file on your computer corresponding to your item. If you click "Browse...", a new window will allow you to select the file from your computer.</message>
-	<message key="xmlui.Submission.submit.UploadStep.file_error">The item must contain at least one file.</message>
-	<message key="xmlui.Submission.submit.UploadStep.upload_error">There was a problem uploading your file.  Either the filename you entered was incorrect, there was a network problem which prevented the file from reaching us correctly, or you have attempted to upload a file format marked for internal system use only.  Please try again.</message>
-	<message key="xmlui.Submission.submit.UploadStep.virus_error">The file has not been uploaded as it appears to contain a virus. Please contact the system administrator.</message>
-    <message key="xmlui.Submission.submit.UploadStep.virus_checker_error">A technical problem was encountered whilst attempting to scan the file for viruses. Please contact the system administrator.</message>
-    <message key="xmlui.Submission.submit.UploadStep.description">File Description</message>
-	<message key="xmlui.Submission.submit.UploadStep.description_help">Optionally, provide a brief description of the file, for example "<i>Main article</i>", or "<i>Experiment data readings</i>".</message>
-	<message key="xmlui.Submission.submit.UploadStep.submit_upload">Upload file &amp; add another</message>
-	<message key="xmlui.Submission.submit.UploadStep.head2">Files Uploaded</message>
+	<!-- org.dspace.app.xmlui.Submission.submit.UploadStep -->
+	<message key="xmlui.Submission.submit.UploadStep.head">Upload bestand(en)</message>
+	<message key="xmlui.Submission.submit.UploadStep.file">Bestand</message>
+	<message key="xmlui.Submission.submit.UploadStep.file_help">Geef het volledige pad op naar het bestand op uw computer. Als u "Browse..." klikt, kunt u in een nieuw venster het bestand op uw computer opzoeken en selecteren.</message>
+	<message key="xmlui.Submission.submit.UploadStep.file_error">Het item moet minstens één bestand hebben.</message>
+	<message key="xmlui.Submission.submit.UploadStep.upload_error">Er was een probleem met het uploaden van uw bestand.  De bestandsnaam was incorrect, of er was een netwerkprobleem, of u hebt geprobeerd een bestand te uploaden in een formaat dat alleen voor intern systeemgebruik bedoeld is.  Probeer het aub opnieuw.</message>
+	<message key="xmlui.Submission.submit.UploadStep.virus_error">Het bestand is niet geüpload omdat het een virus lijkt te bevatten. Neem aub contact op met de system administrator.</message>
+    <message key="xmlui.Submission.submit.UploadStep.virus_checker_error">Er was een technisch probleem bij het scanne van het bestand op virussen. Neem aub contact op met de system administrator.</message>
+    <message key="xmlui.Submission.submit.UploadStep.description">Beschrijving van het bestand</message>
+	<message key="xmlui.Submission.submit.UploadStep.description_help">Hier kunt u eventueel een korte beschrijving opgeven, bv. "<i>Scriptietekst</i>", of "<i>Scriptiedata</i>".</message>
+	<message key="xmlui.Submission.submit.UploadStep.submit_upload">Upload &amp; voeg nog een bestand toe</message>
+	<message key="xmlui.Submission.submit.UploadStep.head2">Bestanden geüpload</message>
 	<message key="xmlui.Submission.submit.UploadStep.column0">Primary</message>
 	<message key="xmlui.Submission.submit.UploadStep.column1">  </message>
-	<message key="xmlui.Submission.submit.UploadStep.column2">File</message>
-	<message key="xmlui.Submission.submit.UploadStep.column3">Size</message>
-	<message key="xmlui.Submission.submit.UploadStep.column4">Description</message>
+	<message key="xmlui.Submission.submit.UploadStep.column2">Bestand</message>
+	<message key="xmlui.Submission.submit.UploadStep.column3">Omvang</message>
+	<message key="xmlui.Submission.submit.UploadStep.column4">Beschrijving</message>
 	<message key="xmlui.Submission.submit.UploadStep.column5">Format</message>
 	<message key="xmlui.Submission.submit.UploadStep.column6"></message>
-	<message key="xmlui.Submission.submit.UploadStep.unknown_name">Unknown</message>
-	<message key="xmlui.Submission.submit.UploadStep.unknown_format">unknown format</message>
-	<message key="xmlui.Submission.submit.UploadStep.supported">(Supported)</message>
-	<message key="xmlui.Submission.submit.UploadStep.known">(Known)</message>
-	<message key="xmlui.Submission.submit.UploadStep.unsupported">(Unsupported)</message>
-	<message key="xmlui.Submission.submit.UploadStep.submit_edit">Edit</message>
+	<message key="xmlui.Submission.submit.UploadStep.unknown_name">Onbekend</message>
+	<message key="xmlui.Submission.submit.UploadStep.unknown_format">onbekend format</message>
+	<message key="xmlui.Submission.submit.UploadStep.supported">(Ondersteund)</message>
+	<message key="xmlui.Submission.submit.UploadStep.known">(Bekend)</message>
+	<message key="xmlui.Submission.submit.UploadStep.unsupported">(Niet ondersteund)</message>
+	<message key="xmlui.Submission.submit.UploadStep.submit_edit">Bewerk</message>
 	<message key="xmlui.Submission.submit.UploadStep.checksum">File checksum:</message>
-	<message key="xmlui.Submission.submit.UploadStep.submit_remove">Remove selected files</message>
+	<message key="xmlui.Submission.submit.UploadStep.submit_remove">Verwijder geselecteerde bestanden</message>
 
 
 
@@ -823,91 +826,91 @@
 
 
 	<!-- org.dspace.app.xmlui.Submission.submit.EditFileStep -->
-	<message key="xmlui.Submission.submit.EditFileStep.head">Edit File</message>
-	<message key="xmlui.Submission.submit.EditFileStep.file">File</message>
-	<message key="xmlui.Submission.submit.EditFileStep.description">File Description</message>
-	<message key="xmlui.Submission.submit.EditFileStep.description_help">Optionally, provide a brief description of the contents; for example, "<i>Main article</i>", or "<i>Experiment data readings</i>".</message>
-	<message key="xmlui.Submission.submit.EditFileStep.info1">Select the format of the file from the list below, for example "<i>Adobe PDF</i>" or "<i>Microsoft Word</i>." <strong>If the format is not in the list</strong>, please describe it in the input box below the list.</message>
-	<message key="xmlui.Submission.submit.EditFileStep.format_detected">Detected Format</message>
-	<message key="xmlui.Submission.submit.EditFileStep.format_selected">Selected Format</message>
-	<message key="xmlui.Submission.submit.EditFileStep.format_default">Format not in list</message>
-	<message key="xmlui.Submission.submit.EditFileStep.info2">If the format is not in the above list, <strong>select "format not in list" above</strong> and describe the file's format in the box below.</message>
-	<message key="xmlui.Submission.submit.EditFileStep.format_user">Other Format</message>
-	<message key="xmlui.Submission.submit.EditFileStep.format_user_help">The application's name you used to create the file, and the version number (for example, "<i>ACMESoft SuperApp version 1.5</i>").</message>
+	<message key="xmlui.Submission.submit.EditFileStep.head">Bewerk bestand</message>
+	<message key="xmlui.Submission.submit.EditFileStep.file">Bestand</message>
+	<message key="xmlui.Submission.submit.EditFileStep.description">Beschrijving van het bestand</message>
+	<message key="xmlui.Submission.submit.EditFileStep.description_help">Hier kunt u eventueel een korte beschrijving opgeven, bv. "<i>Scriptietekst</i>", of "<i>Scriptiedata</i>".</message>
+	<message key="xmlui.Submission.submit.EditFileStep.info1">Selecteer het format van het bestand uit onderstaande lijst, bijvoorbeeld "<i>Adobe PDF</i>" of "<i>Microsoft Word</i>." <strong>Als het format niet in de lijst staat</strong>, beschrijf het dan in de input box onder de lijst.</message>
+	<message key="xmlui.Submission.submit.EditFileStep.format_detected">Aangetroffen format</message>
+	<message key="xmlui.Submission.submit.EditFileStep.format_selected">Geselecteerd format</message>
+	<message key="xmlui.Submission.submit.EditFileStep.format_default">Format niet in lijst</message>
+	<message key="xmlui.Submission.submit.EditFileStep.info2">Als het format niet in bovenstaande lijst staat, <strong>selecteer dan "format niet in lijst" hierboven</strong> en beschrijf het bestandsformaat in onderstaande box.</message>
+	<message key="xmlui.Submission.submit.EditFileStep.format_user">Ander format</message>
+	<message key="xmlui.Submission.submit.EditFileStep.format_user_help">De naam van de applicatie waarmee het bestand gemaakt werd, and het versienummer (bijvoorbeeld, "<i>ACMESoft SuperApp version 1.5</i>").</message>
 
     <!-- org.dspace.app.xmlui.Submission.submit.EditBitstreamPolicies -->
     <message key="xmlui.Submission.submit.EditBitstreamPolicies.head">Bitstream Access</message>
 
 
 	<!-- org.dspace.app.xmlui.Submission.submit.ReviewStep -->
-	<message key="xmlui.Submission.submit.ReviewStep.head">Review Submission</message>
-	<message key="xmlui.Submission.submit.ReviewStep.yes">Yes</message>
-	<message key="xmlui.Submission.submit.ReviewStep.no">No</message>
-	<message key="xmlui.Submission.submit.ReviewStep.submit_jump">Correct one of these</message>
-	<message key="xmlui.Submission.submit.ReviewStep.submit_jump_files">Add or remove a file</message>
-	<message key="xmlui.Submission.submit.ReviewStep.head1">Initial Questions</message>
-	<message key="xmlui.Submission.submit.ReviewStep.head2">Describe Page {0}</message>
-	<message key="xmlui.Submission.submit.ReviewStep.head3">Uploaded Files</message>
-	<message key="xmlui.Submission.submit.ReviewStep.multiple_titles">Multiple titles</message>
-	<message key="xmlui.Submission.submit.ReviewStep.published_before">Published before</message>
+	<message key="xmlui.Submission.submit.ReviewStep.head">Review bijdrage</message>
+	<message key="xmlui.Submission.submit.ReviewStep.yes">Ja</message>
+	<message key="xmlui.Submission.submit.ReviewStep.no">Nee</message>
+	<message key="xmlui.Submission.submit.ReviewStep.submit_jump">Corrigeer een dan deze</message>
+	<message key="xmlui.Submission.submit.ReviewStep.submit_jump_files">Voeg een bestand toe of verwijder een bestand</message>
+	<message key="xmlui.Submission.submit.ReviewStep.head1">Initiële vragen</message>
+	<message key="xmlui.Submission.submit.ReviewStep.head2">Beschrijf pagina {0}</message>
+	<message key="xmlui.Submission.submit.ReviewStep.head3">Geüploade bestanden</message>
+	<message key="xmlui.Submission.submit.ReviewStep.multiple_titles">Meerdere titels</message>
+	<message key="xmlui.Submission.submit.ReviewStep.published_before">Gepubliceerd vóór</message>
 	<message key="xmlui.Submission.submit.ReviewStep.no_metadata">-</message>
-	<message key="xmlui.Submission.submit.ReviewStep.unknown">unknown</message>
-	<message key="xmlui.Submission.submit.ReviewStep.known">known</message>
-	<message key="xmlui.Submission.submit.ReviewStep.supported">supported</message>
+	<message key="xmlui.Submission.submit.ReviewStep.unknown">onbekend</message>
+	<message key="xmlui.Submission.submit.ReviewStep.known">bekend</message>
+	<message key="xmlui.Submission.submit.ReviewStep.supported">ondersteund</message>
 
 	<!-- org.dspace.app.xmlui.Submission.submit.CCLicenseStep -->
-        <message key="xmlui.Submission.submit.CCLicenseStep.ccws_error">An error occurred ... {0}</message>
-        <message key="xmlui.Submission.submit.CCLicenseStep.head">License Your Work</message>
-        <message key="xmlui.Submission.submit.CCLicenseStep.info1">If you wish, you may add a <a href="http://creativecommons.org/">Creative Commons</a> License to your item. <strong>Creative Commons licenses govern what people who read your work may then do with it.</strong></message>
-        <message key="xmlui.Submission.submit.CCLicenseStep.submit_choose_creative_commons">Choose a license</message>
-        <message key="xmlui.Submission.submit.CCLicenseStep.submit_to_creative_commons">Proceed to Creative Commons website to select a license</message>
-        <message key="xmlui.Submission.submit.CCLicenseStep.license">License Type</message>
-        <message key="xmlui.Submission.submit.CCLicenseStep.select_change">Select or modify your license ...</message>
-        <message key="xmlui.Submission.submit.CCLicenseStep.no_license">No Creative Commons License</message>
-        <message key="xmlui.Submission.submit.CCLicenseStep.save_changes">You must click Next to save your changes.</message>
+        <message key="xmlui.Submission.submit.CCLicenseStep.ccws_error">Er is een fout opgetreden ... {0}</message>
+        <message key="xmlui.Submission.submit.CCLicenseStep.head">Licensieer uw werk</message>
+        <message key="xmlui.Submission.submit.CCLicenseStep.info1">Als u dit wenst, kunt u een <a href="http://creativecommons.org/">Creative Commons</a> License aan uw item geven. <strong>Creative Commons licenses bepalen wat men met uw work mag doen.</strong></message>
+        <message key="xmlui.Submission.submit.CCLicenseStep.submit_choose_creative_commons">Kies een licentie</message>
+        <message key="xmlui.Submission.submit.CCLicenseStep.submit_to_creative_commons">Ga naar de Creative Commons website om een licentie te kiezen</message>
+        <message key="xmlui.Submission.submit.CCLicenseStep.license">Licentietype</message>
+        <message key="xmlui.Submission.submit.CCLicenseStep.select_change">Selecteer of verander uw licentie ...</message>
+        <message key="xmlui.Submission.submit.CCLicenseStep.no_license">Geen Creative Commons licentie</message>
+        <message key="xmlui.Submission.submit.CCLicenseStep.save_changes">U moet 'volgende' klikken om uw aanpassingen te bewaren.</message>
 
 	<!-- org.dspace.app.xmlui.Submission.submit.LicenseStep -->
-	<message key="xmlui.Submission.submit.LicenseStep.head">Distribution License</message>
-	<message key="xmlui.Submission.submit.LicenseStep.info1"><strong>There is one last step:</strong> In order for DSpace to reproduce, translate and distribute your submission worldwide, you must agree to the following terms.</message>
-	<message key="xmlui.Submission.submit.LicenseStep.info2">Grant the standard distribution license by selecting 'I Grant the License'; and then click 'Complete Submission'.</message>
-	<message key="xmlui.Submission.submit.LicenseStep.info3">If you have questions regarding this license please contact the system administrators.</message>
-	<message key="xmlui.Submission.submit.LicenseStep.decision_label">Distribution license</message>
-	<message key="xmlui.Submission.submit.LicenseStep.decision_checkbox">I Grant the License</message>
-	<message key="xmlui.Submission.submit.LicenseStep.decision_error">You must grant this license to complete your submission. If you are unable to grant this license at this time you may save your work and return later or remove the submission by clicking the 'Save &amp; Exit' button below.</message>
+	<message key="xmlui.Submission.submit.LicenseStep.head">Distributielicentie</message>
+	<message key="xmlui.Submission.submit.LicenseStep.info1"></message>
+	<message key="xmlui.Submission.submit.LicenseStep.info2"></message>
+	<message key="xmlui.Submission.submit.LicenseStep.info3"></message>
+	<message key="xmlui.Submission.submit.LicenseStep.decision_label">Distributielicentie</message>
+	<message key="xmlui.Submission.submit.LicenseStep.decision_checkbox">Ja, alle vereiste stukken zijn aangeleverd</message>
+	<message key="xmlui.Submission.submit.LicenseStep.decision_error">U moet deze licentie accepteren om uw invoer te voltooien. Als u deze licentie op dit moment niet kunt accepteren, kunt u uw werk bewaren en later terugkeren of de invoer verwijderen door onderstaande 'Save &amp; Exit' button te klikken.</message>
 
 	<!-- org.dspace.app.xmlui.Submission.submit.RemovedStep -->
-	<message key="xmlui.Submission.submit.RemovedStep.head">Submission removed</message>
-	<message key="xmlui.Submission.submit.RemovedStep.info1">Your submission has been cancelled, and the incomplete item removed from the system.</message>
-	<message key="xmlui.Submission.submit.RemovedStep.go_submission">Go to the Submissions page</message>
+	<message key="xmlui.Submission.submit.RemovedStep.head">Bijdrage verwijderd removed</message>
+	<message key="xmlui.Submission.submit.RemovedStep.info1">Uw bijdrage is geannuleerd, het incomplete item is uit het systeem verwijderd.</message>
+	<message key="xmlui.Submission.submit.RemovedStep.go_submission">Ga naar de Bijdragen pagina</message>
 
 	<!-- org.dspace.app.xmlui.Submission.submit.CompletedStep -->
-	<message key="xmlui.Submission.submit.CompletedStep.head">Submission complete</message>
-	<message key="xmlui.Submission.submit.CompletedStep.info1">Your submission will now go through the review process for this collection. You will receive e-mail notification as soon as your submission has joined the collection, or if there is a problem with your submission. You may also check on the status of your submission by visiting your submissions page.</message>
-	<message key="xmlui.Submission.submit.CompletedStep.go_submission">Go to the Submissions page</message>
-	<message key="xmlui.Submission.submit.CompletedStep.submit_again">Submit another item</message>
+	<message key="xmlui.Submission.submit.CompletedStep.head">Bijdrage compleet</message>
+	<message key="xmlui.Submission.submit.CompletedStep.info1">Uw bijdrage zal nu door het review proces voor deze collectie gaan. U ontvangt een emailbericht zodra uw bijdrage in de collectie wordt opgenomen, of als er een probleem is met uw bijdrage. U kunt de status van uw bijdrage ook controleren door uw bijdrage-pagina te bekijken.</message>
+	<message key="xmlui.Submission.submit.CompletedStep.go_submission">Ga naar de Bijdragen pagina</message>
+	<message key="xmlui.Submission.submit.CompletedStep.submit_again">Dien nog een item in</message>
 
 	<!-- org.dspace.app.xmlui.Submission.workflow.PerformTaskStep -->
-	<message key="xmlui.Submission.workflow.PerformTaskStep.info1">Actions you may perform on this task:</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.take_help">Assign this task to yourself.</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.take_submit">Take task</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.leave_help">Leave this task in the pool for another user to take.</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.leave_submit">Leave task</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.approve_help">If you have reviewed the item and it is suitable for inclusion in the collection, select "Approve".</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.approve_submit">Approve item</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.commit_help">Once you've edited the item, use this option to commit the item to the archive.</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.commit_submit">Commit to archive</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.reject_help">If you have reviewed the item and found it is <strong>not</strong> suitable for inclusion in the collection, select "Reject".  You will then be asked to enter a message indicating why the item is unsuitable, and whether the submitter should change something and resubmit.</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.reject_submit">Reject item</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.edit_help">Select this option to change the item's metadata.</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.edit_submit">Edit metadata</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.return_help">Return the task to the pool so that another user may perform the task.</message>
-	<message key="xmlui.Submission.workflow.PerformTaskStep.return_submit">Return task to pool</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.info1">Acties die u op deze taak kunt uitvoeren:</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.take_help">Wijs deze taak toe aan uzelf.</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.take_submit">Neem de taak</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.leave_help">Laat deze taak in de pool voor anderen.</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.leave_submit">Verlaat taak</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.approve_help">Als u dit item hebt bekeken en geschikt bevonden voor opname in de collectie, selecteer dan "Goedkeuren".</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.approve_submit">Keur het item goed</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.commit_help">Als u het item bewerkt hebt, gebruikt u deze optie om het item in het archief te zetten.</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.commit_submit">Zet item in het archief</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.reject_help">Als u het item hebt bekeken en <strong>niet</strong> geschikt bevonden voor opname in de collectie, selecteer dan "Verwerpen".  You will then be asked to enter a message indicating why the item is unsuitable, and whether the submitter should change something and resubmit.</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.reject_submit">Verwerp het item</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.edit_help">Selecteer deze optie om de metadata van het item te wijzigen.</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.edit_submit">Bewerk de metadata</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.return_help">Zet de taak terug in de pool zodat een andere gebruiker die taak kan uitvoeren.</message>
+	<message key="xmlui.Submission.workflow.PerformTaskStep.return_submit">Zet de taak terug in de pool</message>
 
 	<!-- org.dspace.app.xmlui.Submission.workflow.RejectTaskStep -->
-	<message key="xmlui.Submission.workflow.RejectTaskStep.info1">Please enter your reason for rejecting the submission into the box below, indicating whether the submitter may fix a problem and resubmit.</message>
-	<message key="xmlui.Submission.workflow.RejectTaskStep.reason">Reason</message>
-	<message key="xmlui.Submission.workflow.RejectTaskStep.reason_required">The reason field is required</message>
-	<message key="xmlui.Submission.workflow.RejectTaskStep.submit_reject">Reject item</message>
+	<message key="xmlui.Submission.workflow.RejectTaskStep.info1">Geef aub uw reden voor afwijzing van deze bijdrage in onderstaande box. Geef daarbij aan of de indiener het probleem kan oplossen en de bijdrage opnieuw kan indienen.</message>
+	<message key="xmlui.Submission.workflow.RejectTaskStep.reason">Reden</message>
+	<message key="xmlui.Submission.workflow.RejectTaskStep.reason_required">Het reden veld is verplicht</message>
+	<message key="xmlui.Submission.workflow.RejectTaskStep.submit_reject">Verwerp item</message>
 
 
 
@@ -958,37 +961,37 @@
 	<!-- org.dspace.app.xmlui.administrative.Navigation -->
 	<!-- contextual menu items -->
 	<message key="xmlui.administrative.Navigation.context_head">Context</message>
-	<message key="xmlui.administrative.Navigation.context_edit_item">Edit this item</message>
-	<message key="xmlui.administrative.Navigation.context_edit_collection">Edit Collection</message>
+	<message key="xmlui.administrative.Navigation.context_edit_item">Bewerk dit item</message>
+	<message key="xmlui.administrative.Navigation.context_edit_collection">Bewerk Collection</message>
 	<message key="xmlui.administrative.Navigation.context_item_mapper">Item Mapper</message>
-	<message key="xmlui.administrative.Navigation.context_edit_community">Edit Community</message>
-	<message key="xmlui.administrative.Navigation.context_create_collection">Create Collection</message>
-	<message key="xmlui.administrative.Navigation.context_create_subcommunity">Create Sub-community</message>
-	<message key="xmlui.administrative.Navigation.context_create_community">Create Community</message>
-	<message key="xmlui.administrative.Navigation.context_export_item">Export Item</message>
-        <message key="xmlui.administrative.Navigation.context_export_collection">Export Collection</message>
-        <message key="xmlui.administrative.Navigation.context_export_community">Export Community</message>
-        <message key="xmlui.administrative.Navigation.context_export_metadata">Export Metadata</message>
+	<message key="xmlui.administrative.Navigation.context_edit_community">Bewerk Community</message>
+	<message key="xmlui.administrative.Navigation.context_create_collection">Maak Collectie</message>
+	<message key="xmlui.administrative.Navigation.context_create_subcommunity">Maak Sub-community</message>
+	<message key="xmlui.administrative.Navigation.context_create_community">Maak Community</message>
+	<message key="xmlui.administrative.Navigation.context_export_item">Exporteer Item</message>
+        <message key="xmlui.administrative.Navigation.context_export_collection">Exporteer Collectie</message>
+        <message key="xmlui.administrative.Navigation.context_export_community">Exporteer Community</message>
+        <message key="xmlui.administrative.Navigation.context_export_metadata">Exporteer Metadata</message>
 
 	<!-- Site administrator options -->
-	<message key="xmlui.administrative.Navigation.administrative_head">Administrative</message>
-	<message key="xmlui.administrative.Navigation.administrative_access_control">Access Control</message>
-	<message key="xmlui.administrative.Navigation.administrative_people">People</message>
-	<message key="xmlui.administrative.Navigation.administrative_groups">Groups</message>
-	<message key="xmlui.administrative.Navigation.administrative_authorizations">Authorizations</message>
-	<message key="xmlui.administrative.Navigation.administrative_registries">Registries</message>
+	<message key="xmlui.administrative.Navigation.administrative_head">Administratief</message>
+	<message key="xmlui.administrative.Navigation.administrative_access_control">Toegangscontrole</message>
+	<message key="xmlui.administrative.Navigation.administrative_people">Gebruikers</message>
+	<message key="xmlui.administrative.Navigation.administrative_groups">Groepen</message>
+	<message key="xmlui.administrative.Navigation.administrative_authorizations">Rechten</message>
+	<message key="xmlui.administrative.Navigation.administrative_registries">Registers</message>
 	<message key="xmlui.administrative.Navigation.administrative_metadata">Metadata</message>
-	<message key="xmlui.administrative.Navigation.administrative_format">Format</message>
+	<message key="xmlui.administrative.Navigation.administrative_format">Formaat</message>
 	<message key="xmlui.administrative.Navigation.administrative_items">Items</message>
-    <message key="xmlui.administrative.Navigation.administrative_withdrawn">Withdrawn Items</message>
+    <message key="xmlui.administrative.Navigation.administrative_withdrawn">Verwijderde Items</message>
     <message key="xmlui.administrative.Navigation.administrative_private">Private Items</message>
-    <message key="xmlui.administrative.Navigation.administrative_control_panel">Control Panel</message>
-    <message key="xmlui.administrative.Navigation.statistics">Statistics</message>
-        <message key="xmlui.administrative.Navigation.administrative_import_metadata">Import Metadata</message>
-        <message key="xmlui.administrative.Navigation.administrative_curation">Curation Tasks</message>
+    <message key="xmlui.administrative.Navigation.administrative_control_panel">Configuratiescherm</message>
+    <message key="xmlui.administrative.Navigation.statistics">Statistieken</message>
+        <message key="xmlui.administrative.Navigation.administrative_import_metadata">Importeer Metadata</message>
+        <message key="xmlui.administrative.Navigation.administrative_curation">Beheerstaken</message>
 
     <!-- my account items -->
-	<message key="xmlui.administrative.Navigation.account_export">My Exports</message>
+	<message key="xmlui.administrative.Navigation.account_export">Mijn Exports</message>
 
 
 	<!-- export item -->
@@ -1023,7 +1026,7 @@
 	<message key="xmlui.administrative.eperson.ManageEPeopleMain.search_column3">Name</message>
 	<message key="xmlui.administrative.eperson.ManageEPeopleMain.search_column4">Email</message>
 	<message key="xmlui.administrative.eperson.ManageEPeopleMain.submit_delete">Delete E-People</message>
-	<message key="xmlui.administrative.eperson.ManageEPeopleMain.no_results">Your search found no results...</message>
+	<message key="xmlui.administrative.eperson.ManageEPeopleMain.no_results">Uw zoekopdracht leverde geen resultaten...</message>
 
 
 	<!-- org.dspace.app.xmlui.administrative.eperson.AddEPersonForm -->
@@ -1083,75 +1086,75 @@
 	<message key="xmlui.administrative.group.general.group_trail">Manage Groups</message>
 
 	<!-- org.dspace.app.xmlui.administrative.group.ManageGroupsMain -->
-	<message key="xmlui.administrative.group.ManageGroupsMain.title">Manage Groups</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.main_head">Group management</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_head">Actions</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_create">Create a new group</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_create_link">Click here to add a new Group.</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_browse">Browse groups</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_browse_link">Click here to browse all Groups.</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.actions_search">Search for groups</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.search_help">Groups are searched by any partial match on their name</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.search_head">Search results</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.title">Beheer Groepen</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.main_head">Groepen beheer</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_head">Acties</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_create">Maak een nieuwe groep aan</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_create_link">Klik hier om een nieuwe groep aan te maken.</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_browse">Groepen doorbladeren</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_browse_link">Klik hier om alle groepen te doorbladeren.</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.actions_search">Zoeken naar groepen</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.search_help">Groepen worden gezocht op basis van een deel van hun naam.</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.search_head">Zoek resultaten</message>
 	<message key="xmlui.administrative.group.ManageGroupsMain.search_column1"></message>
 	<message key="xmlui.administrative.group.ManageGroupsMain.search_column2">ID</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.search_column3">Name</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.search_column4">Members</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.search_column5">Community / Collection</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.collection_link">View</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.submit_delete">Delete groups</message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.no_results">Your search found no results...</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.search_column3">Naam</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.search_column4">Leden</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.search_column5">Community / Collectie</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.collection_link">Bekijken</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.submit_delete">Gropen verwijderen</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.no_results">Uw zoekopdracht leverde geen resultaten...</message>
 
 	<!-- org.dspace.app.xmlui.administrative.group.EditGroupForm -->
-	<message key="xmlui.administrative.group.EditGroupForm.title">Group Editor</message>
-	<message key="xmlui.administrative.group.EditGroupForm.trail">Edit group</message>
-	<message key="xmlui.administrative.group.EditGroupForm.main_head">Group Editor: {0} (id: {1})</message>
-	<message key="xmlui.administrative.group.EditGroupForm.main_head_new">Group Editor: new group</message>
-	<message key="xmlui.administrative.group.EditGroupForm.submit_clear">Clear search</message>
-	<message key="xmlui.administrative.group.EditGroupForm.member">Member</message>
+	<message key="xmlui.administrative.group.EditGroupForm.title">Groep Editor</message>
+	<message key="xmlui.administrative.group.EditGroupForm.trail">Bewerk groep</message>
+	<message key="xmlui.administrative.group.EditGroupForm.main_head">Groep Editor: {0} (id: {1})</message>
+	<message key="xmlui.administrative.group.EditGroupForm.main_head_new">Groep Editor: nieuwe groep</message>
+	<message key="xmlui.administrative.group.EditGroupForm.submit_clear">Wis zoekopdracht</message>
+	<message key="xmlui.administrative.group.EditGroupForm.member">Lid</message>
 	<message key="xmlui.administrative.group.EditGroupForm.cycle">Cycle</message>
-	<message key="xmlui.administrative.group.EditGroupForm.pending">Pending</message>
-	<message key="xmlui.administrative.group.EditGroupForm.pending_warn">Note, pending changes are not saved until you click the save button.</message>
-	<message key="xmlui.administrative.group.EditGroupForm.submit_add">Add</message>
-	<message key="xmlui.administrative.group.EditGroupForm.submit_remove">Remove</message>
-	<message key="xmlui.administrative.group.EditGroupForm.collection_para">This group is associated with collection: </message>
-	<message key="xmlui.administrative.group.EditGroupForm.community_para">This group is associated with community: </message>
-	<message key="xmlui.administrative.group.EditGroupForm.label_name">Change group name: </message>
-	<message key="xmlui.administrative.group.EditGroupForm.label_instructions">This group is associated with a specific collection or community and the name cannot be modified.</message>
-	<message key="xmlui.administrative.group.EditGroupForm.label_search">Search members to add: </message>
-	<message key="xmlui.administrative.group.EditGroupForm.submit_search_people">E-People...</message>
-	<message key="xmlui.administrative.group.EditGroupForm.submit_search_groups">Groups...</message>
-	<message key="xmlui.administrative.group.EditGroupForm.no_results">Your search found no results...</message>
+	<message key="xmlui.administrative.group.EditGroupForm.pending">In behandeling</message>
+	<message key="xmlui.administrative.group.EditGroupForm.pending_warn">Opmereking, operaties in behandeling, zullen enkel worden opgeslagen nadat u op bewaren heeft geklikt.</message>
+	<message key="xmlui.administrative.group.EditGroupForm.submit_add">Toevoegen</message>
+	<message key="xmlui.administrative.group.EditGroupForm.submit_remove">Verwijderen</message>
+	<message key="xmlui.administrative.group.EditGroupForm.collection_para">Deze groep is geassocieerd met een collectie: </message>
+	<message key="xmlui.administrative.group.EditGroupForm.community_para">Deze groep is geassocieerd met een community: </message>
+	<message key="xmlui.administrative.group.EditGroupForm.label_name">Wijzig groepnaam: </message>
+	<message key="xmlui.administrative.group.EditGroupForm.label_instructions">Deze groep is geassocieerd met een collectie of community en de naam kan niet worden gewijzigd.</message>
+	<message key="xmlui.administrative.group.EditGroupForm.label_search">Zoek leden om toe te voegen: </message>
+	<message key="xmlui.administrative.group.EditGroupForm.submit_search_people">Gebruikers...</message>
+	<message key="xmlui.administrative.group.EditGroupForm.submit_search_groups">Groepen...</message>
+	<message key="xmlui.administrative.group.EditGroupForm.no_results">Uw zoekopdracht leverde geen resultaten...</message>
 	<message key="xmlui.administrative.group.EditGroupForm.epeople_column1">ID</message>
-	<message key="xmlui.administrative.group.EditGroupForm.epeople_column2">Name</message>
+	<message key="xmlui.administrative.group.EditGroupForm.epeople_column2">Naam</message>
 	<message key="xmlui.administrative.group.EditGroupForm.epeople_column3">Email</message>
 	<message key="xmlui.administrative.group.EditGroupForm.epeople_column4"></message>
 	<message key="xmlui.administrative.group.EditGroupForm.groups_column1">ID</message>
-	<message key="xmlui.administrative.group.EditGroupForm.groups_column2">Name</message>
-	<message key="xmlui.administrative.group.EditGroupForm.groups_column3">Members</message>
-	<message key="xmlui.administrative.group.EditGroupForm.groups_column4">Collection</message>
+	<message key="xmlui.administrative.group.EditGroupForm.groups_column2">Naam</message>
+	<message key="xmlui.administrative.group.EditGroupForm.groups_column3">Leden</message>
+	<message key="xmlui.administrative.group.EditGroupForm.groups_column4">Collecties</message>
 	<message key="xmlui.administrative.group.EditGroupForm.groups_column5"></message>
-	<message key="xmlui.administrative.group.ManageGroupsMain.groups_collection_link">view</message>
-	<message key="xmlui.administrative.group.EditGroupForm.members_head">Members</message>
+	<message key="xmlui.administrative.group.ManageGroupsMain.groups_collection_link">bekijken</message>
+	<message key="xmlui.administrative.group.EditGroupForm.members_head">Leden</message>
 	<message key="xmlui.administrative.group.EditGroupForm.members_column1">ID</message>
-	<message key="xmlui.administrative.group.EditGroupForm.members_column2">Name</message>
+	<message key="xmlui.administrative.group.EditGroupForm.members_column2">Naam</message>
 	<message key="xmlui.administrative.group.EditGroupForm.members_column3">Email</message>
 	<message key="xmlui.administrative.group.EditGroupForm.members_column4"></message>
-	<message key="xmlui.administrative.group.EditGroupForm.members_group_name">group: {0}</message>
-	<message key="xmlui.administrative.group.EditGroupForm.members_none">This group has no members.</message>
-	<message key="xmlui.administrative.group.EditGroupForm.members_pending">[pending]</message>
-	<message key="xmlui.administrative.group.EditGroupForm.instructions_para">Remove members</message>
-	<message key="xmlui.administrative.group.EditGroupForm.collection_link_para">Remove members</message>
+	<message key="xmlui.administrative.group.EditGroupForm.members_group_name">groep: {0}</message>
+	<message key="xmlui.administrative.group.EditGroupForm.members_none">Deze groep heeft geen leden.</message>
+	<message key="xmlui.administrative.group.EditGroupForm.members_pending">[In behandeling]</message>
+	<message key="xmlui.administrative.group.EditGroupForm.instructions_para">Verwijder leden</message>
+	<message key="xmlui.administrative.group.EditGroupForm.collection_link_para">Verwijder members</message>
 
 	<!-- org.dspace.app.xmlui.administrative.group.DeleteGroupsConfirm -->
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.title">Confirm Group Deletion</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.trail">Confirm Delete</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.head">Confirm Deletion</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.para">The following Groups will be deleted:</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.title">Bevestig Verwijdering Groep</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.trail">Bevestig Verwijdering</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.head">Bevestig Verwijdering</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.para">Volgende groepen zullen worden verwijderd:</message>
 	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column1">ID</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column2">Name</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column3">E-People</message>
-	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column4">Groups</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column2">Naam</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column3">Gebruikers</message>
+	<message key="xmlui.administrative.group.DeleteGroupsConfirm.column4">Groepen</message>
 
 	<!-- general items for all of the registries classes -->
 	<message key="xmlui.administrative.registries.general.format_registry_trail">Format registry</message>
@@ -1411,7 +1414,7 @@
 	<message key="xmlui.administrative.item.general.option_bitstreams">Item Bitstreams</message>
 	<message key="xmlui.administrative.item.general.option_metadata">Item Metadata</message>
 	<message key="xmlui.administrative.item.general.option_view">View Item</message>
-        <message key="xmlui.administrative.item.general.option_curate">Curate</message>
+        <message key="xmlui.administrative.item.general.option_curate">Cureer</message>
         <message key="xmlui.administrative.item.general.option_queue">Queue</message>
 
 	<!-- org.dspace.app.xmlui.administrative.item.AddBitstreamForm -->
@@ -1557,10 +1560,10 @@
 	<message key="xmlui.administrative.item.ViewItem.title">View Item</message>
 	<message key="xmlui.administrative.item.ViewItem.trail">View Item</message>
         <!-- org.dspace.app.xmlui.administrative.item.CurateItemForm.java -->
-        <message key="xmlui.administrative.item.CurateItemForm.main_head">Curate Item: {0}</message>
-        <message key="xmlui.administrative.item.CurateItemForm.title">Curate Item</message>
+        <message key="xmlui.administrative.item.CurateItemForm.main_head">Cureer Item: {0}</message>
+        <message key="xmlui.administrative.item.CurateItemForm.title">Cureer Item</message>
         <message key="xmlui.administrative.item.CurateItemForm.trail">Curator</message>
-        <message key="xmlui.administrative.item.CurateItemForm.label_name">Task</message>
+        <message key="xmlui.administrative.item.CurateItemForm.label_name">Taak</message>
 
 	<!-- org.dspace.app.xmlui.administrative.item.FindItemForm -->
 	<message key="xmlui.administrative.item.FindItemForm.title">Find Item</message>
@@ -1652,9 +1655,9 @@
 
 	<!-- General tags for collection management -->
 	<message key="xmlui.administrative.collection.general.collection_trail">Collections</message>
-	<message key="xmlui.administrative.collection.general.options_metadata">Edit Metadata</message>
-	<message key="xmlui.administrative.collection.general.options_roles">Assign Roles</message>
-        <message key="xmlui.administrative.collection.general.options_curate">Curate</message>
+	<message key="xmlui.administrative.collection.general.options_metadata">Bewerk Metadata</message>
+	<message key="xmlui.administrative.collection.general.options_roles">Wijs rollen toe</message>
+        <message key="xmlui.administrative.collection.general.options_curate">Cureer</message>
         <message key="xmlui.administrative.collection.general.options_queue">Queue</message>
 
 	<!-- org.dspace.app.xmlui.administrative.collection.AssignCollectionRoles.java -->
@@ -1679,8 +1682,8 @@
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_admins">Administrators</message>
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf">Workflow steps</message>
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf_step1">Accept/Reject Step</message>
-	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf_step2">Accept/Reject/Edit Metadata Step</message>
-	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf_step3">Edit Metadata Step</message>
+	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf_step2">Accept/Reject/Bewerk Metadata Step</message>
+	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_wf_step3">Bewerk Metadata Step</message>
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_submitters">Submitters</message>
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.label_default_read">Default read access</message>
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.sysadmins_only"><nobr>(system administrators only)</nobr></message>
@@ -1688,10 +1691,10 @@
 	<message key="xmlui.administrative.collection.AssignCollectionRoles.not_allowed"><nobr>(you are not allowed to configure this)</nobr></message>
 
         <!-- org.dspace.app.xmlui.administrative.collection.CurateCollectionForm.java -->
-        <message key="xmlui.administrative.collection.CurateCollectionForm.main_head">Curate Collection: {0}</message>
-        <message key="xmlui.administrative.collection.CurateCollectionForm.title">Curate Collection</message>
+        <message key="xmlui.administrative.collection.CurateCollectionForm.main_head">Cureer Collection: {0}</message>
+        <message key="xmlui.administrative.collection.CurateCollectionForm.title">Cureer Collection</message>
         <message key="xmlui.administrative.collection.CurateCollectionForm.trail">Curator</message>
-        <message key="xmlui.administrative.collection.CurateCollectionForm.label_name">Task</message>
+        <message key="xmlui.administrative.collection.CurateCollectionForm.label_name">Taak</message>
 
 	<!-- org.dspace.app.xmlui.administrative.collection.DeleteCollectionConfirm.java -->
 	<message key="xmlui.administrative.collection.DeleteCollectionConfirm.title">Confirm Deletion</message>
@@ -1714,11 +1717,11 @@
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.trail">Metadata</message>
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.main_head">Edit Collection: {0}</message>
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_name">Name</message>
-	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_short_description">Short Description</message>
-	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_introductory_text">Introductory text (HTML)</message>
-	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_copyright_text">Copyright text (HTML)</message>
-	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_side_bar_text">News (HTML)</message>
-	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_license">License</message>
+	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_short_description">Korte beschrijving</message>
+	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_introductory_text">Inleidende tekst (HTML)</message>
+	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_copyright_text">Copyright tekst (HTML)</message>
+	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_side_bar_text">Nieuws (HTML)</message>
+	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_license">Licentie</message>
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_provenance_description">Provenance</message>
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_logo">Upload new logo</message>
 	<message key="xmlui.administrative.collection.EditCollectionMetadataForm.label_existing_logo">Current logo</message>
@@ -1804,9 +1807,9 @@
 
 	<!-- General tags for community management -->
 	<message key="xmlui.administrative.community.general.community_trail">Communities</message>
-	<message key="xmlui.administrative.community.general.options_metadata">Edit Metadata</message>
-	<message key="xmlui.administrative.community.general.options_roles">Assign Roles</message>
-        <message key="xmlui.administrative.community.general.options_curate">Curate</message>
+	<message key="xmlui.administrative.community.general.options_metadata">Bewerk Metadata</message>
+	<message key="xmlui.administrative.community.general.options_roles">Wijs rollen toe</message>
+        <message key="xmlui.administrative.community.general.options_curate">Cureer</message>
         <message key="xmlui.administrative.community.general.options_queue">Queue</message>
 
 	<!-- org.dspace.app.xmlui.administrative.community.AssignCommunityRoles.java -->
@@ -1826,10 +1829,10 @@
 	<message key="xmlui.administrative.community.AssignCommunityRoles.sysadmins_only"><nobr>(system administrators only)</nobr></message>
 
         <!-- org.dspace.app.xmlui.administrative.community.CurateCommunityForm.java -->
-        <message key="xmlui.administrative.community.CurateCommunityForm.main_head">Curate Community: {0}</message>
-        <message key="xmlui.administrative.community.CurateCommunityForm.title">Curate Community</message>
+        <message key="xmlui.administrative.community.CurateCommunityForm.main_head">Cureer Community: {0}</message>
+        <message key="xmlui.administrative.community.CurateCommunityForm.title">Cureer Community</message>
         <message key="xmlui.administrative.community.CurateCommunityForm.trail">Curator</message>
-        <message key="xmlui.administrative.community.CurateCommunityForm.label_name">Task</message>
+        <message key="xmlui.administrative.community.CurateCommunityForm.label_name">Taak</message>
 
 	<!-- org.dspace.app.xmlui.administrative.community.DeleteCommunityConfirm.java -->
 	<message key="xmlui.administrative.community.DeleteCommunityConfirm.title">Confirm Deletion</message>
@@ -1848,26 +1851,26 @@
 	<message key="xmlui.administrative.community.DeleteCommunityRoleConfirm.main_para">Are you sure you want to delete this role? All changes and customizations made to the {0} group will be lost and would have to be created anew.</message>
 
 	<!-- org.dspace.app.xmlui.administrative.community.EditCommunityMetadataForm.java -->
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.title">Edit Community Metadata</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.title">Bewerk Community Metadata</message>
 	<message key="xmlui.administrative.community.EditCommunityMetadataForm.trail">Metadata</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.main_head">Edit Metadata for Community {0}</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.edit_authorizations">Edit authorization policies</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_name">Name</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_short_description">Short Description</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_introductory_text">Introductory text (HTML)</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_copyright_text">Copyright text (HTML)</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.main_head">Bewerk Metadata varn Community {0}</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.edit_authorizations">Bewerk authorizatie policies</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_name">Naam</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_short_description">Korte beschrijving</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_introductory_text">Inleidende tekst (HTML)</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_copyright_text">Copyright tekst (HTML)</message>
 	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_side_bar_text">News (HTML)</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_logo">Upload new logo</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_existing_logo">Current logo</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.submit_delete_logo">Remove logo</message>
-	<message key="xmlui.administrative.community.EditCommunityMetadataForm.submit_delete">Delete community</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_logo">Upload een logo</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.label_existing_logo">Huidig logo</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.submit_delete_logo">Verwijder logo</message>
+	<message key="xmlui.administrative.community.EditCommunityMetadataForm.submit_delete">Verwijder community</message>
 
 	<!-- org.dspace.app.xmlui.administrative.community.CreateCommunityForm.java -->
-	<message key="xmlui.administrative.community.CreateCommunityForm.title">Create Community</message>
-	<message key="xmlui.administrative.community.CreateCommunityForm.trail">Create Community</message>
-	<message key="xmlui.administrative.community.CreateCommunityForm.main_head_sub">Enter Metadata for a New Sub-Community of {0}</message>
-	<message key="xmlui.administrative.community.CreateCommunityForm.main_head_top">Edit Metadata for a New Top-Level Community</message>
-	<message key="xmlui.administrative.community.CreateCommunityForm.submit_save">Create</message>
+	<message key="xmlui.administrative.community.CreateCommunityForm.title">Maak een Community</message>
+	<message key="xmlui.administrative.community.CreateCommunityForm.trail">Maak een Community</message>
+	<message key="xmlui.administrative.community.CreateCommunityForm.main_head_sub">Geef de metadata in voor een nieuwe Sub-Community van {0}</message>
+	<message key="xmlui.administrative.community.CreateCommunityForm.main_head_top">Geef de metadata in voor een nieuwe Community</message>
+	<message key="xmlui.administrative.community.CreateCommunityForm.submit_save">Aanmaken</message>
 
 
 	<!-- org.dspace.app.xmlui.administrative.ControlPanel.java -->
@@ -1962,11 +1965,11 @@
 	<message key="xmlui.administrative.NotAuthorized.para2">Login as another user</message>
 
         <!-- System-wide Curation Tasks form (org.dspace.app.xmlui.aspect.administrative.CurateForm) -->
-        <message key="xmlui.administrative.CurateForm.title">System Curation Tasks</message>
-        <message key="xmlui.administrative.CurateForm.trail">Curation Tasks</message>
+        <message key="xmlui.administrative.CurateForm.title">Systeem Curator Taken</message>
+        <message key="xmlui.administrative.CurateForm.trail">Curator Taken</message>
         <message key="xmlui.administrative.CurateForm.object_label_name">Handle of DSpace Object</message>
         <message key="xmlui.administrative.CurateForm.object_hint">Hint: Enter [your-handle-prefix]/0 to run a task across entire site (not all tasks may support this capability)</message>
-        <message key="xmlui.administrative.CurateForm.task_label_name">Task</message>
+        <message key="xmlui.administrative.CurateForm.task_label_name">Taak</message>
     <!-- Used by Curate<DSO>Form classes also -->
         <message key="xmlui.administrative.CurateForm.taskgroup_label_name">Choose from the following groups</message>
 
@@ -1976,24 +1979,25 @@
                      Statistics Aspect
 
         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <message key="xmlui.statistics.title">Statistics</message>
-    <message key="xmlui.statistics.search.title">Search Statistics</message>
-    <message key="xmlui.statistics.search.head">Search Statistics</message>
-    <message key="xmlui.statistics.search.head-dso">Search Statistics for {0}</message>
+    <message key="xmlui.statistics.title">Statistieken</message>
+    <message key="xmlui.statistics.search.title">Zoek Statistieken</message>
+    <message key="xmlui.statistics.search.head">Zoek Statistieken</message>
+    <message key="xmlui.statistics.search.head-dso">Zoek Statistieken voor {0}</message>
     <message key="xmlui.statistics.search.error">There was an error while generating the search statistics, please try again later.</message>
     <message key="xmlui.statistics.search.no-results">No search statistics available for the selected period.</message>
     <message key="xmlui.statistics.workflow.title">Workflow Statistics</message>
-    <message key="xmlui.statistics.visits.total">Total Visits</message>
-    <message key="xmlui.statistics.visits.month">Total Visits Per Month</message>
+    <message key="xmlui.statistics.visits.total">Totaal aantal bezoeken</message>
+    <message key="xmlui.statistics.visits.month">Totaal aantal bezoeken per maand</message>
     <message key="xmlui.statistics.visits.views">Views</message>
-    <message key="xmlui.statistics.visits.countries">Top country views</message>
-    <message key="xmlui.statistics.visits.cities">Top cities views</message>
-    <message key="xmlui.statistics.visits.bitstreams">File Visits</message>
-    <message key="xmlui.statistics.Navigation.title">Statistics</message>
-    <message key="xmlui.statistics.Navigation.usage.view">View Usage Statistics</message>
-    <message key="xmlui.statistics.Navigation.search.view">View Search Statistics</message>
-    <message key="xmlui.statistics.Navigation.workflow.view">View Workflow Statistics</message>
-    <message key="xmlui.statistics.trail">Statistics</message>
+    <message key="xmlui.statistics.visits.countries">Toplanden views</message>
+    <message key="xmlui.statistics.visits.cities">Topsteden views</message>
+    <message key="xmlui.statistics.visits.bitstreams">Bekeken bestanden</message>
+    <message key="xmlui.statistics.Navigation.title">Statistieken</message>
+    <message key="xmlui.statistics.Navigation.view">Bekijk statistieken</message>
+ 	<message key="xmlui.statistics.Navigation.usage.view">Toon Gebruik Statistieken</message>
+    <message key="xmlui.statistics.Navigation.search.view">Toon Zoek Statistieken</message>
+    <message key="xmlui.statistics.Navigation.workflow.view">Toon Workflow Statistieken</message>
+    <message key="xmlui.statistics.trail">Statistieken</message>
     <message key="xmlui.statistics.trail-search">Search Statistics</message>
     <message key="xmlui.statistics.trail-workflow">Workflow Statistics</message>
     <message key="xmlui.statistics.workflow.no-results">No workflow statistics available for the selected period.</message>
@@ -2019,17 +2023,17 @@
     <message key="xmlui.statistics.display.table.column-label.average">Average</message>
     <message key="xmlui.statistics.display.table.workflow.step.STEP1POOL">Accept/Reject Step Pool</message>
     <message key="xmlui.statistics.display.table.workflow.step.STEP1">Accept/Reject Step</message>
-    <message key="xmlui.statistics.display.table.workflow.step.STEP2POOL">Accept/Reject/Edit Metadata Step Pool</message>
-    <message key="xmlui.statistics.display.table.workflow.step.STEP2">Accept/Reject/Edit Metadata Step</message>
-    <message key="xmlui.statistics.display.table.workflow.step.STEP3POOL">Edit Metadata Step Pool</message>
-    <message key="xmlui.statistics.display.table.workflow.step.STEP3">Edit Metadata Step</message>
+    <message key="xmlui.statistics.display.table.workflow.step.STEP2POOL">Accept/Reject/Bewerk Metadata Step Pool</message>
+    <message key="xmlui.statistics.display.table.workflow.step.STEP2">Accept/Reject/Bewerk Metadata Step</message>
+    <message key="xmlui.statistics.display.table.workflow.step.STEP3POOL">Bewerk Metadata Step Pool</message>
+    <message key="xmlui.statistics.display.table.workflow.step.STEP3">Bewerk Metadata Step</message>
     <message key="xmlui.statistics.display.table.workflow.step.default.reviewstep.claimaction">Accept/Reject Step Pool</message>
     <message key="xmlui.statistics.display.table.workflow.step.default.reviewstep.reviewaction">Accept/Reject Step</message>
-    <message key="xmlui.statistics.display.table.workflow.step.default.editstep.claimaction">Accept/Reject/Edit Metadata Step Pool</message>
-    <message key="xmlui.statistics.display.table.workflow.step.default.editstep.editaction">Accept/Reject/Edit Metadata Step</message>
-    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.claimaction">Edit Metadata Step Pool</message>
-    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.finaleditaction">Edit Metadata Step</message>
-    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.finaleditaction">Edit Metadata Step</message>
+    <message key="xmlui.statistics.display.table.workflow.step.default.editstep.claimaction">Accept/Reject/Bewerk Metadata Step Pool</message>
+    <message key="xmlui.statistics.display.table.workflow.step.default.editstep.editaction">Accept/Reject/Bewerk Metadata Step</message>
+    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.claimaction">Bewerk Metadata Step Pool</message>
+    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.finaleditaction">Bewerk Metadata Step</message>
+    <message key="xmlui.statistics.display.table.workflow.step.default.finaleditstep.finaleditaction">Bewerk Metadata Step</message>
     <message key="xmlui.statistics.display.table.workflow.step.scoreReview.scoreReviewStep.claimaction">Score Review Pool</message>
     <message key="xmlui.statistics.display.table.workflow.step.scoreReview.scoreReviewStep.scorereviewaction">Score Review</message>
     <message key="xmlui.statistics.display.table.workflow.step.scoreReview.evaluationStep.evaluationaction">Score Review Evaluation</message>
@@ -2068,8 +2072,8 @@
 			<a href="http://dspace.org">http://dspace.org</a>
 		</p>
 	</message>
-	<message key="xmlui.dri2xhtml.structural.contact-link">Contact Us</message>
-	<message key="xmlui.dri2xhtml.structural.feedback-link">Send Feedback</message>
+	<message key="xmlui.dri2xhtml.structural.contact-link">Neem contact op</message>
+	<message key="xmlui.dri2xhtml.structural.feedback-link">Geef Feedback</message>
 
 	<message key="xmlui.dri2xhtml.structural.head-subtitle">DSpace Repository</message>
 
@@ -2077,14 +2081,14 @@
 	<message key="xmlui.dri2xhtml.structural.logout">Logout</message>
 	<message key="xmlui.dri2xhtml.structural.login">Login</message>
 
-	<message key="xmlui.dri2xhtml.structural.search">Search DSpace</message>
-	<message key="xmlui.dri2xhtml.structural.search-advanced">Advanced Search</message>
+	<message key="xmlui.dri2xhtml.structural.search">DSpace Doorzoeken</message>
+	<message key="xmlui.dri2xhtml.structural.search-advanced">Uitgebreid zoeken</message>
 	<message key="xmlui.dri2xhtml.structural.search-in-community">This Community</message>
 	<message key="xmlui.dri2xhtml.structural.search-in-collection">This Collection</message>
 
-	<message key="xmlui.dri2xhtml.structural.pagination-previous">Previous Page</message>
-	<message key="xmlui.dri2xhtml.structural.pagination-info">Now showing items {0}-{1} of {2}</message>
-	<message key="xmlui.dri2xhtml.structural.pagination-next">Next Page</message>
+	<message key="xmlui.dri2xhtml.structural.pagination-previous">Vorige Pagina</message>
+	<message key="xmlui.dri2xhtml.structural.pagination-info">Items {0}-{1} van de {2}</message>
+	<message key="xmlui.dri2xhtml.structural.pagination-next">Volgende Pagina</message>
 
 	<message key="xmlui.dri2xhtml.structural.link_cc">Creative Commons</message>
 	<message key="xmlui.dri2xhtml.structural.link_original_license">Original License</message>
@@ -2104,25 +2108,25 @@
     </message>
 
 	<message key="xmlui.dri2xhtml.METS-1.0.item-preview">Preview</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-title">Title</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-author">Author</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-title">Titel</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-author">Auteur(s)</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-abstract">Abstract</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-description">Description</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-uri">URI</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-date">Date</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-date">Jaar</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-publisher">Publisher</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-subject">Subject</message>
 
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-head">Files in this item</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-file">Files</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-name">Name</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-size">Size</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-format">Format</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-view">View</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-description">Description</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-files-viewOpen">View/<wbr/>Open</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-head">Bestanden in dit item</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-file">Bestanden</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-name">Naam</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-size">Grootte</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-format">Formaat</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-view">Bekijken</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-description">Bescrhijving</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-files-viewOpen">Bekijken/<wbr/>Openen</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.item-files-access-rights">Read access available for</message>
-	<message key="xmlui.dri2xhtml.METS-1.0.item-no-files">There are no files associated with this item.</message>
+	<message key="xmlui.dri2xhtml.METS-1.0.item-no-files">Er zijn geen bestanden aan dit item gerelateerd.</message>
 
 	<message key="xmlui.dri2xhtml.METS-1.0.size-bytes">bytes</message>
 	<message key="xmlui.dri2xhtml.METS-1.0.size-kilobytes">Kb</message>
@@ -2252,7 +2256,7 @@
   <message key="xmlui.authority.confidence.description.cf_notfound">There are no matching answers in the authority</message>
   <message key="xmlui.authority.confidence.description.cf_ambiguous">There are multiple matching authority values of equal validity</message>
   <message key="xmlui.authority.confidence.description.cf_uncertain">Value is singular and valid but has not been seen and accepted by a human so it is still uncertain</message>
-  <message key="xmlui.authority.confidence.description.cf_accepted">This authority value has been confirmed as accurate by an interactive user</message>
+  <message key="xmlui.authority.confidence.description.cf_accepted">This authority value has been confirmed as acCureer by an interactive user</message>
   <!-- help message on "unlock" button in EditItemMetadata display -->
   <message key="xmlui.authority.confidence.unlock.help">Unlock the authority key value for manual editing, or toggle it locked again</message>
 

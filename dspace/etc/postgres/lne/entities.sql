@@ -32,3 +32,5 @@ CREATE TABLE Relationship
   right_id        INTEGER REFERENCES Item ON DELETE CASCADE,
   CONSTRAINT relationship_left_type_right_unique UNIQUE (left_id, type_id, right_id)
 );
+
+INSERT INTO type(left_type, right_type, left_label, right_label, left_min_cardinality, right_min_cardinality, left_max_cardinality) VALUES ('com.atmire.dspace.content.Record','com.atmire.dspace.content.Record','Ouder','Kind',0,0,1);

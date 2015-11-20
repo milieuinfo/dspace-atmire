@@ -46,15 +46,6 @@ ln -f -s ${tomcat_apps_dir}/xmlui.xml ${tomcat_home_dir}/conf/Catalina/localhost
 ln -f -s ${tomcat_apps_dir}/setenv.sh ${tomcat_home_dir}/bin/setenv.sh
 
 
-
-
-# TODO zorgen dat de DB init enkel gebeurd op node 1 
-if [ ${node_num} -eq 2 ]; then 
-    echo "Dit wordt enkel uitgevoerd op node 2"
-else
-    echo "Dit wordt enkel uitgevoerd op node 1"
-fi
-
 # Een trukje omdat dspace met zijn eigen installer komt en we zeker willen zijn dat alles goed werkt
 mv ${tomcat_apps_dir}/dspace ${tomcat_apps_dir}/dspace_install
 
@@ -90,58 +81,27 @@ fi
 
 echo "Maken van symlinks naar de data folders"
 
+
+cp -r ${tomcat_apps_dir}/dspace/solr/* ${tomcat_data_dir}/solr/
+
+chown -R tomcat:tomcat ${tomcat_data_dir}/solr/
+
 rm -rf ${tomcat_apps_dir}/dspace/solr
 
-echo "Symlink voor solr source: ${tomcat_data_dir}/dspace/solr2 name: ${tomcat_apps_dir}/dspace/solr"
-
-ln -s ${tomcat_data_dir}/dspace/solr2 ${tomcat_apps_dir}/dspace/solr
+echo "Symlink voor solr source: ${tomcat_data_dir}/solr name: ${tomcat_apps_dir}/dspace/solr"
+ln -s ${tomcat_data_dir}/solr ${tomcat_apps_dir}/dspace/solr
 
 rm -rf ${tomcat_apps_dir}/dspace/assetstore
 
-echo "Symlink voor assetstore source: ${tomcat_data_dir}/dspace/assetstore name: ${tomcat_apps_dir}/dspace/assetstore"
-ln -s ${tomcat_data_dir}/dspace/assetstore ${tomcat_apps_dir}/dspace/assetstore
-
-
-#if [ ! -d "${tomcat_data_dir}/dspace/bin" ]; then
-#    echo "Complete install"
-#    # Install the dspace configs, code and webapps into the '${tomcat_data_dir}/dspace' location
-#    cd ${tomcat_apps_dir}/dspace && ant -v init_installation init_configs test_database load_registries install_code update_webapps clean_backups
-#
-#    # Create administrator
-#    # TODO uncomment this before releasing and deploying in oefen/productie
-#    #${tomcat_data_dir}/dspace/bin/dspace create-administrator -e 'dspace@milieuinfo.be' -f 'admin' -l 'dspace' -c 'en' -p 'DspacE'
-#
-#    # (Create Communities, groups and policies)
-#    # TODO uncomment this before releasing and deploying in oefen/productie
-#    #${tomcat_apps_dir}/import-structure-policies.py -x -b ${tomcat_apps_dir}/dspace/bin/dspace -f ${tomcat_apps_dir}/dspace/config/community-tree.xml
-#else
-#    echo "Update install"
-#    cd ${tomcat_apps_dir}/dspace && ant -v update clean_backups
-#fi
+echo "Symlink voor assetstore source: ${tomcat_data_dir}/assetstore name: ${tomcat_apps_dir}/dspace/assetstore"
+ln -s ${tomcat_data_dir}/assetstore ${tomcat_apps_dir}/dspace/assetstore
 
 echo "Wissen van de install dir"
-rm -rf ${tomcat_apps_dir}/dspace_install =
+rm -rf ${tomcat_apps_dir}/dspace_install 
 
 echo "Chown dir naar tomcat user : ${tomcat_apps_dir}"
 
 chown -R tomcat:tomcat ${tomcat_apps_dir}
 
-echo "Write ansible vars"
-echo "-------------------"
-echo 'export ZUILURL='${ZUILURL}
-echo 'export ZUIL='${ZUIL}
-echo 'export db_password='${db_password}
-echo 'export db_port='${db_port}
-echo 'export db_username='${db_username}
-echo 'export dspace_consumer_secret='${dspace_consumer_secret}
-echo 'export dspace_consumer_token='${dspace_consumer_token}
-echo 'export mailrelay_host='${mailrelay_host}
-echo 'export mailrelay_port='${mailrelay_port}
-echo 'export node_num='${node_num}
-echo 'export tomcat_apps_dir='${tomcat_apps_dir}
-echo 'export tomcat_data_dir='${tomcat_data_dir}
-echo 'export tomcat_home_dir='${tomcat_home_dir}
-echo 'export vlan='${vlan}
-echo 'export zuil='${zuil}
 
 

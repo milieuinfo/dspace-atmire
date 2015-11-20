@@ -8,6 +8,8 @@
     <xsl:output encoding="UTF-8" indent="yes" omit-xml-declaration="yes"/>
 
     <xsl:param name="directory" />
+    
+
 
     <xsl:template match="@* | node()">
         <xsl:apply-templates select="*"/>
@@ -16,6 +18,10 @@
     <xsl:template match="text()"/>
     <xsl:template match="text()" mode="dc"/>
     <xsl:template match="text()" mode="imjv"/>
+    <xsl:variable name="cbbnr">
+        <xsl:value-of select="//MilieuVerslagMetaData/Cbbnummer/text()"/>
+    </xsl:variable>
+
 
     <!-- Dossier -->
     <xsl:template match="IdentificatieMetaData">
@@ -54,7 +60,12 @@
                 <xsl:apply-templates select="//MilieuVerslagMetaData" mode="imjv"/>
             </dublin_core>
         </redirect:write>
-
+        <redirect:write select="concat('IdentificatieMetaData',position(),'/metadata_kbo.xml')">
+            <dublin_core schema="kbo">
+                <xsl:copy-of select="utils:getExtraMetaData($directory,'kbo')"/>  
+            </dublin_core>
+        </redirect:write>
+        
         <xsl:call-template name="aangifte">
             <xsl:with-param name="root-directory">
                 <xsl:value-of select="concat('IdentificatieMetaData',position())"/>
@@ -112,7 +123,12 @@
                 </dcvalue>
             </dublin_core>
         </redirect:write>
-
+        <redirect:write select="concat('source',position(),'/metadata_kbo.xml')">
+            <dublin_core schema="kbo">
+                <xsl:copy-of select="utils:getExtraMetaData($directory,'kbo')"/>  
+            </dublin_core>
+        </redirect:write>
+        
         <redirect:write select="concat('source',position(),'/relations.xml')">
             <dublin_core schema="relation">
                 <dcvalue element="hasParent">
@@ -174,6 +190,14 @@
                     </dcvalue>
                 </dublin_core>
             </redirect:write>
+            
+            <redirect:write select="concat('aangifte',position(),'/metadata_kbo.xml')">
+                <dublin_core schema="kbo">
+                    <xsl:copy-of select="utils:getExtraMetaData($directory,'kbo')"/>  
+                </dublin_core>
+            </redirect:write>
+            
+            
             <redirect:write select="concat('aangifte',position(),'/relations.xml')">
                 <dublin_core schema="relation">
                     <dcvalue element="hasParent">
@@ -305,6 +329,14 @@
                     </xsl:call-template>
                 </dublin_core>
             </redirect:write>
+            <redirect:write select="concat('ProcesSchema',$count,'_',position(),'/metadata_kbo.xml')">
+                <dublin_core schema="kbo">
+                    <xsl:copy-of select="utils:getExtraMetaData($directory,'kbo')"/>  
+                </dublin_core>
+            </redirect:write>
+            
+            
+            
             <redirect:write select="concat('ProcesSchema',$count,'_',position(), '/contents')">
                 <xsl:value-of select="$directory"/>
                 <xsl:text>/</xsl:text>
@@ -398,6 +430,13 @@
                     </xsl:call-template>
                 </dublin_core>
             </redirect:write>
+            
+            <redirect:write select="concat('Bijlage',$count,'_',position(),'/metadata_kbo.xml')">
+                <dublin_core schema="kbo">
+                    <xsl:copy-of select="utils:getExtraMetaData($directory,'kbo')"/>  
+                </dublin_core>
+            </redirect:write>
+            
             <redirect:write select="concat('Bijlage',$count,'_',position(), '/contents')">
                 <xsl:value-of select="$directory"/>
                 <xsl:text>/</xsl:text>
@@ -430,7 +469,7 @@
             <xsl:value-of select="//RapporteringsJaar"/>
         </xsl:variable>
         <xsl:variable name="nummer">
-            <xsl:value-of select="//Exploitatie/CBBExploitatieNummer"/>
+            <xsl:value-of select="$cbbnr"/>
         </xsl:variable>
 
         <!-- TODO Change directory to non-fixed one-->
@@ -546,6 +585,12 @@
             </dublin_core>
         </redirect:write>
 
+        <redirect:write select="concat('Aanvulling',$count,'_',$i,'/metadata_kbo.xml')">
+            <dublin_core schema="kbo">
+                <xsl:copy-of select="utils:getExtraMetaData($directory,'kbo')"/>  
+            </dublin_core>
+        </redirect:write>
+
         <redirect:write select="concat('Aanvulling',$count,'_',$i, '/contents')">
             <xsl:value-of select="$directory"/>
             <xsl:text>/</xsl:text>
@@ -594,7 +639,7 @@
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="Exploitatie/Naam/text()"/>
                     <xsl:text> - </xsl:text>
-                    <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
+                    <xsl:value-of select="$cbbnr"/>
                     <xsl:if test="$type">
                         <xsl:text> - </xsl:text>
                         <xsl:value-of select="$type"/>
@@ -608,7 +653,7 @@
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="Exploitant/Naam/text()"/>
                     <xsl:text> - </xsl:text>
-                    <xsl:value-of select="Exploitant/CBBExploitantNummer/text()"/>
+                    <xsl:value-of select="$cbbnr"/>
                     <xsl:if test="$type">
                         <xsl:text> - </xsl:text>
                         <xsl:value-of select="$type"/>
@@ -628,7 +673,7 @@
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="Exploitatie/Naam/text()"/>
                     <xsl:text> - </xsl:text>
-                    <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
+                    <xsl:value-of select="$cbbnr"/>
                 </dcvalue>
             </xsl:when>
             <xsl:otherwise>
@@ -638,7 +683,7 @@
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="Exploitant/Naam/text()"/>
                     <xsl:text> - </xsl:text>
-                    <xsl:value-of select="Exploitant/CBBExploitantNummer/text()"/>
+                    <xsl:value-of select="$cbbnr"/>
                 </dcvalue>
             </xsl:otherwise>
         </xsl:choose>
@@ -659,7 +704,7 @@
 
     <xsl:template match="IdentificatieMetaData/Exploitatie/CBBExploitatieNummer" mode="imjv">
         <dcvalue element="exploitatie" qualifier="nummer">
-            <xsl:value-of select="text()"/>
+            <xsl:value-of select="$cbbnr"/>
         </dcvalue>
     </xsl:template>
 
@@ -755,7 +800,7 @@
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="//IdentificatieMetaData/Exploitatie/Naam/text()"/>
                     <xsl:text> - </xsl:text>
-                    <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
+                    <xsl:value-of select="$cbbnr"/>
                 </dcvalue>
             </xsl:when>
             <xsl:otherwise>
@@ -792,7 +837,7 @@
                     <xsl:text> - </xsl:text>
                     <xsl:value-of select="//IdentificatieMetaData/Exploitant/Naam/text()"/>
                     <xsl:text> - </xsl:text>
-                    <xsl:value-of select="//IdentificatieMetaData/Exploitant/CBBExploitantNummer/text()"/>
+                    <xsl:value-of select="$cbbnr"/>
                 </dcvalue>
             </xsl:otherwise>
         </xsl:choose>
@@ -908,7 +953,7 @@
     <xsl:template name="dossier-dossiernummer-internal">
         <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
         <xsl:text>_</xsl:text>
-        <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
+        <xsl:value-of select="$cbbnr"/>
     </xsl:template>
 
     <xsl:template name="title-alternative">
@@ -930,7 +975,7 @@
         <dcvalue element="identifier">
             <xsl:value-of select="RapporteringsJaar/text()"/>
             <xsl:text>_</xsl:text>
-            <xsl:value-of select="Exploitatie/CBBExploitatieNummer/text()"/>
+            <xsl:value-of select="$cbbnr"/>
             <xsl:if test="$type">
                 <xsl:text>_</xsl:text>
                 <xsl:value-of select="$type"/>
@@ -969,9 +1014,13 @@
         <dcvalue element="identifier">
             <xsl:value-of select="//IdentificatieMetaData/RapporteringsJaar/text()"/>
             <xsl:text>_</xsl:text>
-            <xsl:value-of select="//IdentificatieMetaData/Exploitatie/CBBExploitatieNummer/text()"/>
+            <xsl:value-of select="$cbbnr"/>
             <xsl:text>_</xsl:text>
             <xsl:value-of select="AangifteType/text()"/>
+            <xsl:if test="Volgnummer">
+                <xsl:text>_</xsl:text>
+                <xsl:value-of select="Volgnummer/text()"/>
+            </xsl:if>
         </dcvalue>
     </xsl:template>
 
@@ -984,7 +1033,7 @@
     </xsl:template>
 
     <xsl:template name="document-identifier-internal">
-        <xsl:value-of select="substring-before(text(),'.')"/>
+        <xsl:value-of select="utils:getFileNameWithoutExtension(text())"/>
     </xsl:template>
 
     <xsl:template name="aangifte-document-title">
@@ -1005,8 +1054,7 @@
         <xsl:param name="nummer"/>
         <xsl:param name="aangifteType"/>
         <xsl:param name="i"/>
-        <xsl:value-of
-                select="substring-before(utils:getFileNameBasedOnIndex($directory,$jaar,$nummer,$aangifteType,$i),'.')"/>
+        <xsl:value-of select="utils:getFileNameWithoutExtension(utils:getFileNameBasedOnIndex($directory,$jaar,$nummer,$aangifteType,$i))"/>
     </xsl:template>
 
     <xsl:template match="//Rijksregisternummer" mode="dc"/>

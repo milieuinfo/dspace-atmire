@@ -13,8 +13,12 @@ import javax.servlet.http.HttpServletRequest;
 
 public class OpenAMCookieAuthentication extends OpenAMImplicitAuthentication {
 
-    @Override
-    protected String retrieveOpenAMToken(HttpServletRequest request) {
-        return OpenAMTools.getSSOTokenFromCookies(request.getCookies());
-    }
+	@Override
+	protected String retrieveOpenAMToken(HttpServletRequest request) {
+		if (null == request) {
+			return null;
+		} else {
+			return OpenAMTools.getSSOTokenFromCookies(request.getCookies());
+		}
+	}
 }

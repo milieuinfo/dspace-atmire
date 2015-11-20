@@ -58,9 +58,8 @@ public class SearchResource {
 
 		if (null != cleanFields) {
 			String[] splitFields = StringUtils.split(cleanFields, ';');
-			for (String splitField : splitFields) {
-				dq.addFilterQueries(splitField);
-			}
+			String query = StringUtils.join(splitFields , " AND ");
+			dq.setQuery(query);
 		}
 		
 		if (0 == limit) {
@@ -85,7 +84,7 @@ public class SearchResource {
 			toReturn.add(new org.dspace.rest.common.Item(it,cleanExpand,context));
 		}
 
-		
+		context.complete();
 		
 		return toReturn;
 	}

@@ -19,6 +19,7 @@
    <properties>
        <!-- This is the path to the root [dspace-src] directory. -->
        <root.basedir>${basedir}/../../..</root.basedir>
+       <huisstijl.version>0.0.2</huisstijl.version>
    </properties>
 
    <build>
@@ -38,7 +39,11 @@
                      <directory>${basedir}/src/main/webapp</directory>
                      <includes>
                         <include>WEB-INF/web.xml</include>
+                        <include>themes/LNE_Mirage/sitemap.xmap</include>
                      </includes>
+                  </resource>
+                   <resource>
+                     <directory>${project.build.directory}/scssoutput/</directory>                
                   </resource>
                </webResources>
                <overlays>
@@ -71,7 +76,39 @@
                </execution>
             </executions>
          </plugin>
-
+         <plugin>
+             <groupId>nl.geodienstencentrum.maven</groupId>
+             <artifactId>sass-maven-plugin</artifactId>
+             <version>2.10</version>
+             <executions>
+                 <execution>
+                     <goals>
+                         <goal>update-stylesheets</goal>
+                         <goal>scss-lint</goal>
+                     </goals>
+                 </execution>
+             </executions>
+             <configuration>
+                 <sassOptions>
+                     <always_update>true</always_update>
+                 </sassOptions>
+                 <useCompass>true</useCompass>
+                 <compassConfigFile>${basedir}/src/main/sass/config.rb</compassConfigFile>
+                 <resources>
+                     <resource>
+                         <source>
+                             <directory>${basedir}/src/main/sass/scss</directory>
+                             <includes>
+                                 <include>lne_custom.scss</include>
+                             </includes>
+                             <excludes />
+                         </source>
+                          <relativeOutputDirectory>..</relativeOutputDirectory>
+                         <destination>${project.build.directory}/scssoutput/themes/LNE_Mirage/lib/css</destination>
+                     </resource>
+                 </resources>
+             </configuration>
+         </plugin>
       </plugins>
    </build>
 
@@ -94,6 +131,12 @@
    </profiles>
 
    <dependencies>
+
+      <dependency>
+         <groupId>be.milieuinfo.webjars</groupId>
+         <artifactId>huisstijl</artifactId>
+         <version>${huisstijl.version}</version>
+      </dependency>
 
       <dependency>
          <groupId>be.milieuinfo.dspace.modules</groupId>

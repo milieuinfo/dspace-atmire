@@ -57,21 +57,24 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
         if (!StringUtils.isBlank(ssoId)) {
             final OpenAMUserdetails userDetails = this.openAMIdentityService.getUserDetails(ssoId);
             if (userDetails != null) {
-                final String email = userDetails.getAttributeValue("mail");
-                final String sn = userDetails.getAttributeValue("sn");
-                final String givenName = userDetails.getAttributeValue("givenName");
+                final String userName = userDetails.getUsername();
+            	
+            	final String email = userDetails.getAttributeValue("mail") == null ? userName : userDetails.getAttributeValue("mail");
+                final String sn = userDetails.getAttributeValue("sn") == null ? userName : userDetails.getAttributeValue("sn");
+                final String givenName = userDetails.getAttributeValue("givenName") ==null ? userName : userDetails.getAttributeValue("givenName");
+                
                 final Collection<String> roles = userDetails.getRoles();
                 if (!StringUtils.isBlank(email)) {
                     try {
                         final EPerson knownEPerson = EPerson.findByEmail(context, email);
                         if (knownEPerson == null) {
                             // TEMPORARILY turn off authorisation
-                            context.setIgnoreAuthorization(true);
+                            context.turnOffAuthorisationSystem();
                             final EPerson eperson = createEPerson(context, request, email, sn, givenName);
                             eperson.update();
                             fixGroups(context, roles, eperson);
                             context.commit();
-                            context.setIgnoreAuthorization(false);
+                            context.restoreAuthSystemState();
                             context.setCurrentUser(eperson);
                             log.info(LogManager.getHeader(context, "login", "type=openam-interactive"));
                             return SUCCESS;
@@ -95,7 +98,7 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
         }
     }
 
-    private EPerson createEPerson(Context context, HttpServletRequest request, String email, String sn, String givenName) throws SQLException, AuthorizeException {
+    protected EPerson createEPerson(Context context, HttpServletRequest request, String email, String sn, String givenName) throws SQLException, AuthorizeException {
         final EPerson eperson = EPerson.create(context);
         eperson.setFirstName(sn);
         eperson.setLastName(givenName);
@@ -109,7 +112,7 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
 
     
 
-    private void fixGroups(Context context, Collection<String> roles , EPerson ePerson) throws SQLException, AuthorizeException{
+    protected void fixGroups(Context context, Collection<String> roles , EPerson ePerson) throws SQLException, AuthorizeException{
     	
     	ArrayList<Group> currentGroups = new ArrayList<Group>();
     	

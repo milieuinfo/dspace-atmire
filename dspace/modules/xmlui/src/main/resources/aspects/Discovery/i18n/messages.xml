@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<!--
+
+    The contents of this file are subject to the license and copyright
+    detailed in the LICENSE and NOTICE files at the root of the source
+    tree and available online at
+
+    http://www.dspace.org/license/
+
+-->
+<catalogue xml:lang="en" xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://apache.org/cocoon/i18n/2.1">
+
+    <!--
+		The format used by all keys is as follows
+
+		xmlui.<Aspect>.<Java Class>.<name>
+
+		There are a few exceptions to this naming format,
+		1) Some general keys are in the xmlui.general namespace
+		   because they are used very frequently.
+		2) Some general keys which are specific to a particular aspect
+		   may be found at xmlui.<Aspect> without specifiying a
+		   particular java class.
+		-->
+
+
+    <!-- org.dspace.app.xmlui.artifactbrowser.AbstractSearch.java -->
+
+
+
+
+    <!-- org.dspace.app.xmlui.artifactbrowser.AdvancedSearch.java -->
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dc.contributor.author_filter">Auteur</message>
+
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dc.subject_filter">Onderwerp</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dc.type_filter">Contenttype</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dc.date.issued">Datum uitgave</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dateIssued">Datum uitgave</message>
+
+
+    <!-- Site Leve Recently Added Content -->
+    <message key="xmlui.ArtifactBrowser.SiteViewer.head_recent_submissions">Recent toegevoegd</message>
+
+    <message key="xmlui.ArtifactBrowser.AbstractRecentSubmissionTransformer.recent_submissions_more">Toon meer</message>
+    <message key="xmlui.Discovery.RecentSubmissions.RecentSubmissionTransformer.head">{0}: Recent toegevoegde items</message>
+    <message key="xmlui.Discovery.RecentSubmissions.RecentSubmissionTransformer.trail">Recent toegevoegd</message>
+    <message key="xmlui.Discovery.RecentSubmissions.RecentSubmissionTransformer.recent.head">Recent toegevoegd</message>
+
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_type_filter">Soort</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_publisher_filter">Uitgever</message>
+
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.sort_by.ispartof">Ouder</message>
+
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.group_by">Groepeer resultaat op</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.group_by.none">Geen</message>
+
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.group_by.publication_grp">Publicatie</message>
+
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_location.comm">Community</message>
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_location.coll">Collectie</message>
+
+
+    <message key="xmlui.ArtifactBrowser.AdvancedSearch.type_dc.relation.ispartofseries_filter">Serie</message>
+
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.contributor.author_browse">Browse op: Auteur</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.title_browse">Browse op: Titel</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.subject_browse">Browse op: Onderwerp</message>
+        
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dc.description.abstract_browse">Browse op: Samenvatting</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_series_browse">Browse op: Serie</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_sponsor_browse">Browse op: Sponsor</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_identifier_browse">Browse op: Identifier</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_language_browse">Browse op: Taal (ISO)</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_keyword_browse">Browse op: Trefwoord</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_taxon_browse">Browse op: Wetenschappelijke naam</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_contributor_browse">Browse op: Contributor</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_creator_browse">Browse op: Maker</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_subject_browse">Browse op: Onderwerp</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_description_browse">Browse op: Beschrijving</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_relation_browse">Browse op: Relatie</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_mime_browse">Browse op: Mime-Type</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_other_browse">Browse op: Other Contributor</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_advisor_browse">Browse op: Adviseur</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_department_browse">Browse op: Afdeling</message>
+    <message key="xmlui.ArtifactBrowser.AbstractSearch.type_dateissued_dt_browse">Browse op: Datum uitgave</message>
+
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.author">Auteur</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.title">Titel</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.subject">Onderwerp</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dateIssued">Datum uitgave</message>
+
+
+
+    <message key="xmlui.dri2xhtml.structural.pagination-info.nototal">Nu getoond items {0}-{1}</message>
+
+    <message key="xmlui.Discovery.AbstractSearch.type_author">Filter op: Auteur</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.author">Auteur</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.author_filter">Auteur</message>
+    <message key="xmlui.Discovery.AbstractSearch.type_subject">Filter op: Onderwerp</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.subject">Onderwerp</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.subject_filter">Onderwerp</message>
+    <message key="xmlui.ArtifactBrowser.SimpleSearch.filter.dateIssued.year">Datum uitgave</message>
+
+
+    <message key="xmlui.Discovery.AbstractSearch.startswith">Begint met</message>
+    <message key="xmlui.Discovery.AbstractSearch.startswith.help">Of type de eerste paar letters:</message>
+
+    <message key="xmlui.Discovery.AbstractSearch.sort_by.head">Zoek opties:</message>
+    <message key="xmlui.Discovery.AbstractSearch.sort_by.relevance">Relevantie:</message>
+    <message key="xmlui.Discovery.AbstractSearch.sort_by.dc.title_sort_desc">Titel dalend</message>
+    <message key="xmlui.Discovery.AbstractSearch.sort_by.dc.date.issued_dt_desc">Datum uitgave dalend</message>
+
+    <message key="xmlui.Discovery.AbstractSearch.sort_by.dc.title_sort_asc">Titel stijgend</message>
+    <message key="xmlui.Discovery.AbstractSearch.sort_by.dc.date.issued_dt_asc">Datum uitgave stijgend</message>
+
+    <message key="xmlui.Discovery.AbstractSearch.rpp">Resultaten per pagina:</message>
+
+
+    <message key="xmlui.Discovery.AbstractSearch.filters.controls.add-filter">Voeg filters toe</message>
+    <message key="xmlui.Discovery.AbstractSearch.filters.controls.apply-filters">Pas toe</message>
+    <message key="xmlui.Discovery.AbstractSearch.filters.controls.remove-filter">Verwijder</message>
+    <message key="xmlui.Discovery.AbstractSearch.filters.controls.new-filters.head">Nieuwe Filters:</message>
+    <message key="xmlui.Discovery.AbstractSearch.filters.controls.current-filters.head">Huidige Filters:</message>
+    <message key="xmlui.Discovery.AbstractSearch.filters.display">Filters Toevoegen</message>
+
+    <message key="xmlui.discovery.SearchFacetFilter.no-results">Geen filterwaarden gevonden</message>
+
+    <message key="xmlui.discovery.AbstractFiltersTransformer.filters.head">Discover</message>
+    <message key="xmlui.discovery.AbstractFiltersTransformer.filters.view-more">... Meer</message>
+
+
+    <message key="xmlui.Discovery.SimpleSearch.search_scope">Zoek</message>
+    <message key="xmlui.discovery.SimpleSearch.search_label">Zoek</message>
+    <message key="xmlui.Discovery.SimpleSearch.filter_head">Filters</message>
+    <message key="xmlui.Discovery.SimpleSearch.filter_help">Gebruik filters om het zoekresultaat te verfijnen.</message>
+
+    <message key="xmlui.Discovery.SimpleSearch.filter.contains">Bevat</message>
+    <message key="xmlui.Discovery.SimpleSearch.filter.equals">Gelijk aan</message>
+    <message key="xmlui.Discovery.SimpleSearch.filter.authority">ID</message>
+	<message key="xmlui.Discovery.SimpleSearch.filter.notcontains">Bevat niet</message>
+    <message key="xmlui.Discovery.SimpleSearch.filter.notequals">Niet Gelijk aan</message>
+    <message key="xmlui.Discovery.SimpleSearch.filter.notauthority">Niet ID</message>
+    
+    <message key="xmlui.Discovery.RelatedItems.head">Geralteerde items</message>
+    <message key="xmlui.Discovery.RelatedItems.help">Showing items related by title, author, creator and subject.</message>
+
+    <message key="xmlui.Discovery.AbstractSearch.head1_community">{0} resultaten van in totaal {1} resultaten voor community: {2}. <span class="searchTime">({3} seconden)</span></message>
+   	<message key="xmlui.Discovery.AbstractSearch.head1_collection">{0}  resultaten van in totaal {1} resultaten voor collectie: {2}. <span class="searchTime">({3} seconden)</span></message>
+   	<message key="xmlui.Discovery.AbstractSearch.head1_none">{0} resultaten van in totaal {1} resultaten. <span class="searchTime">({2} seconden)</span></message>
+
+    <message key="xmlui.Discovery.AbstractSearch.head2">Communities of Collecties die aan je zoekopdracht voldoen</message>
+   	<message key="xmlui.Discovery.AbstractSearch.head3">Items die aan je zoekopdracht voldoen</message>
+
+   	<message key="xmlui.Discovery.SimpleSearch.did_you_mean">Bedoel je: </message>
+
+</catalogue>
