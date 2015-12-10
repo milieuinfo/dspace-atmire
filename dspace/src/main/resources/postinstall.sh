@@ -11,6 +11,7 @@ sed -i \
     -e "s@%tomcat_home_dir%@${tomcat_home_dir}@g" \
     -e "s/%db_username%/${db_username}/g" \
     -e "s/%db_password%/${db_password}/g" \
+    -e "s/%db_name%/${db_name}/g" \
     -e "s/%db_port%/${db_port}/g" \
     -e "s/%mailrelay_host%/${mailrelay_host}/g" \
     -e "s/%mailrelay_port%/${mailrelay_port}/g" \
