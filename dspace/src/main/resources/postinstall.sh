@@ -97,11 +97,11 @@ rm -rf ${tomcat_apps_dir}/dspace/assetstore
 echo "Symlink voor assetstore source: ${tomcat_data_dir}/assetstore name: ${tomcat_apps_dir}/dspace/assetstore"
 ln -s ${tomcat_data_dir}/assetstore ${tomcat_apps_dir}/dspace/assetstore
 
-echo "Symlink voor export dir"
-rm -rf ${tomcat_apps_dir}/dspace/exports
-
-mkdir -p ${tomcat_data_dir}/tmp/exports/download/  
-ln -s ${tomcat_data_dir}/tmp/exports ${tomcat_apps_dir}/dspace/exports
+#echo "Symlink voor export dir"
+#rm -rf ${tomcat_apps_dir}/dspace/exports
+#
+#mkdir -p ${tomcat_data_dir}/tmp/exports/download/  
+#ln -s ${tomcat_data_dir}/tmp/exports ${tomcat_apps_dir}/dspace/exports
 
 
 echo "Wissen van de install dir"
