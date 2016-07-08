@@ -407,7 +407,7 @@ public class ItemExport
             DCValue[] dcorevalues = i.getMetadata(Item.ANY, Item.ANY, Item.ANY, Item.ANY);
             List<DCValue> dcValues = Arrays.asList(dcorevalues);
             MetadataManipulator manipulator = new MetadataManipulator("itemExport-" + schema);
-            dcValues = manipulator.manipulateMetadata(i, dcValues);
+            dcValues = manipulator.manipulateMetadata(c, i, dcValues);
             dcorevalues = dcValues.toArray(new DCValue[dcValues.size()]);
 
             // XML preamble

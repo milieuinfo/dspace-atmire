@@ -2,6 +2,7 @@ package com.atmire.metadata;
 
 import org.dspace.content.DCValue;
 import org.dspace.content.Item;
+import org.dspace.core.Context;
 
 import java.util.List;
 import java.util.Map;
@@ -11,5 +12,5 @@ import java.util.Map;
  * Date: 08 Jul 2016
  */
 public interface MetadataManipulation {
-    Map<ManipulationAction,List<DCValue>> getActions(Item item, List<DCValue> originalValues);
+    Map<ManipulationAction,List<DCValue>> getActions(Context c, Item item, List<DCValue> originalValues);
 }

@@ -27,7 +27,7 @@ public class RetainSchemaTest {
         values.add(vlaanderenValue);
 
         RetainSchema retainSchema = new RetainSchema("vlaanderen");
-        Map<ManipulationAction, List<DCValue>> actions = retainSchema.getActions(null, values);
+        Map<ManipulationAction, List<DCValue>> actions = retainSchema.getActions(c, null, values);
 
         List<DCValue> toRemove = actions.get(ManipulationAction.REMOVE);
         List<DCValue> toAdd = actions.get(ManipulationAction.ADD);

@@ -4,6 +4,7 @@ import com.atmire.util.helper.MetadataFieldString;
 import com.atmire.util.subclasses.MetadatumExtended;
 import org.dspace.content.DCValue;
 import org.dspace.content.Item;
+import org.dspace.core.Context;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -22,7 +23,7 @@ public class RemoveMetadata implements MetadataManipulation {
     }
 
     @Override
-    public Map<ManipulationAction, List<DCValue>> getActions(Item item, List<DCValue> originalValues) {
+    public Map<ManipulationAction, List<DCValue>> getActions(Context c, Item item, List<DCValue> originalValues) {
         Map<ManipulationAction, List<DCValue>> map = new HashMap<ManipulationAction, List<DCValue>>();
         List<DCValue> toRemove = new LinkedList<DCValue>();
         MetadatumExtended fieldToRemove = MetadataFieldString.encapsulate(field);

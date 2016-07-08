@@ -118,6 +118,14 @@ public class MetadatumExtended extends DCValue {
         return new MetadatumExtended(schema1, element1, qualifier1, language1, value1, authority1, confidence1);
     }
 
+    public MetadatumExtended filledWithExceptField(DCValue dcValue) {
+        String language1 = StringUtils.isBlank(language) ? dcValue.language : language;
+        String value1 = StringUtils.isBlank(value) ? dcValue.value : value;
+        String authority1 = StringUtils.isBlank(authority) ? dcValue.authority : authority;
+        int confidence1 = confidence == Choices.CF_UNSET ? dcValue.confidence : confidence;
+        return new MetadatumExtended(schema, element, qualifier, language1, value1, authority1, confidence1);
+    }
+
     public MetadatumExtended copy() {
         MetadatumExtended copy = new MetadatumExtended();
         copy.value = this.value;

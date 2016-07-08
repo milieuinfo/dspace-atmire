@@ -28,7 +28,7 @@ public class SkipBlankValuesTest {
         values.add(nullValue);
 
         SkipBlankValues removeMetadata = new SkipBlankValues();
-        Map<ManipulationAction, List<DCValue>> actions = removeMetadata.getActions(null, values);
+        Map<ManipulationAction, List<DCValue>> actions = removeMetadata.getActions(c, null, values);
 
         List<DCValue> toRemove = actions.get(ManipulationAction.REMOVE);
         List<DCValue> toAdd = actions.get(ManipulationAction.ADD);

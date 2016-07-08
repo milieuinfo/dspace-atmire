@@ -39,7 +39,7 @@ public class CopyMetadataTest {
         values.add(id2);
 
         CopyMetadata copyMetadata = new CopyMetadata(fromField, toField);
-        Map<ManipulationAction, List<DCValue>> actions = copyMetadata.getActions(null, values);
+        Map<ManipulationAction, List<DCValue>> actions = copyMetadata.getActions(c, null, values);
 
         List<DCValue> toRemove = actions.get(ManipulationAction.REMOVE);
         List<DCValue> toAdd = actions.get(ManipulationAction.ADD);

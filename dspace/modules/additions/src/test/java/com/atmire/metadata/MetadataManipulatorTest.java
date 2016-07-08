@@ -46,7 +46,7 @@ public class MetadataManipulatorTest {
         values.add(vlaanderenValue);
 
         MetadataManipulator manipulator = new MetadataManipulator(manipulations);
-        List<DCValue> dcValues = manipulator.manipulateMetadata(null, values);
+        List<DCValue> dcValues = manipulator.manipulateMetadata(c, null, values);
 
         assertFalse(dcValues.contains(id1));
         assertFalse(dcValues.contains(id2));
