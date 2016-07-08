@@ -367,18 +367,22 @@ public class ItemExport
     private static void writeMetadata(Context c, Item i, File destDir, boolean migrate)
             throws Exception
     {
-        Set<String> schemas = new HashSet<String>();
-        DCValue[] dcValues = i.getMetadata(Item.ANY, Item.ANY, Item.ANY, Item.ANY);
-        for (DCValue dcValue : dcValues)
-        {
-            schemas.add(dcValue.schema);
-        }
+//        Set<String> schemas = new HashSet<String>();
+//        DCValue[] dcValues = i.getMetadata(Item.ANY, Item.ANY, Item.ANY, Item.ANY);
+//        for (DCValue dcValue : dcValues)
+//        {
+//            schemas.add(dcValue.schema);
+//        }
 
         // Save each of the schemas into it's own metadata file
-        for (String schema : schemas)
-        {
-            writeMetadata(c, schema, i, destDir, migrate);
+        MetadataSchema[] allSchemas = MetadataSchema.findAll(c);
+        for (MetadataSchema schema : allSchemas) {
+             writeMetadata(c, schema.getName(), i, destDir, migrate);
         }
+//        for (String schema : schemas)
+//        {
+//            writeMetadata(c, schema, i, destDir, migrate);
+//        }
     }
 
     // output the item's dublin core into the item directory
@@ -395,103 +399,99 @@ public class ItemExport
             filename = "metadata_" + schema + ".xml";
         }
 
-        File outFile = new File(destDir, filename);
 
-        System.out.println("Attempting to create file " + outFile);
+        DCValue[] dcorevalues = i.getMetadata(Item.ANY, Item.ANY, Item.ANY, Item.ANY);
+        List<DCValue> dcValues = Arrays.asList(dcorevalues);
+        MetadataManipulator manipulator = new MetadataManipulator("itemExport-" + schema);
+        dcValues = manipulator.manipulateMetadata(c, i, dcValues);
+        dcorevalues = dcValues.toArray(new DCValue[dcValues.size()]);
 
-        if (outFile.createNewFile())
-        {
-            BufferedOutputStream out = new BufferedOutputStream(
-                    new FileOutputStream(outFile));
+        if (dcorevalues.length > 0) {
 
-            DCValue[] dcorevalues = i.getMetadata(Item.ANY, Item.ANY, Item.ANY, Item.ANY);
-            List<DCValue> dcValues = Arrays.asList(dcorevalues);
-            MetadataManipulator manipulator = new MetadataManipulator("itemExport-" + schema);
-            dcValues = manipulator.manipulateMetadata(c, i, dcValues);
-            dcorevalues = dcValues.toArray(new DCValue[dcValues.size()]);
+            File outFile = new File(destDir, filename);
 
-            // XML preamble
-            byte[] utf8 = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n"
-                    .getBytes("UTF-8");
-            out.write(utf8, 0, utf8.length);
+            System.out.println("Attempting to create file " + outFile);
 
-            String dcTag = "<dublin_core schema=\"" + schema + "\">\n";
-            utf8 = dcTag.getBytes("UTF-8");
-            out.write(utf8, 0, utf8.length);
-
-            String dateIssued = null;
-            String dateAccessioned = null;
-
-            for (DCValue dcv : dcorevalues)
+            if (outFile.createNewFile())
             {
-                String qualifier = dcv.qualifier;
 
-                if (qualifier == null)
-                {
-                    qualifier = "none";
-                }
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(outFile));
 
-                String language = dcv.language;
-
-                if (language != null)
-                {
-                    language = " language=\"" + language + "\"";
-                }
-                else
-                {
-                    language = "";
-                }
-
-                utf8 = ("  <dcvalue element=\"" + dcv.element + "\" "
-                        + "qualifier=\"" + qualifier + "\""
-                        + language + ">"
-                        + Utils.addEntities(dcv.value) + "</dcvalue>\n")
+                // XML preamble
+                byte[] utf8 = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n"
                         .getBytes("UTF-8");
+                out.write(utf8, 0, utf8.length);
 
-                if ((!migrate) ||
-                    (migrate && !(
-                     ("date".equals(dcv.element) && "issued".equals(qualifier)) ||
-                     ("date".equals(dcv.element) && "accessioned".equals(qualifier)) ||
-                     ("date".equals(dcv.element) && "available".equals(qualifier)) ||
-                     ("identifier".equals(dcv.element) && "uri".equals(qualifier) &&
-                      (dcv.value != null && dcv.value.startsWith("http://hdl.handle.net/" +
-                       HandleManager.getPrefix() + "/"))) ||
-                     ("description".equals(dcv.element) && "provenance".equals(qualifier)) ||
-                     ("format".equals(dcv.element) && "extent".equals(qualifier)) ||
-                     ("format".equals(dcv.element) && "mimetype".equals(qualifier)))))
-                {
+                String dcTag = "<dublin_core schema=\"" + schema + "\">\n";
+                utf8 = dcTag.getBytes("UTF-8");
+                out.write(utf8, 0, utf8.length);
+
+                String dateIssued = null;
+                String dateAccessioned = null;
+
+                for (DCValue dcv : dcorevalues) {
+                    String qualifier = dcv.qualifier;
+
+                    if (qualifier == null) {
+                        qualifier = "none";
+                    }
+
+                    String language = dcv.language;
+
+                    if (language != null) {
+                        language = " language=\"" + language + "\"";
+                    } else {
+                        language = "";
+                    }
+
+                    utf8 = ("  <dcvalue element=\"" + dcv.element + "\" "
+                            + "qualifier=\"" + qualifier + "\""
+                            + language + ">"
+                            + Utils.addEntities(dcv.value) + "</dcvalue>\n")
+                            .getBytes("UTF-8");
+
+                    if ((!migrate) ||
+                            (migrate && !(
+                                    ("date".equals(dcv.element) && "issued".equals(qualifier)) ||
+                                            ("date".equals(dcv.element) && "accessioned".equals(qualifier)) ||
+                                            ("date".equals(dcv.element) && "available".equals(qualifier)) ||
+                                            ("identifier".equals(dcv.element) && "uri".equals(qualifier) &&
+                                                    (dcv.value != null && dcv.value.startsWith("http://hdl.handle.net/" +
+                                                            HandleManager.getPrefix() + "/"))) ||
+                                            ("description".equals(dcv.element) && "provenance".equals(qualifier)) ||
+                                            ("format".equals(dcv.element) && "extent".equals(qualifier)) ||
+                                            ("format".equals(dcv.element) && "mimetype".equals(qualifier))))) {
+                        out.write(utf8, 0, utf8.length);
+                    }
+
+                    // Store the date issued and accession to see if they are different
+                    // because we need to keep date.issued if they are, when migrating
+                    if (("date".equals(dcv.element) && "issued".equals(qualifier))) {
+                        dateIssued = dcv.value;
+                    }
+                    if (("date".equals(dcv.element) && "accessioned".equals(qualifier))) {
+                        dateAccessioned = dcv.value;
+                    }
+                }
+
+                // When migrating, only keep date.issued if it is different to date.accessioned
+                if ((migrate) &&
+                        (dateIssued != null) &&
+                        (dateAccessioned != null) &&
+                        (!dateIssued.equals(dateAccessioned))) {
+                    utf8 = ("  <dcvalue element=\"date\" "
+                            + "qualifier=\"issued\">"
+                            + Utils.addEntities(dateIssued) + "</dcvalue>\n")
+                            .getBytes("UTF-8");
                     out.write(utf8, 0, utf8.length);
                 }
 
-                // Store the date issued and accession to see if they are different
-                // because we need to keep date.issued if they are, when migrating
-                if (("date".equals(dcv.element) && "issued".equals(qualifier)))
-                {
-                    dateIssued = dcv.value;
-                }
-                if (("date".equals(dcv.element) && "accessioned".equals(qualifier)))
-                {
-                    dateAccessioned = dcv.value;
-                }
-            }
-
-            // When migrating, only keep date.issued if it is different to date.accessioned
-            if ((migrate) &&
-                (dateIssued != null) &&
-                (dateAccessioned != null) &&
-                (!dateIssued.equals(dateAccessioned)))
-            {
-                utf8 = ("  <dcvalue element=\"date\" "
-                        + "qualifier=\"issued\">"
-                        + Utils.addEntities(dateIssued) + "</dcvalue>\n")
-                        .getBytes("UTF-8");
+                utf8 = "</dublin_core>\n".getBytes("UTF-8");
                 out.write(utf8, 0, utf8.length);
+
+                out.close();
             }
-
-            utf8 = "</dublin_core>\n".getBytes("UTF-8");
-            out.write(utf8, 0, utf8.length);
-
-            out.close();
         }
         else
         {
