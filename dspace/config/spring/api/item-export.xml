@@ -41,6 +41,11 @@
                 <bean class="com.atmire.metadata.RemoveMetadata">
                     <constructor-arg value="dc.description.provenance"/>
                 </bean>
+                <bean class="com.atmire.metadata.SkipBlankValues"/>
+                <bean class="com.atmire.metadata.ParentRelation">
+                    <constructor-arg index="0" value="dc.identifier"/>
+                    <constructor-arg index="1" value="dc.relation.ispartof"/>
+                </bean>
             </list>
         </constructor-arg>
     </bean>
@@ -52,9 +57,10 @@
                     <constructor-arg value="vlaanderen"/>
                 </bean>
                 <bean class="com.atmire.metadata.CopyMetadata">
-                    <constructor-arg value="dc.identifier"/>
-                    <constructor-arg value="vlaanderen.identifer"/>
+                    <constructor-arg index="0" value="dc.identifier"/>
+                    <constructor-arg index="1" value="vlaanderen.identifer"/>
                 </bean>
+                <bean class="com.atmire.metadata.SkipBlankValues"/>
             </list>
         </constructor-arg>
     </bean>
