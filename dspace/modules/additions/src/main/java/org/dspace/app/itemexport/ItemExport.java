@@ -48,7 +48,6 @@ import java.util.zip.ZipOutputStream;
  */
 public class ItemExport
 {
-    private static final int SUBDIR_LIMIT = 0;
 
     /**
      * used for export download
@@ -77,6 +76,7 @@ public class ItemExport
                 "sequence number to begin exporting items with");
         options.addOption("z", "zip", true, "export as zip file (specify filename e.g. export.zip)");
         options.addOption("h", "help", false, "help");
+        options.addOption("g", "generate-directory-structure", false, "Generate directory structure based on handle");
 
         CommandLine line = parser.parse(options, argv);
 
@@ -85,6 +85,7 @@ public class ItemExport
         String myIDString = null;
         int seqStart = -1;
         int myType = -1;
+        boolean handleBasedDirectoryStructure = line.hasOption('g');
 
         Item myItem = null;
         Collection mycollection = null;
@@ -128,6 +129,11 @@ public class ItemExport
         if (line.hasOption('n')) // number
         {
             seqStart = Integer.parseInt(line.getOptionValue('n'));
+        } else {
+            if (!handleBasedDirectoryStructure) {
+                System.out.println("The -n parameter is required when the -g parameter is not provided.");
+                System.exit(0);
+            }
         }
 
         boolean migrate = false;
@@ -241,7 +247,7 @@ public class ItemExport
                 System.out.println("Exporting from collection: " + myIDString);
                 items = mycollection.getItems();
             }
-            exportAsZip(c, items, destDirName, zipFileName, seqStart, migrate);
+            exportAsZip(c, items, destDirName, zipFileName, seqStart, migrate, handleBasedDirectoryStructure);
         }
         else
         {
@@ -258,7 +264,7 @@ public class ItemExport
                 ItemIterator i = mycollection.getItems();
                 try
                 {
-                    exportItem(c, i, destDirName, seqStart, migrate);
+                    exportItem(c, i, destDirName, seqStart, migrate, handleBasedDirectoryStructure);
                 }
                 finally
                 {
@@ -273,46 +279,36 @@ public class ItemExport
         c.complete();
     }
 
-    private static void exportItem(Context c, ItemIterator i,
-            String destDirName, int seqStart, boolean migrate) throws Exception
-    {
+    private static void exportItem(Context c, ItemIterator i, String destDirName, int seqStart, boolean migrate, boolean handleBasedDirectoryStructure)
+            throws Exception {
         int mySequenceNumber = seqStart;
-        int counter = SUBDIR_LIMIT - 1;
-        int subDirSuffix = 0;
         String fullPath = destDirName;
-        String subdir = "";
-        File dir;
 
-        if (SUBDIR_LIMIT > 0)
-        {
-            dir = new File(destDirName);
-            if (!dir.isDirectory())
-            {
-                throw new IOException(destDirName + " is not a directory.");
-            }
-        }
+
 
         System.out.println("Beginning export");
 
-        while (i.hasNext())
-        {
-            if (SUBDIR_LIMIT > 0 && ++counter == SUBDIR_LIMIT)
-            {
-                subdir = Integer.valueOf(subDirSuffix++).toString();
-                fullPath = destDirName + File.separatorChar + subdir;
-                counter = 0;
+        while (i.hasNext()) {
 
-                if (!new File(fullPath).mkdirs())
-                {
-                    throw new IOException("Error, can't make dir " + fullPath);
-                }
+            Item next = i.next();
+
+            if (handleBasedDirectoryStructure) {
+                String subdir = new Subdir().getSubDir(next);
+                fullPath = destDirName + File.separator + subdir;
             }
 
-            System.out.println("Exporting item to " + mySequenceNumber);
-            exportItem(c, i.next(), fullPath, mySequenceNumber, migrate);
-            mySequenceNumber++;
+            if (!new File(fullPath).mkdirs()) {
+                System.out.println("Cannot create directories at " + fullPath);
+            } else {
+                System.out.println("Exporting item to " + fullPath);
+
+                exportItem(c, next, fullPath, mySequenceNumber, migrate);
+                mySequenceNumber++;
+            }
         }
     }
+
+
 
     private static void exportItem(Context c, Item myItem, String destDirName,
             int seqStart, boolean migrate) throws Exception
@@ -491,11 +487,9 @@ public class ItemExport
                 out.write(utf8, 0, utf8.length);
 
                 out.close();
+            } else {
+                throw new Exception("Cannot create dublin_core.xml in " + destDir);
             }
-        }
-        else
-        {
-            throw new Exception("Cannot create dublin_core.xml in " + destDir);
         }
     }
 
@@ -663,7 +657,7 @@ public class ItemExport
      */
     public static void exportAsZip(Context context, ItemIterator items,
                                    String destDirName, String zipFileName,
-                                   int seqStart, boolean migrate) throws Exception
+                                   int seqStart, boolean migrate, boolean handleBasedDirectoryStructure) throws Exception
     {
         String workDir = getExportWorkDirectory() +
                          System.getProperty("file.separator") +
@@ -682,7 +676,7 @@ public class ItemExport
         }
 
         // export the items using normal export method
-        exportItem(context, items, workDir, seqStart, migrate);
+        exportItem(context, items, workDir, seqStart, migrate, handleBasedDirectoryStructure);
 
         // now zip up the export directory created above
         zip(workDir, destDirName + System.getProperty("file.separator") + zipFileName);
@@ -972,7 +966,7 @@ public class ItemExport
 
 
                             // export the items using normal export method
-                            exportItem(context, iitems, workDir, 1, migrate);
+                            exportItem(context, iitems, workDir, 1, migrate, false);
                             iitems.close();
                         }
 
