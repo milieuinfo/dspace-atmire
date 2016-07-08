@@ -7,6 +7,7 @@
  */
 package org.dspace.app.itemexport;
 
+import com.atmire.metadata.MetadataManipulator;
 import org.apache.commons.cli.*;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
@@ -403,8 +404,11 @@ public class ItemExport
             BufferedOutputStream out = new BufferedOutputStream(
                     new FileOutputStream(outFile));
 
-            DCValue[] dcorevalues = i.getMetadata(schema, Item.ANY, Item.ANY,
-                    Item.ANY);
+            DCValue[] dcorevalues = i.getMetadata(Item.ANY, Item.ANY, Item.ANY, Item.ANY);
+            List<DCValue> dcValues = Arrays.asList(dcorevalues);
+            MetadataManipulator manipulator = new MetadataManipulator("itemExport-" + schema);
+            dcValues = manipulator.manipulateMetadata(i, dcValues);
+            dcorevalues = dcValues.toArray(new DCValue[dcValues.size()]);
 
             // XML preamble
             byte[] utf8 = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n"
