@@ -37,6 +37,7 @@ public class MetadataManipulatorTest {
         List<MetadataManipulation> manipulations = new LinkedList<MetadataManipulation>();
         manipulations.add(new RetainSchema("vlaanderen"));
         manipulations.add(new CopyMetadata(fromField, toField));
+        manipulations.add(new SkipBlankValues());
 
         List<DCValue> values = new ArrayList<DCValue>();
         values.add(description);
@@ -46,7 +47,7 @@ public class MetadataManipulatorTest {
         values.add(vlaanderenValue);
 
         MetadataManipulator manipulator = new MetadataManipulator(manipulations);
-        List<DCValue> dcValues = manipulator.manipulateMetadata(c, null, values);
+        List<DCValue> dcValues = manipulator.manipulateMetadata(null, null, values);
 
         assertFalse(dcValues.contains(id1));
         assertFalse(dcValues.contains(id2));

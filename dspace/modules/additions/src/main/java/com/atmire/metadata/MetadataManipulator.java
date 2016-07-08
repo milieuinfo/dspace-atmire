@@ -31,9 +31,18 @@ public class MetadataManipulator {
 
     public List<DCValue> manipulateMetadata(Context c, Item item, List<DCValue> originalValues) {
         Map<ManipulationAction, List<DCValue>> actions = new HashMap<ManipulationAction, List<DCValue>>();
+        for (ManipulationAction action : ManipulationAction.values()) {
+            actions.put(action, new LinkedList<DCValue>());
+        }
+
         for (MetadataManipulation manipulation : manipulations) {
             Map<ManipulationAction, List<DCValue>> manipulationActions = manipulation.getActions(c, item, originalValues);
-            actions.putAll(manipulationActions);
+            for (ManipulationAction action : ManipulationAction.values()) {
+                List<DCValue> values = manipulationActions.get(action);
+                if (values != null) {
+                    actions.get(action).addAll(values);
+                }
+            }
         }
 
         List<DCValue> newValues = new ArrayList<DCValue>(originalValues);

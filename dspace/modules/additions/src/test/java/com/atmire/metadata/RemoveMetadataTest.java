@@ -29,7 +29,7 @@ public class RemoveMetadataTest {
         values.add(title);
 
         RemoveMetadata removeMetadata = new RemoveMetadata(fieldToRemove);
-        Map<ManipulationAction, List<DCValue>> actions = removeMetadata.getActions(c, null, values);
+        Map<ManipulationAction, List<DCValue>> actions = removeMetadata.getActions(null, null, values);
 
         List<DCValue> toRemove = actions.get(ManipulationAction.REMOVE);
         List<DCValue> toAdd = actions.get(ManipulationAction.ADD);
