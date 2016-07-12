@@ -1,5 +1,6 @@
 package com.atmire.metadata;
 
+import org.apache.commons.lang.StringUtils;
 import org.dspace.content.DCValue;
 import org.dspace.content.Item;
 import org.dspace.core.Context;
@@ -13,6 +14,8 @@ import java.util.*;
  */
 public class MetadataManipulator {
 
+    public static final String beanPrefix = "itemExport-";
+
     private final List<MetadataManipulation> manipulations;
 
     public MetadataManipulator(List<MetadataManipulation> manipulations) {
@@ -25,7 +28,10 @@ public class MetadataManipulator {
         if (manipulator != null) {
             this.manipulations = manipulator.manipulations;
         } else {
-            this.manipulations = Collections.emptyList();
+            this.manipulations = new ArrayList<MetadataManipulation>();
+            String schema = StringUtils.substringAfter(beanName, beanPrefix);
+            RetainSchema retainSchema = new RetainSchema(schema);
+            this.manipulations.add(retainSchema);
         }
     }
 
