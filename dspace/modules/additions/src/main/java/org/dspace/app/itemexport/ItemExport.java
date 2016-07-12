@@ -165,7 +165,7 @@ public class ItemExport
             System.exit(1);
         }
 
-        if (seqStart == -1)
+        if (!handleBasedDirectoryStructure && seqStart == -1)
         {
             System.out
                     .println("sequence start number must be set (-h for help)");
