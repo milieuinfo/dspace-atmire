@@ -1,28 +1,17 @@
 package org.dspace.sword2;
 
-import com.atmire.dspace.BulkUploadIMJV;
-import com.atmire.dspace.BulkUploadRecords;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
-import org.dspace.content.Bitstream;
-import org.dspace.content.Collection;
-import org.dspace.content.Community;
-import org.dspace.content.Item;
-import org.dspace.core.ConfigurationManager;
-import org.dspace.core.Context;
-import org.swordapp.server.Deposit;
-import org.swordapp.server.SwordAuthException;
-import org.swordapp.server.SwordError;
-import org.swordapp.server.SwordServerException;
 
+import com.atmire.dspace.*;
 import java.io.*;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+import java.sql.*;
+import java.util.*;
+import java.util.zip.*;
+import org.apache.commons.io.*;
+import org.apache.log4j.*;
+import org.dspace.content.*;
+import org.dspace.content.Collection;
+import org.dspace.core.*;
+import org.swordapp.server.*;
 
 /**
  * Created by philip on 05/12/14.
