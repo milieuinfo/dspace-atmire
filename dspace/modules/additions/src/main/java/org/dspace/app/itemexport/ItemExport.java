@@ -317,7 +317,9 @@ public class ItemExport
 
         if (destDir.exists())
         {
-            // now create a subdirectory
+            if(seqStart==-1){
+                seqStart++;
+            }
             File itemDir = new File(destDir + "/" + seqStart);
 
             System.out.println("Exporting Item " + myItem.getID() + " to "
@@ -329,7 +331,7 @@ public class ItemExport
                         + " already exists!");
             }
 
-            if (itemDir.mkdir())
+            if (itemDir.mkdirs())
             {
                 // make it this far, now start exporting
                 writeMetadata(c, myItem, itemDir, migrate);
