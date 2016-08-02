@@ -56,7 +56,7 @@ echo "Installeer toepassing"
 cd ${tomcat_apps_dir}/dspace_install && ant -v init_installation init_configs install_code update_webapps clean_backups
 
 
-# Als er nog geen assetstore is en we op node1 zitten wil het zeggen dat het een brand new installatie is en we zitten 
+# Als er nog geen assetstore is en we op node1 zitten wil het zeggen dat het een brand new installatie is en we zitten
 if [ ! -d "${tomcat_data_dir}/dspace/assetstore" && ${node_num} -eq 2  ]; then
     echo "Volledig nieuwe installatie"
 
@@ -68,7 +68,7 @@ if [ ! -d "${tomcat_data_dir}/dspace/assetstore" && ${node_num} -eq 2  ]; then
  #   mkdir "${tomcat_data_dir}/assetstore"
  #   chown -R tomcat:tomcat ${tomcat_data_dir}/solr2
  #   chown -R tomcat:tomcat ${tomcat_data_dir}/assetstore
- 
+
 
     # Create administrator
     # TODO uncomment this before releasing and deploying in oefen/productie
@@ -97,15 +97,8 @@ rm -rf ${tomcat_apps_dir}/dspace/assetstore
 echo "Symlink voor assetstore source: ${tomcat_data_dir}/assetstore name: ${tomcat_apps_dir}/dspace/assetstore"
 ln -s ${tomcat_data_dir}/assetstore ${tomcat_apps_dir}/dspace/assetstore
 
-#echo "Symlink voor export dir"
-#rm -rf ${tomcat_apps_dir}/dspace/exports
-#
-#mkdir -p ${tomcat_data_dir}/tmp/exports/download/  
-#ln -s ${tomcat_data_dir}/tmp/exports ${tomcat_apps_dir}/dspace/exports
-
-
 echo "Wissen van de install dir"
-rm -rf ${tomcat_apps_dir}/dspace_install 
+rm -rf ${tomcat_apps_dir}/dspace_install
 
 echo "Chown dir naar tomcat user : ${tomcat_apps_dir}"
 

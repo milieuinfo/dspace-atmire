@@ -60,11 +60,11 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
             final OpenAMUserdetails userDetails = this.openAMIdentityService.getUserDetails(ssoId);
             if (userDetails != null) {
                 final String userName = userDetails.getUsername();
-            	
+
             	final String email = userDetails.getAttributeValue("mail") == null ? userName : userDetails.getAttributeValue("mail");
                 final String sn = userDetails.getAttributeValue("sn") == null ? userName : userDetails.getAttributeValue("sn");
                 final String givenName = userDetails.getAttributeValue("givenName") ==null ? userName : userDetails.getAttributeValue("givenName");
-                
+
                 final Collection<String> roles = userDetails.getRoles();
                 if (!StringUtils.isBlank(email)) {
                     try {
@@ -112,21 +112,21 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
         return eperson;
     }
 
-    
+
 
     protected void fixGroups(Context context, Collection<String> roles , EPerson ePerson) throws SQLException, AuthorizeException{
-    	
+
     	ArrayList<Group> currentGroups = new ArrayList<Group>();
-    	
+
     	for (String role : roles) {
             if(dSpaceAdminRole.equals(role)) {
                 final Group admins = Group.findByName(context, ADMINISTRATOR_GROUP);
                 if (admins != null) {
                     admins.addMember(ePerson);
                     admins.update();
-                    
+
                     currentGroups.add(admins);
-                    
+
                 } else {
                     log.warn(LogManager.getHeader(context, "login", "Could not add user as administrator (group not found)!"));
                 }
@@ -136,16 +136,16 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
                 if (group != null) {
                     group.addMember(ePerson);
                     group.update();
-                    
+
                     currentGroups.add(group);
-                    
+
                 } else {
                     log.warn(LogManager.getHeader(context, "login", "Could not add user to group:" + groupName + " (group not found)!"));
                 }
             }
         }
-    	
-    	
+
+
     	Group[] dbGroups = Group.allMemberGroups(context, ePerson);
     	for (Group dbGroup : dbGroups ){
     		if (dbGroup.getID() == 0 ){
@@ -156,9 +156,9 @@ public abstract class OpenAMAuthentication implements AuthenticationMethod {
     			dbGroup.update();
     		}
     	}
-       	
+
     }
-    
+
     protected class DSpaceJerseyBasedOAuthIdentityService extends JerseyBasedOAuthIdentityService {
 
         private static final String LOGIN_URL = BASE_PATH + "/login";
