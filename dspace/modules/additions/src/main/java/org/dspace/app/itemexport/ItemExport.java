@@ -313,14 +313,16 @@ public class ItemExport
     private static void exportItem(Context c, Item myItem, String destDirName,
             int seqStart, boolean migrate, boolean handleBasedDirectoryStructure) throws Exception
     {
+        if(seqStart==-1){
+            seqStart++;
+        }
+
         File destDir = new File(destDirName);
 
         if (destDir.exists())
         {
-            if(seqStart==-1){
-                seqStart++;
-            }
             File itemDir = null;
+
             if(handleBasedDirectoryStructure) {
                 itemDir = new File(destDir + "/item");
             } else {
@@ -355,6 +357,10 @@ public class ItemExport
         {
             throw new Exception("Error, directory " + destDirName
                     + " doesn't exist!");
+        }
+
+        if(seqStart % 100 == 0) {
+            c.clearCache();
         }
     }
 
@@ -557,9 +563,10 @@ public class ItemExport
             for (int j = 0; j < bundles.length; j++)
             {
                 // bundles can have multiple bitstreams now...
-                Bitstream[] bitstreams = bundles[j].getBitstreams();
+                Bundle currentBundle = bundles[j];
+                Bitstream[] bitstreams = currentBundle.getBitstreams();
 
-                String bundleName = bundles[j].getName();
+                String bundleName = currentBundle.getName();
 
                 for (int k = 0; k < bitstreams.length; k++)
                 {
@@ -578,7 +585,7 @@ public class ItemExport
                     }
 
                     String primary = "";
-                    if (bundles[j].getPrimaryBitstreamID() == b.getID()) {
+                    if (currentBundle.getPrimaryBitstreamID() == b.getID()) {
                         primary = "\tprimary:true ";
                     }
 
