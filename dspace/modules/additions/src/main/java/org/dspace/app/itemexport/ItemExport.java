@@ -9,6 +9,7 @@ package org.dspace.app.itemexport;
 
 import com.atmire.metadata.MetadataManipulator;
 import org.apache.commons.cli.*;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.dspace.content.*;
@@ -297,7 +298,8 @@ public class ItemExport
                 fullPath = destDirName + File.separator + subdir;
             }
 
-            if (!new File(fullPath).mkdirs()) {
+            File file = new File(fullPath);
+            if (!file.exists() && !file.mkdirs()) {
                 System.out.println("Cannot create directories at " + fullPath);
             } else {
                 System.out.println("Exporting item to " + fullPath);
@@ -334,8 +336,8 @@ public class ItemExport
 
             if (itemDir.exists())
             {
-                throw new Exception("Directory " + itemDir.getAbsolutePath()
-                        + " already exists!");
+                System.out.println(itemDir.getAbsolutePath() + " exists. Removing it.");
+                FileUtils.deleteDirectory(itemDir);
             }
 
             if (itemDir.mkdirs())
